@@ -1,1 +1,1 @@
-# mamp_prediction_ml
+# MAMP Prediction Model
