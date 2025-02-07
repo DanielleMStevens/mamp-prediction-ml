@@ -1,0 +1,33 @@
+Bootstrap: docker
+From: continuumio/miniconda3:latest
+
+%files
+    environment_esm.yml /opt/environment_esm.yml
+
+%environment
+    export PATH=/opt/conda/bin:$PATH
+    export PYTHONPATH=/opt/conda/lib/python3.8/site-packages:$PYTHONPATH
+
+%post
+    # Install system dependencies
+    apt-get update && apt-get install -y \
+        build-essential \
+        git \
+        wget \
+        cmake \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Create conda environment from yml file
+    conda env create -f /opt/environment_esm.yml
+    
+    # Make RUN commands use the new conda environment
+    echo "source activate esmfold" >> ~/.bashrc
+
+    # Clean up
+    conda clean -afy
+
+%runscript
+    exec /bin/bash "$@"
+
+%startscript
+    exec /bin/bash "$@" 

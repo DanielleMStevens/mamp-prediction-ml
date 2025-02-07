@@ -2,28 +2,40 @@ name: esmfold
 channels:
   - pytorch
   - conda-forge
-  - defaults
+  - bioconda
   - apple
 dependencies:
-  - python=3.8
-  - numpy
-  - pytorch
+  - python=3.9
+  - setuptools
+  - openmm=7.7.0
+  - numpy=1.21.2
+  - pytorch::pytorch=1.12.*
   - torchvision
   - torchaudio
   - openpyxl
-  - conda-forge::pdbfixer
+  - pdbfixer
   - einops=0.6.1
   - pyyaml=5.4.1
   - pip
   - pandas
-  - biopython
+  - biopython=1.79
   - matplotlib
   - seaborn
   - jupyter
   - notebook
+  - pytest
+  - kalign2=2.04
   - ipykernel
+  - bio-embeddings-esm
+  - mkl=2021.*
   - pip:
     - omegaconf
     - fair-esm
     - fairscale
-    - "fair-esm[esmfold]" 
+    - "fair-esm[esmfold]"
+    - deepspeed==0.5.9
+    - dm-tree==0.1.6
+    - ml-collections==0.1.0
+    - pytorch_lightning==1.5.10
+    - wandb==0.12.21
+    - git+https://github.com/NVIDIA/dllogger.git
