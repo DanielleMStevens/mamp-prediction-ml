@@ -18,7 +18,6 @@ dependencies:
   - pyyaml=5.4.1
   - pip
   - pandas
-  - biopython=1.79
   - matplotlib
   - seaborn
   - jupyter
@@ -27,7 +26,7 @@ dependencies:
   - kalign2=2.04
   - ipykernel
   - bio-embeddings-esm
-  - mkl=2021.*
+#  - conda-forge::mkl=2021.*
   - pip:
     - omegaconf
     - fair-esm

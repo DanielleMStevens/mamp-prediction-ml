@@ -2,7 +2,7 @@ from Bio.PDB import *
 import os
 import glob
 
-def convert_cif_to_pdb(input_dir="./../out_data/modeled_structures", output_dir="./../out_data/pdb_structures"):
+def convert_cif_to_pdb(input_dir="./out_data/modeled_structures/AlphaFold_output", output_dir="./out_data/modeled_structures/pdb_for_lrr_annotator"):
     """
     Convert all .cif files in input_dir to .pdb format and save them in output_dir
     
