@@ -63,9 +63,9 @@ def load_receptor_sequences(in_data_dir: Path) -> Dict[str, str]:
     Returns:
         dict: Mapping of receptor names to their sequences
     """
-    fasta_path = in_data_dir / "receptor_ectodomains.fasta"
+    fasta_path = in_data_dir.parent / "out_data" / "lrr_domain_sequences.fasta"
     if not fasta_path.exists():
-        raise FileNotFoundError("Could not find receptor sequence file")
+        raise FileNotFoundError(f"Could not find receptor sequence file at {fasta_path}")
         
     return parse_fasta(fasta_path)
 
@@ -79,23 +79,25 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
                                  instead of new names (Ligand, Ligand Sequence, Immunogenicity)
     """
     # Load main data
-    data_df = pd.read_excel(in_data_dir / "All_LRR_PRR_ligand_data.xlsx")
+    excel_path = in_data_dir / "All_LRR_PRR_ligand_data.xlsx"
+    if not excel_path.exists():
+        raise FileNotFoundError(f"Could not find Excel data file at {excel_path}")
     
-    # Filter out specific literature data
-    data_df = data_df[~data_df["Literature_Data"].isin([
-        "01_Steinbrenner_2020", 
-        "02_Snoeck_2022",
-        "22_Kim_2020"
-    ])]
+    data_df = pd.read_excel(excel_path)
     
+    # Debug print
+    print(f"\nLoaded Excel file with {len(data_df)} rows")
+    print("Available columns:", data_df.columns.tolist())
+
+    # Verify required columns exist
+    required_columns = ["Plant species", "Receptor", "Ligand", "Ligand Sequence", "Immunogenicity"]
+    missing_columns = [col for col in required_columns if col not in data_df.columns]
+    if missing_columns:
+        raise ValueError(f"Missing required columns in Excel file: {missing_columns}")
+
     # Create receptor-ligand pairs
-    receptor_ligand_pairs = data_df[[
-        "Plant species", 
-        "Receptor", 
-        "Ligand",
-        "Ligand Sequence", 
-        'Immunogenicity'
-    ]].drop_duplicates()
+    receptor_ligand_pairs = data_df[required_columns].drop_duplicates()
+    print(f"\nUnique receptor-ligand pairs: {len(receptor_ligand_pairs)}")
     
     # Add receptor name column
     receptor_ligand_pairs['Receptor Name'] = receptor_ligand_pairs.apply(
@@ -105,10 +107,15 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
     
     # Add receptor sequences
     receptor_name_to_seq = load_receptor_sequences(in_data_dir)
+    print(f"\nLoaded {len(receptor_name_to_seq)} receptor sequences")
+    
     receptor_ligand_pairs['Receptor Sequence'] = receptor_ligand_pairs["Receptor Name"].map(receptor_name_to_seq)
     
     # Filter out rows with missing receptor sequences
+    before_filter = len(receptor_ligand_pairs)
     receptor_ligand_pairs = receptor_ligand_pairs.dropna(subset=['Receptor Sequence'])
+    after_filter = len(receptor_ligand_pairs)
+    print(f"\nFiltered out {before_filter - after_filter} rows with missing receptor sequences")
     
     # Add column renaming if legacy columns option is enabled
     if use_legacy_columns:
@@ -119,6 +126,7 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
         }
         receptor_ligand_pairs = receptor_ligand_pairs.rename(columns=column_mapping)
     
+    print(f"\nFinal dataset has {len(receptor_ligand_pairs)} rows")
     return receptor_ligand_pairs
 
 def split_with_rare_handling(df: pd.DataFrame, min_samples: int = 2) -> Tuple[pd.DataFrame, pd.DataFrame]:

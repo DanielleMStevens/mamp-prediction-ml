@@ -33,3 +33,9 @@ brew install brewsci/bio/hhsuite
 https://anaconda.org/conda-forge/biopython/1.85/download/win-64/biopython-1.85-py311he736701_1.conda
 ```
 
+Attempt 2
+```
+pip3 install torch torchvision torchaudio
+python -m pip install tensorflow-macos
+python -m pip install tensorflow-metal  # For GPU acceleration
+```
