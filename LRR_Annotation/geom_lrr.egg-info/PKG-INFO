@@ -1,5 +1,5 @@
-Metadata-Version: 2.2
-Name: geom_lrr
+Metadata-Version: 2.1
+Name: geom-lrr
 Version: 1.1
 Summary: Protein domain annotation tool
 Home-page: https://github.com/amcerbu/LRR-Annotation/
@@ -7,7 +7,6 @@ Author: Boyan Xu, Alois Cerbu, Daven Lim, Chris Tralie, Ksenia Krasileva
 Author-email: boxu@berkeley.edu
 License: MIT
 Description-Content-Type: text/markdown
-License-File: LICENSE
 Requires-Dist: numpy
 Requires-Dist: scipy
 Requires-Dist: matplotlib
@@ -16,14 +15,6 @@ Requires-Dist: biopython
 Requires-Dist: jupyter
 Requires-Dist: mayavi
 Requires-Dist: wxPython
-Dynamic: author
-Dynamic: author-email
-Dynamic: description
-Dynamic: description-content-type
-Dynamic: home-page
-Dynamic: license
-Dynamic: requires-dist
-Dynamic: summary
 
 
 # geom_lrr
