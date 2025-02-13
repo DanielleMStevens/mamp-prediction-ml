@@ -1,6 +1,9 @@
-from geom_lrr import Loader, Analyzer, Plotter
-from extract_lrr_sequences import LRRSequenceExtractor
+import sys
 import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from geom_lrr import Loader, Analyzer, Plotter
+from LRR_Annotation.extract_lrr_sequences import LRRSequenceExtractor
 
 def main():
     # Initialize objects
@@ -37,9 +40,17 @@ def main():
         A.compute_regressions()
 
     # Extract LRR sequences using breakpoints from regression analysis
+    # Create output file
+    output_file = './out_data/lrr_annotation_results.txt'
+    
+    # Write header to the output file
+    with open(output_file, 'w') as f:
+        f.write("PDB_Filename\tRegion_Number\tStart_Position\tEnd_Position\tSequence_Length\tFull_Sequence_Length\tTotal_LRR_Regions\tSequence\n")
+    
     for pdb_id, breakpoints in A.breakpoints.items():
-        # Reconstruct the PDB file path
+        # Reconstruct the PDB file path and get filename
         pdb_file = os.path.join(pdb_directory, f"{pdb_id}.pdb")
+        pdb_filename = os.path.basename(pdb_file)  # This will get just the filename part
         
         # Check if file exists
         if not os.path.exists(pdb_file):
@@ -48,17 +59,11 @@ def main():
             
         results = sequence_extractor.analyze_lrr_regions(pdb_file, breakpoints)
         
-        # Save or print the results
-        print(f"\nResults for {pdb_id}:")
-        print(f"Full sequence length: {results['sequence_length']}")
-        print(f"Number of LRR regions: {results['num_lrr_regions']}")
-        
-        for i, (seq, (start, end)) in enumerate(zip(results['lrr_sequences'], 
-                                                   results['lrr_positions'])):
-            print(f"\nLRR Region {i+1}:")
-            print(f"Position: {start}-{end}")
-            print(f"Sequence: {seq}")
-            print(f"Length: {len(seq)}")
+        # Append results to the output file
+        with open(output_file, 'a') as f:
+            for i, (seq, (start, end)) in enumerate(zip(results['lrr_sequences'], 
+                                                       results['lrr_positions'])):
+                f.write(f"{pdb_filename}\t{i+1}\t{start}\t{end}\t{len(seq)}\t{results['sequence_length']}\t{results['num_lrr_regions']}\t{seq}\n")
 
     # Cache data if requested
     if make_cache:
