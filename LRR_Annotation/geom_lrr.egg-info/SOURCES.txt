@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+geom_lrr.egg-info/PKG-INFO
+geom_lrr.egg-info/SOURCES.txt
+geom_lrr.egg-info/dependency_links.txt
+geom_lrr.egg-info/requires.txt
+geom_lrr.egg-info/top_level.txt

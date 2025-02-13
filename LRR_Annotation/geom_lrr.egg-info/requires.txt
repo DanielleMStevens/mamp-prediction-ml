@@ -1,0 +1,8 @@
+numpy
+scipy
+matplotlib
+tqdm
+biopython
+jupyter
+mayavi
+wxPython
