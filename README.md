@@ -23,7 +23,7 @@ conda install pytorch torchvision cudatoolkit=10.2 -c pytorch -c hcc
 
 export CUDA_HOME=/usr/local/cuda
 nvcc -V
-
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 
 
 Attempt 2
