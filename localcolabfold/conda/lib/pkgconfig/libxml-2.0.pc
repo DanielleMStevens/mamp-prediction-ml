@@ -1,0 +1,13 @@
+prefix=/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+modules=1
+
+Name: libXML
+Version: 2.13.5
+Description: libXML library version2.
+Requires.private: 
+Libs: -L${libdir} -lxml2 
+Libs.private:  -L/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda/lib -lz -L/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda/lib -llzma  -L/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda/lib -liconv -lm   
+Cflags: -I${includedir}/libxml2 -I/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda/include 

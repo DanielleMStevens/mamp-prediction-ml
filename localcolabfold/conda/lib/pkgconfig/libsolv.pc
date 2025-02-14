@@ -1,0 +1,8 @@
+libdir=/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda/lib
+includedir=/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda/include
+
+Name: libsolv
+Description: Library for solving packages
+Version: 0.7.30
+Libs: -L${libdir} -lsolv
+Cflags: -I${includedir}
