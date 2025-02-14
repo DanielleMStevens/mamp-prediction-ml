@@ -1,9 +1,0 @@
-libdir=/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda/lib
-includedir=/global/home/users/dmstev/mamp_prediction_ml/localcolabfold/conda/include
-
-Name: libsolvext
-Description: Library for reading repositories
-Version: 0.7.30
-Requires: libsolv
-Libs: -L${libdir} -lsolvext
-Cflags: -I${includedir}
