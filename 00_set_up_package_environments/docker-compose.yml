@@ -1,0 +1,11 @@
+version: '3'
+services:
+  esmfold:
+    build: .
+    platform: linux/arm64
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+    environment:
+      - PYTORCH_ENABLE_MPS_FALLBACK=1 
