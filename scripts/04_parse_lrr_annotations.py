@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3  
 
 def read_receptor_sequences(fasta_file):
     """Read the receptor FASTA file and create a mapping of sequences to headers"""
