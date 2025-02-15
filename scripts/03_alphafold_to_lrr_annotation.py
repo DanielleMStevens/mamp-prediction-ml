@@ -94,11 +94,18 @@ def copy_best_models(best_models, source_dir, target_dir):
     target_dir.mkdir(parents=True, exist_ok=True)
     
     for receptor, model_num in best_models.items():
-        source_path = source_dir / receptor / f"ranked_{model_num}.pdb"
-        if not source_path.exists():
-            print(f"Warning: Could not find model file for {receptor} at {source_path}")
+        # Construct the file pattern for glob
+        file_pattern = f"{receptor}_unrelaxed_rank_*_alphafold2_ptm_model_{model_num}_seed_*.pdb"
+        matching_files = list(source_dir.glob(file_pattern))
+        
+        if not matching_files:
+            print(f"Warning: Could not find model file for {receptor} matching pattern {file_pattern}")
             continue
             
+        if len(matching_files) > 1:
+            print(f"Warning: Multiple matching files found for {receptor}, using first match")
+            
+        source_path = matching_files[0]
         target_path = target_dir / f"{receptor}.pdb"
         shutil.copy2(source_path, target_path)
         print(f"Copied {source_path} to {target_path}")
