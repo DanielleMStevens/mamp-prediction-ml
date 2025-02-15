@@ -91,35 +91,57 @@ def create_combined_fasta(sequences, excel_file, output_file):
     # Read the Excel file
     df = pd.read_excel(excel_file)
     
+    # Print column names to help debug
+    print("Available columns in Excel file:", df.columns.tolist())
+    
+    # Map expected column names to actual column names
+    column_mapping = {
+        'Plant Species': 'Plant species',
+        'Receptor': 'Receptor',
+        'Locus ID/Genbank': 'Locus ID/Genbank',
+        'Ligand': 'Ligand',
+        'Ligand_sequence': 'Ligand Sequence'
+    }
+    
     # Create a mapping of receptor IDs to their details from Excel
     receptor_info = {}
     for _, row in df.iterrows():
-        # Assuming columns exist for species, receptor name, genbank/locus, and ligand sequence
-        key = row['Genbank/Locus'].strip()  # Use this as the matching key
-        receptor_info[key] = {
-            'species': row['Species'].strip(),
-            'receptor': row['Receptor'].strip(),
-            'ligand_name': row['Ligand'].strip(),
-            'ligand_sequence': row['Ligand_sequence'].strip() if pd.notna(row['Ligand_sequence']) else ''
-        }
+        try:
+            # Use get() method to avoid KeyError, with empty string as default
+            key = str(row[column_mapping['Locus ID/Genbank']]).strip()
+            receptor_info[key] = {
+                'species': str(row[column_mapping['Plant Species']]).strip(),
+                'receptor': str(row[column_mapping['Receptor']]).strip(),
+                'ligand_name': str(row[column_mapping['Ligand']]).strip(),
+                'ligand_sequence': str(row[column_mapping['Ligand_sequence']]).strip() if pd.notna(row[column_mapping['Ligand_sequence']]) else ''
+            }
+        except KeyError as e:
+            print(f"Warning: Column {e} not found in Excel file")
+            continue
+        except Exception as e:
+            print(f"Warning: Error processing row: {e}")
+            continue
     
     with open(output_file, 'w') as f:
         for header, lrr_sequence in sequences:
             # Extract the genbank/locus ID from the header
-            # Assuming header format is ">something|genbank_id|other_info"
-            genbank_id = header.split('|')[1]  # Adjust this split based on your actual header format
-            
-            if genbank_id in receptor_info:
-                info = receptor_info[genbank_id]
-                # Create the new header format
-                new_header = f">{info['species']}:{info['receptor']}:{genbank_id}:{info['ligand_name']}"
-                # Create the sequence line with LRR and ligand sequences
-                combined_sequence = f"{lrr_sequence}:{info['ligand_sequence']}"
+            try:
+                genbank_id = header.split('|')[1]  # Adjust this split based on your actual header format
                 
-                f.write(f"{new_header}\n")
-                f.write(f"{combined_sequence}\n")
-            else:
-                print(f"Warning: No matching information found in Excel for {genbank_id}")
+                if genbank_id in receptor_info:
+                    info = receptor_info[genbank_id]
+                    # Create the new header format
+                    new_header = f">{info['species']}:{info['receptor']}:{genbank_id}:{info['ligand_name']}"
+                    # Create the sequence line with LRR and ligand sequences
+                    combined_sequence = f"{lrr_sequence}:{info['ligand_sequence']}"
+                    
+                    f.write(f"{new_header}\n")
+                    f.write(f"{combined_sequence}\n")
+                else:
+                    print(f"Warning: No matching information found in Excel for {genbank_id}")
+            except Exception as e:
+                print(f"Warning: Error processing header {header}: {e}")
+                continue
 
 def main():
     # Input files
