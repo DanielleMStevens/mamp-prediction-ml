@@ -1,0 +1,6 @@
+Receptor                                                                                            Best Model     pLDDT     pTM
+-----------------------------------------------------------------------------------------------------------------------------
+Cajanus_cajan_XP_020210262.1_FLS2                                                                   model_3        94.2      0.880
+Glycine_max_Glyma.10G228600_INR-like_4_INR-like                                                     model_5        89.4      0.802
+Nicotiana_benthamiana_Niben101Scf03455g01008.1_FLS2                                                 model_5        86.5      0.534
+Vigna_unguiculata_Vigun07g219600_INR                                                                model_1        86.6      0.763
