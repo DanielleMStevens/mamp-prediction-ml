@@ -302,30 +302,42 @@ def main(args):
 
     print(f"Start training for {args.epochs} epochs, saving to {args.output_dir}")
     start_time = time.time()
+    
+    # Create initial evaluation before training starts
+    args.current_epoch = 0
+    evaluate(model, dl_test, device, args, args.output_dir)
+    
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
             dl_train.sampler.set_epoch(epoch)
         train_one_epoch(model, dl_train, optimizer, device, epoch, args)
+        
+        # Set current epoch for plotting
+        args.current_epoch = epoch + 1
+        
+        # Evaluate and generate plots every eval_period epochs
         if epoch % args.eval_period == args.eval_period - 1:
-            args.current_epoch = epoch
             evaluate(model, dl_test, device, args, args.output_dir)
+            
         if epoch % args.save_period == args.save_period - 1:
             ckpt_path = misc.save_model(
                 args, epoch, model, model_without_ddp, optimizer, None
             )
             print(f"Saved checkpoint to {ckpt_path}")
+    
     total_time = time.time() - start_time
     total_time_str = str(datetime.timedelta(seconds=int(total_time)))
     print(f"Training time {total_time_str}")
 
-    metrics = {}
-    metrics.update(evaluate(model, dl_test, device, args, args.output_dir))
+    # Final evaluation after training is complete
+    args.current_epoch = "final"
+    metrics = evaluate(model, dl_test, device, args, args.output_dir)
 
     if misc.is_main_process():
         # metrics["copypasta"] = ",,".join(
         #     [metrics[f"{dl.dataset.name}_copypasta"] for dl in [dl_test]]
         # )
-        print(metrics)
+        print("Final metrics:", metrics)
 
     if not args.disable_wandb and misc.is_main_process():
         # wandb.log({"copypasta": metrics["copypasta"]})
