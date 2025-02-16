@@ -1,0 +1,34 @@
+name: esmfold
+channels:
+  - conda-forge
+  - bioconda
+  - pytorch
+dependencies:
+  - python=3.9
+  - setuptools=59.5.0
+  - pip
+  - openmm=7.7.0
+  - pdbfixer
+  - einops
+  - fairscale
+  - omegaconf
+  - hydra-core
+  - pandas
+  - pytest
+  - hmmer
+  - kalign2
+  - pytorch
+  - pip:
+      - biopython==1.79
+      - deepspeed==0.5.9
+      - dm-tree==0.1.6
+      - ml-collections==0.1.0
+      - numpy
+      - PyYAML==5.4.1
+      - requests==2.26.0
+      - scipy
+      - tqdm==4.62.2
+      - typing-extensions==3.10.0.2
+      - pytorch_lightning==1.5.10
+      - wandb==0.12.21
+      - git+https://github.com/NVIDIA/dllogger.git

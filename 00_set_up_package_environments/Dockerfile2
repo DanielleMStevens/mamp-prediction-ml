@@ -1,0 +1,45 @@
+FROM pytorch/pytorch:latest
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+RUN pip install --no-cache-dir \
+    wandb \
+    pandas \
+    numpy \
+    scikit-learn \
+    transformers \
+    fair-esm
+
+# The script appears to use custom modules, so you'll need to ensure these are available:
+# - models/esm_model.py
+# - models/esm_mid_model.py
+# - models/glm_model.py
+# - models/alphafold_model.py
+# - models/esm_with_receptor_model.py
+# - models/glm_with_receptor_model.py
+# - models/esm_with_receptor_single_seq_model.py
+# - models/glm_with_receptor_single_seq_model.py
+# - models/amp_with_receptor_model.py
+# - models/esm_with_receptor_attn_film_model.py
+# - models/amp_model.py
+# - models/esm_contrast_model.py
+# - engine_train.py
+# - datasets/seq_dataset.py
+# - datasets/alphafold_dataset.py
+# - datasets/seq_with_receptor_dataset.py
+# - misc.py
+
+# Set working directory
+WORKDIR /app
+
+# Copy your project files
+COPY . .
+
+# The script can be run with:
+# docker build -t ml_training .
+# docker run --gpus all ml_training python scripts_ml/05_main_train.py [your arguments] 
