@@ -307,6 +307,7 @@ def main(args):
             dl_train.sampler.set_epoch(epoch)
         train_one_epoch(model, dl_train, optimizer, device, epoch, args)
         if epoch % args.eval_period == args.eval_period - 1:
+            args.current_epoch = epoch
             evaluate(model, dl_test, device, args, args.output_dir)
         if epoch % args.save_period == args.save_period - 1:
             ckpt_path = misc.save_model(

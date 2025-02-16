@@ -188,6 +188,10 @@ def evaluate(model, dl, device, args, output_dir):
     
     stats['test_loss'] = mean_loss
 
+    # Create plots directory
+    plots_dir = Path(output_dir) / 'plots'
+    plots_dir.mkdir(exist_ok=True, parents=True)
+
     # Generate and save ROC curves
     plt.figure(figsize=(10, 8))
     gt_onehot = np.eye(3)[gt_all.cpu()]
@@ -196,37 +200,84 @@ def evaluate(model, dl, device, args, output_dir):
     for i in range(3):
         fpr, tpr, _ = roc_curve(gt_onehot[:, i], pr_np[:, i])
         plt.plot(fpr, tpr, label=f'Class {i} (AUC = {stats[f"test_auroc"]:.2f})')
-    
     plt.plot([0, 1], [0, 1], 'k--')
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Receiver Operating Characteristic (ROC) Curve')
-    plt.legend(loc="lower right")
-    plt.savefig(Path(output_dir) / 'roc_curve.png')
+    plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})')
+    plt.legend()
+    plt.savefig(plots_dir / f'roc_curve_epoch_{getattr(args, "current_epoch", "final")}.png')
     plt.close()
 
-    # Generate and save PR curves
+    # Create and save PR curve
     plt.figure(figsize=(10, 8))
-    
     for i in range(3):
         precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
         plt.plot(recall, precision, label=f'Class {i} (AUC = {stats[f"test_auprc_class{i}"]:.2f})')
-    
     plt.xlabel('Recall')
     plt.ylabel('Precision')
-    plt.title('Precision-Recall Curve')
-    plt.legend(loc="lower left")
-    plt.savefig(Path(output_dir) / 'pr_curve.png')
+    plt.title(f'Precision-Recall Curves (Epoch {getattr(args, "current_epoch", "final")})')
+    plt.legend()
+    plt.savefig(plots_dir / f'pr_curve_epoch_{getattr(args, "current_epoch", "final")}.png')
     plt.close()
 
-    if not args.disable_wandb and misc.is_main_process():
-        wandb.log(stats)
-        wandb.log({
-            "roc_curve": wandb.Image(str(Path(output_dir) / 'roc_curve.png')),
-            "pr_curve": wandb.Image(str(Path(output_dir) / 'pr_curve.png'))
-        })
+    # Save metrics to CSV
+    metrics = {
+        'epoch': getattr(args, "current_epoch", "final"),
+        'auroc': stats["test_auroc"],
+        'auprc_class0': stats["test_auprc_class0"],
+        'auprc_class1': stats["test_auprc_class1"],
+        'auprc_class2': stats["test_auprc_class2"],
+        'accuracy': stats["test_acc"],
+        'f1_macro': stats["test_f1_macro"],
+        'f1_weighted': stats["test_f1_weighted"],
+        'loss': stats["test_loss"]
+    }
+    
+    # Load existing metrics if available, otherwise create new DataFrame
+    metrics_file = plots_dir / 'training_metrics.csv'
+    if metrics_file.exists():
+        df_metrics = pd.read_csv(metrics_file)
+        df_new = pd.DataFrame([metrics])
+        df_metrics = pd.concat([df_metrics, df_new], ignore_index=True)
+    else:
+        df_metrics = pd.DataFrame([metrics])
+    
+    df_metrics.to_csv(metrics_file, index=False)
+
+    # Create and save metrics plots
+    plt.figure(figsize=(15, 10))
+    plt.subplot(2, 2, 1)
+    plt.plot(df_metrics['epoch'], df_metrics['auroc'], marker='o')
+    plt.title('AUROC over epochs')
+    plt.xlabel('Epoch')
+    plt.ylabel('AUROC')
+
+    plt.subplot(2, 2, 2)
+    for i in range(3):
+        plt.plot(df_metrics['epoch'], df_metrics[f'auprc_class{i}'], marker='o', label=f'Class {i}')
+    plt.title('AUPRC over epochs')
+    plt.xlabel('Epoch')
+    plt.ylabel('AUPRC')
+    plt.legend()
+
+    plt.subplot(2, 2, 3)
+    plt.plot(df_metrics['epoch'], df_metrics['accuracy'], marker='o', label='Accuracy')
+    plt.plot(df_metrics['epoch'], df_metrics['f1_macro'], marker='o', label='F1 Macro')
+    plt.plot(df_metrics['epoch'], df_metrics['f1_weighted'], marker='o', label='F1 Weighted')
+    plt.title('Accuracy and F1 Scores over epochs')
+    plt.xlabel('Epoch')
+    plt.ylabel('Score')
+    plt.legend()
+
+    plt.subplot(2, 2, 4)
+    plt.plot(df_metrics['epoch'], df_metrics['loss'], marker='o')
+    plt.title('Loss over epochs')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+
+    plt.tight_layout()
+    plt.savefig(plots_dir / 'training_progress.png')
+    plt.close()
 
     torch.save(
         {
