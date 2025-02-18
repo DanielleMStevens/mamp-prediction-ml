@@ -41,11 +41,14 @@ Nicotiana_benthamiana_Niben101Scf02323g01010.1_CORE                             
 Nicotiana_benthamiana_Niben101Scf03455g01008.1_FLS2                                                 model_5        86.5      0.534
 Phaseolus_vulgaris_Phvul.007g246600_INR-like                                                        model_3        89.2      0.797
 Phaseolus_vulgaris_Phvul007G077500_INR                                                              model_3        88.9      0.816
+Phaseolus_vulgaris_UTN00805.1_FLS2                                                                  model_3        88.6      0.648
 Populus_davidiana_ON556655.1_FLS2                                                                   model_3        88.5      0.646
 Populus_deltoides_ON556654.1_FLS2                                                                   model_3        88.9      0.654
 Populus_euphratica_MH079056.1_FLS2                                                                  model_3        88.6      0.647
+Populus_simonii_MH079054.1_FLS2                                                                     model_3        88.8      0.646
 Populus_tomentosa_MH079055.1_FLS2                                                                   model_3        88.8      0.647
-Populus_x_canadensis_MH079052.1_FLS2                                                                model_1        87.6      0.611
+Populus_trichocarpa_UTN00792.1_FLS2                                                                 model_3        88.0      0.648
+Populus_x_canadensis_MH079052.1_FLS2                                                                model_3        88.8      0.652
 Prunus_mume_UTN00801.1_FLS2                                                                         model_3        87.8      0.649
 Prunus_persica_UTN00800.1_FLS2                                                                      model_5        88.2      0.649
 Prunus_yedoensis_UTN00802.1_FLS2                                                                    model_3        88.4      0.646

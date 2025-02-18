@@ -82,7 +82,7 @@ def get_args_parser():
     parser.add_argument("--num_workers", default=10, type=int)
 
     # train params
-    parser.add_argument("--epochs", type=int, default=50)
+    parser.add_argument("--epochs", type=int, default=70)
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--lr", type=float, default=3e-4)
     parser.add_argument("--min_lr", type=float, default=1e-9)
