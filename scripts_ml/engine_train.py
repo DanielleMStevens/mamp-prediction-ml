@@ -1,3 +1,10 @@
+"""
+Training and evaluation engine for a deep learning model.
+This module provides the core functionality for training and evaluating machine learning models,
+particularly focused on multi-class classification tasks. It includes functionality for
+loss computation, metric tracking, and visualization of results.
+"""
+
 import math
 import sys
 import os
@@ -35,11 +42,11 @@ def move_to_device(obj, device):
     Recursively moves all PyTorch tensors in a nested dictionary to the specified device.
     
     Args:
-    obj: The object to move (can be a dict, list, tuple, or tensor)
-    device: The PyTorch device to move the tensors to
+        obj: The object to move (can be a dict, list, tuple, tensor, or BatchEncoding)
+        device: The PyTorch device to move the tensors to
 
     Returns:
-    The same object structure with all tensors moved to the specified device
+        The same object structure with all tensors moved to the specified device
     """
     if isinstance(obj, torch.Tensor):
         return obj.to(device)
@@ -54,9 +61,10 @@ def move_to_device(obj, device):
     else:
         return obj
 
+# Dictionary mapping loss function names to their implementations
 loss_dict = {
-    "ce": CrossEntropyLoss(),
-    "supcon": SupConLoss()
+    "ce": CrossEntropyLoss(),     # Standard cross-entropy loss
+    "supcon": SupConLoss()        # Supervised contrastive loss
 }
 
 def train_one_epoch(
@@ -67,54 +75,81 @@ def train_one_epoch(
     epoch: int,
     args=None,
 ):
-    ## prepare training
+    """
+    Trains the model for one epoch.
+    
+    Args:
+        model: The neural network model to train
+        dl: DataLoader containing the training data
+        optimizer: The optimizer for updating model parameters
+        device: The device (CPU/GPU) to use for training
+        epoch: Current epoch number
+        args: Additional arguments for training configuration
+    
+    Returns:
+        dict: Dictionary containing averaged training metrics for the epoch
+    """
+    # Set model to training mode and reset optimizer
     model.train()
     optimizer.zero_grad()
 
-    ## prepare logging
+    # Initialize metric logging
     metric_logger = misc.MetricLogger(delimiter="  ")
     metric_logger.add_meter("lr", misc.SmoothedValue(window_size=1, fmt="{value:.6f}"))
     header = f"Epoch: [{epoch}]"
     print_freq = 10
 
+    # Lists to store predictions and ground truth for the entire epoch
     lists = {"gt": [], "pr": [], "x": []}
+    
+    # Training loop over batches
     for batch_idx, batch in enumerate(metric_logger.log_every(dl, print_freq, header)):
+        # Update learning rate according to schedule
         misc.adjust_learning_rate(optimizer, batch_idx / len(dl) + epoch, args)
 
-        ## move inputs/outputs to cuda
+        # Move batch to appropriate device
         batch = move_to_device(batch, device)
-        ## forward
+        
+        # Forward pass
         output = model(batch['x'])
         all_losses = {}
         model_with_losses = model.module if hasattr(model, "module") else model
+        
+        # Calculate all specified losses
         for loss_name in model_with_losses.losses:
             losses = loss_dict[loss_name](output, batch)
             all_losses.update(losses)
 
         total_loss = sum(all_losses.values())
 
+        # Check for invalid loss values
         if not math.isfinite(total_loss.item()):
             print("Loss is {}, stopping training".format(total_loss.item()))
             sys.exit(1)
 
-        ## backward
+        # Backward pass and optimization
         total_loss.backward()
-        nn.utils.clip_grad_norm_(model.parameters(), 5.0)
+        nn.utils.clip_grad_norm_(model.parameters(), 5.0)  # Gradient clipping
         optimizer.step()
         optimizer.zero_grad()
 
-        ## logging
+        # Get predictions and calculate metrics
         gt = batch['y']
         model_with_losses = model.module if hasattr(model, "module") else model
         preds = model_with_losses.get_pr(output)
 
+        # Calculate statistics and update loggers
         stats = model_with_losses.get_stats(gt, preds, train=True)
         lr = optimizer.param_groups[0]["lr"]
         losses_detach = {f"train_{k}": v.cpu().item() for k, v in all_losses.items()}
+        
+        # Update metric logger
         metric_logger.update(lr=lr)
         metric_logger.update(loss=total_loss.item())
         metric_logger.update(**losses_detach)
         metric_logger.update(**stats)
+        
+        # Log to wandb if enabled
         if not args.disable_wandb and misc.is_main_process():
             wandb.log(
                 {
@@ -125,49 +160,73 @@ def train_one_epoch(
                 }
             )
             
+        # Store batch results
         lists["gt"].append(batch['y'].cpu())
         lists["pr"].append(preds.cpu())
         model_with_losses = model.module if hasattr(model, "module") else model
         lists["x"].extend(model_with_losses.batch_decode(batch))
 
+    # Concatenate all predictions and ground truth
     gt_all = torch.cat(lists["gt"])
     prob_all = torch.cat(lists["pr"])
 
+    # Save epoch predictions
     torch.save(
-    {
-        "gt": gt_all,       
-        "pr": prob_all,
-        "x": lists["x"]
-    },
-    args.output_dir / "train_preds.pth",
+        {
+            "gt": gt_all,       
+            "pr": prob_all,
+            "x": lists["x"]
+        },
+        args.output_dir / "train_preds.pth",
     )
     
-    ## gather the stats from all processes
+    # Synchronize metrics across processes and return averaged stats
     metric_logger.synchronize_between_processes()
     print("Averaged stats:", metric_logger)
     return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
 
 @torch.no_grad()
 def evaluate(model, dl, device, args, output_dir):
+    """
+    Evaluates the model on a validation/test dataset.
+    
+    Args:
+        model: The neural network model to evaluate
+        dl: DataLoader containing the evaluation data
+        device: The device (CPU/GPU) to use for evaluation
+        args: Additional arguments for evaluation configuration
+        output_dir: Directory to save evaluation results and plots
+    
+    Returns:
+        dict: Dictionary containing evaluation metrics
+    """
     model.eval()
 
     metric_logger = misc.MetricLogger(delimiter="  ")
     header = "Test:"
 
+    # Lists to store predictions, ground truth, and losses
     lists = {"gt": [], "pr": [], "x": [], "loss": []}
+    
+    # Evaluation loop
     for batch in metric_logger.log_every(dl, 10, header):
-        ## move inputs/outputs to cuda
         batch = move_to_device(batch, device)
         output = model(batch['x'])
+        
+        # Calculate losses
         all_losses = {}
         model_with_losses = model.module if hasattr(model, "module") else model
         for loss_name in model_with_losses.losses:
             losses = loss_dict[loss_name](output, batch)
             all_losses.update(losses)
+            
+        # Store individual losses
         for loss_name, loss_val in all_losses.items():
             if loss_name not in lists.keys():
                 lists[loss_name] = []
             lists[loss_name].append(loss_val.cpu())
+            
+        # Get predictions
         preds = model_with_losses.get_pr(output)
         lists["gt"].append(batch['y'].cpu())
         lists["pr"].append(preds.cpu())
@@ -176,6 +235,7 @@ def evaluate(model, dl, device, args, output_dir):
         total_loss = sum(all_losses.values())
         lists['loss'].append(total_loss.cpu())
 
+    # Process all predictions and calculate metrics
     gt_all = torch.cat(lists["gt"])
     prob_all = torch.cat(lists["pr"])
     mean_loss = float(np.mean(lists['loss']))
@@ -183,9 +243,9 @@ def evaluate(model, dl, device, args, output_dir):
     model_with_losses = model.module if hasattr(model, "module") else model
     stats = model_with_losses.get_stats(gt_all, prob_all, train=False)
 
+    # Calculate average losses
     for loss_name, loss_val in all_losses.items():
         stats[f'test_{loss_name}'] = float(np.mean(lists[loss_name]))
-    
     stats['test_loss'] = mean_loss
 
     # Create plots directory
@@ -194,13 +254,14 @@ def evaluate(model, dl, device, args, output_dir):
 
     # Generate and save ROC curves
     plt.figure(figsize=(10, 8))
-    gt_onehot = np.eye(3)[gt_all.cpu()]
+    gt_onehot = np.eye(3)[gt_all.cpu()]  # Convert to one-hot encoding for 3-class classification
     pr_np = prob_all.cpu().numpy()
     
+    # Plot ROC curve for each class
     for i in range(3):
         fpr, tpr, _ = roc_curve(gt_onehot[:, i], pr_np[:, i])
         plt.plot(fpr, tpr, label=f'Class {i} (AUC = {stats[f"test_auroc"]:.2f})')
-    plt.plot([0, 1], [0, 1], 'k--')
+    plt.plot([0, 1], [0, 1], 'k--')  # Add diagonal line for reference
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})')
@@ -208,7 +269,7 @@ def evaluate(model, dl, device, args, output_dir):
     plt.savefig(plots_dir / f'roc_curve_epoch_{getattr(args, "current_epoch", "final")}.png')
     plt.close()
 
-    # Create and save PR curve
+    # Create and save Precision-Recall curves
     plt.figure(figsize=(10, 8))
     for i in range(3):
         precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
@@ -220,7 +281,7 @@ def evaluate(model, dl, device, args, output_dir):
     plt.savefig(plots_dir / f'pr_curve_epoch_{getattr(args, "current_epoch", "final")}.png')
     plt.close()
 
-    # Save metrics to CSV
+    # Save evaluation metrics to CSV
     metrics = {
         'epoch': getattr(args, "current_epoch", "final"),
         'auroc': stats["test_auroc"],
@@ -244,53 +305,71 @@ def evaluate(model, dl, device, args, output_dir):
     
     df_metrics.to_csv(metrics_file, index=False)
 
-    # Create and save metrics plots
+    # Create and save training progress visualization
     plt.figure(figsize=(15, 10))
+    
+    # Convert epoch column to numeric, replacing 'final' with the last numeric value + 1
+    numeric_epochs = pd.to_numeric(df_metrics['epoch'].replace('final', float('inf')), errors='coerce')
+    if float('inf') in numeric_epochs.values:
+        last_numeric = numeric_epochs[numeric_epochs != float('inf')].max()
+        numeric_epochs = numeric_epochs.replace(float('inf'), last_numeric + 1 if not pd.isna(last_numeric) else 0)
+    
+    # Plot 1: AUROC over epochs
     plt.subplot(2, 2, 1)
-    plt.plot(df_metrics['epoch'], df_metrics['auroc'], marker='o')
+    plt.plot(numeric_epochs, df_metrics['auroc'], marker='o')
     plt.title('AUROC over epochs')
     plt.xlabel('Epoch')
     plt.ylabel('AUROC')
+    plt.grid(True)
 
+    # Plot 2: AUPRC for each class over epochs
     plt.subplot(2, 2, 2)
     for i in range(3):
-        plt.plot(df_metrics['epoch'], df_metrics[f'auprc_class{i}'], marker='o', label=f'Class {i}')
+        plt.plot(numeric_epochs, df_metrics[f'auprc_class{i}'], marker='o', label=f'Class {i}')
     plt.title('AUPRC over epochs')
     plt.xlabel('Epoch')
     plt.ylabel('AUPRC')
     plt.legend()
+    plt.grid(True)
 
+    # Plot 3: Accuracy and F1 scores over epochs
     plt.subplot(2, 2, 3)
-    plt.plot(df_metrics['epoch'], df_metrics['accuracy'], marker='o', label='Accuracy')
-    plt.plot(df_metrics['epoch'], df_metrics['f1_macro'], marker='o', label='F1 Macro')
-    plt.plot(df_metrics['epoch'], df_metrics['f1_weighted'], marker='o', label='F1 Weighted')
+    plt.plot(numeric_epochs, df_metrics['accuracy'], marker='o', label='Accuracy')
+    plt.plot(numeric_epochs, df_metrics['f1_macro'], marker='o', label='F1 Macro')
+    plt.plot(numeric_epochs, df_metrics['f1_weighted'], marker='o', label='F1 Weighted')
     plt.title('Accuracy and F1 Scores over epochs')
     plt.xlabel('Epoch')
     plt.ylabel('Score')
     plt.legend()
+    plt.grid(True)
 
+    # Plot 4: Loss over epochs
     plt.subplot(2, 2, 4)
-    plt.plot(df_metrics['epoch'], df_metrics['loss'], marker='o')
+    plt.plot(numeric_epochs, df_metrics['loss'], marker='o')
     plt.title('Loss over epochs')
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
+    plt.grid(True)
 
     plt.tight_layout()
     plt.savefig(plots_dir / 'training_progress.png')
     plt.close()
 
+    # Save predictions for later analysis
     torch.save(
         {
-            "gt": gt_all,       
-            "pr": prob_all,
-            "x": lists["x"]
+            "gt": gt_all,       # Ground truth labels
+            "pr": prob_all,     # Model predictions
+            "x": lists["x"]     # Input data
         },
         output_dir / "test_preds.pth",
     )
 
+    # Log dataset name and metrics
     ds_name = dl.dataset.name if hasattr(dl.dataset, 'name') else 'test'
     print(ds_name, stats)
 
+    # Update and return metrics
     metric_logger.update(**stats)
     ret = {k: meter.global_avg for k, meter in metric_logger.meters.items()}
     return ret

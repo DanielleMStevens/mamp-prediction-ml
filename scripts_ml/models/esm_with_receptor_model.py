@@ -156,7 +156,8 @@ class ESMWithReceptorModel(nn.Module):
 
         self.film = FiLM(E)
         self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")  
-        self.losses = ["ce"]  # Using CrossEntropyLoss for classification
+        # Add this line to specify which loss(es) to use
+        self.losses = ["ce"]  # Use cross-entropy loss
 
     def forward(self, batch_x):
         batch_peptide_x = batch_x['peptide_x']

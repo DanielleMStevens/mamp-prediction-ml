@@ -1992,14 +1992,7 @@
 2025-02-15 12:09:45,958 rank_003_alphafold2_ptm_model_2_seed_000 pLDDT=85.5 pTM=0.625
 2025-02-15 12:09:45,959 rank_004_alphafold2_ptm_model_5_seed_000 pLDDT=85.4 pTM=0.647
 2025-02-15 12:09:45,960 rank_005_alphafold2_ptm_model_4_seed_000 pLDDT=85.4 pTM=0.654
-2025-02-15 12:09:49,237 Query 56/94: Solanum_lycopersicum1_Solyc04g009640_FLS3 (length 1135)
-2025-02-15 12:09:49,843 Sleeping for 5s. Reason: PENDING
-2025-02-15 12:09:55,072 Sleeping for 5s. Reason: RUNNING
-2025-02-15 12:10:00,290 Sleeping for 9s. Reason: RUNNING
-2025-02-15 12:15:30,034 Sleeping for 8s. Reason: RUNNING
-2025-02-15 12:15:38,252 Sleeping for 8s. Reason: RUNNING
-2025-02-15 12:15:46,470 Sleeping for 9s. Reason: RUNNING
-2025-02-15 12:15:55,693 Sleeping for 10s. Reason: RUNNING
+2025-02-15 12:09:49,237 Query 56/94: Solanum_lycopersicum_Solyc04g009640_FLS3 (length 1135)
 2025-02-15 12:16:27,063 Padding length to 1143
 2025-02-15 12:17:23,817 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.3 pTM=0.589
 2025-02-15 12:18:21,108 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.6 pTM=0.617 tol=5.72
@@ -2032,10 +2025,7 @@
 2025-02-15 12:35:48,363 rank_003_alphafold2_ptm_model_4_seed_000 pLDDT=86.7 pTM=0.632
 2025-02-15 12:35:48,364 rank_004_alphafold2_ptm_model_1_seed_000 pLDDT=85.9 pTM=0.617
 2025-02-15 12:35:48,364 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=85.7 pTM=0.628
-2025-02-15 12:35:54,446 Query 57/94: Solanum_lycopersicum2_XP_004237164.3_FLS3 (length 1140)
-2025-02-15 12:35:54,947 Sleeping for 5s. Reason: PENDING
-2025-02-15 12:41:19,235 Sleeping for 8s. Reason: RUNNING
-2025-02-15 12:41:27,458 Sleeping for 8s. Reason: RUNNING
+2025-02-15 12:35:54,446 Query 57/94: Solanum_lycopersicum_XP_004237164.3_FLS3 (length 1140)
 2025-02-15 12:41:57,211 Padding length to 1143
 2025-02-15 12:42:53,949 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.5 pTM=0.595
 2025-02-15 12:43:51,239 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.2 pTM=0.613 tol=5.7
@@ -2346,19 +2336,7 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 15:53:19,553 rank_003_alphafold2_ptm_model_1_seed_000 pLDDT=87.7 pTM=0.624
 2025-02-15 15:53:19,554 rank_004_alphafold2_ptm_model_2_seed_000 pLDDT=86.9 pTM=0.635
 2025-02-15 15:53:19,555 rank_005_alphafold2_ptm_model_4_seed_000 pLDDT=86.8 pTM=0.649
-2025-02-15 15:53:22,868 Query 66/94: Quercus_variabilis_UTN00789.1_QvFLS2 (length 1157)
-2025-02-15 15:53:24,074 Sleeping for 10s. Reason: PENDING
-2025-02-15 15:53:34,312 Sleeping for 8s. Reason: RUNNING
-2025-02-15 15:53:42,540 Sleeping for 8s. Reason: RUNNING
-2025-02-15 15:53:50,760 Sleeping for 8s. Reason: RUNNING
-2025-02-15 15:53:58,979 Sleeping for 6s. Reason: RUNNING
-2025-02-15 16:00:32,078 Sleeping for 10s. Reason: RUNNING
-2025-02-15 16:00:42,303 Sleeping for 5s. Reason: RUNNING
-2025-02-15 16:00:47,527 Sleeping for 5s. Reason: RUNNING
-2025-02-15 16:00:52,743 Sleeping for 9s. Reason: RUNNING
-2025-02-15 16:01:01,960 Sleeping for 10s. Reason: RUNNING
-2025-02-15 16:01:12,184 Sleeping for 10s. Reason: RUNNING
-2025-02-15 16:01:22,406 Sleeping for 6s. Reason: RUNNING
+2025-02-15 15:53:22,868 Query 66/94: Quercus_variabilis_UTN00789.1_FLS2 (length 1157)
 2025-02-15 16:02:56,155 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.8 pTM=0.583
 2025-02-15 16:03:55,092 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.4 pTM=0.624 tol=6.32
 2025-02-15 16:04:54,239 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=87.9 pTM=0.616 tol=3.56
@@ -2390,7 +2368,7 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 16:21:47,724 rank_003_alphafold2_ptm_model_1_seed_000 pLDDT=87.6 pTM=0.62
 2025-02-15 16:21:47,724 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=87.2 pTM=0.688
 2025-02-15 16:21:47,725 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=85.5 pTM=0.641
-2025-02-15 16:46:31,848 Query 67/94: Malus_domestica_XP_008371582.2_MdFLS2 (length 1157)
+2025-02-15 16:46:31,848 Query 67/94: Malus_domestica_XP_008371582.2_FLS2 (length 1157)
 2025-02-15 16:47:33,561 Padding length to 1167
 2025-02-15 16:49:46,423 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=86.2 pTM=0.591
 2025-02-15 16:50:46,577 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.2 pTM=0.632 tol=3.96
@@ -2424,18 +2402,6 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 17:09:04,861 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=86.6 pTM=0.681
 2025-02-15 17:09:04,862 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=85.8 pTM=0.64
 2025-02-15 17:09:10,129 Query 68/94: Malus_domestica_UTN00798.1_FLS2 (length 1157)
-2025-02-15 17:09:11,747 Sleeping for 10s. Reason: PENDING
-2025-02-15 17:09:21,986 Sleeping for 10s. Reason: RUNNING
-2025-02-15 17:09:32,207 Sleeping for 8s. Reason: RUNNING
-2025-02-15 17:09:40,428 Sleeping for 6s. Reason: RUNNING
-2025-02-15 17:09:46,643 Sleeping for 9s. Reason: RUNNING
-2025-02-15 17:09:56,013 Sleeping for 10s. Reason: RUNNING
-2025-02-15 17:16:37,575 Sleeping for 5s. Reason: RUNNING
-2025-02-15 17:16:42,800 Sleeping for 6s. Reason: RUNNING
-2025-02-15 17:16:49,017 Sleeping for 5s. Reason: RUNNING
-2025-02-15 17:16:54,244 Sleeping for 7s. Reason: RUNNING
-2025-02-15 17:17:01,463 Sleeping for 10s. Reason: RUNNING
-2025-02-15 17:17:11,688 Sleeping for 9s. Reason: RUNNING
 2025-02-15 17:17:54,934 Padding length to 1167
 2025-02-15 17:18:54,514 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=86.2 pTM=0.591
 2025-02-15 17:19:54,659 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.4 pTM=0.628 tol=2.58
@@ -2469,10 +2435,6 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 17:38:08,065 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=86.9 pTM=0.699
 2025-02-15 17:38:08,066 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=86.1 pTM=0.643
 2025-02-15 17:38:11,886 Query 69/94: Malus_halliana_UTN00799.1_FLS2 (length 1157)
-2025-02-15 17:38:12,142 Sleeping for 7s. Reason: PENDING
-2025-02-15 17:38:19,359 Sleeping for 6s. Reason: RUNNING
-2025-02-15 17:45:36,202 Sleeping for 5s. Reason: RUNNING
-2025-02-15 17:45:41,420 Sleeping for 10s. Reason: RUNNING
 2025-02-15 17:46:15,260 Padding length to 1167
 2025-02-15 17:47:14,873 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=86.1 pTM=0.593
 2025-02-15 17:48:15,052 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.4 pTM=0.636 tol=5.73
@@ -2505,7 +2467,7 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 18:06:31,510 rank_003_alphafold2_ptm_model_1_seed_000 pLDDT=87.6 pTM=0.635
 2025-02-15 18:06:31,511 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=86.6 pTM=0.677
 2025-02-15 18:06:31,512 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=86.4 pTM=0.639
-2025-02-15 18:06:34,955 Query 70/94: Humulus_lupulus_XP_062096069.1_HlFLS2 (length 1158)
+2025-02-15 18:06:34,955 Query 70/94: Humulus_lupulus_XP_062096069.1_FLS2 (length 1158)
 2025-02-15 18:15:19,963 Padding length to 1167
 2025-02-15 18:16:19,512 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.8 pTM=0.57
 2025-02-15 18:17:19,630 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.3 pTM=0.604 tol=3.8
@@ -2538,16 +2500,7 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 18:35:32,178 rank_003_alphafold2_ptm_model_1_seed_000 pLDDT=87.6 pTM=0.608
 2025-02-15 18:35:32,179 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=86.6 pTM=0.682
 2025-02-15 18:35:32,180 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=86.6 pTM=0.626
-2025-02-15 18:35:35,488 Query 71/94: Fagus_crenata_BK068611_FcFLS2 (length 1158)
-2025-02-15 18:35:35,720 Sleeping for 5s. Reason: PENDING
-2025-02-15 18:35:40,933 Sleeping for 6s. Reason: RUNNING
-2025-02-15 18:35:47,148 Sleeping for 5s. Reason: RUNNING
-2025-02-15 18:35:52,374 Sleeping for 10s. Reason: RUNNING
-2025-02-15 18:36:02,596 Sleeping for 5s. Reason: RUNNING
-2025-02-15 18:36:07,817 Sleeping for 6s. Reason: RUNNING
-2025-02-15 18:43:09,695 Sleeping for 10s. Reason: RUNNING
-2025-02-15 18:43:19,922 Sleeping for 8s. Reason: RUNNING
-2025-02-15 18:43:28,145 Sleeping for 10s. Reason: RUNNING
+2025-02-15 18:35:35,488 Query 71/94: Fagus_crenata_BK068611_FLS2 (length 1158)
 2025-02-15 18:44:03,143 Padding length to 1167
 2025-02-15 18:45:02,670 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.2 pTM=0.579
 2025-02-15 18:46:02,794 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.4 pTM=0.617 tol=11.7
@@ -2581,15 +2534,6 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 19:04:18,156 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=86.7 pTM=0.671
 2025-02-15 19:04:18,157 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=86.4 pTM=0.634
 2025-02-15 19:04:21,570 Query 72/94: Prunus_persica_UTN00800.1_FLS2 (length 1158)
-2025-02-15 19:04:21,900 Sleeping for 8s. Reason: PENDING
-2025-02-15 19:12:12,310 Sleeping for 5s. Reason: RUNNING
-2025-02-15 19:12:17,535 Sleeping for 8s. Reason: RUNNING
-2025-02-15 19:12:25,755 Sleeping for 8s. Reason: RUNNING
-2025-02-15 19:12:33,979 Sleeping for 7s. Reason: RUNNING
-2025-02-15 19:12:41,196 Sleeping for 7s. Reason: RUNNING
-2025-02-15 19:12:48,416 Sleeping for 5s. Reason: RUNNING
-2025-02-15 19:12:53,633 Sleeping for 5s. Reason: RUNNING
-2025-02-15 19:12:58,848 Sleeping for 7s. Reason: RUNNING
 2025-02-15 19:13:29,516 Padding length to 1167
 2025-02-15 19:14:29,067 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.7 pTM=0.579
 2025-02-15 19:15:29,183 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.1 pTM=0.623 tol=3.75
@@ -2656,11 +2600,6 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 20:03:09,405 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=85.6 pTM=0.647
 2025-02-15 20:03:09,406 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=85.1 pTM=0.643
 2025-02-15 20:03:12,604 Query 74/94: Prunus_yedoensis_UTN00802.1_FLS2 (length 1158)
-2025-02-15 20:03:12,913 Sleeping for 6s. Reason: PENDING
-2025-02-15 20:03:19,147 Sleeping for 6s. Reason: RUNNING
-2025-02-15 20:11:32,263 Sleeping for 8s. Reason: RUNNING
-2025-02-15 20:11:40,483 Sleeping for 5s. Reason: RUNNING
-2025-02-15 20:11:45,700 Sleeping for 6s. Reason: RUNNING
 2025-02-15 20:12:15,438 Padding length to 1167
 2025-02-15 20:13:16,211 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.3 pTM=0.586
 2025-02-15 20:14:16,366 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.8 pTM=0.625 tol=5.74
@@ -2859,15 +2798,6 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-15 22:54:59,945 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=85.3 pTM=0.658
 2025-02-15 22:54:59,946 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=84.9 pTM=0.628
 2025-02-15 22:55:04,343 Query 80/94: Populus_x_canadensis_MH079052.1_FLS2 (length 1158)
-2025-02-15 22:55:05,080 Sleeping for 6s. Reason: PENDING
-2025-02-15 22:55:11,294 Sleeping for 5s. Reason: RUNNING
-2025-02-15 22:55:16,516 Sleeping for 7s. Reason: RUNNING
-2025-02-15 22:55:23,737 Sleeping for 8s. Reason: RUNNING
-2025-02-15 22:55:31,960 Sleeping for 6s. Reason: RUNNING
-2025-02-15 23:02:11,881 Sleeping for 7s. Reason: RUNNING
-2025-02-15 23:02:19,106 Sleeping for 10s. Reason: RUNNING
-2025-02-15 23:02:29,355 Sleeping for 8s. Reason: RUNNING
-2025-02-15 23:02:37,724 Sleeping for 9s. Reason: RUNNING
 2025-02-15 23:03:10,620 Padding length to 1167
 2025-02-15 23:04:10,207 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.4 pTM=0.572
 2025-02-15 23:05:10,370 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.1 pTM=0.616 tol=6.66
@@ -2999,3 +2929,102 @@ COMPLETE: 100%|| 150/150 [elapsed: 00:02 remaining: 00:00]
 2025-02-16 00:47:15,596 rank_003_alphafold2_ptm_model_5_seed_000 pLDDT=87 pTM=0.693
 2025-02-16 00:47:15,598 rank_004_alphafold2_ptm_model_2_seed_000 pLDDT=85.6 pTM=0.655
 2025-02-16 00:47:15,599 rank_005_alphafold2_ptm_model_4_seed_000 pLDDT=85.1 pTM=0.677
+2025-02-16 10:15:50,287 Query 84/94: Trachelospermum_jasminoides_UTN00804.1_FLS2 (length 1165)
+2025-02-16 10:17:05,021 Padding length to 1175
+2025-02-16 10:19:19,665 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.6 pTM=0.572
+2025-02-16 10:20:20,306 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.8 pTM=0.618 tol=10.5
+2025-02-16 10:21:24,172 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.4 pTM=0.612 tol=4.39
+2025-02-16 10:22:26,326 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.2 pTM=0.615 tol=2.62
+2025-02-16 10:22:26,666 alphafold2_ptm_model_1_seed_000 took 321.6s (3 recycles)
+2025-02-16 10:23:31,034 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=81.6 pTM=0.589
+2025-02-16 10:24:32,052 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=82.2 pTM=0.64 tol=11.5
+2025-02-16 10:25:32,904 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=82.4 pTM=0.638 tol=2.83
+2025-02-16 10:26:33,907 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=83.2 pTM=0.639 tol=3.4
+2025-02-16 10:26:33,974 alphafold2_ptm_model_2_seed_000 took 245.6s (3 recycles)
+2025-02-16 10:27:35,990 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=86 pTM=0.623
+2025-02-16 10:28:36,873 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=86.2 pTM=0.647 tol=6.92
+2025-02-16 10:29:37,722 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=86.4 pTM=0.645 tol=5.07
+2025-02-16 10:30:38,637 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=86.8 pTM=0.642 tol=1.87
+2025-02-16 10:30:38,638 alphafold2_ptm_model_3_seed_000 took 243.5s (3 recycles)
+2025-02-16 10:31:45,744 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=85.9 pTM=0.635
+2025-02-16 10:32:48,149 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=84.6 pTM=0.664 tol=11.9
+2025-02-16 10:33:49,064 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=84.9 pTM=0.672 tol=3.47
+2025-02-16 10:34:50,099 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=85.4 pTM=0.675 tol=2.32
+2025-02-16 10:34:50,224 alphafold2_ptm_model_4_seed_000 took 250.5s (3 recycles)
+2025-02-16 10:35:52,837 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=86.2 pTM=0.637
+2025-02-16 10:36:57,181 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=85.4 pTM=0.679 tol=5.81
+2025-02-16 10:37:59,496 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=85.1 pTM=0.704 tol=3.28
+2025-02-16 10:39:00,396 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=85.2 pTM=0.705 tol=1.11
+2025-02-16 10:39:00,398 alphafold2_ptm_model_5_seed_000 took 248.5s (3 recycles)
+2025-02-16 10:39:03,416 reranking models by 'plddt' metric
+2025-02-16 10:39:04,117 rank_001_alphafold2_ptm_model_3_seed_000 pLDDT=86.8 pTM=0.642
+2025-02-16 10:39:04,185 rank_002_alphafold2_ptm_model_1_seed_000 pLDDT=86.2 pTM=0.615
+2025-02-16 10:39:04,186 rank_003_alphafold2_ptm_model_4_seed_000 pLDDT=85.4 pTM=0.675
+2025-02-16 10:39:04,187 rank_004_alphafold2_ptm_model_5_seed_000 pLDDT=85.2 pTM=0.705
+2025-02-16 10:39:04,188 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=83.2 pTM=0.639
+2025-02-16 10:39:09,803 Query 85/94: Mucuna_pruriens_RDX68355.1_FLS2 (length 1166)
+2025-02-16 10:47:53,086 Padding length to 1175
+2025-02-16 10:49:00,196 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85 pTM=0.572
+2025-02-16 10:50:02,027 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.9 pTM=0.615 tol=6.57
+2025-02-16 10:51:02,695 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.2 pTM=0.62 tol=1.69
+2025-02-16 10:52:03,451 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.6 pTM=0.616 tol=1.06
+2025-02-16 10:52:03,610 alphafold2_ptm_model_1_seed_000 took 250.5s (3 recycles)
+2025-02-16 10:53:08,426 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=84.2 pTM=0.594
+2025-02-16 10:54:12,141 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=84.1 pTM=0.638 tol=9.12
+2025-02-16 10:55:14,159 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=84.2 pTM=0.655 tol=2.39
+2025-02-16 10:56:14,970 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=84.3 pTM=0.651 tol=1.47
+2025-02-16 10:56:14,971 alphafold2_ptm_model_2_seed_000 took 247.3s (3 recycles)
+2025-02-16 10:57:19,935 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=86.8 pTM=0.616
+2025-02-16 10:58:22,320 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=86.6 pTM=0.632 tol=6
+2025-02-16 10:59:27,623 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=88.1 pTM=0.636 tol=9.08
+2025-02-16 11:00:30,600 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=87.7 pTM=0.641 tol=3.01
+2025-02-16 11:00:30,728 alphafold2_ptm_model_3_seed_000 took 254.7s (3 recycles)
+2025-02-16 11:01:33,271 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=86.4 pTM=0.632
+2025-02-16 11:02:37,079 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=84.9 pTM=0.646 tol=6.24
+2025-02-16 11:03:39,329 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=85.8 pTM=0.683 tol=3.68
+2025-02-16 11:04:40,381 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=85.4 pTM=0.664 tol=1.08
+2025-02-16 11:04:40,469 alphafold2_ptm_model_4_seed_000 took 248.1s (3 recycles)
+2025-02-16 11:05:42,556 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=86.5 pTM=0.636
+2025-02-16 11:06:43,495 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=87 pTM=0.658 tol=6.52
+2025-02-16 11:07:44,419 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=86.6 pTM=0.689 tol=1.96
+2025-02-16 11:08:45,375 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=86.4 pTM=0.69 tol=1.29
+2025-02-16 11:08:45,587 alphafold2_ptm_model_5_seed_000 took 243.9s (3 recycles)
+2025-02-16 11:08:47,178 reranking models by 'plddt' metric
+2025-02-16 11:08:47,186 rank_001_alphafold2_ptm_model_3_seed_000 pLDDT=87.7 pTM=0.641
+2025-02-16 11:08:47,188 rank_002_alphafold2_ptm_model_1_seed_000 pLDDT=86.6 pTM=0.616
+2025-02-16 11:08:47,189 rank_003_alphafold2_ptm_model_5_seed_000 pLDDT=86.4 pTM=0.69
+2025-02-16 11:08:47,191 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=85.4 pTM=0.664
+2025-02-16 11:08:47,192 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=84.3 pTM=0.651
+2025-02-16 11:08:54,706 Query 86/94: Vitis_riparia_PQ283347_FLS2 (length 1166)
+2025-02-16 11:18:43,439 Padding length to 1175
+2025-02-16 11:19:46,744 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.5 pTM=0.57
+2025-02-16 11:20:47,174 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.8 pTM=0.619 tol=10.3
+2025-02-16 11:21:47,781 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=87.2 pTM=0.618 tol=6.33
+2025-02-16 11:22:48,455 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87.1 pTM=0.616 tol=1.96
+2025-02-16 11:22:48,457 alphafold2_ptm_model_1_seed_000 took 245.0s (3 recycles)
+2025-02-16 11:23:50,158 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=82.9 pTM=0.584
+2025-02-16 11:24:53,850 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=84.8 pTM=0.63 tol=8.4
+2025-02-16 11:25:55,164 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=84.5 pTM=0.644 tol=2.34
+2025-02-16 11:26:55,908 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=84.4 pTM=0.641 tol=1.34
+2025-02-16 11:26:56,049 alphafold2_ptm_model_2_seed_000 took 246.5s (3 recycles)
+2025-02-16 11:27:58,351 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=86.6 pTM=0.609
+2025-02-16 11:28:59,121 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=87.8 pTM=0.636 tol=4.51
+2025-02-16 11:29:59,910 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=87.9 pTM=0.64 tol=1.05
+2025-02-16 11:31:00,918 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=88 pTM=0.64 tol=1.39
+2025-02-16 11:31:01,026 alphafold2_ptm_model_3_seed_000 took 243.6s (3 recycles)
+2025-02-16 11:32:03,048 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=86.4 pTM=0.633
+2025-02-16 11:33:03,835 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=85.7 pTM=0.638 tol=6.65
+2025-02-16 11:34:04,612 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=85.2 pTM=0.634 tol=3.15
+2025-02-16 11:35:05,396 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=85.2 pTM=0.641 tol=1.83
+2025-02-16 11:35:05,398 alphafold2_ptm_model_4_seed_000 took 243.1s (3 recycles)
+2025-02-16 11:36:07,455 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=86.5 pTM=0.628
+2025-02-16 11:37:08,404 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=87.5 pTM=0.652 tol=10.9
+2025-02-16 11:38:12,758 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=86.6 pTM=0.648 tol=11.1
+2025-02-16 11:39:14,877 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=87.2 pTM=0.645 tol=10
+2025-02-16 11:39:15,056 alphafold2_ptm_model_5_seed_000 took 248.5s (3 recycles)
+2025-02-16 11:39:16,621 reranking models by 'plddt' metric
+2025-02-16 11:39:16,640 rank_001_alphafold2_ptm_model_3_seed_000 pLDDT=88 pTM=0.64
+2025-02-16 11:39:16,642 rank_002_alphafold2_ptm_model_5_seed_000 pLDDT=87.2 pTM=0.645
+2025-02-16 11:39:16,643 rank_003_alphafold2_ptm_model_1_seed_000 pLDDT=87.1 pTM=0.616
+2025-02-16 11:39:16,644 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=85.2 pTM=0.641
+2025-02-16 11:39:16,646 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=84.4 pTM=0.641
