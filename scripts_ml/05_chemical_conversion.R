@@ -4,6 +4,7 @@ library(Peptides)
 
 # Read the training data
 train_data <- read.csv("datasets/stratify/train_stratify.csv")
+test_data <- read.csv("datasets/stratify/test_stratify.csv")
 
 # Function to convert sequence to bulkiness values
 sequence_to_bulkiness <- function(sequence) {
@@ -35,9 +36,14 @@ sequence_to_bulkiness <- function(sequence) {
 train_data$Sequence_Bulkiness <- sapply(train_data$Sequence, sequence_to_bulkiness)
 train_data$Receptor_Bulkiness <- sapply(train_data$Receptor.Sequence, sequence_to_bulkiness)
 
+test_data$Sequence_Bulkiness <- sapply(test_data$Sequence, sequence_to_bulkiness)
+test_data$Receptor_Bulkiness <- sapply(test_data$Receptor.Sequence, sequence_to_bulkiness)
+
 # Save the processed data
 write.csv(train_data, "datasets/processed/train_data_with_bulkiness.csv", row.names = FALSE)
+write.csv(test_data, "datasets/processed/test_data_with_bulkiness.csv", row.names = FALSE)
+
 
 # Print first few entries to verify
-print("First few rows of processed data:")
-print(head(train_data[c("Sequence", "Sequence_Bulkiness", "Receptor.Sequence", "Receptor_Bulkiness")])) 
+#print("First few rows of processed data:")
+#print(head(train_data[c("Sequence", "Sequence_Bulkiness", "Receptor.Sequence", "Receptor_Bulkiness")])) 

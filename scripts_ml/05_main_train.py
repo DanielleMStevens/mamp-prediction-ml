@@ -44,18 +44,25 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+# esm models
 from models.esm_model import ESMModel
 from models.esm_mid_model import ESMMidModel
-from models.glm_model import GLMModel
-from models.alphafold_model import AlphaFoldModel
 from models.esm_with_receptor_model import ESMWithReceptorModel
-from models.glm_with_receptor_model import GLMWithReceptorModel
+from models.esm_receptor_chemical import ESMReceptorChemical
 from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
-from models.glm_with_receptor_single_seq_model import GLMWithReceptorSingleSeqModel
-from models.amp_with_receptor_model import AMPWithReceptorModel
 from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
-from models.amp_model import AMPModel
 from models.esm_contrast_model import ESMContrastiveModel
+
+# glm models
+from models.glm_model import GLMModel
+from models.glm_with_receptor_model import GLMWithReceptorModel
+from models.glm_with_receptor_single_seq_model import GLMWithReceptorSingleSeqModel
+
+# alphafold and other models
+from models.alphafold_model import AlphaFoldModel
+from models.amp_with_receptor_model import AMPWithReceptorModel
+from models.amp_model import AMPModel
+
 from engine_train import train_one_epoch, evaluate
 from datasets.seq_dataset import PeptideSeqDataset
 from datasets.alphafold_dataset import AlphaFoldDataset
@@ -247,6 +254,7 @@ model_dict = {
     "esm2_mid": ESMMidModel,                              # ESM2 with mid-layer features
     "alphafold_pair_reps": AlphaFoldModel,                # AlphaFold-based model
     "esm2_with_receptor": ESMWithReceptorModel,           # ESM2 with receptor interaction
+    "esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
     "glm2_with_receptor": GLMWithReceptorModel,           # GLM2 with receptor interaction
     "esm2_with_receptor_single_seq": ESMWithReceptorSingleSeqModel,  # ESM2 with single sequence receptor
     "glm2_with_receptor_single_seq": GLMWithReceptorSingleSeqModel,  # GLM2 with single sequence receptor
@@ -263,6 +271,7 @@ dataset_dict = {
     "esm2_mid": PeptideSeqDataset,
     "alphafold_pair_reps": AlphaFoldDataset,             # Dataset for AlphaFold features
     "esm2_with_receptor": PeptideSeqWithReceptorDataset, # Dataset with receptor information
+    "esm_receptor_chemical": PeptideSeqWithReceptorDataset, # Dataset with receptor information
     "glm2_with_receptor": PeptideSeqWithReceptorDataset,
     "esm2_with_receptor_single_seq": PeptideSeqWithReceptorDataset,
     "glm2_with_receptor_single_seq": PeptideSeqWithReceptorDataset,
@@ -422,7 +431,8 @@ def main(args):
         exit()
 
     # Prepare training dataset and dataloader
-    train_df = pd.read_csv(f"{args.data_dir}/train.csv")
+    #train_df = pd.read_csv(f"{args.data_dir}/train.csv")
+    train_df = pd.read_csv(f"{args.data_dir}/train_data_with_bulkiness.csv")
     ds_train = dataset(df=train_df)
     print(f"{len(ds_train)=}")
     
@@ -524,7 +534,8 @@ def main(args):
 
 
             cv_ds_train = SeqAffDataset(df=ds_train.df.iloc[train_idx])
-            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train.csv", index=False)
+            #ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train.csv", index=False)
+            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_data_with_bulkiness.csv", index=False)
 
             if args.distributed:
                 cv_sampler_train = torch.utils.data.DistributedSampler(
@@ -542,7 +553,8 @@ def main(args):
                 collate_fn=collate_fn,
             )
             cv_ds_test = SeqAffDataset(df=ds_train.df.iloc[test_idx])
-            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test.csv", index=False)
+            #ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test.csv", index=False)
+            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_data_with_bulkiness.csv", index=False)
             cv_sampler_test = torch.utils.data.SequentialSampler(cv_ds_test)
             
             # Create test dataloader
