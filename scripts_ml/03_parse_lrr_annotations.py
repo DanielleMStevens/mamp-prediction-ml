@@ -25,32 +25,17 @@ def read_receptor_sequences(fasta_file):
     return header_map
 
 def find_best_match(lrr_sequence, full_sequences):
-    """Find the full sequence that best matches the LRR sequence"""
-    best_match = None
-    best_match_count = 0
-    
+    """Find the full sequence that exactly matches the LRR sequence"""
     for full_seq, header in full_sequences.items():
         # Count matching residues in a sliding window
         lrr_len = len(lrr_sequence)
-        best_window_match = 0
         
         for i in range(len(full_seq) - lrr_len + 1):
             window = full_seq[i:i+lrr_len]
-            match_count = sum(1 for a, b in zip(window, lrr_sequence) if a == b)
-            best_window_match = max(best_window_match, match_count)
-        
-        # If this sequence has more matches than previous best, update best match
-        if best_window_match > best_match_count:
-            best_match_count = best_window_match
-            best_match = header
-            
-        # If we have a near-perfect match, we can stop searching
-        if best_match_count >= len(lrr_sequence) * 0.95:
-            break
+            # Check for exact match
+            if window == lrr_sequence:
+                return header
     
-    # Only return a match if it's good enough (e.g., 90% identity)
-    if best_match_count >= len(lrr_sequence) * 0.9:
-        return best_match
     return None
 
 def parse_lrr_results(lrr_file, sequence_map):
@@ -85,63 +70,57 @@ def write_fasta(sequences, output_file):
             f.write(f"{sequence}\n")
 
 def create_combined_fasta(sequences, excel_file, output_file):
-    """Create FASTA file with LRR and ligand sequences"""
+    """Create FASTA file with LRR and ligand sequences
+    
+    Args:
+        sequences: List of tuples (header, lrr_sequence) from LRR parsing
+        excel_file: Path to Excel file containing receptor and ligand information
+        output_file: Output FASTA file path
+    """
     import pandas as pd
     
     # Read the Excel file
     df = pd.read_excel(excel_file)
     
-    # Print column names to help debug
-    print("Available columns in Excel file:", df.columns.tolist())
-    
-    # Map expected column names to actual column names
-    column_mapping = {
-        'Plant Species': 'Plant species',
-        'Receptor': 'Receptor',
-        'Locus ID/Genbank': 'Locus ID/Genbank',
-        'Ligand': 'Ligand',
-        'Ligand_sequence': 'Ligand Sequence'
-    }
-    
-    # Create a mapping of receptor IDs to their details from Excel
-    receptor_info = {}
-    for _, row in df.iterrows():
-        try:
-            # Use get() method to avoid KeyError, with empty string as default
-            key = str(row[column_mapping['Locus ID/Genbank']]).strip()
-            receptor_info[key] = {
-                'species': str(row[column_mapping['Plant Species']]).strip(),
-                'receptor': str(row[column_mapping['Receptor']]).strip(),
-                'ligand_name': str(row[column_mapping['Ligand']]).strip(),
-                'ligand_sequence': str(row[column_mapping['Ligand_sequence']]).strip() if pd.notna(row[column_mapping['Ligand_sequence']]) else ''
-            }
-        except KeyError as e:
-            print(f"Warning: Column {e} not found in Excel file")
-            continue
-        except Exception as e:
-            print(f"Warning: Error processing row: {e}")
-            continue
+    # Print column names to verify we have the correct columns
+    print("Excel file columns:", df.columns.tolist())
     
     with open(output_file, 'w') as f:
-        for header, lrr_sequence in sequences:
-            # Extract the genbank/locus ID from the header
+        # Process each row in the Excel file
+        for _, row in df.iterrows():
             try:
-                genbank_id = header.split('|')[1]  # Adjust this split based on your actual header format
+                # Extract required fields, using consistent column names
+                species = str(row['Plant species']).strip()
+                receptor = str(row['Receptor']).strip()
+                genbank_id = str(row['Locus ID/Genbank']).strip()
+                ligand_name = str(row['Ligand']).strip()
+                ligand_seq = str(row['Ligand Sequence']).strip() if pd.notna(row['Ligand Sequence']) else ''
                 
-                if genbank_id in receptor_info:
-                    info = receptor_info[genbank_id]
-                    # Create the new header format
-                    new_header = f">{info['species']}:{info['receptor']}:{genbank_id}:{info['ligand_name']}"
-                    # Create the sequence line with LRR and ligand sequences
-                    combined_sequence = f"{lrr_sequence}:{info['ligand_sequence']}"
-                    
-                    f.write(f"{new_header}\n")
-                    f.write(f"{combined_sequence}\n")
-                else:
-                    print(f"Warning: No matching information found in Excel for {genbank_id}")
+                # Find matching LRR sequence from our parsed sequences
+                matching_lrr = None
+                for header, lrr_seq in sequences:
+                    if genbank_id in header:
+                        matching_lrr = lrr_seq
+                        break
+                
+                if matching_lrr is None:
+                    print(f"Warning: No matching LRR sequence found for {genbank_id}")
+                    continue
+                
+                # Format the header and sequence
+                header = f">{species}|{receptor}|{genbank_id}:{ligand_name}"
+                combined_seq = f"{matching_lrr}:{ligand_seq}"
+                
+                # Write to FASTA file
+                f.write(f"{header}\n")
+                f.write(f"{combined_seq}\n")
+                
+            except KeyError as e:
+                print(f"Error: Missing required column in Excel file: {e}")
             except Exception as e:
-                print(f"Warning: Error processing header {header}: {e}")
+                print(f"Error processing row: {e}")
                 continue
+
 
 def main():
     # Input files
