@@ -85,3 +85,4 @@ Vigna_unguiculata_Vigun07g039700_INR-like                                       
 Vigna_unguiculata_Vigun07g219600_INR                                                                model_3        88.9      0.818
 Vigna_unguiculata_Vigun07g219700_INR-like                                                           model_3        88.1      0.793
 Vitis_riparia_PQ283347_FLS2                                                                         model_3        88.0      0.640
+Vitis_riparia_PQ283348_FLS2                                                                         model_3        88.0      0.641

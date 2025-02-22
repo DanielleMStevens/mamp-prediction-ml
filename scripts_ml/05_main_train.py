@@ -399,7 +399,8 @@ def main(args):
     if args.eval_only_data_path:
         eval_data_path = args.eval_only_data_path
     else:
-        eval_data_path = f"{args.data_dir}/test.csv"
+        eval_data_path = f"{args.data_dir}/test_data_with_bulkiness.csv"
+        #eval_data_path = f"{args.data_dir}/test.csv"
     test_df = pd.read_csv(eval_data_path)
     ds_test = dataset(df=test_df)
     print(f"{len(ds_test)=}")

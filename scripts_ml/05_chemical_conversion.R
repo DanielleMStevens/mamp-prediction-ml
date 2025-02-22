@@ -39,6 +39,12 @@ train_data$Receptor_Bulkiness <- sapply(train_data$Receptor.Sequence, sequence_t
 test_data$Sequence_Bulkiness <- sapply(test_data$Sequence, sequence_to_bulkiness)
 test_data$Receptor_Bulkiness <- sapply(test_data$Receptor.Sequence, sequence_to_bulkiness)
 
+# update colnames
+colnames_chemical_names <-  c("Plant species","Receptor","Locus ID/Genbank","Epitope",
+"Sequence","Known Outcome","Receptor Name","Receptor Sequence","Sequence_Bulkiness","Receptor_Bulkiness")
+colnames(train_data) <- colnames_chemical_names
+colnames(test_data) <- colnames_chemical_names
+
 # Save the processed data
 write.csv(train_data, "datasets/processed/train_data_with_bulkiness.csv", row.names = FALSE)
 write.csv(test_data, "datasets/processed/test_data_with_bulkiness.csv", row.names = FALSE)

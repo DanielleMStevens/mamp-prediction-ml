@@ -1,0 +1,23 @@
+# Required dependencies
+torch>=1.9.0
+
+# Visualization dependencies
+# Note: graphviz requires system package to be installed first:
+#   macOS: brew install graphviz
+#   Ubuntu/Debian: sudo apt-get install graphviz
+graphviz>=0.16
+
+# Optional dependencies for enhanced visualizations
+tensorboard>=2.5.0    # For interactive model visualization
+torchviz>=0.0.2      # For computational graph visualization
+
+# Installation:
+# 1. Install basic dependencies:
+#    pip install -r requirements.txt
+#
+# 2. For graphviz (if not already installed):
+#    macOS: brew install graphviz
+#    Ubuntu/Debian: sudo apt-get install graphviz
+#
+# 3. For all visualizations:
+#    pip install -r requirements.txt[all] 

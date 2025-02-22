@@ -1,0 +1,40 @@
+
+ESMReceptorChemical Architecture
+===============================
+
+Input Layer
+----------
+[Peptide Sequence]     [Receptor Sequence]
+       |                      |
+       v                      v
+   [ESM Backbone]        [ESM Backbone]
+       |                      |
+       v                      v
+[Sequence Features]    [Receptor Features]
+       |                      |
+       +----------------------+
+                |
+                v
+    [Bidirectional Attention Layer]
+         |               |
+    [Sequence         [Receptor
+    Bulkiness]       Bulkiness]
+         |               |
+         +---------------+
+                |
+                v
+        [Feature Fusion]
+                |
+                v
+          [Classifier]
+                |
+                v
+        [Output (3 classes)]
+
+Legend:
+--------------------
+[]     Component
+|      Data flow
++      Merge/Join
+v      Direction
+    

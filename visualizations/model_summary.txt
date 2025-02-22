@@ -1,0 +1,44 @@
+ESMReceptorChemical Model Architecture
+==================================================
+
+1. ESM Backbone
+   - ESM2 (t30_150M_UR50D)
+   - First 20 layers frozen
+
+2. FiLM with Attention
+   - Bidirectional attention mechanism
+   - Peptide and receptor projections
+   - Bulkiness feature processing
+   - Feature fusion layers
+
+3. Classifier
+   - Three-layer architecture
+   - Layer normalization and dropout
+   - Residual connections
+
+Total Parameters: 157,703,900
+Trainable Parameters: 58,555,740
+Frozen Parameters: 99,148,160
+
+Layer-wise Parameter Distribution:
+------------------------------
+esm:
+  Total parameters: 148,795,481
+  Trainable parameters: 49,647,321
+  Percentage of model: 94.35%
+
+film:
+  Total parameters: 8,290,176
+  Trainable parameters: 8,290,176
+  Percentage of model: 5.26%
+
+classifier:
+  Total parameters: 618,243
+  Trainable parameters: 618,243
+  Percentage of model: 0.39%
+
+criterion:
+  Total parameters: 0
+  Trainable parameters: 0
+  Percentage of model: 0.00%
+
