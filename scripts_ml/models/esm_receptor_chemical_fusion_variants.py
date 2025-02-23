@@ -3,166 +3,121 @@ import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_recall_curve, auc
 import numpy as np
+import math
 
-class SimpleConcatenation(nn.Module):
-    """Simple concatenation of features followed by MLP"""
+class FiLMWithConcatenation(nn.Module):
+    """
+    Feature-wise Linear Modulation (FiLM) with Concatenation.
+    This module combines simple concatenation with FiLM conditioning to process
+    sequence and receptor embeddings while incorporating bulkiness features.
+    """
     def __init__(self, feature_dim):
-        super().__init__()
-        self.seq_proj = nn.Linear(1, feature_dim)
-        self.rec_proj = nn.Linear(1, feature_dim)
-        self.fusion = nn.Sequential(
+        """
+        Initialize the FiLM with Concatenation module.
+        Args:
+            feature_dim (int): Dimension of the input features
+        """
+        super(FiLMWithConcatenation, self).__init__()
+        # Separate projections for peptide and receptor
+        self.peptide_proj = nn.Linear(feature_dim, feature_dim)
+        self.receptor_proj = nn.Linear(feature_dim, feature_dim)
+        
+        # Bulkiness feature processing
+        self.seq_bulk_proj = nn.Sequential(
+            nn.Linear(1, 64),
+            nn.ReLU(),
+            nn.Linear(64, feature_dim),
+            nn.LayerNorm(feature_dim)
+        )
+        self.rec_bulk_proj = nn.Sequential(
+            nn.Linear(1, 64),
+            nn.ReLU(),
+            nn.Linear(64, feature_dim),
+            nn.LayerNorm(feature_dim)
+        )
+        
+        # Feature fusion
+        self.fusion_layer = nn.Sequential(
             nn.Linear(feature_dim * 4, feature_dim * 2),
             nn.ReLU(),
             nn.LayerNorm(feature_dim * 2),
             nn.Linear(feature_dim * 2, feature_dim)
         )
         
-    def forward(self, x, z, seq_bulkiness, rec_bulkiness):
-        seq_bulk = self.seq_proj(seq_bulkiness.unsqueeze(-1))
-        rec_bulk = self.rec_proj(rec_bulkiness.unsqueeze(-1))
-        combined = torch.cat([x, z, seq_bulk, rec_bulk], dim=-1)
-        return self.fusion(combined)
+        self.layer_norm = nn.LayerNorm(feature_dim)
+        self.dropout = nn.Dropout(0.1)
 
-class CrossAttention(nn.Module):
-    """Cross-attention between sequence and receptor features"""
-    def __init__(self, feature_dim):
-        super().__init__()
-        self.seq_proj = nn.Linear(1, feature_dim)
-        self.rec_proj = nn.Linear(1, feature_dim)
-        self.attention = nn.MultiheadAttention(feature_dim, 8, batch_first=True)
-        self.fusion = nn.Sequential(
-            nn.Linear(feature_dim * 2, feature_dim),
-            nn.ReLU(),
-            nn.LayerNorm(feature_dim)
-        )
+    def forward(self, x, z, x_mask, z_mask, seq_bulkiness=None, rec_bulkiness=None):
+        """
+        Forward pass of the FiLM with Concatenation module.
+        Args:
+            x (torch.Tensor): Sequence embeddings
+            z (torch.Tensor): Receptor embeddings
+            x_mask (torch.Tensor): Mask for sequences (not used in concatenation)
+            z_mask (torch.Tensor): Mask for receptors (not used in concatenation)
+            seq_bulkiness (torch.Tensor, optional): Bulkiness features for sequences
+            rec_bulkiness (torch.Tensor, optional): Bulkiness features for receptors
+        Returns:
+            torch.Tensor: Transformed and pooled features
+        """
+        batch_size = x.size(0)
         
-    def forward(self, x, z, seq_bulkiness, rec_bulkiness):
-        seq_bulk = self.seq_proj(seq_bulkiness.unsqueeze(-1))
-        rec_bulk = self.rec_proj(rec_bulkiness.unsqueeze(-1))
+        # Process sequences
+        x = self.layer_norm(x)
+        z = self.layer_norm(z)
         
-        # Cross attention between bulkiness features
-        attn_out, _ = self.attention(seq_bulk.unsqueeze(1), 
-                                   rec_bulk.unsqueeze(1), 
-                                   rec_bulk.unsqueeze(1))
+        # Project sequences
+        x_proj = self.peptide_proj(x)
+        z_proj = self.receptor_proj(z)
         
-        combined = torch.cat([attn_out.squeeze(1), seq_bulk], dim=-1)
-        return self.fusion(combined)
+        # Process bulkiness features
+        if seq_bulkiness is not None and rec_bulkiness is not None:
+            seq_bulk_feat = self.seq_bulk_proj(seq_bulkiness.unsqueeze(-1).float())
+            rec_bulk_feat = self.rec_bulk_proj(rec_bulkiness.unsqueeze(-1).float())
+            
+            # Add bulkiness features to sequences
+            x_proj = x_proj + seq_bulk_feat.unsqueeze(1)
+            z_proj = z_proj + rec_bulk_feat.unsqueeze(1)
+        
+        # Simple concatenation - use masked mean pooling for each sequence
+        x_mask_expanded = x_mask.unsqueeze(-1).float()
+        z_mask_expanded = z_mask.unsqueeze(-1).float()
+        
+        # Compute masked mean pooling
+        x_pool_max = torch.max(x_proj * x_mask_expanded, dim=1)[0]
+        x_pool_mean = (x_proj * x_mask_expanded).sum(dim=1) / (x_mask_expanded.sum(dim=1) + 1e-8)
+        z_pool_max = torch.max(z_proj * z_mask_expanded, dim=1)[0]
+        z_pool_mean = (z_proj * z_mask_expanded).sum(dim=1) / (z_mask_expanded.sum(dim=1) + 1e-8)
+        
+        # Concatenate all pooled features
+        pooled = torch.cat([x_pool_max, x_pool_mean, z_pool_max, z_pool_mean], dim=-1)
+        
+        # Final fusion
+        output = self.fusion_layer(pooled)
+        output = self.dropout(output)
+        
+        return output
 
-class FiLMConditioning(nn.Module):
-    """Feature-wise Linear Modulation (FiLM) conditioning"""
-    def __init__(self, feature_dim):
-        super().__init__()
-        self.seq_gamma = nn.Linear(1, feature_dim)
-        self.seq_beta = nn.Linear(1, feature_dim)
-        self.rec_gamma = nn.Linear(1, feature_dim)
-        self.rec_beta = nn.Linear(1, feature_dim)
-        self.fusion = nn.Sequential(
-            nn.Linear(feature_dim * 2, feature_dim),
-            nn.ReLU(),
-            nn.LayerNorm(feature_dim)
-        )
-        
-    def forward(self, x, z, seq_bulkiness, rec_bulkiness):
-        # Generate FiLM parameters
-        seq_g = self.seq_gamma(seq_bulkiness.unsqueeze(-1))
-        seq_b = self.seq_beta(seq_bulkiness.unsqueeze(-1))
-        rec_g = self.rec_gamma(rec_bulkiness.unsqueeze(-1))
-        rec_b = self.rec_beta(rec_bulkiness.unsqueeze(-1))
-        
-        # Apply FiLM conditioning
-        x_film = (x * seq_g) + seq_b
-        z_film = (z * rec_g) + rec_b
-        
-        combined = torch.cat([x_film, z_film], dim=-1)
-        return self.fusion(combined)
-
-class MLPMixer(nn.Module):
-    """MLP Mixer-based fusion"""
-    def __init__(self, feature_dim):
-        super().__init__()
-        self.seq_proj = nn.Linear(1, feature_dim)
-        self.rec_proj = nn.Linear(1, feature_dim)
-        
-        # Channel mixing
-        self.channel_mixing = nn.Sequential(
-            nn.Linear(feature_dim * 4, feature_dim * 8),
-            nn.GELU(),
-            nn.Linear(feature_dim * 8, feature_dim)
-        )
-        
-        # Feature mixing
-        self.feature_mixing = nn.Sequential(
-            nn.Linear(feature_dim, feature_dim * 2),
-            nn.GELU(),
-            nn.Linear(feature_dim * 2, feature_dim)
-        )
-        
-    def forward(self, x, z, seq_bulkiness, rec_bulkiness):
-        seq_bulk = self.seq_proj(seq_bulkiness.unsqueeze(-1))
-        rec_bulk = self.rec_proj(rec_bulkiness.unsqueeze(-1))
-        
-        # Concatenate all features
-        combined = torch.cat([x, z, seq_bulk, rec_bulk], dim=-1)
-        
-        # Apply channel mixing
-        channel_mixed = self.channel_mixing(combined)
-        
-        # Apply feature mixing
-        feature_mixed = self.feature_mixing(channel_mixed)
-        
-        return feature_mixed
-
-class GatedFusion(nn.Module):
-    """Gated fusion mechanism"""
-    def __init__(self, feature_dim):
-        super().__init__()
-        self.seq_proj = nn.Linear(1, feature_dim)
-        self.rec_proj = nn.Linear(1, feature_dim)
-        
-        # Gates
-        self.seq_gate = nn.Sequential(
-            nn.Linear(feature_dim * 2, feature_dim),
-            nn.Sigmoid()
-        )
-        self.rec_gate = nn.Sequential(
-            nn.Linear(feature_dim * 2, feature_dim),
-            nn.Sigmoid()
-        )
-        
-        self.fusion = nn.Sequential(
-            nn.Linear(feature_dim * 2, feature_dim),
-            nn.ReLU(),
-            nn.LayerNorm(feature_dim)
-        )
-        
-    def forward(self, x, z, seq_bulkiness, rec_bulkiness):
-        seq_bulk = self.seq_proj(seq_bulkiness.unsqueeze(-1))
-        rec_bulk = self.rec_proj(rec_bulkiness.unsqueeze(-1))
-        
-        # Compute gates
-        seq_gate_val = self.seq_gate(torch.cat([x, seq_bulk], dim=-1))
-        rec_gate_val = self.rec_gate(torch.cat([z, rec_bulk], dim=-1))
-        
-        # Apply gated fusion
-        x_gated = x * seq_gate_val
-        z_gated = z * rec_gate_val
-        
-        combined = torch.cat([x_gated, z_gated], dim=-1)
-        return self.fusion(combined)
-
-class ESMReceptorChemicalFusion(nn.Module):
+class ESMReceptorChemical(nn.Module):
     """
-    Enhanced ESM-based model with multiple fusion architecture options for
-    combining sequence and receptor features with bulkiness information.
+    Main model class that combines ESM embeddings with FiLM and concatenation mechanisms
+    for predicting interactions between peptides and receptors.
     """
-    def __init__(self, args, num_classes=3, fusion_type='simple_concat'):
-        super().__init__()
+    def __init__(self, args, num_classes=3):
+        """
+        Initialize the ESM-based receptor-chemical interaction model.
+        Args:
+            args: Configuration arguments containing model backbone information
+            num_classes (int): Number of output classes (default: 3)
+        """
+        super(ESMReceptorChemical, self).__init__()
         
         # Load ESM model
         self.esm = AutoModel.from_pretrained("facebook/esm2_t30_150M_UR50D")
         self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")
         
-        # Freeze embedding and first 20 layers
+        # More selective layer freezing strategy
+        # Freeze only the embedding and first 20 layers
         modules_to_freeze = [
             self.esm.embeddings,
             *self.esm.encoder.layer[:20]
@@ -171,64 +126,71 @@ class ESMReceptorChemicalFusion(nn.Module):
             for param in module.parameters():
                 param.requires_grad = False
         
-        feature_dim = self.esm.config.hidden_size
+        self.film = FiLMWithConcatenation(self.esm.config.hidden_size)
         
-        # Initialize fusion module based on type
-        fusion_modules = {
-            'simple_concat': SimpleConcatenation,
-            'cross_attention': CrossAttention,
-            'film': FiLMConditioning,
-            'mlp_mixer': MLPMixer,
-            'gated': GatedFusion
-        }
-        
-        if fusion_type not in fusion_modules:
-            raise ValueError(f"Unsupported fusion type: {fusion_type}")
-        
-        self.fusion_module = fusion_modules[fusion_type](feature_dim)
-        
-        # Enhanced classifier
+        # Enhanced classifier with residual connections
+        hidden_size = self.esm.config.hidden_size
         self.classifier = nn.Sequential(
-            nn.Linear(feature_dim, feature_dim),
-            nn.LayerNorm(feature_dim),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(feature_dim, feature_dim // 2),
-            nn.LayerNorm(feature_dim // 2),
-            nn.ReLU(),
-            nn.Dropout(0.1),
-            nn.Linear(feature_dim // 2, num_classes)
+            # Layer 1: Dimensionality preservation
+            nn.Linear(hidden_size, hidden_size),  # e.g., if hidden_size=1280 -> 1280
+            nn.LayerNorm(hidden_size),            # Normalizes the outputs
+            nn.ReLU(),                            # Activation function
+            nn.Dropout(0.2),                      # Randomly drops 20% of neurons to prevent overfitting
+
+            # Layer 2: Dimensionality reduction
+            nn.Linear(hidden_size, hidden_size // 2),    # e.g., 1280 -> 640
+            nn.LayerNorm(hidden_size // 2),              # Normalizes the reduced dimension
+            nn.ReLU(),                                   # Activation function
+            nn.Dropout(0.1),                             # Drops 10% of neurons
+
+            # Output Layer
+            nn.Linear(hidden_size // 2, num_classes)     # e.g., 640 -> 3 (for classification)
         )
         
+        # Loss with label smoothing
         self.criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
         self.losses = ["ce"]
 
     def forward(self, batch_x):
-        # Get ESM embeddings
+        """
+        Forward pass of the model.
+        Args:
+            batch_x (dict): Dictionary containing:
+                - peptide_x (dict): Peptide sequence inputs
+                - receptor_x (dict): Receptor sequence inputs
+                - sequence_bulkiness (tensor): Bulkiness features for sequences
+                - receptor_bulkiness (tensor): Bulkiness features for receptors
+        Returns:
+            torch.Tensor: Logits for classification
+        """
+        # Get ESM embeddings with gradient checkpointing
         with torch.set_grad_enabled(True):
             sequence_output = self.esm(**batch_x['peptide_x']).last_hidden_state
             receptor_output = self.esm(**batch_x['receptor_x']).last_hidden_state
         
-        # Process bulkiness features
+        # Get attention masks
+        sequence_mask = batch_x['peptide_x']['attention_mask']
+        receptor_mask = batch_x['receptor_x']['attention_mask']
+        
+        # Process bulkiness features with proper error handling
         seq_bulkiness = batch_x.get('sequence_bulkiness')
         rec_bulkiness = batch_x.get('receptor_bulkiness')
         
         if seq_bulkiness is not None:
             seq_bulkiness = seq_bulkiness.float()
             seq_bulkiness = torch.nan_to_num(seq_bulkiness, nan=0.0)
+            # Normalize bulkiness values
             seq_bulkiness = (seq_bulkiness - seq_bulkiness.mean()) / (seq_bulkiness.std() + 1e-8)
             
         if rec_bulkiness is not None:
             rec_bulkiness = rec_bulkiness.float()
             rec_bulkiness = torch.nan_to_num(rec_bulkiness, nan=0.0)
+            # Normalize bulkiness values
             rec_bulkiness = (rec_bulkiness - rec_bulkiness.mean()) / (rec_bulkiness.std() + 1e-8)
         
-        # Get sequence representations
-        x_pool = torch.mean(sequence_output, dim=1)
-        z_pool = torch.mean(receptor_output, dim=1)
-        
-        # Apply fusion
-        combined = self.fusion_module(x_pool, z_pool, seq_bulkiness, rec_bulkiness)
+        # Apply FiLM with attention
+        combined = self.film(sequence_output, receptor_output, sequence_mask, receptor_mask,
+                           seq_bulkiness, rec_bulkiness)
         
         # Get logits
         logits = self.classifier(combined)
@@ -236,6 +198,12 @@ class ESMReceptorChemicalFusion(nn.Module):
         return logits
 
     def training_step(self, batch, batch_idx):
+        """
+        Perform a training step.
+        Args:
+            batch (dict): Batch of data containing sequences, receptors, and labels
+            batch_idx (int): Index of the current batch
+        """
         logits = self(batch['x'])
         
         # Add L2 regularization
@@ -248,17 +216,28 @@ class ESMReceptorChemicalFusion(nn.Module):
         return loss
 
     def get_tokenizer(self):
+        """Return the model's tokenizer"""
         return self.tokenizer
 
     def collate_fn(self, batch):
+        """
+        Collate function for creating batches from individual examples.
+        Args:
+            batch (list): List of examples containing peptide and receptor sequences,
+                         and their corresponding bulkiness values
+        Returns:
+            dict: Collated batch with tokenized inputs, bulkiness features, and labels
+        """
         inputs = {}
         x_dict = {}
 
+        # Tokenize sequences
         x_dict['peptide_x'] = self.tokenizer([example['peptide_x'] for example in batch],
                 return_tensors='pt', padding=True)
         x_dict['receptor_x'] = self.tokenizer([example['receptor_x'] for example in batch],
                 return_tensors='pt', padding=True)
         
+        # Add bulkiness features if they exist in the batch
         if 'sequence_bulkiness' in batch[0]:
             x_dict['sequence_bulkiness'] = torch.tensor([example['sequence_bulkiness'] for example in batch])
         if 'receptor_bulkiness' in batch[0]:
@@ -270,14 +249,42 @@ class ESMReceptorChemicalFusion(nn.Module):
         return inputs
 
     def batch_decode(self, batch):
+        """
+        Decode a batch of tokenized sequences back to text.
+        Args:
+            batch (dict): Batch containing tokenized sequences
+        Returns:
+            list: Decoded sequences in format "peptide:receptor"
+        """
         peptide_decoded_ls = self.tokenizer.batch_decode(batch['x']['peptide_x']['input_ids'], skip_special_tokens=True)
         receptor_decoded_ls = self.tokenizer.batch_decode(batch['x']['receptor_x']['input_ids'], skip_special_tokens=True)
+        
         return [f"{peptide}:{receptor}" for peptide, receptor in zip(peptide_decoded_ls, receptor_decoded_ls)]
 
     def get_pr(self, logits):
+        """
+        Convert logits to probabilities using softmax.
+        Args:
+            logits (torch.Tensor): Raw model outputs
+        Returns:
+            torch.Tensor: Probability distributions
+        """
         return torch.softmax(logits, dim=-1)
 
     def get_stats(self, gt, pr, train=False):
+        """
+        Calculate various evaluation metrics.
+        Args:
+            gt (torch.Tensor): Ground truth labels
+            pr (torch.Tensor): Predicted probabilities
+            train (bool): Whether these are training or test statistics
+        Returns:
+            dict: Dictionary containing various evaluation metrics including:
+                - Accuracy
+                - Macro and weighted F1 scores
+                - ROC AUC (multi-class)
+                - PR AUC for each class and macro-averaged
+        """
         prefix = "train" if train else "test"
         pred_labels = pr.argmax(dim=-1)
         
@@ -288,8 +295,10 @@ class ESMReceptorChemicalFusion(nn.Module):
         }
         
         try:
+            # Calculate ROC AUC
             stats[f"{prefix}_auroc"] = roc_auc_score(gt.cpu(), pr.cpu(), multi_class='ovr')
             
+            # Calculate PR AUC for each class
             gt_onehot = np.eye(3)[gt.cpu()]
             pr_np = pr.cpu().numpy()
             
@@ -297,6 +306,7 @@ class ESMReceptorChemicalFusion(nn.Module):
                 precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
                 stats[f"{prefix}_auprc_class{i}"] = auc(recall, precision)
             
+            # Average AUPRC across classes
             stats[f"{prefix}_auprc_macro"] = np.mean([stats[f"{prefix}_auprc_class{i}"] for i in range(3)])
             
         except:
@@ -305,4 +315,4 @@ class ESMReceptorChemicalFusion(nn.Module):
             for i in range(3):
                 stats[f"{prefix}_auprc_class{i}"] = 0.0
             
-        return stats 
+        return stats
