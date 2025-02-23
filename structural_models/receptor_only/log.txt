@@ -1,379 +1,131 @@
-2025-02-16 10:14:45,812 Running colabfold 1.5.5 (406d4c6cf25a0755f61b3adac7c5d47d3025f42c)
-2025-02-16 10:15:00,314 Running on GPU
-2025-02-16 10:15:50,250 Found 5 citations for tools or databases
-2025-02-16 10:15:50,251 Skipping Cajanus_cajan_XP_020210262.1_FLS2 (already done)
-2025-02-16 10:15:50,252 Skipping Nicotiana_benthamiana_Niben101Scf03455g01008.1_FLS2 (already done)
-2025-02-16 10:15:50,252 Skipping Glycine_max_Glyma.10G228600_INR-like_4_INR-like (already done)
-2025-02-16 10:15:50,253 Skipping Vigna_unguiculata_Vigun07g219600_INR (already done)
-2025-02-16 10:15:50,253 Skipping Vigna_unguiculata_Vigun07g039700_INR-like (already done)
-2025-02-16 10:15:50,253 Skipping Vigna_radiata_Vradi08g18340_INR_INR (already done)
-2025-02-16 10:15:50,254 Skipping Cajanus_cajan_Ccajan_07316_INR (already done)
-2025-02-16 10:15:50,254 Skipping Phaseolus_vulgaris_Phvul.007g246600_INR-like (already done)
-2025-02-16 10:15:50,254 Skipping Mucuna_pruriens_Mprur_INR_INR (already done)
-2025-02-16 10:15:50,255 Skipping Macroptilium_lathyroides_Mlathy_INR_INR (already done)
-2025-02-16 10:15:50,255 Skipping Lablab_purpureus_Lp005646g0031_INR_INR (already done)
-2025-02-16 10:15:50,255 Skipping Phaseolus_vulgaris_Phvul007G077500_INR (already done)
-2025-02-16 10:15:50,256 Skipping Canavalia_ensiformis_Censi_INR-like_1_INR-like (already done)
-2025-02-16 10:15:50,256 Skipping Canavalia_ensiformis_Censi_INR-like_2_INR-like (already done)
-2025-02-16 10:15:50,257 Skipping Canavalia_ensiformis_Censiformis_INR-like_3_INR-like (already done)
-2025-02-16 10:15:50,257 Skipping Arabidopsis_thaliana_AT3G25020_RLP42 (already done)
-2025-02-16 10:15:50,257 Skipping Arabidopsis_thaliana_AT2G32680_RLP23 (already done)
-2025-02-16 10:15:50,258 Skipping Vigna_unguiculata_Vigun07g219700_INR-like (already done)
-2025-02-16 10:15:50,258 Skipping Glycine_max_Glyma.10G228200_INR-like_3_INR-like (already done)
-2025-02-16 10:15:50,259 Skipping Vigna_radiata_Vradi08g18340_INR-like_1_INR-like (already done)
-2025-02-16 10:15:50,259 Skipping Glycine_max_Glyma.10G228100_INR-like_2_INR-like (already done)
-2025-02-16 10:15:50,259 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_3_INR-like (already done)
-2025-02-16 10:15:50,260 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_4_INR-like (already done)
-2025-02-16 10:15:50,260 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_7_INR-like (already done)
-2025-02-16 10:15:50,261 Skipping Glycine_max_Glyma10G228000_INR-like_1_INR-like (already done)
-2025-02-16 10:15:50,261 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_6_INR-like (already done)
-2025-02-16 10:15:50,262 Skipping Lablab_purpureus_Lp005646g0031_INR-like_INR-like (already done)
-2025-02-16 10:15:50,262 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_2_INR-like (already done)
-2025-02-16 10:15:50,262 Skipping Dendrocalamus_strictus_Distr0011s35800_MIK2 (already done)
-2025-02-16 10:15:50,263 Skipping Brascia_rapa_BraraC02577_MIK2 (already done)
-2025-02-16 10:15:50,263 Skipping Arabidopsis_thaliana_At5g20480_EFR (already done)
-2025-02-16 10:15:50,263 Skipping Euclidium_syriacum_Eusyr0135s0078_MIK2 (already done)
-2025-02-16 10:15:50,264 Skipping Solanum_microdontum_gigantophyllum_OQ999448_PERU (already done)
-2025-02-16 10:15:50,264 Skipping Solanum_lycopersicum_Solyc03g096190_CORE (already done)
-2025-02-16 10:15:50,265 Skipping Arabidopsis_thaliana_AT4G08850_MIK2 (already done)
-2025-02-16 10:15:50,265 Skipping Solanum_medians_OQ999475_PERU (already done)
-2025-02-16 10:15:50,265 Skipping Solanum_pennellii_XP_015068909.1_CORE (already done)
-2025-02-16 10:15:50,266 Skipping Eutrema_salsugineum_Thhalv10028381m_MIK2 (already done)
-2025-02-16 10:15:50,266 Skipping Nicotiana_benthamiana_Niben101Scf02323g01010.1_CORE (already done)
-2025-02-16 10:15:50,267 Skipping Nelumbo_nucifera_ON556648.1_FLS2 (already done)
-2025-02-16 10:15:50,267 Skipping Ginkgo_biloba_ON556647.1_FLS2 (already done)
-2025-02-16 10:15:50,267 Skipping Kalanchoe_laxiflora_ON556668.1_FLS2 (already done)
-2025-02-16 10:15:50,268 Skipping Ananas_comosus_ON556667.1_FLS2 (already done)
-2025-02-16 10:15:50,268 Skipping Vigna_radiata_XP_014499491.1_FLS2 (already done)
-2025-02-16 10:15:50,269 Skipping Solanum_lycopersicum_Solyc08g016270_CuRe1 (already done)
-2025-02-16 10:15:50,269 Skipping Solanum_tuberosum_OQ999435_PERU (already done)
-2025-02-16 10:15:50,270 Skipping Solanum_boliviense_OQ999438_PERU (already done)
-2025-02-16 10:15:50,270 Skipping Solanum_candolleanum_OQ999442_PERU (already done)
-2025-02-16 10:15:50,271 Skipping Solanum_hondelmannii_OQ999449_PERU (already done)
-2025-02-16 10:15:50,271 Skipping Solanum_microdontum_OQ999451_PERU (already done)
-2025-02-16 10:15:50,272 Skipping Solanum_tuberosum_Phureja_Group1_OQ999452_PERU (already done)
-2025-02-16 10:15:50,272 Skipping Solanum_tuberosum_Phureja_Group2_OQ999454_PERU (already done)
-2025-02-16 10:15:50,272 Skipping Solanum_raphanifolium_OQ999456_PERU (already done)
-2025-02-16 10:15:50,273 Skipping Populus_euphratica_MH079056.1_FLS2 (already done)
-2025-02-16 10:15:50,273 Skipping Morus_alba_ON556649.1_FLS2 (already done)
-2025-02-16 10:15:50,274 Skipping Solanum_lycopersicum1_Solyc04g009640_FLS3 (already done)
-2025-02-16 10:15:50,274 Skipping Solanum_lycopersicum2_XP_004237164.3_FLS3 (already done)
-2025-02-16 10:15:50,274 Skipping Solanum_abancayense_OQ999432_PERU (already done)
-2025-02-16 10:15:50,275 Skipping Solanum_tuberosum_Phureja_Group3_OQ999453_PERU (already done)
-2025-02-16 10:15:50,275 Skipping Solanum_leptophyes_OQ999450_PERU (already done)
-2025-02-16 10:15:50,276 Skipping Solanum_pampasense_OQ999458_PERU (already done)
-2025-02-16 10:15:50,276 Skipping Solanum_tuberosum_Ajanhuiri_Group_OQ999461_PERU (already done)
-2025-02-16 10:15:50,276 Skipping Solanum_bukasovii_OQ999471_PERU (already done)
-2025-02-16 10:15:50,277 Skipping Solanum_megistacrolobum_subsp._Toralapanum_OQ999479_PERU (already done)
-2025-02-16 10:15:50,277 Skipping Cucumis_sativus_ON556652.1_FLS2 (already done)
-2025-02-16 10:15:50,278 Skipping Quercus_variabilis_UTN00789.1_QvFLS2 (already done)
-2025-02-16 10:15:50,278 Skipping Malus_domestica_XP_008371582.2_MdFLS2 (already done)
-2025-02-16 10:15:50,279 Skipping Malus_domestica_UTN00798.1_FLS2 (already done)
-2025-02-16 10:15:50,279 Skipping Malus_halliana_UTN00799.1_FLS2 (already done)
-2025-02-16 10:15:50,279 Skipping Humulus_lupulus_XP_062096069.1_HlFLS2 (already done)
-2025-02-16 10:15:50,280 Skipping Fagus_crenata_BK068611_FcFLS2 (already done)
-2025-02-16 10:15:50,280 Skipping Prunus_persica_UTN00800.1_FLS2 (already done)
-2025-02-16 10:15:50,281 Skipping Prunus_mume_UTN00801.1_FLS2 (already done)
-2025-02-16 10:15:50,281 Skipping Prunus_yedoensis_UTN00802.1_FLS2 (already done)
-2025-02-16 10:15:50,281 Skipping Rosa_chinensis_ON556657.1_FLS2 (already done)
-2025-02-16 10:15:50,282 Skipping Fragaria_x_ananassa_ON556658.1_FLS2 (already done)
-2025-02-16 10:15:50,282 Skipping Populus_tomentosa_MH079055.1_FLS2 (already done)
-2025-02-16 10:15:50,283 Skipping Populus_davidiana_ON556655.1_FLS2 (already done)
-2025-02-16 10:15:50,283 Skipping Populus_deltoides_ON556654.1_FLS2 (already done)
-2025-02-16 10:15:50,283 Skipping Populus_x_canadensis_MH079052.1_FLS2 (already done)
-2025-02-16 10:15:50,284 Skipping Populus_simonii_MH079054.1_FLS2 (already done)
-2025-02-16 10:15:50,286 Skipping Populus_trichocarpa_UTN00792.1_FLS2 (already done)
-2025-02-16 10:15:50,286 Skipping Phaseolus_vulgaris_UTN00805.1_FLS2 (already done)
-2025-02-16 10:15:50,287 Query 84/94: Trachelospermum_jasminoides_UTN00804.1_TjFLS2 (length 1165)
-2025-02-16 10:17:05,021 Padding length to 1175
-2025-02-16 10:19:19,665 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.6 pTM=0.572
-2025-02-16 10:20:20,306 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.8 pTM=0.618 tol=10.5
-2025-02-16 10:21:24,172 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.4 pTM=0.612 tol=4.39
-2025-02-16 10:22:26,326 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.2 pTM=0.615 tol=2.62
-2025-02-16 10:22:26,666 alphafold2_ptm_model_1_seed_000 took 321.6s (3 recycles)
-2025-02-16 10:23:31,034 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=81.6 pTM=0.589
-2025-02-16 10:24:32,052 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=82.2 pTM=0.64 tol=11.5
-2025-02-16 10:25:32,904 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=82.4 pTM=0.638 tol=2.83
-2025-02-16 10:26:33,907 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=83.2 pTM=0.639 tol=3.4
-2025-02-16 10:26:33,974 alphafold2_ptm_model_2_seed_000 took 245.6s (3 recycles)
-2025-02-16 10:27:35,990 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=86 pTM=0.623
-2025-02-16 10:28:36,873 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=86.2 pTM=0.647 tol=6.92
-2025-02-16 10:29:37,722 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=86.4 pTM=0.645 tol=5.07
-2025-02-16 10:30:38,637 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=86.8 pTM=0.642 tol=1.87
-2025-02-16 10:30:38,638 alphafold2_ptm_model_3_seed_000 took 243.5s (3 recycles)
-2025-02-16 10:31:45,744 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=85.9 pTM=0.635
-2025-02-16 10:32:48,149 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=84.6 pTM=0.664 tol=11.9
-2025-02-16 10:33:49,064 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=84.9 pTM=0.672 tol=3.47
-2025-02-16 10:34:50,099 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=85.4 pTM=0.675 tol=2.32
-2025-02-16 10:34:50,224 alphafold2_ptm_model_4_seed_000 took 250.5s (3 recycles)
-2025-02-16 10:35:52,837 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=86.2 pTM=0.637
-2025-02-16 10:36:57,181 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=85.4 pTM=0.679 tol=5.81
-2025-02-16 10:37:59,496 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=85.1 pTM=0.704 tol=3.28
-2025-02-16 10:39:00,396 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=85.2 pTM=0.705 tol=1.11
-2025-02-16 10:39:00,398 alphafold2_ptm_model_5_seed_000 took 248.5s (3 recycles)
-2025-02-16 10:39:03,416 reranking models by 'plddt' metric
-2025-02-16 10:39:04,117 rank_001_alphafold2_ptm_model_3_seed_000 pLDDT=86.8 pTM=0.642
-2025-02-16 10:39:04,185 rank_002_alphafold2_ptm_model_1_seed_000 pLDDT=86.2 pTM=0.615
-2025-02-16 10:39:04,186 rank_003_alphafold2_ptm_model_4_seed_000 pLDDT=85.4 pTM=0.675
-2025-02-16 10:39:04,187 rank_004_alphafold2_ptm_model_5_seed_000 pLDDT=85.2 pTM=0.705
-2025-02-16 10:39:04,188 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=83.2 pTM=0.639
-2025-02-16 10:39:09,803 Query 85/94: Mucuna_pruriens_RDX68355.1_FLS2 (length 1166)
-2025-02-16 10:39:11,568 Sleeping for 7s. Reason: PENDING
-2025-02-16 10:39:18,807 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:39:24,022 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:39:34,243 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:39:43,466 Sleeping for 7s. Reason: RUNNING
-2025-02-16 10:39:50,686 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:39:55,901 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:40:01,118 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:40:06,333 Sleeping for 7s. Reason: RUNNING
-2025-02-16 10:40:13,552 Sleeping for 7s. Reason: RUNNING
-2025-02-16 10:40:20,780 Sleeping for 6s. Reason: RUNNING
-2025-02-16 10:40:27,001 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:40:38,937 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:40:49,632 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:40:59,100 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:41:10,894 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:41:17,893 Sleeping for 6s. Reason: RUNNING
-2025-02-16 10:41:24,313 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:41:39,002 Sleeping for 7s. Reason: RUNNING
-2025-02-16 10:41:46,638 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:41:59,285 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:42:09,574 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:42:14,832 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:42:24,049 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:42:36,352 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:42:44,602 Sleeping for 6s. Reason: RUNNING
-2025-02-16 10:42:53,275 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:42:58,522 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:43:06,747 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:43:17,144 Sleeping for 7s. Reason: RUNNING
-2025-02-16 10:43:25,713 Sleeping for 7s. Reason: RUNNING
-2025-02-16 10:43:32,938 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:43:44,377 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:43:53,625 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:44:03,826 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:44:14,085 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:44:20,737 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:44:32,187 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:44:42,399 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:44:47,615 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:44:54,693 Sleeping for 6s. Reason: RUNNING
-2025-02-16 10:45:02,570 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:45:10,790 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:45:20,014 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:45:32,721 Sleeping for 7s. Reason: RUNNING
-2025-02-16 10:45:39,993 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:45:53,230 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:46:02,977 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:46:12,198 Sleeping for 9s. Reason: RUNNING
-2025-02-16 10:46:21,417 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:46:26,632 Sleeping for 10s. Reason: RUNNING
-2025-02-16 10:46:36,854 Sleeping for 6s. Reason: RUNNING
-2025-02-16 10:46:43,071 Sleeping for 6s. Reason: RUNNING
-2025-02-16 10:46:49,302 Sleeping for 5s. Reason: RUNNING
-2025-02-16 10:46:54,524 Sleeping for 7s. Reason: RUNNING
-2025-02-16 10:47:01,735 Sleeping for 8s. Reason: RUNNING
-2025-02-16 10:47:53,086 Padding length to 1175
-2025-02-16 10:49:00,196 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85 pTM=0.572
-2025-02-16 10:50:02,027 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.9 pTM=0.615 tol=6.57
-2025-02-16 10:51:02,695 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.2 pTM=0.62 tol=1.69
-2025-02-16 10:52:03,451 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.6 pTM=0.616 tol=1.06
-2025-02-16 10:52:03,610 alphafold2_ptm_model_1_seed_000 took 250.5s (3 recycles)
-2025-02-16 10:53:08,426 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=84.2 pTM=0.594
-2025-02-16 10:54:12,141 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=84.1 pTM=0.638 tol=9.12
-2025-02-16 10:55:14,159 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=84.2 pTM=0.655 tol=2.39
-2025-02-16 10:56:14,970 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=84.3 pTM=0.651 tol=1.47
-2025-02-16 10:56:14,971 alphafold2_ptm_model_2_seed_000 took 247.3s (3 recycles)
-2025-02-16 10:57:19,935 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=86.8 pTM=0.616
-2025-02-16 10:58:22,320 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=86.6 pTM=0.632 tol=6
-2025-02-16 10:59:27,623 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=88.1 pTM=0.636 tol=9.08
-2025-02-16 11:00:30,600 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=87.7 pTM=0.641 tol=3.01
-2025-02-16 11:00:30,728 alphafold2_ptm_model_3_seed_000 took 254.7s (3 recycles)
-2025-02-16 11:01:33,271 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=86.4 pTM=0.632
-2025-02-16 11:02:37,079 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=84.9 pTM=0.646 tol=6.24
-2025-02-16 11:03:39,329 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=85.8 pTM=0.683 tol=3.68
-2025-02-16 11:04:40,381 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=85.4 pTM=0.664 tol=1.08
-2025-02-16 11:04:40,469 alphafold2_ptm_model_4_seed_000 took 248.1s (3 recycles)
-2025-02-16 11:05:42,556 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=86.5 pTM=0.636
-2025-02-16 11:06:43,495 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=87 pTM=0.658 tol=6.52
-2025-02-16 11:07:44,419 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=86.6 pTM=0.689 tol=1.96
-2025-02-16 11:08:45,375 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=86.4 pTM=0.69 tol=1.29
-2025-02-16 11:08:45,587 alphafold2_ptm_model_5_seed_000 took 243.9s (3 recycles)
-2025-02-16 11:08:47,178 reranking models by 'plddt' metric
-2025-02-16 11:08:47,186 rank_001_alphafold2_ptm_model_3_seed_000 pLDDT=87.7 pTM=0.641
-2025-02-16 11:08:47,188 rank_002_alphafold2_ptm_model_1_seed_000 pLDDT=86.6 pTM=0.616
-2025-02-16 11:08:47,189 rank_003_alphafold2_ptm_model_5_seed_000 pLDDT=86.4 pTM=0.69
-2025-02-16 11:08:47,191 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=85.4 pTM=0.664
-2025-02-16 11:08:47,192 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=84.3 pTM=0.651
-2025-02-16 11:08:54,706 Query 86/94: Vitis_riparia_PQ283347_FLS2XL (length 1166)
-2025-02-16 11:08:56,542 Sleeping for 8s. Reason: PENDING
-2025-02-16 11:09:04,787 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:09:14,005 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:09:21,228 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:09:26,442 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:09:31,808 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:09:41,029 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:09:49,251 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:09:58,468 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:10:03,684 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:10:09,897 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:10:15,117 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:10:25,337 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:10:34,560 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:10:43,781 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:10:49,007 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:10:59,253 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:11:06,476 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:11:12,698 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:11:19,917 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:11:28,137 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:11:33,359 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:11:43,586 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:11:50,808 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:11:56,027 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:12:04,245 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:12:09,461 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:12:19,681 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:12:29,908 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:12:36,126 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:12:44,341 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:12:54,565 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:13:00,780 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:13:07,006 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:13:14,232 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:13:21,455 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:13:30,682 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:13:37,907 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:13:48,132 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:13:57,437 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:14:08,124 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:14:17,339 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:14:23,560 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:14:30,780 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:14:37,996 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:14:43,210 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:14:52,434 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:15:02,652 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:15:11,874 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:15:22,094 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:15:29,324 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:15:35,548 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:15:40,764 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:15:49,984 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:15:56,257 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:16:05,479 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:16:15,706 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:16:23,927 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:16:31,141 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:16:36,357 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:16:41,576 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:16:52,352 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:17:00,632 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:17:07,851 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:17:15,076 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:17:21,297 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:17:29,516 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:17:38,746 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:17:45,969 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:17:53,188 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:18:43,439 Padding length to 1175
-2025-02-16 11:19:46,744 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.5 pTM=0.57
-2025-02-16 11:20:47,174 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.8 pTM=0.619 tol=10.3
-2025-02-16 11:21:47,781 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=87.2 pTM=0.618 tol=6.33
-2025-02-16 11:22:48,455 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87.1 pTM=0.616 tol=1.96
-2025-02-16 11:22:48,457 alphafold2_ptm_model_1_seed_000 took 245.0s (3 recycles)
-2025-02-16 11:23:50,158 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=82.9 pTM=0.584
-2025-02-16 11:24:53,850 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=84.8 pTM=0.63 tol=8.4
-2025-02-16 11:25:55,164 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=84.5 pTM=0.644 tol=2.34
-2025-02-16 11:26:55,908 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=84.4 pTM=0.641 tol=1.34
-2025-02-16 11:26:56,049 alphafold2_ptm_model_2_seed_000 took 246.5s (3 recycles)
-2025-02-16 11:27:58,351 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=86.6 pTM=0.609
-2025-02-16 11:28:59,121 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=87.8 pTM=0.636 tol=4.51
-2025-02-16 11:29:59,910 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=87.9 pTM=0.64 tol=1.05
-2025-02-16 11:31:00,918 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=88 pTM=0.64 tol=1.39
-2025-02-16 11:31:01,026 alphafold2_ptm_model_3_seed_000 took 243.6s (3 recycles)
-2025-02-16 11:32:03,048 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=86.4 pTM=0.633
-2025-02-16 11:33:03,835 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=85.7 pTM=0.638 tol=6.65
-2025-02-16 11:34:04,612 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=85.2 pTM=0.634 tol=3.15
-2025-02-16 11:35:05,396 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=85.2 pTM=0.641 tol=1.83
-2025-02-16 11:35:05,398 alphafold2_ptm_model_4_seed_000 took 243.1s (3 recycles)
-2025-02-16 11:36:07,455 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=86.5 pTM=0.628
-2025-02-16 11:37:08,404 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=87.5 pTM=0.652 tol=10.9
-2025-02-16 11:38:12,758 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=86.6 pTM=0.648 tol=11.1
-2025-02-16 11:39:14,877 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=87.2 pTM=0.645 tol=10
-2025-02-16 11:39:15,056 alphafold2_ptm_model_5_seed_000 took 248.5s (3 recycles)
-2025-02-16 11:39:16,621 reranking models by 'plddt' metric
-2025-02-16 11:39:16,640 rank_001_alphafold2_ptm_model_3_seed_000 pLDDT=88 pTM=0.64
-2025-02-16 11:39:16,642 rank_002_alphafold2_ptm_model_5_seed_000 pLDDT=87.2 pTM=0.645
-2025-02-16 11:39:16,643 rank_003_alphafold2_ptm_model_1_seed_000 pLDDT=87.1 pTM=0.616
-2025-02-16 11:39:16,644 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=85.2 pTM=0.641
-2025-02-16 11:39:16,646 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=84.4 pTM=0.641
-2025-02-16 11:39:25,321 Query 87/94: Camellia_sinensis_ON556651.1_FLS2 (length 1167)
-2025-02-16 11:39:26,875 Sleeping for 10s. Reason: PENDING
-2025-02-16 11:39:37,116 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:39:42,333 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:39:50,568 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:39:57,785 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:40:06,007 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:40:16,233 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:40:22,451 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:40:28,671 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:40:33,896 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:40:44,117 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:40:53,335 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:41:03,554 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:41:11,782 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:41:16,994 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:41:25,219 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:41:33,444 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:41:40,667 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:41:50,886 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:41:56,119 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:42:06,338 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:42:14,564 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:42:20,792 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:42:31,019 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:42:37,240 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:42:43,458 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:42:51,685 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:42:59,906 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:43:06,131 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:43:13,347 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:43:18,566 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:43:23,782 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:43:29,997 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:43:39,221 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:43:47,441 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:43:53,667 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:43:59,881 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:44:05,109 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:44:12,331 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:44:21,558 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:44:27,821 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:44:36,045 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:44:45,271 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:44:52,498 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:45:01,719 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:45:11,938 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:45:17,153 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:45:26,374 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:45:33,590 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:45:40,815 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:45:47,031 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:45:56,266 Sleeping for 8s. Reason: RUNNING
-2025-02-16 11:46:04,488 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:46:13,711 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:46:18,932 Sleeping for 9s. Reason: RUNNING
-2025-02-16 11:46:28,156 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:46:34,374 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:46:44,601 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:46:49,817 Sleeping for 10s. Reason: RUNNING
-2025-02-16 11:47:00,037 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:47:05,251 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:47:12,468 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:47:17,687 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:47:24,822 Sleeping for 7s. Reason: RUNNING
-2025-02-16 11:47:32,083 Sleeping for 5s. Reason: RUNNING
-2025-02-16 11:47:37,297 Sleeping for 6s. Reason: RUNNING
-2025-02-16 11:47:43,510 Sleeping for 9s. Reason: RUNNING
+2025-02-22 22:20:57,471 Running colabfold 1.5.5 (406d4c6cf25a0755f61b3adac7c5d47d3025f42c)
+2025-02-22 22:21:17,475 Running on GPU
+2025-02-22 22:22:13,409 Found 5 citations for tools or databases
+2025-02-22 22:22:13,410 Skipping Cajanus_cajan_XP_020210262.1_FLS2 (already done)
+2025-02-22 22:22:13,410 Skipping Nicotiana_benthamiana_Niben101Scf03455g01008.1_FLS2 (already done)
+2025-02-22 22:22:13,410 Skipping Glycine_max_Glyma.10G228600_INR-like_4_INR-like (already done)
+2025-02-22 22:22:13,410 Skipping Vigna_unguiculata_Vigun07g219600_INR (already done)
+2025-02-22 22:22:13,410 Skipping Vigna_unguiculata_Vigun07g039700_INR-like (already done)
+2025-02-22 22:22:13,410 Skipping Vigna_radiata_Vradi08g18340_INR_INR (already done)
+2025-02-22 22:22:13,411 Skipping Cajanus_cajan_Ccajan_07316_INR (already done)
+2025-02-22 22:22:13,411 Skipping Phaseolus_vulgaris_Phvul.007g246600_INR-like (already done)
+2025-02-22 22:22:13,411 Skipping Mucuna_pruriens_Mprur_INR_INR (already done)
+2025-02-22 22:22:13,411 Skipping Macroptilium_lathyroides_Mlathy_INR_INR (already done)
+2025-02-22 22:22:13,411 Skipping Lablab_purpureus_Lp005646g0031_INR_INR (already done)
+2025-02-22 22:22:13,412 Skipping Phaseolus_vulgaris_Phvul007G077500_INR (already done)
+2025-02-22 22:22:13,412 Skipping Canavalia_ensiformis_Censi_INR-like_1_INR-like (already done)
+2025-02-22 22:22:13,412 Skipping Canavalia_ensiformis_Censi_INR-like_2_INR-like (already done)
+2025-02-22 22:22:13,412 Skipping Canavalia_ensiformis_Censiformis_INR-like_3_INR-like (already done)
+2025-02-22 22:22:13,412 Skipping Arabidopsis_thaliana_AT3G25020_RLP42 (already done)
+2025-02-22 22:22:13,413 Skipping Arabidopsis_thaliana_AT2G32680_RLP23 (already done)
+2025-02-22 22:22:13,413 Skipping Vigna_unguiculata_Vigun07g219700_INR-like (already done)
+2025-02-22 22:22:13,413 Skipping Glycine_max_Glyma.10G228200_INR-like_3_INR-like (already done)
+2025-02-22 22:22:13,413 Skipping Vigna_radiata_Vradi08g18340_INR-like_1_INR-like (already done)
+2025-02-22 22:22:13,413 Skipping Glycine_max_Glyma.10G228100_INR-like_2_INR-like (already done)
+2025-02-22 22:22:13,413 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_3_INR-like (already done)
+2025-02-22 22:22:13,414 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_4_INR-like (already done)
+2025-02-22 22:22:13,414 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_7_INR-like (already done)
+2025-02-22 22:22:13,414 Skipping Glycine_max_Glyma10G228000_INR-like_1_INR-like (already done)
+2025-02-22 22:22:13,414 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_6_INR-like (already done)
+2025-02-22 22:22:13,414 Skipping Lablab_purpureus_Lp005646g0031_INR-like_INR-like (already done)
+2025-02-22 22:22:13,414 Skipping Hylodesmum_podocarpum_Hpodo_INR-like_2_INR-like (already done)
+2025-02-22 22:22:13,415 Skipping Dendrocalamus_strictus_Distr0011s35800_MIK2 (already done)
+2025-02-22 22:22:13,415 Skipping Brascia_rapa_BraraC02577_MIK2 (already done)
+2025-02-22 22:22:13,415 Skipping Arabidopsis_thaliana_At5g20480_EFR (already done)
+2025-02-22 22:22:13,415 Skipping Euclidium_syriacum_Eusyr0135s0078_MIK2 (already done)
+2025-02-22 22:22:13,415 Skipping Solanum_microdontum_gigantophyllum_OQ999448_PERU (already done)
+2025-02-22 22:22:13,415 Skipping Solanum_lycopersicum_Solyc03g096190_CORE (already done)
+2025-02-22 22:22:13,416 Skipping Arabidopsis_thaliana_AT4G08850_MIK2 (already done)
+2025-02-22 22:22:13,416 Skipping Solanum_medians_OQ999475_PERU (already done)
+2025-02-22 22:22:13,416 Skipping Solanum_pennellii_XP_015068909.1_CORE (already done)
+2025-02-22 22:22:13,416 Skipping Eutrema_salsugineum_Thhalv10028381m_MIK2 (already done)
+2025-02-22 22:22:13,416 Skipping Nicotiana_benthamiana_Niben101Scf02323g01010.1_CORE (already done)
+2025-02-22 22:22:13,417 Skipping Nelumbo_nucifera_ON556648.1_FLS2 (already done)
+2025-02-22 22:22:13,417 Skipping Ginkgo_biloba_ON556647.1_FLS2 (already done)
+2025-02-22 22:22:13,417 Skipping Kalanchoe_laxiflora_ON556668.1_FLS2 (already done)
+2025-02-22 22:22:13,417 Skipping Ananas_comosus_ON556667.1_FLS2 (already done)
+2025-02-22 22:22:13,417 Skipping Vigna_radiata_XP_014499491.1_FLS2 (already done)
+2025-02-22 22:22:13,417 Skipping Solanum_lycopersicum_Solyc08g016270_CuRe1 (already done)
+2025-02-22 22:22:13,418 Skipping Solanum_tuberosum_OQ999435_PERU (already done)
+2025-02-22 22:22:13,418 Skipping Solanum_boliviense_OQ999438_PERU (already done)
+2025-02-22 22:22:13,418 Skipping Solanum_candolleanum_OQ999442_PERU (already done)
+2025-02-22 22:22:13,418 Skipping Solanum_hondelmannii_OQ999449_PERU (already done)
+2025-02-22 22:22:13,418 Skipping Solanum_microdontum_OQ999451_PERU (already done)
+2025-02-22 22:22:13,419 Skipping Solanum_tuberosum_Phureja_Group1_OQ999452_PERU (already done)
+2025-02-22 22:22:13,419 Skipping Solanum_tuberosum_Phureja_Group2_OQ999454_PERU (already done)
+2025-02-22 22:22:13,419 Skipping Solanum_raphanifolium_OQ999456_PERU (already done)
+2025-02-22 22:22:13,419 Skipping Populus_euphratica_MH079056.1_FLS2 (already done)
+2025-02-22 22:22:13,419 Skipping Morus_alba_ON556649.1_FLS2 (already done)
+2025-02-22 22:22:13,420 Query 56/94: Solanum_lycopersicum1_Solyc04g009640_FLS3 (length 1135)
+2025-02-22 22:23:20,910 Padding length to 1145
+2025-02-22 22:25:38,049 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.4 pTM=0.589
+2025-02-22 22:26:35,413 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.6 pTM=0.618 tol=5.57
+2025-02-22 22:27:32,912 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.3 pTM=0.616 tol=5.33
+2025-02-22 22:28:30,434 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.9 pTM=0.617 tol=4.28
+2025-02-22 22:28:30,436 alphafold2_ptm_model_1_seed_000 took 309.5s (3 recycles)
+2025-02-22 22:29:28,934 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=83.6 pTM=0.617
+2025-02-22 22:30:26,561 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=85.2 pTM=0.632 tol=9.3
+2025-02-22 22:31:24,182 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=85.5 pTM=0.629 tol=3.59
+2025-02-22 22:32:21,813 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=85.7 pTM=0.628 tol=0.866
+2025-02-22 22:32:21,815 alphafold2_ptm_model_2_seed_000 took 230.4s (3 recycles)
+2025-02-22 22:33:20,333 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=85.5 pTM=0.632
+2025-02-22 22:34:17,931 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=87.4 pTM=0.641 tol=4.12
+2025-02-22 22:35:15,581 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=87.5 pTM=0.642 tol=1.66
+2025-02-22 22:36:13,253 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=87.8 pTM=0.64 tol=1.46
+2025-02-22 22:36:13,254 alphafold2_ptm_model_3_seed_000 took 230.4s (3 recycles)
+2025-02-22 22:37:11,974 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=86 pTM=0.643
+2025-02-22 22:38:09,680 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=87 pTM=0.634 tol=7.91
+2025-02-22 22:39:10,520 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=86.8 pTM=0.634 tol=6.88
+2025-02-22 22:40:09,453 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=86.7 pTM=0.632 tol=4.33
+2025-02-22 22:40:09,651 alphafold2_ptm_model_4_seed_000 took 235.4s (3 recycles)
+2025-02-22 22:41:09,382 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=85.9 pTM=0.632
+2025-02-22 22:42:07,126 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=87 pTM=0.641 tol=7.27
+2025-02-22 22:43:04,864 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=87.4 pTM=0.644 tol=4.25
+2025-02-22 22:44:02,538 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=87.4 pTM=0.646 tol=1.16
+2025-02-22 22:44:02,540 alphafold2_ptm_model_5_seed_000 took 231.1s (3 recycles)
+2025-02-22 22:44:03,537 reranking models by 'plddt' metric
+2025-02-22 22:44:03,561 rank_001_alphafold2_ptm_model_3_seed_000 pLDDT=87.8 pTM=0.64
+2025-02-22 22:44:03,562 rank_002_alphafold2_ptm_model_5_seed_000 pLDDT=87.4 pTM=0.646
+2025-02-22 22:44:03,563 rank_003_alphafold2_ptm_model_4_seed_000 pLDDT=86.7 pTM=0.632
+2025-02-22 22:44:03,565 rank_004_alphafold2_ptm_model_1_seed_000 pLDDT=85.9 pTM=0.617
+2025-02-22 22:44:03,566 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=85.7 pTM=0.628
+2025-02-22 22:44:08,340 Skipping Solanum_lycopersicum_XP_004237164.3_FLS3 (already done)
+2025-02-22 22:44:08,340 Skipping Solanum_abancayense_OQ999432_PERU (already done)
+2025-02-22 22:44:08,340 Skipping Solanum_tuberosum_Phureja_Group3_OQ999453_PERU (already done)
+2025-02-22 22:44:08,341 Skipping Solanum_leptophyes_OQ999450_PERU (already done)
+2025-02-22 22:44:08,341 Skipping Solanum_pampasense_OQ999458_PERU (already done)
+2025-02-22 22:44:08,341 Skipping Solanum_tuberosum_Ajanhuiri_Group_OQ999461_PERU (already done)
+2025-02-22 22:44:08,341 Skipping Solanum_bukasovii_OQ999471_PERU (already done)
+2025-02-22 22:44:08,342 Skipping Solanum_megistacrolobum_subsp._Toralapanum_OQ999479_PERU (already done)
+2025-02-22 22:44:08,342 Skipping Cucumis_sativus_ON556652.1_FLS2 (already done)
+2025-02-22 22:44:08,342 Skipping Quercus_variabilis_UTN00789.1_FLS2 (already done)
+2025-02-22 22:44:08,342 Skipping Malus_domestica_XP_008371582.2_FLS2 (already done)
+2025-02-22 22:44:08,342 Skipping Malus_domestica_UTN00798.1_FLS2 (already done)
+2025-02-22 22:44:08,342 Skipping Malus_halliana_UTN00799.1_FLS2 (already done)
+2025-02-22 22:44:08,343 Skipping Humulus_lupulus_XP_062096069.1_FLS2 (already done)
+2025-02-22 22:44:08,343 Skipping Fagus_crenata_BK068611_FLS2 (already done)
+2025-02-22 22:44:08,343 Skipping Prunus_persica_UTN00800.1_FLS2 (already done)
+2025-02-22 22:44:08,343 Skipping Prunus_mume_UTN00801.1_FLS2 (already done)
+2025-02-22 22:44:08,343 Skipping Prunus_yedoensis_UTN00802.1_FLS2 (already done)
+2025-02-22 22:44:08,344 Skipping Rosa_chinensis_ON556657.1_FLS2 (already done)
+2025-02-22 22:44:08,344 Skipping Fragaria_x_ananassa_ON556658.1_FLS2 (already done)
+2025-02-22 22:44:08,344 Skipping Populus_tomentosa_MH079055.1_FLS2 (already done)
+2025-02-22 22:44:08,344 Skipping Populus_davidiana_ON556655.1_FLS2 (already done)
+2025-02-22 22:44:08,345 Skipping Populus_deltoides_ON556654.1_FLS2 (already done)
+2025-02-22 22:44:08,345 Skipping Populus_x_canadensis_MH079052.1_FLS2 (already done)
+2025-02-22 22:44:08,345 Skipping Populus_simonii_MH079054.1_FLS2 (already done)
+2025-02-22 22:44:08,345 Skipping Populus_trichocarpa_UTN00792.1_FLS2 (already done)
+2025-02-22 22:44:08,345 Skipping Phaseolus_vulgaris_UTN00805.1_FLS2 (already done)
+2025-02-22 22:44:08,345 Skipping Trachelospermum_jasminoides_UTN00804.1_FLS2 (already done)
+2025-02-22 22:44:08,346 Skipping Mucuna_pruriens_RDX68355.1_FLS2 (already done)
+2025-02-22 22:44:08,346 Skipping Vitis_riparia_PQ283347_FLS2 (already done)
+2025-02-22 22:44:08,346 Query 87/94: Camellia_sinensis_ON556651.1_FLS2 (length 1167)
+2025-02-22 22:44:44,705 Padding length to 1177
+2025-02-22 22:47:24,331 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.2 pTM=0.574
+2025-02-22 22:48:25,481 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.6 pTM=0.616 tol=9.46
+2025-02-22 22:49:26,772 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.7 pTM=0.617 tol=4.21
+2025-02-22 22:50:28,079 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.9 pTM=0.619 tol=3.93
+2025-02-22 22:50:28,080 alphafold2_ptm_model_1_seed_000 took 343.4s (3 recycles)
+2025-02-22 22:51:30,423 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=84.1 pTM=0.6
+2025-02-22 22:52:31,810 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=85.3 pTM=0.626 tol=6.66
+2025-02-22 22:53:36,779 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=85.8 pTM=0.63 tol=3.33
