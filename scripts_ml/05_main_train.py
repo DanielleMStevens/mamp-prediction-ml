@@ -250,7 +250,8 @@ def main(args):
     if args.eval_only_data_path:
         eval_data_path = args.eval_only_data_path
     else:
-        eval_data_path = f"{args.data_dir}/test.csv"
+        #eval_data_path = f"{args.data_dir}/test.csv"
+        eval_data_path = f"{args.data_dir}/test_stratify.csv"
     test_df = pd.read_csv(eval_data_path)
     ds_test = dataset(df=test_df)
     print(f"{len(ds_test)=}")
@@ -280,7 +281,8 @@ def main(args):
         exit()
 
     ## prepare train data
-    train_df = pd.read_csv(f"{args.data_dir}/train.csv")
+    #train_df = pd.read_csv(f"{args.data_dir}/train.csv")
+    train_df = pd.read_csv(f"{args.data_dir}/train_stratify.csv")
     ds_train = dataset(df=train_df)
     print(f"{len(ds_train)=}")
     if args.distributed:
@@ -378,7 +380,9 @@ def main(args):
 
 
             cv_ds_train = SeqAffDataset(df=ds_train.df.iloc[train_idx])
-            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train.csv", index=False)
+            #ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train.csv", index=False)
+            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_stratify.csv", index=False)
+
 
             if args.distributed:
                 cv_sampler_train = torch.utils.data.DistributedSampler(
@@ -395,7 +399,8 @@ def main(args):
                 collate_fn=collate_fn,
             )
             cv_ds_test = SeqAffDataset(df=ds_train.df.iloc[test_idx])
-            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test.csv", index=False)
+            #ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test.csv", index=False)
+            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_stratify.csv", index=False)
             cv_sampler_test = torch.utils.data.SequentialSampler(cv_ds_test)
             cv_dl_test = torch.utils.data.DataLoader(
                 ds_test,
