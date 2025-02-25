@@ -4,10 +4,12 @@ Ananas_comosus_ON556667.1_FLS2                                                  
 Arabidopsis_thaliana_AT2G32680_RLP23                                                                model_3        85.9      0.793
 Arabidopsis_thaliana_AT3G25020_RLP42                                                                model_3        86.9      0.800
 Arabidopsis_thaliana_AT4G08850_MIK2                                                                 model_3        87.0      0.642
+Arabidopsis_thaliana_AT5G46330_FLS2                                                                 model_3        87.6      0.648
 Arabidopsis_thaliana_At5g20480_EFR                                                                  model_5        86.6      0.637
 Brascia_rapa_BraraC02577_MIK2                                                                       model_3        87.1      0.642
 Cajanus_cajan_Ccajan_07316_INR                                                                      model_3        87.6      0.806
 Cajanus_cajan_XP_020210262.1_FLS2                                                                   model_3        94.2      0.880
+Camellia_sinensis_ON556651.1_FLS2                                                                   model_5        88.6      0.655
 Canavalia_ensiformis_Censi_INR-like_1_INR-like                                                      model_4        87.8      0.777
 Canavalia_ensiformis_Censi_INR-like_2_INR-like                                                      model_3        88.4      0.807
 Canavalia_ensiformis_Censiformis_INR-like_3_INR-like                                                model_3        88.9      0.808
@@ -43,6 +45,7 @@ Nicotiana_benthamiana_Niben101Scf03455g01008.1_FLS2                             
 Phaseolus_vulgaris_Phvul.007g246600_INR-like                                                        model_3        89.2      0.797
 Phaseolus_vulgaris_Phvul007G077500_INR                                                              model_3        88.9      0.816
 Phaseolus_vulgaris_UTN00805.1_FLS2                                                                  model_3        88.6      0.648
+Phaseolus_vulgaris_XP_068469677.1_FLS2                                                              model_5        86.6      0.644
 Populus_davidiana_ON556655.1_FLS2                                                                   model_3        88.5      0.646
 Populus_deltoides_ON556654.1_FLS2                                                                   model_3        88.9      0.654
 Populus_euphratica_MH079056.1_FLS2                                                                  model_3        88.6      0.647
@@ -55,6 +58,8 @@ Prunus_persica_UTN00800.1_FLS2                                                  
 Prunus_yedoensis_UTN00802.1_FLS2                                                                    model_3        88.4      0.646
 Quercus_variabilis_UTN00789.1_FLS2                                                                  model_3        88.9      0.643
 Rosa_chinensis_ON556657.1_FLS2                                                                      model_3        88.5      0.650
+Salix_babylonica_MH079058.1_FLS2                                                                    model_3        88.3      0.650
+Salix_suchowensis_ON556656.1_FLS2                                                                   model_5        87.6      0.647
 Solanum_abancayense_OQ999432_PERU                                                                   model_5        88.8      0.528
 Solanum_boliviense_OQ999438_PERU                                                                    model_5        91.1      0.664
 Solanum_bukasovii_OQ999471_PERU                                                                     model_5        90.7      0.665
@@ -64,6 +69,7 @@ Solanum_leptophyes_OQ999450_PERU                                                
 Solanum_lycopersicum_Solyc03g096190_CORE                                                            model_3        87.7      0.612
 Solanum_lycopersicum_Solyc04g009640_FLS3                                                            model_3        87.8      0.640
 Solanum_lycopersicum_Solyc08g016270_CuRe1                                                           model_3        86.0      0.786
+Solanum_lycopersicum_XP_004233092.1_SlFLS2                                                          model_3        87.4      0.640
 Solanum_lycopersicum_XP_004237164.3_FLS3                                                            model_5        87.3      0.647
 Solanum_medians_OQ999475_PERU                                                                       model_5        91.2      0.693
 Solanum_megistacrolobum_subsp._Toralapanum_OQ999479_PERU                                            model_5        91.0      0.653
@@ -85,3 +91,5 @@ Vigna_unguiculata_Vigun07g039700_INR-like                                       
 Vigna_unguiculata_Vigun07g219600_INR                                                                model_3        88.9      0.818
 Vigna_unguiculata_Vigun07g219700_INR-like                                                           model_3        88.1      0.793
 Vitis_riparia_PQ283347_FLS2                                                                         model_3        88.0      0.640
+Vitis_riparia_PQ283348_VrFLS2                                                                       model_5        87.9      0.653
+Zanthoxylum_bungeanum_ON556664.1_FLS2                                                               model_5        86.4      0.638

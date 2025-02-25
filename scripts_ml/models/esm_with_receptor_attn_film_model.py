@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_recall_curve, auc
+import numpy as np
 
 class FiLMWithAttention(nn.Module):
     def __init__(self, feature_dim):
@@ -155,6 +157,8 @@ class ESMWithReceptorAttnFilmModel(nn.Module):
 
         self.film = FiLMWithAttention(E)
         self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")  
+        # Add this line to specify which loss(es) to use
+        self.losses = ["ce"]  # Use cross-entropy loss
 
     def forward(self, batch_x):
         batch_peptide_x = batch_x['peptide_x']
@@ -191,3 +195,41 @@ class ESMWithReceptorAttnFilmModel(nn.Module):
         receptor_decoded_ls = self.tokenizer.batch_decode(batch['x']['receptor_x']['input_ids'], skip_special_tokens=True)
         
         return [f"{peptide}:{receptor}" for peptide, receptor in zip(peptide_decoded_ls, receptor_decoded_ls)]
+    
+    def get_pr(self, logits):
+        """Get predictions from logits"""
+        return torch.softmax(logits, dim=-1)
+
+    def get_stats(self, gt, pr, train=False):
+        """Get evaluation statistics"""
+        prefix = "train" if train else "test"
+        pred_labels = pr.argmax(dim=-1)
+        
+        stats = {
+            f"{prefix}_acc": accuracy_score(gt.cpu(), pred_labels.cpu()),
+            f"{prefix}_f1_macro": f1_score(gt.cpu(), pred_labels.cpu(), average='macro'),
+            f"{prefix}_f1_weighted": f1_score(gt.cpu(), pred_labels.cpu(), average='weighted')
+        }
+        
+        try:
+            # Calculate ROC AUC
+            stats[f"{prefix}_auroc"] = roc_auc_score(gt.cpu(), pr.cpu(), multi_class='ovr')
+            
+            # Calculate PR AUC for each class
+            gt_onehot = np.eye(3)[gt.cpu()]
+            pr_np = pr.cpu().numpy()
+            
+            for i in range(3):
+                precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
+                stats[f"{prefix}_auprc_class{i}"] = auc(recall, precision)
+            
+            # Average AUPRC across classes
+            stats[f"{prefix}_auprc_macro"] = np.mean([stats[f"{prefix}_auprc_class{i}"] for i in range(3)])
+            
+        except:
+            stats[f"{prefix}_auroc"] = 0.0
+            stats[f"{prefix}_auprc_macro"] = 0.0
+            for i in range(3):
+                stats[f"{prefix}_auprc_class{i}"] = 0.0
+            
+        return stats
