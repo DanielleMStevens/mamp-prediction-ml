@@ -4,7 +4,17 @@ Ananas_comosus_ON556667.1_FLS2                                                  
 Arabidopsis_thaliana_AT2G32680_RLP23                                                                model_3        85.9      0.793
 Arabidopsis_thaliana_AT3G25020_RLP42                                                                model_3        86.9      0.800
 Arabidopsis_thaliana_AT4G08850_MIK2                                                                 model_3        87.0      0.642
+Arabidopsis_thaliana_AT5G46330_DD_FLS2                                                              model_3        87.8      0.645
+Arabidopsis_thaliana_AT5G46330_E321D_FLS2                                                           model_3        87.6      0.648
+Arabidopsis_thaliana_AT5G46330_E321G_FLS2                                                           model_3        87.5      0.649
+Arabidopsis_thaliana_AT5G46330_E321L_FLS2                                                           model_1        87.1      0.613
+Arabidopsis_thaliana_AT5G46330_E321R_FLS2                                                           model_3        87.4      0.658
+Arabidopsis_thaliana_AT5G46330_F435W_FLS2                                                           model_3        87.0      0.648
 Arabidopsis_thaliana_AT5G46330_FLS2                                                                 model_3        87.6      0.648
+Arabidopsis_thaliana_AT5G46330_GD_FLS2                                                              model_3        87.6      0.647
+Arabidopsis_thaliana_AT5G46330_LD_FLS2                                                              model_3        87.3      0.643
+Arabidopsis_thaliana_AT5G46330_S345D_FLS2                                                           model_3        87.6      0.648
+Arabidopsis_thaliana_AT5G46330_S345G_FLS2                                                           model_3        87.4      0.648
 Arabidopsis_thaliana_At5g20480_EFR                                                                  model_5        86.6      0.637
 Brascia_rapa_BraraC02577_MIK2                                                                       model_3        87.1      0.642
 Cajanus_cajan_Ccajan_07316_INR                                                                      model_3        87.6      0.806
@@ -69,8 +79,10 @@ Solanum_leptophyes_OQ999450_PERU                                                
 Solanum_lycopersicum_Solyc03g096190_CORE                                                            model_3        87.7      0.612
 Solanum_lycopersicum_Solyc04g009640_FLS3                                                            model_3        87.8      0.640
 Solanum_lycopersicum_Solyc08g016270_CuRe1                                                           model_3        86.0      0.786
+Solanum_lycopersicum_XP_004233092.1_FLS2                                                            model_3        87.4      0.640
 Solanum_lycopersicum_XP_004233092.1_SlFLS2                                                          model_3        87.4      0.640
 Solanum_lycopersicum_XP_004237164.3_FLS3                                                            model_5        87.3      0.647
+Solanum_lycopersicum_XP_069151269.1_CORE                                                            model_3        87.4      0.612
 Solanum_medians_OQ999475_PERU                                                                       model_5        91.2      0.693
 Solanum_megistacrolobum_subsp._Toralapanum_OQ999479_PERU                                            model_5        91.0      0.653
 Solanum_microdontum_OQ999451_PERU                                                                   model_5        91.1      0.656
@@ -91,5 +103,6 @@ Vigna_unguiculata_Vigun07g039700_INR-like                                       
 Vigna_unguiculata_Vigun07g219600_INR                                                                model_3        88.9      0.818
 Vigna_unguiculata_Vigun07g219700_INR-like                                                           model_3        88.1      0.793
 Vitis_riparia_PQ283347_FLS2                                                                         model_3        88.0      0.640
+Vitis_riparia_PQ283348_FLS2                                                                         model_3        87.9      0.636
 Vitis_riparia_PQ283348_VrFLS2                                                                       model_5        87.9      0.653
 Zanthoxylum_bungeanum_ON556664.1_FLS2                                                               model_5        86.4      0.638

@@ -331,6 +331,12 @@ def main(args):
     total_time_str = str(datetime.timedelta(seconds=int(total_time)))
     print(f"Training time {total_time_str}")
 
+    # Save final model checkpoint after training is complete
+    final_ckpt_path = misc.save_model(
+        args, args.epochs-1, model, model_without_ddp, optimizer, None
+    )
+    print(f"Saved final checkpoint to {final_ckpt_path}")
+
     # Final evaluation after training is complete
     args.current_epoch = "final"
     metrics = evaluate(model, dl_test, device, args, args.output_dir)
