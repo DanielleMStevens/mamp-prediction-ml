@@ -13,6 +13,7 @@ Arabidopsis_thaliana_AT5G46330_F435W_FLS2                                       
 Arabidopsis_thaliana_AT5G46330_FLS2                                                                 model_3        87.6      0.648
 Arabidopsis_thaliana_AT5G46330_GD_FLS2                                                              model_3        87.6      0.647
 Arabidopsis_thaliana_AT5G46330_LD_FLS2                                                              model_3        87.3      0.643
+Arabidopsis_thaliana_AT5G46330_RD_FLS2                                                              model_3        87.9      0.644
 Arabidopsis_thaliana_AT5G46330_S345D_FLS2                                                           model_3        87.6      0.648
 Arabidopsis_thaliana_AT5G46330_S345G_FLS2                                                           model_3        87.4      0.648
 Arabidopsis_thaliana_At5g20480_EFR                                                                  model_5        86.6      0.637
@@ -52,6 +53,7 @@ Mucuna_pruriens_RDX68355.1_FLS2                                                 
 Nelumbo_nucifera_ON556648.1_FLS2                                                                    model_5        87.2      0.648
 Nicotiana_benthamiana_Niben101Scf02323g01010.1_CORE                                                 model_5        86.2      0.614
 Nicotiana_benthamiana_Niben101Scf03455g01008.1_FLS2                                                 model_5        86.5      0.534
+Oryza_sativa_AK120799_FLS2                                                                          model_3        86.8      0.637
 Phaseolus_vulgaris_Phvul.007g246600_INR-like                                                        model_3        89.2      0.797
 Phaseolus_vulgaris_Phvul007G077500_INR                                                              model_3        88.9      0.816
 Phaseolus_vulgaris_UTN00805.1_FLS2                                                                  model_3        88.6      0.648

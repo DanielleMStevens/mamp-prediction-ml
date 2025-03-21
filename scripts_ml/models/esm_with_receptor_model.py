@@ -3,6 +3,9 @@ import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_recall_curve, auc
 import numpy as np
+import shap
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class FiLMWithAttention(nn.Module):
     def __init__(self, feature_dim):
@@ -230,3 +233,163 @@ class ESMWithReceptorModel(nn.Module):
                 stats[f"{prefix}_auprc_class{i}"] = 0.0
             
         return stats
+
+    def explain_prediction(self, peptide_seq, receptor_seq, background_data=None):
+        """
+        Explain a single prediction using SHAP values.
+        
+        Args:
+            peptide_seq (str): The peptide sequence to explain
+            receptor_seq (str): The receptor sequence to explain
+            background_data (dict, optional): Background data for SHAP explainer
+            
+        Returns:
+            dict: Dictionary containing SHAP values and interpretations
+        """
+        self.eval()
+        
+        # Create a wrapper function for SHAP
+        def model_predict(sequences):
+            with torch.no_grad():
+                inputs = self.tokenizer(sequences, return_tensors='pt', padding=True)
+                outputs = self.esm_model(**inputs).last_hidden_state[:, 0, :]  # Get CLS token
+                return self.net(outputs).detach().numpy()
+        
+        # Initialize the SHAP explainer
+        if background_data is None:
+            explainer = shap.Explainer(model_predict, masker=shap.maskers.Text(self.tokenizer))
+        else:
+            explainer = shap.Explainer(model_predict, background_data)
+            
+        # Get SHAP values for both sequences
+        peptide_shap = explainer([peptide_seq])
+        receptor_shap = explainer([receptor_seq])
+        
+        return {
+            'peptide_shap': peptide_shap,
+            'receptor_shap': receptor_shap
+        }
+    
+    def global_feature_importance(self, dataset, num_samples=100):
+        """
+        Calculate global feature importance using SHAP values.
+        
+        Args:
+            dataset: Dataset containing peptide and receptor sequences
+            num_samples (int): Number of samples to use for analysis
+            
+        Returns:
+            dict: Dictionary containing global feature importance metrics
+        """
+        self.eval()
+        
+        # Sample data
+        indices = np.random.choice(len(dataset), min(num_samples, len(dataset)), replace=False)
+        sampled_data = [dataset[i] for i in indices]
+        
+        # Aggregate SHAP values
+        all_shap_values = []
+        for data in sampled_data:
+            shap_values = self.explain_prediction(
+                data['peptide_x'],
+                data['receptor_x']
+            )
+            all_shap_values.append(shap_values)
+            
+        return {
+            'shap_values': all_shap_values,
+            'feature_importance': np.abs(np.mean([sv['peptide_shap'].values for sv in all_shap_values], axis=0))
+        }
+    
+    def analyze_feature_interactions(self, dataset, num_samples=50):
+        """
+        Analyze feature interactions using SHAP interaction values.
+        
+        Args:
+            dataset: Dataset containing peptide and receptor sequences
+            num_samples (int): Number of samples to use for analysis
+            
+        Returns:
+            dict: Dictionary containing feature interaction metrics
+        """
+        self.eval()
+        
+        # Sample data
+        indices = np.random.choice(len(dataset), min(num_samples, len(dataset)), replace=False)
+        sampled_data = [dataset[i] for i in indices]
+        
+        # Calculate interaction values
+        interaction_values = []
+        for data in sampled_data:
+            shap_values = self.explain_prediction(
+                data['peptide_x'],
+                data['receptor_x']
+            )
+            interaction_values.append(shap_values)
+            
+        return {
+            'interaction_values': interaction_values
+        }
+    
+    def plot_shap_summary(self, shap_values, output_path=None):
+        """
+        Create SHAP summary plots.
+        
+        Args:
+            shap_values: SHAP values to plot
+            output_path (str, optional): Path to save the plot
+        """
+        plt.figure(figsize=(12, 8))
+        shap.summary_plot(shap_values, show=False)
+        if output_path:
+            plt.savefig(output_path)
+            plt.close()
+        else:
+            plt.show()
+            
+    def analyze_subset_behavior(self, dataset, subset_condition, num_samples=50):
+        """
+        Analyze model behavior on a specific subset of data.
+        
+        Args:
+            dataset: Dataset containing peptide and receptor sequences
+            subset_condition: Function that returns True for samples to include
+            num_samples (int): Number of samples to analyze
+            
+        Returns:
+            dict: Dictionary containing subset analysis metrics
+        """
+        self.eval()
+        
+        # Filter dataset based on condition
+        subset_data = [data for data in dataset if subset_condition(data)]
+        
+        if len(subset_data) == 0:
+            return {"error": "No samples match the subset condition"}
+            
+        # Sample from subset
+        indices = np.random.choice(len(subset_data), min(num_samples, len(subset_data)), replace=False)
+        sampled_data = [subset_data[i] for i in indices]
+        
+        # Analyze subset
+        subset_shap_values = []
+        predictions = []
+        for data in sampled_data:
+            shap_values = self.explain_prediction(
+                data['peptide_x'],
+                data['receptor_x']
+            )
+            subset_shap_values.append(shap_values)
+            
+            # Get prediction
+            with torch.no_grad():
+                batch = self.collate_fn([data])
+                output = self(batch['x'])
+                pred = torch.softmax(output, dim=-1)
+                predictions.append(pred.cpu().numpy())
+                
+        return {
+            'shap_values': subset_shap_values,
+            'predictions': predictions,
+            'subset_size': len(subset_data)
+        }
