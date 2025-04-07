@@ -39,77 +39,12 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install()
 
 # Install package dependencies
-BiocManager::install(c(
-        "Biostrings",
-        "GenomicRanges",
-        "GenomicFeatures",
-        "Rsamtools",
-        "rtracklayer"
-))
+BiocManager::install(c("Biostrings","GenomicRanges","GenomicFeatures","Rsamtools","rtracklayer"))
 
 # install CRAN dependencies
 install.packages(c("doParallel", "foreach", "ape", "Rdpack", "benchmarkme", "devtools"))
 
-# install BLAST dependency metablastr from GitHub
-devtools::install_github("drostlab/metablastr")
 
-# install DIAMOND dependency rdiamond from GitHub
-devtools::install_github("drostlab/rdiamond")
-
-# install orthologr from GitHub
-devtools::install_github("drostlab/orthologr")
-
-library(orthologr)
-
-#writeFasta(formate2fasta(receptor_INR$Locus.ID.Genbank, "INR", receptor_INR$Receptor.Sequence), "./out_data/training_data_summary/receptor_INR.fasta")
-#writeFasta(formate2fasta(receptor_FLS2$Locus.ID.Genbank, "FLS2", receptor_FLS2$Receptor.Sequence), "./out_data/training_data_summary/receptor_FLS2.fasta")
-#writeFasta(formate2fasta(receptor_PERU$Locus.ID.Genbank, "PERU", receptor_PERU$Receptor.Sequence), "./out_data/training_data_summary/receptor_PERU.fasta")
-#writeFasta(formate2fasta(receptor_MIK2$Locus.ID.Genbank, "MIK2", receptor_MIK2$Receptor.Sequence), "./out_data/training_data_summary/receptor_MIK2.fasta")
-#writeFasta(formate2fasta(receptor_CORE$Locus.ID.Genbank, "CORE", receptor_CORE$Receptor.Sequence), "./out_data/training_data_summary/receptor_CORE.fasta")
-#writeFasta(formate2fasta(receptor_EFR$Locus.ID.Genbank, "EFR", receptor_EFR$Receptor.Sequence), "./out_data/training_data_summary/receptor_EFR.fasta")
-#writeFasta(formate2fasta(receptor_FLS3$Locus.ID.Genbank, "FLS3", receptor_FLS3$Receptor.Sequence), "./out_data/training_data_summary/receptor_FLS3.fasta")
-
-#INR_comparison <- as.data.frame(orthologr::blast(query_file = "./out_data/training_data_summary/receptor_INR.fasta",
-#                                              subject_file = "./out_data/training_data_summary/receptor_INR.fasta", 
-#                                              seq_type = 'protein'))
-
-
-# convert training/test data to fasta format
-######################################################################
-#  function to turn dataframe (where one column is the name and one column is the sequence) into a fasta file - version 2
-######################################################################
-
-formate2fasta <- function(WP_locus_names, sequence_type, sequences) {
-  hold_sequences <- data.frame("Locus_Tag_Name" = character(0), "Sequence" = character(0))
-  pb <- txtProgressBar(min = 0, max = length(WP_locus_names), style = 3)
-
-  for (i in 1:length(WP_locus_names)){
-    #find full length protein sequence
-    temp_df <- data.frame(paste(paste(">",i, sep=""), sequence_type, WP_locus_names[[i]], sep = "|"),
-                          sequences[[i]])
-    colnames(temp_df) <- colnames(hold_sequences)
-    hold_sequences <- rbind(hold_sequences, temp_df)
-    setTxtProgressBar(pb, i)
-  }
-  close(pb)
-  return(hold_sequences)
-}
-
-
-######################################################################
-#  function to turn dataframe (where one column is the name and one column is the sequence) into a fasta file
-######################################################################
-
-writeFasta <- function(data, filename){
-  fastaLines = c()
-  for (rowNum in 1:nrow(data)){
-    fastaLines = c(fastaLines, data[rowNum,1])
-    fastaLines = c(fastaLines,data[rowNum,2])
-  }
-  fileConn<-file(filename)
-  writeLines(fastaLines, fileConn)
-  close(fileConn)
-}
 
 
 ######################################################################
@@ -268,6 +203,84 @@ ggplot(combine_epitope_comparison, aes(x = comparison, y = identity, fill = comp
 
 
 
+load_training_ML_data$Ligand.Length <- nchar(load_training_ML_data$Ligand.Sequence)
+
+# plot the peptide length distribution
+ggplot(load_training_ML_data, aes(x = Ligand.Length)) +
+  geom_histogram(binwidth = 1, fill = "steelblue") +
+  theme_classic() +
+  xlab("Peptide Length") +
+  ylab("Count")
+
+
+
+
+
+
+
+
+
+#-------------------------------------------------------------------------------------------------
+
+# install BLAST dependency metablastr from GitHub
+devtools::install_github("drostlab/metablastr")
+
+# install DIAMOND dependency rdiamond from GitHub
+devtools::install_github("drostlab/rdiamond")
+
+# install orthologr from GitHub
+devtools::install_github("drostlab/orthologr")
+library(orthologr)
+#writeFasta(formate2fasta(receptor_INR$Locus.ID.Genbank, "INR", receptor_INR$Receptor.Sequence), "./out_data/training_data_summary/receptor_INR.fasta")
+#writeFasta(formate2fasta(receptor_FLS2$Locus.ID.Genbank, "FLS2", receptor_FLS2$Receptor.Sequence), "./out_data/training_data_summary/receptor_FLS2.fasta")
+#writeFasta(formate2fasta(receptor_PERU$Locus.ID.Genbank, "PERU", receptor_PERU$Receptor.Sequence), "./out_data/training_data_summary/receptor_PERU.fasta")
+#writeFasta(formate2fasta(receptor_MIK2$Locus.ID.Genbank, "MIK2", receptor_MIK2$Receptor.Sequence), "./out_data/training_data_summary/receptor_MIK2.fasta")
+#writeFasta(formate2fasta(receptor_CORE$Locus.ID.Genbank, "CORE", receptor_CORE$Receptor.Sequence), "./out_data/training_data_summary/receptor_CORE.fasta")
+#writeFasta(formate2fasta(receptor_EFR$Locus.ID.Genbank, "EFR", receptor_EFR$Receptor.Sequence), "./out_data/training_data_summary/receptor_EFR.fasta")
+#writeFasta(formate2fasta(receptor_FLS3$Locus.ID.Genbank, "FLS3", receptor_FLS3$Receptor.Sequence), "./out_data/training_data_summary/receptor_FLS3.fasta")
+
+#INR_comparison <- as.data.frame(orthologr::blast(query_file = "./out_data/training_data_summary/receptor_INR.fasta",
+#                                              subject_file = "./out_data/training_data_summary/receptor_INR.fasta", 
+#                                              seq_type = 'protein'))
+
+
+# convert training/test data to fasta format
+######################################################################
+#  function to turn dataframe (where one column is the name and one column is the sequence) into a fasta file - version 2
+######################################################################
+
+formate2fasta <- function(WP_locus_names, sequence_type, sequences) {
+  hold_sequences <- data.frame("Locus_Tag_Name" = character(0), "Sequence" = character(0))
+  pb <- txtProgressBar(min = 0, max = length(WP_locus_names), style = 3)
+
+  for (i in 1:length(WP_locus_names)){
+    #find full length protein sequence
+    temp_df <- data.frame(paste(paste(">",i, sep=""), sequence_type, WP_locus_names[[i]], sep = "|"),
+                          sequences[[i]])
+    colnames(temp_df) <- colnames(hold_sequences)
+    hold_sequences <- rbind(hold_sequences, temp_df)
+    setTxtProgressBar(pb, i)
+  }
+  close(pb)
+  return(hold_sequences)
+}
+
+
+######################################################################
+#  function to turn dataframe (where one column is the name and one column is the sequence) into a fasta file
+######################################################################
+
+writeFasta <- function(data, filename){
+  fastaLines = c()
+  for (rowNum in 1:nrow(data)){
+    fastaLines = c(fastaLines, data[rowNum,1])
+    fastaLines = c(fastaLines,data[rowNum,2])
+  }
+  fileConn<-file(filename)
+  writeLines(fastaLines, fileConn)
+  close(fileConn)
+}
+
 
 
 
@@ -311,4 +324,6 @@ sankeyNetwork(Links = links, Nodes = nodes, Source = "source",
              LinkGroup = "group", colourScale = my_color,
              iterations = 0,  # Helps with layout stability
              nodePadding = 20)  # Adds more space between nodes
+
+
 
