@@ -13,6 +13,8 @@ library(webr)
 library(networkD3)
 library(Biostrings)
 library(pwalign)
+library(ggplot2)
+library(paletteer)
 
 load_training_ML_data <- readxl::read_xlsx(path = "./in_data/All_LRR_PRR_ligand_data.xlsx")
 load_training_ML_data <- data.frame(load_training_ML_data)[1:12]
@@ -22,7 +24,6 @@ load_training_ML_data <- data.frame(load_training_ML_data)[1:12]
 peptide_distrubution <- load_training_ML_data %>% group_by(Ligand, Immunogenicity) %>% summarize(n=n())
 webr::PieDonut(peptide_distrubution, aes(Immunogenicity,Ligand, count=n))
 
-library(paletteer)
 ggplot(peptide_distrubution, aes(x=Immunogenicity, y=n, fill=Ligand)) +
   geom_bar(stat="identity") +
   theme_classic() +
@@ -40,6 +41,7 @@ BiocManager::install()
 
 # Install package dependencies
 BiocManager::install(c("Biostrings","GenomicRanges","GenomicFeatures","Rsamtools","rtracklayer"))
+library(Biostrings)
 
 # install CRAN dependencies
 install.packages(c("doParallel", "foreach", "ape", "Rdpack", "benchmarkme", "devtools"))
@@ -176,6 +178,7 @@ peppg_comparison <- subset(peppg_comparison, query_id > subject_id)
 # Crip21  
 epitope_crip21 <- load_training_ML_data %>% filter(Ligand == epitope_list[9])
 epitope_crip21 <- epitope_crip21[!duplicated(epitope_crip21$Ligand.Sequence),]
+epitope_crip21 <- subset(epitope_crip21, epitope_crip21$Ligand.Sequence != "WCRHGCCYAGSNGcIRCC")
 crip21_comparison <- identity_calc(epitope_crip21$Ligand.Sequence, epitope_crip21$Ligand.Sequence, "crip21")
 crip21_comparison <- subset(crip21_comparison, query_id > subject_id)
 
@@ -186,7 +189,7 @@ nlp_comparison <- identity_calc(epitope_nlp$Ligand.Sequence, epitope_nlp$Ligand.
 nlp_comparison <- subset(nlp_comparison, query_id > subject_id)
 
 
-combine_epitope_comparison <- rbind(flg22_comparison, Pep25_comparison, SCOOP_comparison, csp22_comparison, elf18_comparison, peppg_comparison, nlp_comparison)
+combine_epitope_comparison <- rbind(flg22_comparison, Pep25_comparison, SCOOP_comparison, csp22_comparison, elf18_comparison, peppg_comparison, crip21_comparison, nlp_comparison)
 epitope_stats <- combine_epitope_comparison %>% group_by(comparison) %>% distinct(query_id) %>% summarize(number = n())
 ggplot(combine_epitope_comparison, aes(x = comparison, y = identity, fill = comparison)) +
   stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width") +
@@ -195,7 +198,7 @@ ggplot(combine_epitope_comparison, aes(x = comparison, y = identity, fill = comp
   xlab("Homolog Comparisons") +
   ylab("Percent Identity")+
   theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), axis.text.y = element_text(color = "black")) +
-  scale_y_continuous(limits = c(20, 120), breaks = c(20,40,60,80,100)) +
+  scale_y_continuous(limits = c(0, 120), breaks = c(20,40,60,80,100)) +
   coord_flip() +
   scale_fill_paletteer_d("NatParksPalettes::Banff") +
   scale_color_paletteer_d("NatParksPalettes::Banff") +
@@ -203,16 +206,25 @@ ggplot(combine_epitope_comparison, aes(x = comparison, y = identity, fill = comp
 
 
 
-load_training_ML_data$Ligand.Length <- nchar(load_training_ML_data$Ligand.Sequence)
+load_training_ML_data$Ligand.Length <- as.numeric(nchar(load_training_ML_data$Ligand.Sequence))
 
 # plot the peptide length distribution
-ggplot(load_training_ML_data, aes(x = Ligand.Length)) +
-  geom_histogram(binwidth = 1, fill = "steelblue") +
-  theme_classic() +
-  xlab("Peptide Length") +
-  ylab("Count")
+ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
+see::geom_violinhalf() +
+  theme_classic(scale = "width") +
+  xlab("Peptide") +
+  ylab("Length")
 
 
+# ridge plot
+ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
+  ggridges::geom_density_ridges(scale = 2) +
+  xlab("Peptide") +
+  ylab("Length") +
+  #scale_y_discrete(expand = c(0, 0)) +     # will generally have to set the `expand` option
+  #scale_x_continuous(expand = c(0, 0)) +   # for both axes to remove unneeded padding
+  coord_cartesian(clip = "off") + # to avoid clipping of the very top of the top ridgeline
+  theme_ridges()
 
 
 

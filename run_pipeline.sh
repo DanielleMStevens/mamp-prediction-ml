@@ -28,12 +28,13 @@ run_script() {
     echo "----------------------------------------"
 }
 
+
 # Run scripts in order
 echo "Starting MAMP prediction pipeline..."
 echo "----------------------------------------"
 
 run_script "01_prep_receptor_sequences_for_modeling.R"
-run_script "02_convert_cif_to_pdb.py"
+#run_script "02_convert_cif_to_pdb.py"
 run_script "03_run_lrr_annotation.py"
 run_script "04_parse_lrr_annotations.py"
 run_script "05_data_prep_for_training.py"
