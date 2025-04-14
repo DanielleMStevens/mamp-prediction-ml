@@ -1,5 +1,4 @@
 #-----------------------------------------------------------------------------------------------
-# Coaker Lab - Plant Pathology Department UC Davis
 # Author: Danielle M. Stevens
 # Last Updated: 07/06/2020
 # Script Purpose: 
@@ -64,7 +63,7 @@ immunogenicity_distrubution <- ggplot(peptide_distrubution, aes(x=Immunogenicity
   labs(x="", y="Count") +
   scale_fill_manual(values = epitope_colors)
 
-ggsave(filename = "./04_Preprocessing_results/peptide_distrubution.png", plot = immunogenicity_distrubution, width = 1.5, height = 2.5)
+ggsave(filename = "./04_Preprocessing_results/peptide_distrubution.pdf", plot = immunogenicity_distrubution, device = "pdf", dpi = 300, width = 1.5, height = 2.5)
 
 
 ######################################################################
@@ -134,7 +133,7 @@ receptor_sequence_comparison_plot <- ggplot(combine_receptor_comparison, aes(x =
   scale_color_manual(values = receptor_colors) +
   geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
-ggsave(filename = "./04_Preprocessing_results/receptor_sequence_comparison_plot.png", plot = receptor_sequence_comparison_plot, width = 2.5, height = 2.5)
+ggsave(filename = "./04_Preprocessing_results/receptor_sequence_comparison_plot.pdf", plot = receptor_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.5)
 
 
 ######################################################################
@@ -211,11 +210,10 @@ epitope_sequence_comparison_plot <- ggplot(combine_epitope_comparison, aes(x = c
   scale_color_manual(values = epitope_colors) +
   geom_text(data = epitope_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
-ggsave(filename = "./04_Preprocessing_results/epitope_sequence_comparison_plot.png", plot = epitope_sequence_comparison_plot, width = 2.5, height = 2.5)
+ggsave(filename = "./04_Preprocessing_results/epitope_sequence_comparison_plot.pdf", plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.5)
 
 
 #load_training_ML_data$Ligand.Length <- as.numeric(nchar(load_training_ML_data$Ligand.Sequence))
-
 # plot the peptide length distribution
 #ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
 #see::geom_violinhalf() +
