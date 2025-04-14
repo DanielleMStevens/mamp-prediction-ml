@@ -9,7 +9,8 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser('Confusion Matrix Generation Script', add_help=False)
-    parser.add_argument('--predictions_path', default='test_preds.pth', type=str, help='Path to predictions file')
+    parser.add_argument('--predictions_path', default='test_preds.pth', type=str, 
+                        help='Path to predictions file')
     parser.add_argument('--output_dir', default='./results', type=str)
     args = parser.parse_args()
     return args
@@ -33,19 +34,27 @@ def main(args):
     cm = confusion_matrix(gt, preds)
     
     # Create confusion matrix plot
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-    plt.title('Confusion Matrix')
-    plt.ylabel('True Label')
-    plt.xlabel('Predicted Label')
+    plt.figure(figsize=(2, 2), dpi=300)
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', annot_kws={"size": 8})
+    plt.title('Confusion Matrix', fontsize=7)
+    plt.ylabel('True Label', fontsize=7)
+    plt.xlabel('Predicted Label', fontsize=7)
+    plt.tick_params(axis='both', which='major', labelsize=8)
+    plt.tight_layout(pad=0.5)  
+    
+   
     
     # Save plot
-    plt.savefig(os.path.join(args.output_dir, 'confusion_matrix.png'))
+    plt.savefig(os.path.join(args.output_dir, 'confusion_matrix.pdf'))
     plt.close()
     
-    # Print classification report
     print("\nClassification Report:")
-    print(classification_report(gt, preds))
+    report = classification_report(gt, preds)
+    print(report)
+    
+    # Save classification report to a text file
+    with open(os.path.join(args.output_dir, 'classification_report.txt'), 'w') as f:
+        f.write(report)
 
 if __name__ == '__main__':
     args = parse_args()
