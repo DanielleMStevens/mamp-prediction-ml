@@ -1,151 +1,120 @@
-#!/usr/bin/env python3  
+#-----------------------------------------------------------------------------------------------
+# Krasileva Lab - Plant & Microbial Biology Department UC Berkeley
+# Author: Danielle M. Stevens
+# Last Updated: 07/06/2020
+# Script Purpose: 
+# Inputs: 
+# Outputs: 
+#-----------------------------------------------------------------------------------------------
 
-def read_receptor_sequences(fasta_file):
-    """Read the receptor FASTA file and create a mapping of sequences to headers"""
-    header_map = {}
-    current_header = ""
-    current_sequence = ""
+def parse_lrr_annotation_results(file_path):
+    """Parse the LRR annotation results file to extract domain information."""
+    lrr_domains = {}
     
-    with open(fasta_file) as f:
+    with open(file_path, 'r') as f:
+        lines = f.readlines()
+    
+    for line in lines:
+        if line.startswith('|') or not line.strip():
+            continue
+            
+        parts = line.strip().split('\t')
+        if len(parts) >= 8:
+            pdb_filename = parts[0]
+            start_pos = parts[2]
+            end_pos = parts[3]
+            sequence = parts[7]
+            
+            # Extract the protein name from the PDB filename
+            protein_name = pdb_filename.replace('.pdb', '')
+            
+            # Store the LRR domain information
+            if protein_name not in lrr_domains:
+                lrr_domains[protein_name] = {
+                    'start': start_pos,
+                    'end': end_pos,
+                    'sequence': sequence
+                }
+    
+    return lrr_domains
+
+def parse_full_length_fasta(file_path):
+    """Parse the full-length receptor FASTA file to get protein information."""
+    protein_info = {}
+    current_header = None
+    
+    with open(file_path, 'r') as f:
         for line in f:
             line = line.strip()
             if line.startswith('>'):
-                # Store previous sequence if it exists
-                if current_sequence:
-                    header_map[current_sequence] = current_header
-                current_header = line
-                current_sequence = ""
-            else:
-                current_sequence += line
-        
-        # Store the last sequence
-        if current_sequence:
-            header_map[current_sequence] = current_header
+                # Extract protein name and ID from the header
+                current_header = line[1:]  # Remove '>'
+                parts = current_header.split('|')
+                if len(parts) >= 2:
+                    species = parts[0].strip()
+                    protein_id = parts[1].strip()
+                    protein_type = parts[2].strip() if len(parts) > 2 else ""
+                    
+                    # Create a key that matches the format in lrr_domains
+                    key_parts = [word for word in species.split() + [protein_id]]
+                    key = "_".join(key_parts)
+                    
+                    protein_info[key] = {
+                        'header': current_header,
+                        'species': species,
+                        'protein_id': protein_id,
+                        'protein_type': protein_type
+                    }
     
-    return header_map
+    return protein_info
 
-def find_best_match(lrr_sequence, full_sequences):
-    """Find the full sequence that exactly matches the LRR sequence"""
-    for full_seq, header in full_sequences.items():
-        # Count matching residues in a sliding window
-        lrr_len = len(lrr_sequence)
-        
-        for i in range(len(full_seq) - lrr_len + 1):
-            window = full_seq[i:i+lrr_len]
-            # Check for exact match
-            if window == lrr_sequence:
-                return header
-    
-    return None
-
-def parse_lrr_results(lrr_file, sequence_map):
-    """Parse LRR annotation results and match with full sequences"""
-    sequences = []
-    
-    with open(lrr_file) as f:
-        # Skip header line
-        next(f)
-        
-        for line in f:
-            fields = line.strip().split('\t')
-            lrr_sequence = fields[7]
-            
-            # Find best matching full sequence
-            full_header = find_best_match(lrr_sequence, sequence_map)
-            
-            if full_header:
-                sequences.append((full_header, lrr_sequence))
-            else:
-                print(f"Warning: No matching sequence found for LRR: {lrr_sequence[:50]}...")
-    
-    return sequences
-
-def write_fasta(sequences, output_file):
-    """Write sequences in FASTA format"""
+def create_lrr_domain_fasta(lrr_domains, protein_info, output_file):
+    """Create a FASTA file with LRR domain sequences."""
     with open(output_file, 'w') as f:
-        for header, sequence in sequences:
-            # Add |LRR_domain to the header
-            header = header + "|LRR_domain"
-            f.write(f"{header}\n")
-            f.write(f"{sequence}\n")
-
-def create_combined_fasta(sequences, excel_file, output_file):
-    """Create FASTA file with LRR and ligand sequences
-    
-    Args:
-        sequences: List of tuples (header, lrr_sequence) from LRR parsing
-        excel_file: Path to Excel file containing receptor and ligand information
-        output_file: Output FASTA file path
-    """
-    import pandas as pd
-    
-    # Read the Excel file
-    df = pd.read_excel(excel_file)
-    
-    # Print column names to verify we have the correct columns
-    print("Excel file columns:", df.columns.tolist())
-    
-    with open(output_file, 'w') as f:
-        # Process each row in the Excel file
-        for _, row in df.iterrows():
-            try:
-                # Extract required fields, using consistent column names
-                species = str(row['Plant species']).strip()
-                receptor = str(row['Receptor']).strip()
-                genbank_id = str(row['Locus ID/Genbank']).strip()
-                ligand_name = str(row['Ligand']).strip()
-                ligand_seq = str(row['Ligand Sequence']).strip() if pd.notna(row['Ligand Sequence']) else ''
-                
-                # Find matching LRR sequence from our parsed sequences
-                matching_lrr = None
-                for header, lrr_seq in sequences:
-                    if genbank_id in header:
-                        matching_lrr = lrr_seq
-                        break
-                
-                if matching_lrr is None:
-                    print(f"Warning: No matching LRR sequence found for {genbank_id}")
-                    continue
-                
-                # Format the header and sequence
-                header = f">{species}|{receptor}|{genbank_id}:{ligand_name}"
-                combined_seq = f"{matching_lrr}:{ligand_seq}"
-                
-                # Write to FASTA file
-                f.write(f"{header}\n")
-                f.write(f"{combined_seq}\n")
-                
-            except KeyError as e:
-                print(f"Error: Missing required column in Excel file: {e}")
-            except Exception as e:
-                print(f"Error processing row: {e}")
+        for protein_name, domain_data in lrr_domains.items():
+            # Skip placeholder entries
+            if protein_name == "PDB_Filename" or domain_data['sequence'] == "Sequence":
                 continue
-
+                
+            # Try to find matching protein info
+            matching_info = None
+            for key, info in protein_info.items():
+                if protein_name.startswith(key) or key.startswith(protein_name):
+                    matching_info = info
+                    break
+            
+            # If no exact match, try a more flexible approach
+            if not matching_info:
+                for key, info in protein_info.items():
+                    protein_id = info['protein_id']
+                    if protein_id in protein_name:
+                        matching_info = info
+                        break
+            
+            # Create header
+            if matching_info:
+                header = f">{matching_info['species']}|{matching_info['protein_id']}|{matching_info['protein_type']}|LRR_domain"
+            else:
+                header = f">{protein_name}|LRR_domain"
+            
+            # Write to FASTA file
+            f.write(f"{header}\n")
+            f.write(f"{domain_data['sequence']}\n")
 
 def main():
-    # Input files
-    receptor_fasta = "03_out_data/receptor_full_length.fasta"
-    lrr_results = "03_out_data/lrr_annotation_results.txt"
-    excel_file = "02_in_data/All_LRR_PRR_ligand_data.xlsx"
-    
-    # Output files
+    # File paths
+    lrr_annotation_file = "03_out_data/lrr_annotation_results.txt"
+    full_length_fasta = "03_out_data/receptor_full_length.fasta"
     output_fasta = "03_out_data/lrr_domain_sequences.fasta"
-    combined_output = "03_out_data/lrr_ligand_combined.fasta"
     
-    # Read receptor sequences
-    sequence_map = read_receptor_sequences(receptor_fasta)
+    # Parse input files
+    lrr_domains = parse_lrr_annotation_results(lrr_annotation_file)
+    protein_info = parse_full_length_fasta(full_length_fasta)
     
-    # Parse LRR results and match with sequences
-    sequences = parse_lrr_results(lrr_results, sequence_map)
+    # Create output FASTA file
+    create_lrr_domain_fasta(lrr_domains, protein_info, output_fasta)
     
-    # Write output FASTA file
-    write_fasta(sequences, output_fasta)
-    
-    # Create combined FASTA file with LRR and ligand sequences
-    create_combined_fasta(sequences, excel_file, combined_output)
-    
-    print(f"Created {output_fasta} with {len(sequences)} sequences")
-    print(f"Created {combined_output} with LRR and ligand sequences")
+    print(f"Created LRR domain FASTA file with {len(lrr_domains)} entries.")
 
 if __name__ == "__main__":
-    main() 
+    main()

@@ -2,14 +2,25 @@ Receptor                                                                        
 -----------------------------------------------------------------------------------------------------------------------------
 Ananas_comosus_ON556667.1_FLS2                                                                      model_1        88.4      0.631
 Arabidopsis_thaliana_AT2G32680_RLP23                                                                model_3        85.9      0.793
+Arabidopsis_thaliana_AT3G25020_Borsk-2_RLP42                                                        model_3        87.0      0.799
+Arabidopsis_thaliana_AT3G25020_Ciste-1_RLP42                                                        model_3        86.9      0.797
+Arabidopsis_thaliana_AT3G25020_Ciste-2_RLP42                                                        model_3        86.8      0.793
+Arabidopsis_thaliana_AT3G25020_Ct-1_RLP42                                                           model_3        87.2      0.800
 Arabidopsis_thaliana_AT3G25020_D153V_RLP42                                                          model_3        86.8      0.800
 Arabidopsis_thaliana_AT3G25020_D256N_RLP42                                                          model_3        86.6      0.793
+Arabidopsis_thaliana_AT3G25020_Dobra-1_RLP42                                                        model_3        87.4      0.806
 Arabidopsis_thaliana_AT3G25020_E696K_RLP42                                                          model_4        86.7      0.783
+Arabidopsis_thaliana_AT3G25020_Gu-0_RLP42                                                           model_3        86.9      0.800
 Arabidopsis_thaliana_AT3G25020_H321S_RLP42                                                          model_3        86.8      0.797
 Arabidopsis_thaliana_AT3G25020_L198I_RLP42                                                          model_3        87.1      0.800
 Arabidopsis_thaliana_AT3G25020_L329A_RLP42                                                          model_3        86.9      0.798
+Arabidopsis_thaliana_AT3G25020_Mammo-1_RLP42                                                        model_3        86.8      0.799
+Arabidopsis_thaliana_AT3G25020_Petro-1_RLP42                                                        model_3        86.8      0.794
 Arabidopsis_thaliana_AT3G25020_RLP42                                                                model_3        86.9      0.800
+Arabidopsis_thaliana_AT3G25020_Rovero-1_RLP42                                                       model_3        86.9      0.794
+Arabidopsis_thaliana_AT3G25020_Shigu-1_RLP42                                                        model_3        87.2      0.800
 Arabidopsis_thaliana_AT3G25020_Y323H_RLP42                                                          model_3        86.8      0.799
+Arabidopsis_thaliana_AT3G25020_Yeg-1_RLP42                                                          model_3        86.5      0.794
 Arabidopsis_thaliana_AT4G08850_MIK2                                                                 model_3        87.0      0.642
 Arabidopsis_thaliana_AT5G46330_DD_FLS2                                                              model_3        87.8      0.645
 Arabidopsis_thaliana_AT5G46330_E321D_FLS2                                                           model_3        87.6      0.648
