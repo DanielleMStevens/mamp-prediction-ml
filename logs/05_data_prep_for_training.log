@@ -1,11 +1,22 @@
 Unique receptor-ligand pairs: 979
-Traceback (most recent call last):
-  File "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/05_data_prep_for_training.py", line 165, in <module>
-    main() 
-  File "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/05_data_prep_for_training.py", line 148, in main
-    receptor_ligand_pairs = process_data(in_data_dir, use_legacy_columns=True)
-  File "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/05_data_prep_for_training.py", line 99, in process_data
-    receptor_name_to_seq = load_receptor_sequences(in_data_dir)
-  File "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/05_data_prep_for_training.py", line 67, in load_receptor_sequences
-    raise FileNotFoundError(f"Could not find receptor sequence file at {fasta_path}")
-FileNotFoundError: Could not find receptor sequence file at /Users/briansu/workspace/mamp_prediction_ml/out_data/lrr_domain_sequences.fasta
+Filtered out 62 rows with missing receptor sequences
+
+Dataset statistics:
+Total samples: 917
+Training samples: 733
+Test samples: 184
+
+Class distribution:
+Training set:
+Known Outcome
+Immunogenic           345
+Non-Immunogenic       273
+Weakly Immunogenic    115
+dtype: int64
+
+Test set:
+Known Outcome
+Immunogenic           87
+Non-Immunogenic       68
+Weakly Immunogenic    29
+dtype: int64
