@@ -7,46 +7,31 @@
 # Outputs: 
 #-----------------------------------------------------------------------------------------------
 
-library(readxl)
-library(tidyverse)
-library(webr)
-library(networkD3)
-library(Biostrings)
-library(pwalign)
-library(ggplot2)
-library(paletteer)
-
-load_training_ML_data <- readxl::read_xlsx(path = "./in_data/All_LRR_PRR_ligand_data.xlsx")
-load_training_ML_data <- data.frame(load_training_ML_data)[1:12]
-
-
-# distribution of peptide outcomes
-peptide_distrubution <- load_training_ML_data %>% group_by(Ligand, Immunogenicity) %>% summarize(n=n())
-webr::PieDonut(peptide_distrubution, aes(Immunogenicity,Ligand, count=n))
-
-ggplot(peptide_distrubution, aes(x=Immunogenicity, y=n, fill=Ligand)) +
-  geom_bar(stat="identity") +
-  theme_classic() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size =8))+
-  labs(x="",
-       y="Count") +
-  scale_fill_paletteer_d("MexBrewer::Alacena")
-
+######################################################################
+#  libraries to load
+######################################################################
 
 # compare sequences of eptiopes and receptors to document sequence variation
 # Install Bioconductor
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install()
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+#BiocManager::install("Biostrings")
 
-# Install package dependencies
-BiocManager::install(c("Biostrings","GenomicRanges","GenomicFeatures","Rsamtools","rtracklayer"))
+#load packages
+library(readxl)
+library(tidyverse)
 library(Biostrings)
+library(pwalign)
+library(ggplot2)
 
-# install CRAN dependencies
-install.packages(c("doParallel", "foreach", "ape", "Rdpack", "benchmarkme", "devtools"))
+# color code for genera of interest
+epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#2a3c64", "#542a64", "#232232")
+names(epitope_colors) <- c("Crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "Pep-25", "pep/pg", "SCOOP")
 
+receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#2a3c64", "#542a64", "#232232")
+names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2")
 
+load_training_ML_data <- readxl::read_xlsx(path = "./02_in_data/All_LRR_PRR_ligand_data.xlsx")
+load_training_ML_data <- data.frame(load_training_ML_data)[1:12]
 
 
 ######################################################################
@@ -63,6 +48,23 @@ identity_calc <- function(label_ids, sequence_list, comparison){
   }
   return(hold_data)
 }
+
+######################################################################
+#  libraries to load
+######################################################################
+
+# distribution of peptide outcomes
+peptide_distrubution <- load_training_ML_data %>% group_by(Ligand, Immunogenicity) %>% summarize(n=n())
+immunogenicity_distrubution <- ggplot(peptide_distrubution, aes(x=Immunogenicity, y=n, fill=Ligand)) +
+  geom_bar(stat="identity") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8, color = "black"),
+        axis.text.y = element_text(color = "black"),
+        legend.position = "none")+
+  labs(x="", y="Count") +
+  scale_fill_manual(values = epitope_colors)
+
+ggsave(filename = "./04_Preprocessing_results/peptide_distrubution.png", plot = immunogenicity_distrubution, width = 1.5, height = 2.5)
 
 
 ######################################################################
@@ -117,19 +119,22 @@ FLS3_comparison <- subset(FLS3_comparison, query_id != subject_id)
 
 combine_receptor_comparison <- rbind(FLS2_comparison, PERU_comparison, MIK2_comparison, CORE_comparison, EFR_comparison, FLS3_comparison, INR_comparison)
 receptor_stats <- combine_receptor_comparison %>% group_by(comparison) %>%distinct(query_id) %>% summarize(number = n())
-ggplot(combine_receptor_comparison, aes(x = comparison, y = identity, fill = comparison)) +
+receptor_sequence_comparison_plot <- ggplot(combine_receptor_comparison, aes(x = comparison, y = identity, fill = comparison)) +
   stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width") +
   geom_boxplot(fill = "white", width = 0.2, outlier.shape = NA) +
   theme_classic() +
   xlab("Homolog Comparisons") +
   ylab("Percent Identity")+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), axis.text.y = element_text(color = "black")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), 
+        axis.text.y = element_text(color = "black"),
+        legend.position = "none") +
   scale_y_continuous(limits = c(20, 120), breaks = c(20,40,60,80,100)) +
   coord_flip() +
-  scale_fill_paletteer_d("NatParksPalettes::Banff") +
-  scale_color_paletteer_d("NatParksPalettes::Banff") +
+  scale_fill_manual(values = receptor_colors) +
+  scale_color_manual(values = receptor_colors) +
   geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
+ggsave(filename = "./04_Preprocessing_results/receptor_sequence_comparison_plot.png", plot = receptor_sequence_comparison_plot, width = 2.5, height = 2.5)
 
 
 ######################################################################
@@ -191,151 +196,42 @@ nlp_comparison <- subset(nlp_comparison, query_id > subject_id)
 
 combine_epitope_comparison <- rbind(flg22_comparison, Pep25_comparison, SCOOP_comparison, csp22_comparison, elf18_comparison, peppg_comparison, crip21_comparison, nlp_comparison)
 epitope_stats <- combine_epitope_comparison %>% group_by(comparison) %>% distinct(query_id) %>% summarize(number = n())
-ggplot(combine_epitope_comparison, aes(x = comparison, y = identity, fill = comparison)) +
+epitope_sequence_comparison_plot <- ggplot(combine_epitope_comparison, aes(x = comparison, y = identity, fill = comparison)) +
   stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width") +
   geom_boxplot(fill = "white", width = 0.2, outlier.shape = NA) +
   theme_classic() +
-  xlab("Homolog Comparisons") +
+  xlab("Variant Comparisons") +
   ylab("Percent Identity")+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), axis.text.y = element_text(color = "black")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), 
+        axis.text.y = element_text(color = "black"),
+        legend.position = "none") +
   scale_y_continuous(limits = c(0, 120), breaks = c(20,40,60,80,100)) +
   coord_flip() +
-  scale_fill_paletteer_d("NatParksPalettes::Banff") +
-  scale_color_paletteer_d("NatParksPalettes::Banff") +
+  scale_fill_manual(values = epitope_colors) +
+  scale_color_manual(values = epitope_colors) +
   geom_text(data = epitope_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
+ggsave(filename = "./04_Preprocessing_results/epitope_sequence_comparison_plot.png", plot = epitope_sequence_comparison_plot, width = 2.5, height = 2.5)
 
 
-load_training_ML_data$Ligand.Length <- as.numeric(nchar(load_training_ML_data$Ligand.Sequence))
+#load_training_ML_data$Ligand.Length <- as.numeric(nchar(load_training_ML_data$Ligand.Sequence))
 
 # plot the peptide length distribution
-ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
-see::geom_violinhalf() +
-  theme_classic(scale = "width") +
-  xlab("Peptide") +
-  ylab("Length")
+#ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
+#see::geom_violinhalf() +
+#  theme_classic(scale = "width") +
+#  xlab("Peptide") +
+ # ylab("Length")
 
 
 # ridge plot
-ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
-  ggridges::geom_density_ridges(scale = 2) +
-  xlab("Peptide") +
-  ylab("Length") +
+#ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
+ # ggridges::geom_density_ridges(scale = 2) +
+  #xlab("Peptide") +
+  #ylab("Length") +
   #scale_y_discrete(expand = c(0, 0)) +     # will generally have to set the `expand` option
   #scale_x_continuous(expand = c(0, 0)) +   # for both axes to remove unneeded padding
-  coord_cartesian(clip = "off") + # to avoid clipping of the very top of the top ridgeline
-  theme_ridges()
-
-
-
-
-
-
-
-#-------------------------------------------------------------------------------------------------
-
-# install BLAST dependency metablastr from GitHub
-devtools::install_github("drostlab/metablastr")
-
-# install DIAMOND dependency rdiamond from GitHub
-devtools::install_github("drostlab/rdiamond")
-
-# install orthologr from GitHub
-devtools::install_github("drostlab/orthologr")
-library(orthologr)
-#writeFasta(formate2fasta(receptor_INR$Locus.ID.Genbank, "INR", receptor_INR$Receptor.Sequence), "./out_data/training_data_summary/receptor_INR.fasta")
-#writeFasta(formate2fasta(receptor_FLS2$Locus.ID.Genbank, "FLS2", receptor_FLS2$Receptor.Sequence), "./out_data/training_data_summary/receptor_FLS2.fasta")
-#writeFasta(formate2fasta(receptor_PERU$Locus.ID.Genbank, "PERU", receptor_PERU$Receptor.Sequence), "./out_data/training_data_summary/receptor_PERU.fasta")
-#writeFasta(formate2fasta(receptor_MIK2$Locus.ID.Genbank, "MIK2", receptor_MIK2$Receptor.Sequence), "./out_data/training_data_summary/receptor_MIK2.fasta")
-#writeFasta(formate2fasta(receptor_CORE$Locus.ID.Genbank, "CORE", receptor_CORE$Receptor.Sequence), "./out_data/training_data_summary/receptor_CORE.fasta")
-#writeFasta(formate2fasta(receptor_EFR$Locus.ID.Genbank, "EFR", receptor_EFR$Receptor.Sequence), "./out_data/training_data_summary/receptor_EFR.fasta")
-#writeFasta(formate2fasta(receptor_FLS3$Locus.ID.Genbank, "FLS3", receptor_FLS3$Receptor.Sequence), "./out_data/training_data_summary/receptor_FLS3.fasta")
-
-#INR_comparison <- as.data.frame(orthologr::blast(query_file = "./out_data/training_data_summary/receptor_INR.fasta",
-#                                              subject_file = "./out_data/training_data_summary/receptor_INR.fasta", 
-#                                              seq_type = 'protein'))
-
-
-# convert training/test data to fasta format
-######################################################################
-#  function to turn dataframe (where one column is the name and one column is the sequence) into a fasta file - version 2
-######################################################################
-
-formate2fasta <- function(WP_locus_names, sequence_type, sequences) {
-  hold_sequences <- data.frame("Locus_Tag_Name" = character(0), "Sequence" = character(0))
-  pb <- txtProgressBar(min = 0, max = length(WP_locus_names), style = 3)
-
-  for (i in 1:length(WP_locus_names)){
-    #find full length protein sequence
-    temp_df <- data.frame(paste(paste(">",i, sep=""), sequence_type, WP_locus_names[[i]], sep = "|"),
-                          sequences[[i]])
-    colnames(temp_df) <- colnames(hold_sequences)
-    hold_sequences <- rbind(hold_sequences, temp_df)
-    setTxtProgressBar(pb, i)
-  }
-  close(pb)
-  return(hold_sequences)
-}
-
-
-######################################################################
-#  function to turn dataframe (where one column is the name and one column is the sequence) into a fasta file
-######################################################################
-
-writeFasta <- function(data, filename){
-  fastaLines = c()
-  for (rowNum in 1:nrow(data)){
-    fastaLines = c(fastaLines, data[rowNum,1])
-    fastaLines = c(fastaLines,data[rowNum,2])
-  }
-  fileConn<-file(filename)
-  writeLines(fastaLines, fileConn)
-  close(fileConn)
-}
-
-
-
-
-#-----------------------------------------------------------------------------------------------
-# Prepare data for Sankey diagram
-# Create nodes dataframe
-nodes <- data.frame(
-  name = c(unique(load_training_ML_data$Receptor),  unique(load_training_ML_data$Immunogenicity), unique(load_training_ML_data$Ligand)))
-
-# Create links dataframe with color groups
-links_receptor_immuno <- load_training_ML_data %>%
-  group_by(Receptor, Immunogenicity) %>%
-  summarise(value = n()) %>%
-  mutate(
-    source = match(Receptor, nodes$name) - 1, 
-    target = match(Immunogenicity, nodes$name) - 1,
-    group = Immunogenicity
-  )
-
-links_immuno_ligand <- load_training_ML_data %>%
-  group_by(Immunogenicity, Ligand) %>%
-  summarise(value = n()) %>%
-  mutate(
-    source = match(Immunogenicity, nodes$name) - 1, 
-    target = match(Ligand, nodes$name) - 1,
-    group = Immunogenicity
-  )
-
-# Combine all links
-links <- rbind(links_receptor_immuno, links_immuno_ligand)
-
-# Define color scheme for immunogenicity with alpha = 0.7
-my_color <- JS('d3.scaleOrdinal()
-  .domain(["Immunogenic", "Weakly Immunogenic", "Non-Immunogenic"])
-  .range(["rgba(64, 64, 64, 0.7)", "rgba(0, 0, 139, 0.7)", "rgba(139, 0, 0, 0.7)"])')
-
-# Create and display Sankey diagram
-sankeyNetwork(Links = links, Nodes = nodes, Source = "source",
-             Target = "target", Value = "value", NodeID = "name",
-             sinksRight = TRUE, nodeWidth = 30, fontSize = 12, height = 500,
-             LinkGroup = "group", colourScale = my_color,
-             iterations = 0,  # Helps with layout stability
-             nodePadding = 20)  # Adds more space between nodes
-
+  #coord_cartesian(clip = "off") + # to avoid clipping of the very top of the top ridgeline
+  #theme_ridges()
 
 
