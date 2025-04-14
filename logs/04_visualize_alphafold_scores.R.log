@@ -1,0 +1,39 @@
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ purrr     1.0.4
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  Receptor = col_character(),
+  Best = col_character(),
+  Model = col_double(),
+  pLDDT = col_double(),
+  pTM = col_character()
+)
+
+Warning: 146 parsing failures.
+row col  expected    actual                                              file
+  1  -- 5 columns 1 columns './04_Preprocessing_results/alphafold_scores.txt'
+  2  -- 5 columns 4 columns './04_Preprocessing_results/alphafold_scores.txt'
+  3  -- 5 columns 4 columns './04_Preprocessing_results/alphafold_scores.txt'
+  4  -- 5 columns 4 columns './04_Preprocessing_results/alphafold_scores.txt'
+  5  -- 5 columns 4 columns './04_Preprocessing_results/alphafold_scores.txt'
+... ... ......... ......... .................................................
+See problems(...) for more details.
+
+Warning message:
+Removed 1 row containing non-finite outside the scale range (`stat_bin()`). 
+<ScaleContinuousPosition>
+ Range:  
+ Limits:    0 --    1
+Warning message:
+Removed 1 row containing non-finite outside the scale range (`stat_bin()`). 
+Warning message:
+Removed 1 row containing missing values or values outside the scale range
+(`geom_point()`). 
