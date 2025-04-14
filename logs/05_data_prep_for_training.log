@@ -1,34 +1,11 @@
-
-Loaded Excel file with 815 rows
-Available columns: ['Literature_Data', 'Plant species', 'Accession/Cultivar', 'Receptor Type', 'Number of LRRs', 'Receptor', 'Locus ID/Genbank', 'Receptor Sequence', 'Ligand', 'Ligand Length', 'Ligand Sequence', 'Immunogenicity', 'Assays', 'Reference', 'Notes']
-
-Unique receptor-ligand pairs: 790
-
-Loaded 13 receptor sequences
-
-Filtered out 790 rows with missing receptor sequences
-
-Final dataset has 0 rows
-
-Dataset statistics:
-Total samples: 0
-Training samples: 0
-Test samples: 0
-
-Training set distribution:
+Unique receptor-ligand pairs: 979
 Traceback (most recent call last):
-  File "/Users/briansu/workspace/mamp_prediction_ml/scripts/05_data_prep_for_training.py", line 222, in <module>
+  File "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/05_data_prep_for_training.py", line 165, in <module>
     main() 
-    ^^^^^^
-  File "/Users/briansu/workspace/mamp_prediction_ml/scripts/05_data_prep_for_training.py", line 213, in main
-    print(train_df.groupby(['Epitope', 'Known Outcome']).size().unstack(fill_value=0))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/briansu/anaconda3/lib/python3.11/site-packages/pandas/core/frame.py", line 9183, in groupby
-    return DataFrameGroupBy(
-           ^^^^^^^^^^^^^^^^^
-  File "/Users/briansu/anaconda3/lib/python3.11/site-packages/pandas/core/groupby/groupby.py", line 1329, in __init__
-    grouper, exclusions, obj = get_grouper(
-                               ^^^^^^^^^^^^
-  File "/Users/briansu/anaconda3/lib/python3.11/site-packages/pandas/core/groupby/grouper.py", line 1043, in get_grouper
-    raise KeyError(gpr)
-KeyError: 'Epitope'
+  File "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/05_data_prep_for_training.py", line 148, in main
+    receptor_ligand_pairs = process_data(in_data_dir, use_legacy_columns=True)
+  File "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/05_data_prep_for_training.py", line 99, in process_data
+    receptor_name_to_seq = load_receptor_sequences(in_data_dir)
+  File "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/05_data_prep_for_training.py", line 67, in load_receptor_sequences
+    raise FileNotFoundError(f"Could not find receptor sequence file at {fasta_path}")
+FileNotFoundError: Could not find receptor sequence file at /Users/briansu/workspace/mamp_prediction_ml/out_data/lrr_domain_sequences.fasta
