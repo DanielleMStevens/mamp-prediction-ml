@@ -1,22 +1,115 @@
-Unique receptor-ligand pairs: 979
-Filtered out 62 rows with missing receptor sequences
+Unique receptor-ligand pairs: 996
+
+Missing receptor sequences for:
+- Vigna unguiculata|Cameroon_12-5B|INR (Vigna unguiculata, INR)
+- Vigna unguiculata|Cameroon_12-5B|INR (Vigna unguiculata, INR)
+- Vigna unguiculata|Tvu-21|INR (Vigna unguiculata, INR)
+- Vigna unguiculata|Tvu-21|INR (Vigna unguiculata, INR)
+- Vigna unguiculata|Fael-14-Inhaca-E|INR (Vigna unguiculata, INR)
+- Vigna unguiculata|Fael-14-Inhaca-E|INR (Vigna unguiculata, INR)
+- Vigna radiata|Vradi08g18340_INR-like_1|INR-like (Vigna radiata, INR-like)
+- Lablab purpureus|Lp005646g0031_INR-like|INR-like (Lablab purpureus, INR-like)
+- Hylodesmum podocarpum|Hpodo_INR-like_3|INR-like (Hylodesmum podocarpum, INR-like)
+- Hylodesmum podocarpum|Hpodo INR-like_7|INR-like (Hylodesmum podocarpum, INR-like)
+- Solanum tuberosum Andigenum Group|OQ999434|PERU (Solanum tuberosum Andigenum Group, PERU)
+- Solanum tuberosum Andigenum Group|OQ999434|PERU (Solanum tuberosum Andigenum Group, PERU)
+- Solanum tuberosum Andigenum Group|OQ999434|PERU (Solanum tuberosum Andigenum Group, PERU)
+- Solanum tuberosum Andigenum Group|OQ999434|PERU (Solanum tuberosum Andigenum Group, PERU)
+- Solanum edinense|OQ999447|PERU (Solanum edinense, PERU)
+- Solanum edinense|OQ999447|PERU (Solanum edinense, PERU)
+- Solanum edinense|OQ999447|PERU (Solanum edinense, PERU)
+- Solanum edinense|OQ999447|PERU (Solanum edinense, PERU)
+- Solanum tuberosum Phureja Group|OQ999455|PERU (Solanum tuberosum Phureja Group, PERU)
+- Solanum tuberosum Phureja Group|OQ999455|PERU (Solanum tuberosum Phureja Group, PERU)
+- Solanum tuberosum Phureja Group|OQ999455|PERU (Solanum tuberosum Phureja Group, PERU)
+- Solanum tuberosum Phureja Group|OQ999455|PERU (Solanum tuberosum Phureja Group, PERU)
+- Solanum spp.|OQ999457|PERU (Solanum spp., PERU)
+- Solanum spp.|OQ999457|PERU (Solanum spp., PERU)
+- Solanum spp.|OQ999457|PERU (Solanum spp., PERU)
+- Solanum spp.|OQ999457|PERU (Solanum spp., PERU)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Humulus lupulus| XP_062096069.1|FLS2 (Humulus lupulus, FLS2)
+- Glycine max|Glyma.05g128200.1|FLS2 (Glycine max, FLS2)
+- Capsicum annum|CA02g12030|FLS2 (Capsicum annum, FLS2)
+- Solanum tuberosum |PGSC0003DMT400021384|FLS2 (Solanum tuberosum , FLS2)
+- Solanum tuberosum |PGSC0003DMT400041350|FLS3 (Solanum tuberosum , FLS3)
+- Arabidopsis thaliana|AT5G20480|EFR (Arabidopsis thaliana, EFR)
+- Arabidopsis thaliana|AT5G20480|EFR (Arabidopsis thaliana, EFR)
+- Arabidopsis thaliana|AT5G20480|EFR (Arabidopsis thaliana, EFR)
+- Arabidopsis thaliana|AT3G25020_Borsk-2|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Ciste-1|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Ciste-2|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Ct-1|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Gu-0|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Mammo-1|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Rovero-1|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Shigu-1|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Yeg-1|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Dobra-1|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Petro-1|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_D153V|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_L198I|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_D256N|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_H321S|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_Y323H|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_L329A|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT3G25020_E696K|RLP42 (Arabidopsis thaliana, RLP42)
+- Arabidopsis thaliana|AT5G20480|EFR (Arabidopsis thaliana, EFR)
+- Arabidopsis thaliana|AT5G20480|EFR (Arabidopsis thaliana, EFR)
+- Arabidopsis thaliana|AT5G46330_E321D|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_E321D|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_E321G|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_E321G|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_E321L|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_E321L|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_E321R|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_E321R|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_S345D|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_S345D|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_S345G|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_S345G|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_F435W|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_DD|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_DD|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_GD|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_GD|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_LD|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_LD|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_RD|FLS2 (Arabidopsis thaliana, FLS2)
+- Arabidopsis thaliana|AT5G46330_RD|FLS2 (Arabidopsis thaliana, FLS2)
+- Cucumis sativus|CsaV3_6G051540|FLS2 (Cucumis sativus, FLS2)
+- Glycine max|Glyma.05g128200.1|FLS2 (Glycine max, FLS2)
+- Solanum lycopersicum|Solyc02g070890|FLS2 (Solanum lycopersicum, FLS2)
+- Solanum lycopersicum|Solyc02g070890|FLS2 (Solanum lycopersicum, FLS2)
+- Solanum lycopersicum|Solyc02g070890|FLS2 (Solanum lycopersicum, FLS2)
+
+Filtered out 90 rows with missing receptor sequences
 
 Dataset statistics:
-Total samples: 917
-Training samples: 733
-Test samples: 184
+Total samples: 906
+Training samples: 724
+Test samples: 182
 
 Class distribution:
 Training set:
 Known Outcome
-Immunogenic           345
-Non-Immunogenic       273
-Weakly Immunogenic    115
+Immunogenic           348
+Non-Immunogenic       264
+Weakly Immunogenic    112
 dtype: int64
 
 Test set:
 Known Outcome
 Immunogenic           87
-Non-Immunogenic       68
-Weakly Immunogenic    29
+Non-Immunogenic       67
+Weakly Immunogenic    28
 dtype: int64

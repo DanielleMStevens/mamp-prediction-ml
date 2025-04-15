@@ -111,6 +111,8 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
         FileNotFoundError: If required Excel file is not found
         ValueError: If required columns are missing from Excel file
     """
+
+
     # Load Excel data
     excel_path = in_data_dir / "All_LRR_PRR_ligand_data.xlsx"
     if not excel_path.exists():
@@ -138,11 +140,18 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
     receptor_name_to_seq = load_receptor_sequences(in_data_dir)
     receptor_ligand_pairs['Receptor Sequence'] = receptor_ligand_pairs["Receptor Name"].map(receptor_name_to_seq)
     
+    # Log missing sequences
+    missing_receptors = receptor_ligand_pairs[receptor_ligand_pairs['Receptor Sequence'].isna()]
+    print("\nMissing receptor sequences for:")
+    for _, row in missing_receptors.iterrows():
+        print(f"- {row['Receptor Name']} ({row['Plant species']}, {row['Receptor']})")
+    
     # Remove entries with missing sequences
     before_filter = len(receptor_ligand_pairs)
     receptor_ligand_pairs = receptor_ligand_pairs.dropna(subset=['Receptor Sequence'])
     after_filter = len(receptor_ligand_pairs)
-    print(f"Filtered out {before_filter - after_filter} rows with missing receptor sequences")
+    print(f"\nFiltered out {before_filter - after_filter} rows with missing receptor sequences")
+    
     
     # Handle legacy column names if needed
     if use_legacy_columns:

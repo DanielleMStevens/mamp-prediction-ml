@@ -17,7 +17,7 @@ cols(
   pTM = col_character()
 )
 
-Warning: 146 parsing failures.
+Warning: 157 parsing failures.
 row col  expected    actual                                              file
   1  -- 5 columns 1 columns './04_Preprocessing_results/alphafold_scores.txt'
   2  -- 5 columns 4 columns './04_Preprocessing_results/alphafold_scores.txt'
