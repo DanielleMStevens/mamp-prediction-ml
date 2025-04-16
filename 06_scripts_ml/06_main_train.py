@@ -1,8 +1,17 @@
+#-----------------------------------------------------------------------------------------------
+# Krasileva Lab - Plant & Microbial Biology Department UC Berkeley
+# Author: Danielle M. Stevens
+# Last Updated: 07/06/2020
+# Script Purpose: 
+# Inputs: 
+# Outputs: 
+#-----------------------------------------------------------------------------------------------
+
 """
-Main training script for MAMP (Membrane-Active Molecule Prediction) models.
+Main training script for MAMP (Microbe-Associated Molecular Pattern)-receptor interaction models.
 
 This script provides a comprehensive training pipeline for various deep learning models
-designed to predict membrane-active molecules. It supports multiple model architectures,
+designed to predict MAMP-receptor interactions. It supports multiple model architectures,
 distributed training, and extensive evaluation capabilities.
 
 Key Features:
@@ -26,7 +35,8 @@ Example Usage:
     python 05_main_train.py --model esm2 --data_dir path/to/data --epochs 50
     
     # Evaluation mode:
-    python 05_main_train.py --model esm2 --eval_only_data_path path/to/test.csv
+    python 06_scripts_ml/06_main_train.py --model esm2_with_receptor --eval_only_data_path 05_datasets/test_stratify.csv /
+    --model_checkpoint_path ../model_results/02_24_2025_esm2_with_receptor_stratify/test_preds.pth --disable_wandb
 """
 
 import argparse
@@ -48,7 +58,7 @@ import torch.optim as optim
 from models.esm_model import ESMModel
 from models.esm_mid_model import ESMMidModel
 from models.esm_with_receptor_model import ESMWithReceptorModel
-from models.esm_receptor_chemical import ESMReceptorChemical
+#from models.esm_receptor_chemical import ESMReceptorChemical
 from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
 from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
 from models.esm_contrast_model import ESMContrastiveModel
@@ -141,10 +151,7 @@ def get_args_parser():
     parser.add_argument("--single_dec", default="naive", help="naive|delta")
     # parser.add_argument("ulti_dec", default="epistasis", help="additive|epistasis")
     parser.add_argument("--head_dim", type=int, default=128)
-    parser.add_argument(
-        "--backbone",
-        default="esm2_t33_650M_UR50D",
-        help="af|esm2_t33_650M_UR50D|esm_msa1b_t12_100M_UR50S",
+    parser.add_argument("--backbone", default="esm2_t33_650M_UR50D", help="af|esm2_t33_650M_UR50D|esm_msa1b_t12_100M_UR50S",
     )
     parser.add_argument(
         "--finetune_backbone",
@@ -254,7 +261,7 @@ model_dict = {
     "esm2_mid": ESMMidModel,                              # ESM2 with mid-layer features
     "alphafold_pair_reps": AlphaFoldModel,                # AlphaFold-based model
     "esm2_with_receptor": ESMWithReceptorModel,           # ESM2 with receptor interaction
-    "esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
+    #"esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
     "glm2_with_receptor": GLMWithReceptorModel,           # GLM2 with receptor interaction
     "esm2_with_receptor_single_seq": ESMWithReceptorSingleSeqModel,  # ESM2 with single sequence receptor
     "glm2_with_receptor_single_seq": GLMWithReceptorSingleSeqModel,  # GLM2 with single sequence receptor
@@ -336,7 +343,7 @@ def main(args):
             run_name = f"{wandb_dict[args.model]}-{Path(args.data_dir).name}-{current_datetime}"
             tags = [args.model, str(Path(args.data_dir).name), "train"]
         wandb.init(
-            project="mamp",
+            project="mamp_ml",
             name=run_name,
             entity=args.wandb_group,
             config=args,
@@ -494,8 +501,8 @@ def main(args):
     if misc.is_main_process():
         print("Final metrics:", metrics)
 
+    # disable wandb logging
     if not args.disable_wandb and misc.is_main_process():
-        # wandb.log({"copypasta": metrics["copypasta"]})
         wandb.finish()
 
     # Optional k-fold cross-validation

@@ -1,12 +1,6 @@
 Unique receptor-ligand pairs: 996
 
 Missing receptor sequences for:
-- Vigna unguiculata|Cameroon_12-5B|INR (Vigna unguiculata, INR)
-- Vigna unguiculata|Cameroon_12-5B|INR (Vigna unguiculata, INR)
-- Vigna unguiculata|Tvu-21|INR (Vigna unguiculata, INR)
-- Vigna unguiculata|Tvu-21|INR (Vigna unguiculata, INR)
-- Vigna unguiculata|Fael-14-Inhaca-E|INR (Vigna unguiculata, INR)
-- Vigna unguiculata|Fael-14-Inhaca-E|INR (Vigna unguiculata, INR)
 - Vigna radiata|Vradi08g18340_INR-like_1|INR-like (Vigna radiata, INR-like)
 - Lablab purpureus|Lp005646g0031_INR-like|INR-like (Lablab purpureus, INR-like)
 - Hylodesmum podocarpum|Hpodo_INR-like_3|INR-like (Hylodesmum podocarpum, INR-like)
@@ -92,24 +86,24 @@ Missing receptor sequences for:
 - Solanum lycopersicum|Solyc02g070890|FLS2 (Solanum lycopersicum, FLS2)
 - Solanum lycopersicum|Solyc02g070890|FLS2 (Solanum lycopersicum, FLS2)
 
-Filtered out 90 rows with missing receptor sequences
+Filtered out 84 rows with missing receptor sequences
 
 Dataset statistics:
-Total samples: 906
-Training samples: 724
-Test samples: 182
+Total samples: 912
+Training samples: 729
+Test samples: 183
 
 Class distribution:
 Training set:
 Known Outcome
-Immunogenic           348
-Non-Immunogenic       264
+Immunogenic           349
+Non-Immunogenic       268
 Weakly Immunogenic    112
 dtype: int64
 
 Test set:
 Known Outcome
-Immunogenic           87
+Immunogenic           88
 Non-Immunogenic       67
 Weakly Immunogenic    28
 dtype: int64

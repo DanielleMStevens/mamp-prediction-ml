@@ -32,3 +32,17 @@ pip3 install torch torchvision torchaudio
 python -m pip install tensorflow-macos
 python -m pip install tensorflow-metal  # For GPU acceleration
 ```
+
+
+## Prepare dataset for training and testing
+```
+./run_data_preparation_pipeline.sh
+
+# if there are permission issues, run the following first then rerun the above
+chmod -x run_data_preparation_pipeline.sh
+```
+
+# Training model
+```
+python scripts_ml/05_main_train.py --model esm2_with_receptor --data_dir datasets/stratify --disable_wandb --device cpu --epochs 60
+```

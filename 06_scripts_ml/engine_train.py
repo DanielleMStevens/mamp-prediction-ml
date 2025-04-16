@@ -1,9 +1,22 @@
+#-----------------------------------------------------------------------------------------------
+# Krasileva Lab - Plant & Microbial Biology Department UC Berkeley
+# Author: Danielle M. Stevens
+# Last Updated: 07/06/2020
+# Script Purpose: 
+# Inputs: 
+# Outputs: 
+#-----------------------------------------------------------------------------------------------
+
 """
 Training and evaluation engine for a deep learning model.
 This module provides the core functionality for training and evaluating machine learning models,
 particularly focused on multi-class classification tasks. It includes functionality for
 loss computation, metric tracking, and visualization of results.
 """
+
+######################################################################
+# import packages and libraries
+######################################################################
 
 import math
 import sys
@@ -90,7 +103,7 @@ def train_one_epoch(
         dict: Dictionary containing averaged training metrics for the epoch
     """
     # Set model to training mode and reset optimizer
-    model.train()
+    model.train()  # Enables training-specific behaviors like dropout and batch norm
     optimizer.zero_grad()
 
     # Initialize metric logging
@@ -127,7 +140,7 @@ def train_one_epoch(
             print("Loss is {}, stopping training".format(total_loss.item()))
             sys.exit(1)
 
-        # Backward pass and optimization
+        # Backward pass and optimization - Training-specific step
         total_loss.backward()
         nn.utils.clip_grad_norm_(model.parameters(), 5.0)  # Gradient clipping
         optimizer.step()
@@ -139,7 +152,7 @@ def train_one_epoch(
         preds = model_with_losses.get_pr(output)
 
         # Calculate statistics and update loggers
-        stats = model_with_losses.get_stats(gt, preds, train=True)
+        stats = model_with_losses.get_stats(gt, preds, train=True)  # Training-specific metrics
         lr = optimizer.param_groups[0]["lr"]
         losses_detach = {f"train_{k}": v.cpu().item() for k, v in all_losses.items()}
         
@@ -185,7 +198,12 @@ def train_one_epoch(
     print("Averaged stats:", metric_logger)
     return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
 
-@torch.no_grad()
+
+######################################################################
+# evaluate the model on a validation/test dataset
+######################################################################
+
+@torch.no_grad()  # Disables gradient computation for evaluation
 def evaluate(model, dl, device, args, output_dir):
     """
     Evaluates the model on a validation/test dataset.
@@ -200,7 +218,7 @@ def evaluate(model, dl, device, args, output_dir):
     Returns:
         dict: Dictionary containing evaluation metrics
     """
-    model.eval()
+    model.eval()  # Disables training-specific behaviors like dropout
 
     metric_logger = misc.MetricLogger(delimiter="  ")
     header = "Test:"
@@ -208,12 +226,12 @@ def evaluate(model, dl, device, args, output_dir):
     # Lists to store predictions, ground truth, and losses
     lists = {"gt": [], "pr": [], "x": [], "loss": []}
     
-    # Evaluation loop
+    # Evaluation loop - no gradient computation or parameter updates
     for batch in metric_logger.log_every(dl, 10, header):
         batch = move_to_device(batch, device)
         output = model(batch['x'])
         
-        # Calculate losses
+        # Calculate losses (for monitoring only, no backprop)
         all_losses = {}
         model_with_losses = model.module if hasattr(model, "module") else model
         for loss_name in model_with_losses.losses:
@@ -241,7 +259,7 @@ def evaluate(model, dl, device, args, output_dir):
     mean_loss = float(np.mean(lists['loss']))
 
     model_with_losses = model.module if hasattr(model, "module") else model
-    stats = model_with_losses.get_stats(gt_all, prob_all, train=False)
+    stats = model_with_losses.get_stats(gt_all, prob_all, train=False)  # Testing-specific metrics
 
     # Calculate average losses
     for loss_name, loss_val in all_losses.items():
@@ -253,14 +271,15 @@ def evaluate(model, dl, device, args, output_dir):
     plots_dir.mkdir(exist_ok=True, parents=True)
 
     # Generate and save ROC curves
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(3, 3))
     gt_onehot = np.eye(3)[gt_all.cpu()]  # Convert to one-hot encoding for 3-class classification
     pr_np = prob_all.cpu().numpy()
     
     # Plot ROC curve for each class
     for i in range(3):
         fpr, tpr, _ = roc_curve(gt_onehot[:, i], pr_np[:, i])
-        plt.plot(fpr, tpr, label=f'Class {i} (AUC = {stats[f"test_auroc"]:.2f})')
+        class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
+        plt.plot(fpr, tpr, label=f'{class_names[i]} (AUC = {stats[f"test_auroc"]:.2f})')
     plt.plot([0, 1], [0, 1], 'k--')  # Add diagonal line for reference
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
@@ -270,10 +289,11 @@ def evaluate(model, dl, device, args, output_dir):
     plt.close()
 
     # Create and save Precision-Recall curves
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(3, 3))
     for i in range(3):
         precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
-        plt.plot(recall, precision, label=f'Class {i} (AUC = {stats[f"test_auprc_class{i}"]:.2f})')
+        class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
+        plt.plot(recall, precision, label=f'{class_names[i]} (AUC = {stats[f"test_auprc_class{i}"]:.2f})')
     plt.xlabel('Recall')
     plt.ylabel('Precision')
     plt.title(f'Precision-Recall Curves (Epoch {getattr(args, "current_epoch", "final")})')
@@ -285,9 +305,9 @@ def evaluate(model, dl, device, args, output_dir):
     metrics = {
         'epoch': getattr(args, "current_epoch", "final"),
         'auroc': stats["test_auroc"],
-        'auprc_class0': stats["test_auprc_class0"],
-        'auprc_class1': stats["test_auprc_class1"],
-        'auprc_class2': stats["test_auprc_class2"],
+        'auprc_immunogenic': stats["test_auprc_class0"],
+        'auprc_non_immunogenic': stats["test_auprc_class1"],
+        'auprc_weakly_immunogenic': stats["test_auprc_class2"],
         'accuracy': stats["test_acc"],
         'f1_macro': stats["test_f1_macro"],
         'f1_weighted': stats["test_f1_weighted"],
@@ -295,7 +315,7 @@ def evaluate(model, dl, device, args, output_dir):
     }
     
     # Load existing metrics if available, otherwise create new DataFrame
-    metrics_file = plots_dir / 'training_metrics.csv'
+    metrics_file = plots_dir / 'test_metrics.csv'
     if metrics_file.exists():
         df_metrics = pd.read_csv(metrics_file)
         df_new = pd.DataFrame([metrics])
@@ -352,7 +372,7 @@ def evaluate(model, dl, device, args, output_dir):
     plt.grid(True)
 
     plt.tight_layout()
-    plt.savefig(plots_dir / 'training_progress.png')
+    plt.savefig(plots_dir / 'test_progress.png')
     plt.close()
 
     # Save predictions for later analysis

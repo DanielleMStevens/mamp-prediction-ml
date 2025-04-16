@@ -123,4 +123,4 @@ test_summary_plot <-ggplot(test_summary, aes(x = train_data, y = n, fill = Recep
   ylab("Count")
 
 
-ggsave(filename = "./04_Preprocessing_results/test_summary_plot.pdf", plot = test_summary_plot, device = "pdf", dpi = 300, width = 2.2, height = 0.8)
+ggsave(filename = "./04_Preprocessing_results/test_summary_plot.pdf", plot = test_summary_plot, device = "pdf", dpi = 300, width = 3.2, height = 0.8)

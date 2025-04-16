@@ -127,7 +127,6 @@ Solanum_lycopersicum_Solyc03g096190_CORE                                        
 Solanum_lycopersicum_Solyc04g009640_FLS3                                                            model_3        87.8      0.640
 Solanum_lycopersicum_Solyc08g016270_CuRe1                                                           model_3        86.0      0.786
 Solanum_lycopersicum_XP_004233092.1_FLS2                                                            model_3        87.4      0.640
-Solanum_lycopersicum_XP_004233092.1_SlFLS2                                                          model_3        87.4      0.640
 Solanum_lycopersicum_XP_004237164.3_FLS3                                                            model_5        87.3      0.647
 Solanum_lycopersicum_XP_069151269.1_CORE                                                            model_3        87.4      0.612
 Solanum_medians_OQ999475_PERU                                                                       model_5        91.2      0.693
@@ -149,10 +148,12 @@ Vigna_radiata_Vradi08g18340_INR-like_1_INR-like                                 
 Vigna_radiata_Vradi08g18340_INR_INR                                                                 model_4        88.5      0.798
 Vigna_radiata_XP_014499491.1_FLS2                                                                   model_3        85.3      0.753
 Vigna_radiata_XP_014499491_FLS2                                                                     model_3        85.3      0.753
+Vigna_unguiculata_Cameroon_12-5B_INR                                                                model_4        88.2      0.804
+Vigna_unguiculata_Fael-14-Inhaca-E_INR                                                              model_3        88.6      0.816
+Vigna_unguiculata_Tvu-21_INR                                                                        model_4        88.4      0.804
 Vigna_unguiculata_Vigun07g039700_INR-like                                                           model_3        89.9      0.803
 Vigna_unguiculata_Vigun07g219600_INR                                                                model_3        88.9      0.818
 Vigna_unguiculata_Vigun07g219700_INR-like                                                           model_3        88.1      0.793
 Vitis_riparia_PQ283347_FLS2                                                                         model_3        88.0      0.640
 Vitis_riparia_PQ283348_FLS2                                                                         model_3        87.9      0.636
-Vitis_riparia_PQ283348_VrFLS2                                                                       model_5        87.9      0.653
 Zanthoxylum_bungeanum_ON556664.1_FLS2                                                               model_5        86.4      0.638

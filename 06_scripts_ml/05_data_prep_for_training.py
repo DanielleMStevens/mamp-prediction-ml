@@ -1,5 +1,11 @@
-#!/usr/bin/env python3
-
+#-----------------------------------------------------------------------------------------------
+# Krasileva Lab - Plant & Microbial Biology Department UC Berkeley
+# Author: Danielle M. Stevens
+# Last Updated: 07/06/2020
+# Script Purpose: 
+# Inputs: 
+# Outputs: 
+#-----------------------------------------------------------------------------------------------
 """
 Data preparation script for MAMP prediction model.
 

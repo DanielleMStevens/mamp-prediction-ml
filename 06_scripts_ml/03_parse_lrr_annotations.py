@@ -41,30 +41,38 @@ def parse_lrr_annotation_results(file_path):
 def parse_full_length_fasta(file_path):
     """Parse the full-length receptor FASTA file to get protein information."""
     protein_info = {}
+    current_sequence = []
     current_header = None
     
     with open(file_path, 'r') as f:
         for line in f:
             line = line.strip()
             if line.startswith('>'):
+                # Process previous sequence if it exists
+                if current_sequence and current_header:
+                    protein_info[current_header]['sequence'] = ''.join(current_sequence)
+                    current_sequence = []
+                
                 # Extract protein name and ID from the header
                 current_header = line[1:]  # Remove '>'
                 parts = current_header.split('|')
-                if len(parts) >= 2:
+                if len(parts) >= 3:
                     species = parts[0].strip()
                     protein_id = parts[1].strip()
-                    protein_type = parts[2].strip() if len(parts) > 2 else ""
+                    protein_type = parts[2].strip()
                     
-                    # Create a key that matches the format in lrr_domains
-                    key_parts = [word for word in species.split() + [protein_id]]
-                    key = "_".join(key_parts)
-                    
-                    protein_info[key] = {
-                        'header': current_header,
+                    protein_info[current_header] = {
                         'species': species,
                         'protein_id': protein_id,
-                        'protein_type': protein_type
+                        'protein_type': protein_type,
+                        'original_header': current_header
                     }
+            else:
+                current_sequence.append(line)
+        
+        # Process the last sequence
+        if current_sequence and current_header:
+            protein_info[current_header]['sequence'] = ''.join(current_sequence)
     
     return protein_info
 
@@ -75,27 +83,79 @@ def create_lrr_domain_fasta(lrr_domains, protein_info, output_file):
             # Skip placeholder entries
             if protein_name == "PDB_Filename" or domain_data['sequence'] == "Sequence":
                 continue
-                
-            # Try to find matching protein info
-            matching_info = None
-            for key, info in protein_info.items():
-                if protein_name.startswith(key) or key.startswith(protein_name):
-                    matching_info = info
-                    break
             
-            # If no exact match, try a more flexible approach
-            if not matching_info:
-                for key, info in protein_info.items():
-                    protein_id = info['protein_id']
-                    if protein_id in protein_name:
-                        matching_info = info
-                        break
+            # Convert the protein name from alphafold format to desired format
+            # Examples: 
+            # Arabidopsis_thaliana_AT5G46330_RD_FLS2 -> Arabidopsis thaliana|AT5G46330_RD|FLS2
+            # Arabidopsis_thaliana_AT5G46330_E321L_FLS2 -> Arabidopsis thaliana|AT5G46330_E321L|FLS2
+            # Solanum_lycopersicum_Solyc02g070890_FLS2 -> Solanum lycopersicum|Solyc02g070890|FLS2
+            parts = protein_name.split('_')
             
-            # Create header
-            if matching_info:
-                header = f">{matching_info['species']}|{matching_info['protein_id']}|{matching_info['protein_type']}|LRR_domain"
+            # Find where the species name ends and the ID begins
+            species_parts = []
+            remaining_parts = []
+            
+            # Common ID prefixes and patterns
+            id_patterns = [
+                'AT', 'HE', 'XP', 'Solyc', 'Vigun', 'PGSC', 'UTN',
+                'Bra', 'Glyma', 'Phvul', 'Vradi', 'Lp', 'OQ', 'PQ',
+                'MH', 'AC', 'BK'
+            ]
+            
+            # Handle special cases where species name contains numbers
+            if any(p in protein_name for p in ['Group1', 'Group2', 'Group3']):
+                group_idx = next(i for i, p in enumerate(parts) if 'Group' in p)
+                species_parts = parts[:group_idx + 1]
+                remaining_parts = parts[group_idx + 1:]
             else:
-                header = f">{protein_name}|LRR_domain"
+                # Standard processing
+                for i, part in enumerate(parts):
+                    # Check if this part starts with any ID pattern
+                    # or matches accession number pattern (letters, numbers, dots)
+                    # or matches Solyc pattern (e.g., Solyc02g070890)
+                    if (any(part.startswith(prefix) for prefix in id_patterns) or
+                        (part[0].isalpha() and any(c.isdigit() for c in part)) or
+                        (part.startswith('Solyc') and 'g' in part)):
+                        remaining_parts = parts[i:]
+                        break
+                    species_parts.append(part)
+            
+            # If no clear split found, use default splitting
+            if not remaining_parts and species_parts:
+                species_parts = parts[:2]
+                remaining_parts = parts[2:]
+            
+            species = ' '.join(species_parts)
+            
+            # Handle the remaining parts to extract protein ID and type
+            if not remaining_parts:
+                # Fallback if parsing failed
+                protein_id = protein_name
+                protein_type = "UNKNOWN"
+            else:
+                # Get the base ID (first part)
+                protein_id = remaining_parts[0]
+                
+                # Check for variant/mutation identifiers
+                if len(remaining_parts) > 2:
+                    second_part = remaining_parts[1]
+                    # Variant patterns: RD, DD, E321L, etc.
+                    if (second_part.isupper() or  # RD, DD
+                        (second_part[0].isupper() and any(c.isdigit() for c in second_part)) or  # E321L
+                        second_part.startswith(('Borsk', 'Ciste', 'Ct', 'Dobra', 'Gu', 'Mammo', 'Petro', 'Rovero', 'Shigu', 'Yeg'))):  # Natural variants
+                        protein_id += f"_{second_part}"
+                        protein_type = remaining_parts[2]
+                    else:
+                        protein_type = second_part
+                else:
+                    protein_type = remaining_parts[-1]
+                
+                # Clean up protein type if it contains additional identifiers
+                if '|' in protein_type:
+                    protein_type = protein_type.split('|')[0]
+            
+            # Construct the header in the desired format
+            header = f">{species}|{protein_id}|{protein_type}|LRR_domain"
             
             # Write to FASTA file
             f.write(f"{header}\n")

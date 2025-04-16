@@ -17,7 +17,7 @@ cols(
   pTM = col_character()
 )
 
-Warning: 157 parsing failures.
+Warning: 160 parsing failures.
 row col  expected    actual                                              file
   1  -- 5 columns 1 columns './04_Preprocessing_results/alphafold_scores.txt'
   2  -- 5 columns 4 columns './04_Preprocessing_results/alphafold_scores.txt'
@@ -37,3 +37,10 @@ Removed 1 row containing non-finite outside the scale range (`stat_bin()`).
 Warning message:
 Removed 1 row containing missing values or values outside the scale range
 (`geom_point()`). 
+Rows: 182 Columns: 8
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (8): Plant species, Receptor, Locus ID/Genbank, Epitope, Sequence, Known...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.

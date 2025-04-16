@@ -1,3 +1,12 @@
+#-----------------------------------------------------------------------------------------------
+# Krasileva Lab - Plant & Microbial Biology Department UC Berkeley
+# Author: Danielle M. Stevens
+# Last Updated: 07/06/2020
+# Script Purpose: 
+# Inputs: 
+# Outputs: 
+#-----------------------------------------------------------------------------------------------
+
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,6 +15,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 import os
 from pathlib import Path
 import argparse
+
 
 def parse_args():
     parser = argparse.ArgumentParser('Confusion Matrix Generation Script', add_help=False)
@@ -23,8 +33,8 @@ def main(args):
     predictions = torch.load(args.predictions_path)
     
     # Get ground truth and predictions
-    gt = predictions['gt'].detach().cpu().numpy()
-    preds = predictions['pr'].detach().cpu().numpy()
+    gt = predictions['gt'].detach().cpu().numpy() #ground truth
+    preds = predictions['pr'].detach().cpu().numpy() #predictions
     
     # For probability outputs, convert to class predictions
     if len(preds.shape) > 1:
@@ -34,15 +44,13 @@ def main(args):
     cm = confusion_matrix(gt, preds)
     
     # Create confusion matrix plot
-    plt.figure(figsize=(2, 2), dpi=300)
+    plt.figure(figsize=(1.5, 1.5), dpi=300)
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', annot_kws={"size": 8})
     plt.title('Confusion Matrix', fontsize=7)
     plt.ylabel('True Label', fontsize=7)
     plt.xlabel('Predicted Label', fontsize=7)
     plt.tick_params(axis='both', which='major', labelsize=8)
     plt.tight_layout(pad=0.5)  
-    
-   
     
     # Save plot
     plt.savefig(os.path.join(args.output_dir, 'confusion_matrix.pdf'))
