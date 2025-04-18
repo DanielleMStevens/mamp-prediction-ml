@@ -137,12 +137,12 @@ receptor_RLP23 <- receptor_RLP23[!duplicated(receptor_RLP23$Receptor.Sequence),]
 
 combine_receptor_comparison <- rbind(FLS2_comparison, PERU_comparison, MIK2_comparison, CORE_comparison, EFR_comparison, 
                                     FLS3_comparison, INR_comparison, RLP42_comparison)
-receptor_stats <- combine_receptor_comparison %>% group_by(comparison) %>%distinct(query_id) %>% summarize(number = n())
+receptor_stats <- combine_receptor_comparison %>% group_by(comparison) %>% distinct(query_id) %>% summarize(number = n())
 receptor_stats$number <- receptor_stats$number + 1
 
 receptor_sequence_comparison_plot <- ggplot(combine_receptor_comparison, aes(x = comparison, y = identity, fill = comparison)) +
   stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width") +
-  geom_boxplot(fill = "white", width = 0.2, outlier.shape = NA) +
+  geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA) +
   theme_classic() +
   xlab("Homolog Comparisons") +
   ylab("Percent Identity")+
@@ -155,7 +155,8 @@ receptor_sequence_comparison_plot <- ggplot(combine_receptor_comparison, aes(x =
   scale_color_manual(values = receptor_colors) +
   geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
-ggsave(filename = "./04_Preprocessing_results/receptor_sequence_comparison_plot.pdf", plot = receptor_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2)
+ggsave(filename = "./04_Preprocessing_results/receptor_sequence_comparison_plot.pdf", 
+plot = receptor_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.25)
 
 
 ######################################################################
@@ -233,7 +234,7 @@ epitope_stats$number <- epitope_stats$number + 1
 
 epitope_sequence_comparison_plot <- ggplot(combine_epitope_comparison, aes(x = comparison, y = identity, fill = comparison)) +
   stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width") +
-  geom_boxplot(fill = "white", width = 0.2, outlier.shape = NA) +
+  geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA) +
   theme_classic() +
   xlab("Variant Comparisons") +
   ylab("Percent Identity")+
@@ -246,7 +247,8 @@ epitope_sequence_comparison_plot <- ggplot(combine_epitope_comparison, aes(x = c
   scale_color_manual(values = epitope_colors) +
   geom_text(data = epitope_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
-ggsave(filename = "./04_Preprocessing_results/epitope_sequence_comparison_plot.pdf", plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.5)
+ggsave(filename = "./04_Preprocessing_results/epitope_sequence_comparison_plot.pdf", 
+plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.5)
 
 
 #load_training_ML_data$Ligand.Length <- as.numeric(nchar(load_training_ML_data$Ligand.Sequence))
