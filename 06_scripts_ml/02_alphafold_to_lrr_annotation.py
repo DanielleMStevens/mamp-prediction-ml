@@ -187,7 +187,7 @@ def run_lrr_annotation(pdb_directory):
 def main():
     # Set up paths
     project_root = Path(__file__).parent.parent
-    log_file = project_root / "03_out_data" / "modeled_structures" / "log.txt"
+    log_file = project_root / "03_out_data" / "modeled_structures" / "alphafold_model_stats.txt"
     scores_file = project_root / "04_Preprocessing_results" / "alphafold_scores.txt"
     
     # Source and target directories for PDB files
