@@ -44,8 +44,8 @@ def main(args):
     cm = confusion_matrix(gt, preds)
     
     # Create confusion matrix plot
-    plt.figure(figsize=(1.5, 1.5), dpi=300)
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', annot_kws={"size": 8})
+    plt.figure(figsize=(1.8, 1.8), dpi=450)
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Purples', annot_kws={"size": 8})
     plt.title('Confusion Matrix', fontsize=7)
     plt.ylabel('True Label', fontsize=7)
     plt.xlabel('Predicted Label', fontsize=7)

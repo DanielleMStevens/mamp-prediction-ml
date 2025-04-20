@@ -55,14 +55,21 @@ identity_calc <- function(label_ids, sequence_list, comparison){
 
 # distribution of peptide outcomes
 peptide_distrubution <- load_training_ML_data %>% group_by(Ligand, Immunogenicity) %>% summarize(n=n())
-immunogenicity_distrubution <- ggplot(peptide_distrubution, aes(x=Immunogenicity, y=n, fill=Ligand)) +
+immunogenicity_distrubution <- ggplot(data = peptide_distrubution, aes(x=Immunogenicity, y=n, fill=Ligand)) +
   geom_bar(stat="identity") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8, color = "black"),
         axis.text.y = element_text(color = "black"),
         legend.position = "none")+
   labs(x="", y="Count") +
-  scale_fill_manual(values = epitope_colors)
+  scale_fill_manual(values = epitope_colors) +
+  geom_text(data = peptide_distrubution %>% 
+              group_by(Immunogenicity) %>% 
+              summarise(n = sum(n)),
+            aes(label = n, y = n, x = Immunogenicity), 
+            position = position_stack(vjust = 1.05),
+            inherit.aes = FALSE,
+            size = 3)
 
 ggsave(filename = "./04_Preprocessing_results/peptide_distrubution.pdf", plot = immunogenicity_distrubution, device = "pdf", dpi = 300, width = 1.5, height = 3)
 

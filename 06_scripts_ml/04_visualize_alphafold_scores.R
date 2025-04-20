@@ -98,7 +98,7 @@ test_summary <- test_summary[test_summary$Receptor != "INR-like",]
 test_summary_plot <-ggplot(test_summary, aes(x = train_data, y = n, fill = Receptor)) +
   geom_bar(stat = "identity") +
   geom_text(aes(label = n, color = Receptor),
-            size = 3.5, 
+            size = 3, 
             position = position_stack(vjust = 0.2),
             hjust = -0.2) +
   theme_classic() +

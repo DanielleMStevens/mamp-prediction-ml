@@ -30,7 +30,7 @@ writeFasta <- function(data, filename){
 # filter through blast results, filter by annotation, and put into distict fasta files
 ######################################################################
 
-load_training_ML_data <- readxl::read_xlsx(path = "./02_in_data/All_LRR_PRR_ligand_data.xlsx")
+load_training_ML_data <- readxl::read_xlsx(path = "./02_in_data/All_LRR_PRR_ligand_data.xlsx", sheet = "Model_Building")
 load_training_ML_data <- data.frame(load_training_ML_data)[1:12]
 
 receptor_full_length <- data.frame("Locus_Tag_Name" = character(0), "Sequence" = character(0))

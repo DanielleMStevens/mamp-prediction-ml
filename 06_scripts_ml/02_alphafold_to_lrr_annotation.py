@@ -112,10 +112,6 @@ def copy_best_models(best_models, source_dir, target_dir):
     for receptor in sorted(best_models.keys()):
         print(f"- {receptor} (model_{best_models[receptor]})")
     
-    print("\nFirst few files in source directory:")
-    for file in sorted(all_pdb_files)[:5]:
-        print(f"- {file.name}")
-    
     # Continue with copying
     for receptor, model_num in best_models.items():
         # Modified pattern to handle rank with leading zeros

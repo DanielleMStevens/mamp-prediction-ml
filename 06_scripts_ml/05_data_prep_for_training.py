@@ -28,20 +28,13 @@ from pathlib import Path
 from sklearn.model_selection import train_test_split
 from typing import Dict, Tuple, List
 
+########################################################################################
+# Parse a FASTA format file into a dictionary of sequences.
+# Returns: Dict[str, str]: Dictionary mapping sequence headers to their corresponding sequences
+# Note: Expected FASTA header format: >species|locus_id|receptor
+########################################################################################
+
 def parse_fasta(fasta_path: Path) -> Dict[str, str]:
-    """
-    Parse a FASTA format file into a dictionary of sequences.
-    
-    Args:
-        fasta_path (Path): Path to the FASTA file
-        
-    Returns:
-        Dict[str, str]: Dictionary mapping sequence headers to their corresponding sequences
-        
-    Note:
-        Expected FASTA header format: >species|locus_id|receptor
-        Headers are parsed to create a standardized key format
-    """
     sequences = {}
     current_header = None
     current_sequence = []
@@ -57,6 +50,7 @@ def parse_fasta(fasta_path: Path) -> Dict[str, str]:
                 # Save the previous sequence if it exists
                 if current_header:
                     sequences[current_header] = ''.join(current_sequence)
+                #print(current_header)
                 
                 # Parse the new header
                 header = line[1:]  # Remove '>' character
@@ -79,86 +73,68 @@ def parse_fasta(fasta_path: Path) -> Dict[str, str]:
     # Save the last sequence
     if current_header:
         sequences[current_header] = ''.join(current_sequence)
-    
+    #print(sequences)
     return sequences
 
+
+########################################################################################
+# Load receptor protein sequences from the FASTA file
+# Returns: Dict[str, str]: Dictionary mapping receptor identifiers to their sequences
+# Raises: FileNotFoundError: If the FASTA file is not found at the expected location
+########################################################################################
+
 def load_receptor_sequences(in_data_dir: Path) -> Dict[str, str]:
-    """
-    Load receptor protein sequences from the FASTA file.
-    
-    Args:
-        in_data_dir (Path): Base input directory path
-        
-    Returns:
-        Dict[str, str]: Dictionary mapping receptor identifiers to their sequences
-        
-    Raises:
-        FileNotFoundError: If the FASTA file is not found at the expected location
-    """
     fasta_path = in_data_dir.parent / "03_out_data" / "lrr_domain_sequences.fasta"
     if not fasta_path.exists():
         raise FileNotFoundError(f"Could not find receptor sequence file at {fasta_path}")
         
     return parse_fasta(fasta_path)
 
+
+########################################################################################
+# Process and combine MAMP prediction data from Excel and FASTA files.
+# Returns: pd.DataFrame: Processed dataframe containing combined receptor-ligand data
+# Raises: FileNotFoundError: If required Excel file is not found
+########################################################################################
+
 def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataFrame:
-    """
-    Process and combine MAMP prediction data from Excel and FASTA files.
-    
-    Args:
-        in_data_dir (Path): Directory containing input data files
-        use_legacy_columns (bool): If True, use old column names (Epitope, Sequence, Known Outcome)
-                                 If False, use new names (Ligand, Ligand Sequence, Immunogenicity)
-    
-    Returns:
-        pd.DataFrame: Processed dataframe containing combined receptor-ligand data
-        
-    Raises:
-        FileNotFoundError: If required Excel file is not found
-        ValueError: If required columns are missing from Excel file
-    """
 
-
-    # Load Excel data
+# Load Excel data
     excel_path = in_data_dir / "All_LRR_PRR_ligand_data.xlsx"
     if not excel_path.exists():
         raise FileNotFoundError(f"Could not find Excel data file at {excel_path}")
-    
     data_df = pd.read_excel(excel_path)
-    
-    # Validate required columns
-    required_columns = ["Plant species", "Receptor", "Locus ID/Genbank", "Ligand", "Ligand Sequence", "Immunogenicity"]
-    missing_columns = [col for col in required_columns if col not in data_df.columns]
-    if missing_columns:
-        raise ValueError(f"Missing required columns in Excel file: {missing_columns}")
 
-    # Extract unique receptor-ligand pairs
-    receptor_ligand_pairs = data_df[required_columns].drop_duplicates()
-    print(f"Unique receptor-ligand pairs: {len(receptor_ligand_pairs)}")
-    
-    # Create standardized receptor identifiers
-    receptor_ligand_pairs['Receptor Name'] = receptor_ligand_pairs.apply(
-        lambda x: f"{x['Plant species']}|{x['Locus ID/Genbank']}|{x['Receptor']}", 
+    # Select required columns and create a copy
+    required_columns = ["Plant species", "Receptor", "Locus ID/Genbank", "Ligand", "Ligand Sequence", "Immunogenicity"]
+    receptor_ligand_pairs = data_df[required_columns]
+
+    # Create standardized receptor identifiers (used for mapping)
+    original_receptor_names = receptor_ligand_pairs.apply(
+        lambda x: f"{x['Plant species'].replace(' ', '_')}|{x['Locus ID/Genbank']}|{x['Receptor']}",
         axis=1
     )
-    
-    # Add receptor sequences
+
+
+    # Load receptor sequences
+    receptor_ligand_pairs['Header_Name'] = original_receptor_names
     receptor_name_to_seq = load_receptor_sequences(in_data_dir)
-    receptor_ligand_pairs['Receptor Sequence'] = receptor_ligand_pairs["Receptor Name"].map(receptor_name_to_seq)
-    
+    receptor_ligand_pairs['Receptor Sequence'] = original_receptor_names.map(receptor_name_to_seq)
+    print(receptor_ligand_pairs)
+
     # Log missing sequences
-    missing_receptors = receptor_ligand_pairs[receptor_ligand_pairs['Receptor Sequence'].isna()]
-    print("\nMissing receptor sequences for:")
-    for _, row in missing_receptors.iterrows():
-        print(f"- {row['Receptor Name']} ({row['Plant species']}, {row['Receptor']})")
-    
-    # Remove entries with missing sequences
-    before_filter = len(receptor_ligand_pairs)
-    receptor_ligand_pairs = receptor_ligand_pairs.dropna(subset=['Receptor Sequence'])
-    after_filter = len(receptor_ligand_pairs)
-    print(f"\nFiltered out {before_filter - after_filter} rows with missing receptor sequences")
-    
-    
+    missing_sequences = receptor_ligand_pairs['Receptor Sequence'].isna().sum()
+    if missing_sequences > 0:
+        print(f"\nWARNING: Found {missing_sequences} rows with missing receptor sequences after mapping.")
+        print("\nMissing sequences for the following Header_Names:")
+        missing_headers = receptor_ligand_pairs[receptor_ligand_pairs['Receptor Sequence'].isna()]['Header_Name']
+        for header in missing_headers:
+            print(f"- {header}")
+        # Optionally filter out missing sequences if needed:
+        # receptor_ligand_pairs = receptor_ligand_pairs.dropna(subset=['Receptor Sequence'])
+        # print(f"Retained {len(receptor_ligand_pairs)} rows after filtering.")
+
+
     # Handle legacy column names if needed
     if use_legacy_columns:
         column_mapping = {
@@ -166,43 +142,39 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
             'Ligand Sequence': 'Sequence',
             'Immunogenicity': 'Known Outcome'
         }
-        receptor_ligand_pairs = receptor_ligand_pairs.rename(columns=column_mapping)
+    receptor_ligand_pairs = receptor_ligand_pairs.rename(columns=column_mapping)
     
     return receptor_ligand_pairs
 
+########################################################################################
+# Create a stratified train/test split while handling potential rare classes.
+# Returns: Tuple[pd.DataFrame, pd.DataFrame]: Training and test dataframes
+# Note: Attempts stratified split based on 'Known Outcome' column
+# Note: Falls back to random split if stratification fails (e.g., due to rare classes)
+# Note: Uses 80/20 train/test split ratio
+########################################################################################
+
+# we can use sklearn.model_selection.train_test_split to split the data -> ex. stratify 
 def split_with_rare_handling(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    """
-    Create a stratified train/test split while handling potential rare classes.
-    
-    Args:
-        df (pd.DataFrame): Input dataframe containing the full dataset
-        
-    Returns:
-        Tuple[pd.DataFrame, pd.DataFrame]: Training and test dataframes
-        
-    Note:
-        - Attempts stratified split based on 'Known Outcome' column
-        - Falls back to random split if stratification fails (e.g., due to rare classes)
-        - Uses 80/20 train/test split ratio
-    """
-    try:
+    #try:
         # Attempt stratified split
-        train_df, test_df = train_test_split(
+    train_df, test_df = train_test_split(
             df, 
             test_size=0.2, 
             random_state=42, 
             stratify=df['Known Outcome']
-        )
-    except ValueError as e:
-        print("Warning: Could not stratify by Known Outcome, falling back to random split")
-        # Fallback to random split
-        train_df, test_df = train_test_split(
-            df, 
-            test_size=0.2, 
-            random_state=42
-        )
-    
+    )
     return train_df, test_df
+    #except ValueError as e:
+    #    print("Warning: Could not stratify by Known Outcome, falling back to random split")
+        # Fallback to random split
+    #    train_df, test_df = train_test_split(
+    #        df, 
+   #         test_size=0.2, 
+    #        random_state=42
+    #    )
+    
+
 
 def main():
     """

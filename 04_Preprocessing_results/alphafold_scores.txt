@@ -24,7 +24,10 @@ Arabidopsis_thaliana_AT3G25020_Yeg-1_RLP42                                      
 Arabidopsis_thaliana_AT4G08850_MIK2                                                                 model_1        85.4      0.628
 Arabidopsis_thaliana_AT5G46330_Be-0_FLS2                                                            model_1        84.8      0.604
 Arabidopsis_thaliana_AT5G46330_D235A_FLS2                                                           model_1        84.8      0.604
+Arabidopsis_thaliana_AT5G46330_D255A_FLS2                                                           model_1        84.8      0.605
+Arabidopsis_thaliana_AT5G46330_D679A_FLS2                                                           model_1        84.8      0.609
 Arabidopsis_thaliana_AT5G46330_DD_FLS2                                                              model_1        86.8      0.617
+Arabidopsis_thaliana_AT5G46330_E259A_FLS2                                                           model_1        84.4      0.606
 Arabidopsis_thaliana_AT5G46330_E321D_FLS2                                                           model_1        86.6      0.613
 Arabidopsis_thaliana_AT5G46330_E321G_FLS2                                                           model_1        86.9      0.613
 Arabidopsis_thaliana_AT5G46330_E321L_FLS2                                                           model_1        87.1      0.614
@@ -73,9 +76,15 @@ Arabidopsis_thaliana_AT5G46330_LRR6b_FLS2                                       
 Arabidopsis_thaliana_AT5G46330_LRR7_FLS2                                                            model_1        84.5      0.603
 Arabidopsis_thaliana_AT5G46330_LRR8_FLS2                                                            model_1        84.7      0.605
 Arabidopsis_thaliana_AT5G46330_LRR9_FLS2                                                            model_1        84.6      0.602
+Arabidopsis_thaliana_AT5G46330_N704A_FLS2                                                           model_1        84.9      0.604
+Arabidopsis_thaliana_AT5G46330_Q682A_FLS2                                                           model_1        84.6      0.601
+Arabidopsis_thaliana_AT5G46330_R234A_FLS2                                                           model_1        84.6      0.604
 Arabidopsis_thaliana_AT5G46330_R430A_FLS2                                                           model_1        84.6      0.607
 Arabidopsis_thaliana_AT5G46330_S345D_FLS2                                                           model_1        86.4      0.616
 Arabidopsis_thaliana_AT5G46330_S345G_FLS2                                                           model_1        86.6      0.614
+Arabidopsis_thaliana_AT5G46330_S681A_FLS2                                                           model_1        84.6      0.604
+Arabidopsis_thaliana_AT5G46330_S706A_FLS2                                                           model_1        84.8      0.604
+Arabidopsis_thaliana_AT5G46330_S706C_FLS2                                                           model_1        84.8      0.604
 Arabidopsis_thaliana_At5g20480_EFR                                                                  model_1        85.1      0.614
 Arabidopsis_thaliana_HE617301_FLS2                                                                  model_1        86.6      0.615
 Arabidopsis_thaliana_HE617302_FLS2                                                                  model_1        86.3      0.614
@@ -93,6 +102,9 @@ Arabidopsis_thaliana_HE617329_FLS2                                              
 Arabidopsis_thaliana_HE617331_FLS2                                                                  model_1        86.3      0.613
 Brascia_rapa_BraraC02577_MIK2                                                                       model_1        85.6      0.629
 Brassica_rapa_97L9_FLS2                                                                             model_1        85.1      0.661
+Brassica_rapa_ABW72746_FLS2                                                                         model_1        83.9      0.614
+Brassica_rapa_ABW72747_FLS2                                                                         model_1        84.6      0.613
+Brassica_rapa_ABW72748_FLS2                                                                         model_1        84.4      0.614
 Brassica_rapa_Bra002305_EFR                                                                         model_1        84.0      0.608
 Brassica_rapa_Bra006560_EFR                                                                         model_1        84.6      0.613
 Brassica_rapa_Bra017563_FLS2                                                                        model_1        86.7      0.623
