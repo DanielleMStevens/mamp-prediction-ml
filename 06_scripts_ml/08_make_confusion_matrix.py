@@ -39,21 +39,34 @@ def main(args):
     # For probability outputs, convert to class predictions
     if len(preds.shape) > 1:
         preds = np.argmax(preds, axis=1)
-    
-    # Create confusion matrix
+    # Create confusion matrices
     cm = confusion_matrix(gt, preds)
+    cm_percentage = confusion_matrix(gt, preds, normalize='true') * 100
     
-    # Create confusion matrix plot
+    # Create raw counts confusion matrix plot
     plt.figure(figsize=(1.8, 1.8), dpi=450)
     sns.heatmap(cm, annot=True, fmt='d', cmap='Purples', annot_kws={"size": 8})
-    plt.title('Confusion Matrix', fontsize=7)
+    plt.title('Confusion Matrix (Counts)', fontsize=7)
     plt.ylabel('True Label', fontsize=7)
     plt.xlabel('Predicted Label', fontsize=7)
     plt.tick_params(axis='both', which='major', labelsize=8)
-    plt.tight_layout(pad=0.5)  
+    plt.tight_layout(pad=0.5)
     
-    # Save plot
-    plt.savefig(os.path.join(args.output_dir, 'confusion_matrix.pdf'))
+    # Save counts plot
+    plt.savefig(os.path.join(args.output_dir, 'confusion_matrix_counts.pdf'))
+    plt.close()
+    
+    # Create percentage confusion matrix plot 
+    plt.figure(figsize=(1.8, 1.8), dpi=450)
+    sns.heatmap(cm_percentage, annot=True, fmt='.1f', cmap='Purples', annot_kws={"size": 8})
+    plt.title('Confusion Matrix (%)', fontsize=7)
+    plt.ylabel('True Label', fontsize=7)
+    plt.xlabel('Predicted Label', fontsize=7)
+    plt.tick_params(axis='both', which='major', labelsize=8)
+    plt.tight_layout(pad=0.5)
+    
+    # Save percentage plot
+    plt.savefig(os.path.join(args.output_dir, 'confusion_matrix_percentages.pdf'))
     plt.close()
     
     print("\nClassification Report:")
