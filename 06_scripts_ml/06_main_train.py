@@ -231,8 +231,8 @@ def get_args_parser():
                        help="Epochs between checkpoints")
     parser.add_argument("--disable_wandb", action="store_true",
                        help="Disable WandB logging")
-    parser.add_argument("--wandb_group", default="krasileva", type=str,
-                       help="WandB group name")
+#    parser.add_argument("--wandb_group", default="krasileva", type=str,
+#                       help="WandB group name")
     parser.add_argument("--model_checkpoint_path", type=str,
                        help="Path to model checkpoint for loading")
 
@@ -344,9 +344,9 @@ def main(args):
             tags = [args.model, str(Path(args.data_dir).name), "train"]
         wandb.init(
             project="mamp_ml",
-            entity="dmstev",
+            entity="dmstev-uc-berkeley",
             name=run_name,
-            resume="must",
+            #resume="must",
             #entity=args.wandb_group,
             config=args,
             dir=args.output_dir,
@@ -512,9 +512,10 @@ def main(args):
         if not args.disable_wandb and misc.is_main_process():
             run_name = f"{wandb_dict[args.model]}-{Path(args.data_dir).name}"
             wandb.init(
-                project="mamp",
+                project="mamp_ml",
+                entity="dmstev-uc-berkeley",
                 name=f"{run_name}_{args.cross_eval_kfold}cv",
-                group=args.wandb_group,
+                #group=args.wandb_group,
                 config=args,
                 dir=args.output_dir,
             )

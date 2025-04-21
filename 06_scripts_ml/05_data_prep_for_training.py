@@ -120,6 +120,7 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
     receptor_ligand_pairs['Header_Name'] = original_receptor_names
     receptor_name_to_seq = load_receptor_sequences(in_data_dir)
     receptor_ligand_pairs['Receptor Sequence'] = original_receptor_names.map(receptor_name_to_seq)
+    receptor_ligand_pairs = receptor_ligand_pairs.dropna(subset=['Receptor Sequence'])
     print(receptor_ligand_pairs)
 
     # Log missing sequences
