@@ -3,8 +3,8 @@ library(tidyverse)
 library(Peptides)
 
 # Read the training data
-train_data <- read.csv("datasets/train_stratify.csv")
-test_data <- read.csv("datasets/test_stratify.csv")
+train_data <- read.csv("05_datasets/train_stratify.csv")
+test_data <- read.csv("05_datasets/test_stratify.csv")
 
 # Function to convert sequence to bulkiness values
 sequence_to_bulkiness <- function(sequence) {
@@ -46,8 +46,8 @@ colnames(train_data) <- colnames_chemical_names
 colnames(test_data) <- colnames_chemical_names
 
 # Save the processed data
-write.csv(train_data, "datasets/processed/train_data_with_bulkiness.csv", row.names = FALSE)
-write.csv(test_data, "datasets/processed/test_data_with_bulkiness.csv", row.names = FALSE)
+write.csv(train_data, "05_datasets/train_data_with_bulkiness.csv", row.names = FALSE)
+write.csv(test_data, "05_datasets/test_data_with_bulkiness.csv", row.names = FALSE)
 
 
 # Print first few entries to verify

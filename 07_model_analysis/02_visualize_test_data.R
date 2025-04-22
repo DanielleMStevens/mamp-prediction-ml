@@ -29,7 +29,7 @@ names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "P
 
 test_data <- readr::read_csv(file = "./05_datasets/test_stratify.csv")
 test_summary <- test_data %>% group_by(Receptor) %>% summarize(n = n())
-test_summary$train_data <- "train_data"
+test_summary$test_data <- "test_data"
 
 # Combine INR and INR-like counts and remove INR-like
 test_summary$n[test_summary$Receptor == "INR"] <- test_summary$n[test_summary$Receptor == "INR"] + 
@@ -37,7 +37,7 @@ test_summary$n[test_summary$Receptor == "INR-like"]
 test_summary <- test_summary[test_summary$Receptor != "INR-like",]
 
 # plot a stacked bar chart of the number of sequences in each Receptor
-test_summary_plot <-ggplot(test_summary, aes(x = train_data, y = n, fill = Receptor)) +
+test_summary_plot <-ggplot(test_summary, aes(x = test_data, y = n, fill = Receptor)) +
   geom_bar(stat = "identity") +
   geom_text(aes(label = n, color = Receptor),
             size = 2, 
