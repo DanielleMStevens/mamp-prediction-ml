@@ -58,7 +58,7 @@ import torch.optim as optim
 from models.esm_model import ESMModel
 from models.esm_mid_model import ESMMidModel
 from models.esm_with_receptor_model import ESMWithReceptorModel
-#from models.esm_receptor_chemical import ESMReceptorChemical
+from models.esm_receptor_chemical_fusion_variants import ESMReceptorChemical
 from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
 from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
 from models.esm_contrast_model import ESMContrastiveModel
@@ -261,7 +261,7 @@ model_dict = {
     "esm2_mid": ESMMidModel,                              # ESM2 with mid-layer features
     "alphafold_pair_reps": AlphaFoldModel,                # AlphaFold-based model
     "esm2_with_receptor": ESMWithReceptorModel,           # ESM2 with receptor interaction
-    #"esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
+    "esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
     "glm2_with_receptor": GLMWithReceptorModel,           # GLM2 with receptor interaction
     "esm2_with_receptor_single_seq": ESMWithReceptorSingleSeqModel,  # ESM2 with single sequence receptor
     "glm2_with_receptor_single_seq": GLMWithReceptorSingleSeqModel,  # GLM2 with single sequence receptor
@@ -294,6 +294,7 @@ wandb_dict = {
     "glm2": "mamp_glm2",
     "esm2_mid": "mamp_esm2_mid",
     "alphafold_pair_reps": "mamp_alphafold_pair_reps",
+    "esm_receptor_chemical": "mamp_esm_receptor_chemical",
     "esm2_with_receptor": "mamp_esm2_with_receptor",
     "glm2_with_receptor": "mamp_glm2_with_receptor",
     "esm2_with_receptor_single_seq": "mamp_esm2_with_receptor_single_seq",
@@ -408,8 +409,8 @@ def main(args):
     if args.eval_only_data_path:
         eval_data_path = args.eval_only_data_path
     else:
-        #eval_data_path = f"{args.data_dir}/test_data_with_bulkiness.csv"
-        eval_data_path = f"{args.data_dir}/test_stratify.csv"
+        eval_data_path = f"{args.data_dir}/test_data_with_bulkiness.csv"
+        #eval_data_path = f"{args.data_dir}/test_stratify.csv"
     test_df = pd.read_csv(eval_data_path)
     ds_test = dataset(df=test_df)
     print(f"{len(ds_test)=}")
@@ -441,8 +442,8 @@ def main(args):
         exit()
 
     # Prepare training dataset and dataloader
-    train_df = pd.read_csv(f"{args.data_dir}/train_stratify.csv")
-    #train_df = pd.read_csv(f"{args.data_dir}/train_data_with_bulkiness.csv")
+    #train_df = pd.read_csv(f"{args.data_dir}/train_stratify.csv")
+    train_df = pd.read_csv(f"{args.data_dir}/train_data_with_bulkiness.csv")
     ds_train = dataset(df=train_df)
     print(f"{len(ds_train)=}")
     
@@ -545,8 +546,8 @@ def main(args):
 
 
             cv_ds_train = SeqAffDataset(df=ds_train.df.iloc[train_idx])
-            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_stratify.csv", index=False)
-            #ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_data_with_bulkiness.csv", index=False)
+            #ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_stratify.csv", index=False)
+            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_data_with_bulkiness.csv", index=False)
 
             if args.distributed:
                 cv_sampler_train = torch.utils.data.DistributedSampler(
@@ -564,8 +565,8 @@ def main(args):
                 collate_fn=collate_fn,
             )
             cv_ds_test = SeqAffDataset(df=ds_train.df.iloc[test_idx])
-            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_stratify.csv", index=False)
-            #ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_data_with_bulkiness.csv", index=False)
+            #ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_stratify.csv", index=False)
+            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_data_with_bulkiness.csv", index=False)
             cv_sampler_test = torch.utils.data.SequentialSampler(cv_ds_test)
             
             # Create test dataloader
