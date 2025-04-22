@@ -285,7 +285,7 @@ def evaluate(model, dl, device, args, output_dir):
     plt.ylabel('True Positive Rate')
     plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})')
     plt.legend()
-    plt.savefig(plots_dir / f'roc_curve_epoch_{getattr(args, "current_epoch", "final")}.png')
+    plt.savefig(plots_dir / f'roc_curve_epoch_{getattr(args, "current_epoch", "final")}.pdf')
     plt.close()
 
     # Create and save Precision-Recall curves

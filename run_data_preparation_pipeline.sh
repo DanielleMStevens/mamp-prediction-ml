@@ -38,7 +38,7 @@ run_script "00_visualize_input_data.R"
 run_script "01_prep_receptor_sequences_for_modeling.R"
 run_script "02_alphafold_to_lrr_annotation.py"
 run_script "03_parse_lrr_annotations.py"
-run_script "04_visualize_alphafold_scores.R"
+run_script "04_chemical_conversion.R"
 run_script "05_data_prep_for_training.py"
 
 echo "Pipeline preparationcompleted successfully!" 
