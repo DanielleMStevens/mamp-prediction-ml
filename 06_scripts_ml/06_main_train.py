@@ -54,6 +54,9 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+# random forest model
+from models.random_forest_baseline import RandomForestBaselineModel
+
 # esm models
 from models.esm_model import ESMModel
 from models.esm_mid_model import ESMMidModel
@@ -268,7 +271,8 @@ model_dict = {
     "amplify": AMPModel,                                  # AMP (Antimicrobial Peptide) model
     "amplify_with_receptor": AMPWithReceptorModel,        # AMP model with receptor
     "esm2_with_receptor_attn_film": ESMWithReceptorAttnFilmModel,  # ESM2 with attention and FiLM
-    "esm2_contrast": ESMContrastiveModel                  # ESM2 with contrastive learning
+    "esm2_contrast": ESMContrastiveModel,                  # ESM2 with contrastive learning
+    "random_forest": RandomForestBaselineModel              # Random Forest baseline model
 }
 
 # Dictionary mapping model names to their corresponding dataset classes
@@ -285,7 +289,8 @@ dataset_dict = {
     "amplify": PeptideSeqDataset,
     "amplify_with_receptor": PeptideSeqWithReceptorDataset,
     "esm2_with_receptor_attn_film": PeptideSeqWithReceptorDataset,
-    "esm2_contrast": PeptideSeqDataset
+    "esm2_contrast": PeptideSeqDataset,
+    "random_forest": PeptideSeqWithReceptorDataset
 }
 
 # Dictionary mapping model names to their WandB experiment names
@@ -302,7 +307,8 @@ wandb_dict = {
     "amplify": "mamp_amplify",
     "amplify_with_receptor": "mamp_amplify_with_receptor",
     "esm2_with_receptor_attn_film": "mamp_esm2_with_receptor_attn_film",
-    "esm2_contrast": "mamp_esm2_contrast"
+    "esm2_contrast": "mamp_esm2_contrast",
+    "random_forest": "mamp_random_forest" 
 }
 
 
@@ -409,8 +415,8 @@ def main(args):
     if args.eval_only_data_path:
         eval_data_path = args.eval_only_data_path
     else:
-        eval_data_path = f"{args.data_dir}/test_data_with_bulkiness.csv"
-        #eval_data_path = f"{args.data_dir}/test_stratify.csv"
+        #eval_data_path = f"{args.data_dir}/test_data_with_bulkiness.csv"
+        eval_data_path = f"{args.data_dir}/test_stratify.csv"
     test_df = pd.read_csv(eval_data_path)
     ds_test = dataset(df=test_df)
     print(f"{len(ds_test)=}")
@@ -442,8 +448,8 @@ def main(args):
         exit()
 
     # Prepare training dataset and dataloader
-    #train_df = pd.read_csv(f"{args.data_dir}/train_stratify.csv")
-    train_df = pd.read_csv(f"{args.data_dir}/train_data_with_bulkiness.csv")
+    train_df = pd.read_csv(f"{args.data_dir}/train_stratify.csv")
+    #train_df = pd.read_csv(f"{args.data_dir}/train_data_with_bulkiness.csv")
     ds_train = dataset(df=train_df)
     print(f"{len(ds_train)=}")
     
@@ -546,8 +552,8 @@ def main(args):
 
 
             cv_ds_train = SeqAffDataset(df=ds_train.df.iloc[train_idx])
-            #ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_stratify.csv", index=False)
-            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_data_with_bulkiness.csv", index=False)
+            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_stratify.csv", index=False)
+            #ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_data_with_bulkiness.csv", index=False)
 
             if args.distributed:
                 cv_sampler_train = torch.utils.data.DistributedSampler(
@@ -565,8 +571,8 @@ def main(args):
                 collate_fn=collate_fn,
             )
             cv_ds_test = SeqAffDataset(df=ds_train.df.iloc[test_idx])
-            #ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_stratify.csv", index=False)
-            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_data_with_bulkiness.csv", index=False)
+            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_stratify.csv", index=False)
+            #ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_data_with_bulkiness.csv", index=False)
             cv_sampler_test = torch.utils.data.SequentialSampler(cv_ds_test)
             
             # Create test dataloader

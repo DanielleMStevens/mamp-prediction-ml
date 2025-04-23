@@ -129,21 +129,15 @@ receptor_RLP42 <- receptor_RLP42[!duplicated(receptor_RLP42$Receptor.Sequence),]
 RLP42_comparison <- identity_calc(receptor_RLP42$Locus.ID.Genbank, receptor_RLP42$Receptor.Sequence, "RLP42")
 RLP42_comparison <- subset(RLP42_comparison, query_id != subject_id)
 
-# CuRe1 receptor
-receptor_CuRe1 <- load_training_ML_data %>% filter(Receptor == receptors_list[10])
-receptor_CuRe1 <- receptor_CuRe1[!duplicated(receptor_CuRe1$Receptor.Sequence),]
-#CuRe1_comparison <- identity_calc(receptor_CuRe1$Locus.ID.Genbank, receptor_CuRe1$Receptor.Sequence, "CuRe1")
-#uRe1_comparison <- subset(CuRe1_comparison, query_id != subject_id)
-
 # rlp23 receptor
 receptor_RLP23 <- load_training_ML_data %>% filter(Receptor == receptors_list[11])
 receptor_RLP23 <- receptor_RLP23[!duplicated(receptor_RLP23$Receptor.Sequence),]
-#RLP23_comparison <- identity_calc(receptor_RLP23$Locus.ID.Genbank, receptor_RLP23$Receptor.Sequence, "RLP23")
-#RLP23_comparison <- subset(RLP23_comparison, query_id != subject_id)
+RLP23_comparison <- identity_calc(receptor_RLP23$Locus.ID.Genbank, receptor_RLP23$Receptor.Sequence, "RLP23")
+RLP23_comparison <- subset(RLP23_comparison, query_id != subject_id)
 
 
 combine_receptor_comparison <- rbind(FLS2_comparison, PERU_comparison, MIK2_comparison, CORE_comparison, EFR_comparison, 
-                                    FLS3_comparison, INR_comparison, RLP42_comparison)
+                                    FLS3_comparison, INR_comparison, RLP42_comparison, RLP23_comparison)
 receptor_stats <- combine_receptor_comparison %>% group_by(comparison) %>% distinct(query_id) %>% summarize(number = n())
 receptor_stats$number <- receptor_stats$number + 1
 
@@ -163,7 +157,7 @@ receptor_sequence_comparison_plot <- ggplot(combine_receptor_comparison, aes(x =
   geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
 ggsave(filename = "./04_Preprocessing_results/receptor_sequence_comparison_plot.pdf", 
-plot = receptor_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.25)
+plot = receptor_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.3)
 
 
 ######################################################################
@@ -255,7 +249,7 @@ epitope_sequence_comparison_plot <- ggplot(combine_epitope_comparison, aes(x = c
   geom_text(data = epitope_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
 ggsave(filename = "./04_Preprocessing_results/epitope_sequence_comparison_plot.pdf", 
-plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.5)
+plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.55)
 
 
 #load_training_ML_data$Ligand.Length <- as.numeric(nchar(load_training_ML_data$Ligand.Sequence))
