@@ -281,11 +281,16 @@ def evaluate(model, dl, device, args, output_dir):
         class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
         plt.plot(fpr, tpr, label=f'{class_names[i]} (AUC = {stats[f"test_auroc"]:.2f})')
     plt.plot([0, 1], [0, 1], 'k--')  # Add diagonal line for reference
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})')
-    plt.legend()
-    plt.savefig(plots_dir / f'roc_curve_epoch_{getattr(args, "current_epoch", "final")}.png')
+    plt.xlabel('False Positive Rate', fontsize=7, fontname='Arial')
+    plt.ylabel('True Positive Rate', fontsize=7, fontname='Arial')
+    plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=7, fontname='Arial')
+    plt.legend(prop={'family': 'Arial', 'size': 7})
+    plt.tick_params(axis='both', which='major', labelsize=7)
+    for tick in plt.gca().get_xticklabels():
+        tick.set_fontname("Arial")
+    for tick in plt.gca().get_yticklabels():
+        tick.set_fontname("Arial")
+    plt.savefig(plots_dir / f'roc_curve_epoch_{getattr(args, "current_epoch", "final")}.pdf')
     plt.close()
 
     # Create and save Precision-Recall curves
@@ -294,11 +299,16 @@ def evaluate(model, dl, device, args, output_dir):
         precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
         class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
         plt.plot(recall, precision, label=f'{class_names[i]} (AUC = {stats[f"test_auprc_class{i}"]:.2f})')
-    plt.xlabel('Recall')
-    plt.ylabel('Precision')
-    plt.title(f'Precision-Recall Curves (Epoch {getattr(args, "current_epoch", "final")})')
-    plt.legend()
-    plt.savefig(plots_dir / f'pr_curve_epoch_{getattr(args, "current_epoch", "final")}.png')
+    plt.xlabel('Recall', fontsize=7, fontname='Arial')
+    plt.ylabel('Precision', fontsize=7, fontname='Arial')
+    plt.title(f'Precision-Recall Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=7, fontname='Arial')
+    plt.legend(prop={'family': 'Arial', 'size': 7})
+    plt.tick_params(axis='both', which='major', labelsize=7)
+    for tick in plt.gca().get_xticklabels():
+        tick.set_fontname("Arial")
+    for tick in plt.gca().get_yticklabels():
+        tick.set_fontname("Arial")
+    plt.savefig(plots_dir / f'pr_curve_epoch_{getattr(args, "current_epoch", "final")}.pdf')
     plt.close()
 
     # Save evaluation metrics to CSV
@@ -339,43 +349,66 @@ def evaluate(model, dl, device, args, output_dir):
     
     # Plot 1: AUROC over epochs
     plt.subplot(2, 2, 1)
-    plt.plot(numeric_epochs, df_metrics['auroc'], marker='o')
-    plt.title('AUROC over epochs')
-    plt.xlabel('Epoch')
-    plt.ylabel('AUROC')
+    plt.plot(numeric_epochs, df_metrics['auroc'], marker='o', color='#9370DB')  # Using a purple color
+    plt.title('AUROC over epochs', fontsize=7, fontname='Arial')
+    plt.xlabel('Epoch', fontsize=7, fontname='Arial')
+    plt.ylabel('AUROC', fontsize=7, fontname='Arial')
+    plt.tick_params(axis='both', which='major', labelsize=7)
+    for tick in plt.gca().get_xticklabels():
+        tick.set_fontname("Arial")
+    for tick in plt.gca().get_yticklabels():
+        tick.set_fontname("Arial")
     plt.grid(True)
 
     # Plot 2: AUPRC for each class over epochs
     plt.subplot(2, 2, 2)
+    purples = plt.cm.Purples(np.linspace(0.4, 0.9, 3))  # Get 3 shades of purple
     for i in range(3):
-        plt.plot(numeric_epochs, df_metrics[f'auprc_class{i}'], marker='o', label=f'Class {i}')
-    plt.title('AUPRC over epochs')
-    plt.xlabel('Epoch')
-    plt.ylabel('AUPRC')
-    plt.legend()
+        plt.plot(numeric_epochs, df_metrics[f'auprc_class{i}'], marker='o', 
+                color=purples[i], label=f'Class {i}')
+    plt.title('AUPRC over epochs', fontsize=7, fontname='Arial')
+    plt.xlabel('Epoch', fontsize=7, fontname='Arial')
+    plt.ylabel('AUPRC', fontsize=7, fontname='Arial')
+    plt.legend(prop={'family': 'Arial', 'size': 7})
+    plt.tick_params(axis='both', which='major', labelsize=7)
+    for tick in plt.gca().get_xticklabels():
+        tick.set_fontname("Arial")
+    for tick in plt.gca().get_yticklabels():
+        tick.set_fontname("Arial")
     plt.grid(True)
 
     # Plot 3: Accuracy and F1 scores over epochs
     plt.subplot(2, 2, 3)
-    plt.plot(numeric_epochs, df_metrics['accuracy'], marker='o', label='Accuracy')
-    plt.plot(numeric_epochs, df_metrics['f1_macro'], marker='o', label='F1 Macro')
-    plt.plot(numeric_epochs, df_metrics['f1_weighted'], marker='o', label='F1 Weighted')
-    plt.title('Accuracy and F1 Scores over epochs')
-    plt.xlabel('Epoch')
-    plt.ylabel('Score')
-    plt.legend()
+    purples = plt.cm.Purples(np.linspace(0.4, 0.9, 3))  # Get 3 shades of purple
+    plt.plot(numeric_epochs, df_metrics['accuracy'], marker='o', color=purples[0], label='Accuracy')
+    plt.plot(numeric_epochs, df_metrics['f1_macro'], marker='o', color=purples[1], label='F1 Macro')
+    plt.plot(numeric_epochs, df_metrics['f1_weighted'], marker='o', color=purples[2], label='F1 Weighted')
+    plt.title('Accuracy and F1 Scores over epochs', fontsize=7, fontname='Arial')
+    plt.xlabel('Epoch', fontsize=7, fontname='Arial')
+    plt.ylabel('Score', fontsize=7, fontname='Arial')
+    plt.legend(prop={'family': 'Arial', 'size': 7})
+    plt.tick_params(axis='both', which='major', labelsize=7)
+    for tick in plt.gca().get_xticklabels():
+        tick.set_fontname("Arial")
+    for tick in plt.gca().get_yticklabels():
+        tick.set_fontname("Arial")
     plt.grid(True)
 
     # Plot 4: Loss over epochs
     plt.subplot(2, 2, 4)
-    plt.plot(numeric_epochs, df_metrics['loss'], marker='o')
-    plt.title('Loss over epochs')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
+    plt.plot(numeric_epochs, df_metrics['loss'], marker='o', color='#9370DB')  # Using a purple color
+    plt.title('Loss over epochs', fontsize=7, fontname='Arial')
+    plt.xlabel('Epoch', fontsize=7, fontname='Arial')
+    plt.ylabel('Loss', fontsize=7, fontname='Arial')
+    plt.tick_params(axis='both', which='major', labelsize=7)
+    for tick in plt.gca().get_xticklabels():
+        tick.set_fontname("Arial")
+    for tick in plt.gca().get_yticklabels():
+        tick.set_fontname("Arial")
     plt.grid(True)
 
     plt.tight_layout()
-    plt.savefig(plots_dir / 'test_progress.png')
+    plt.savefig(plots_dir / 'test_progress.pdf')
     plt.close()
 
     # Save predictions for later analysis

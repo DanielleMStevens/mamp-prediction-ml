@@ -1,0 +1,133 @@
+# 06_scripts_ml/models/random_forest_baseline.py
+
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+from collections import Counter
+import torch
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_recall_curve, auc
+
+class RandomForestBaselineModel:
+    """
+    Baseline model using Random Forest for peptide-receptor interaction prediction.
+    Uses simple sequence encoding (amino acid composition) instead of deep learning embeddings.
+    """
+    def __init__(self, args=None):
+        self.model = RandomForestClassifier(
+            n_estimators=100,
+            max_depth=10,
+            random_state=42
+        )
+        self.label_encoder = LabelEncoder()
+        
+    def _encode_sequence(self, sequence):
+        """
+        Simple sequence encoding using amino acid composition (frequency of each amino acid)
+        """
+        amino_acids = 'ACDEFGHIKLMNPQRSTVWY'
+        counts = Counter(sequence)
+        features = [counts.get(aa, 0) / len(sequence) for aa in amino_acids]
+        return features
+    
+    def _prepare_features(self, batch):
+        """Convert sequences to feature vectors"""
+        if isinstance(batch, dict):  # Handle both dictionary and list inputs
+            peptides = [seq for seq in batch['peptide_x']]
+            receptors = [seq for seq in batch['receptor_x']]
+        else:
+            peptides = [example['peptide_x'] for example in batch]
+            receptors = [example['receptor_x'] for example in batch]
+            
+        # Encode each sequence
+        peptide_features = [self._encode_sequence(seq) for seq in peptides]
+        receptor_features = [self._encode_sequence(seq) for seq in receptors]
+        
+        # Concatenate peptide and receptor features
+        X = np.hstack([peptide_features, receptor_features])
+        return X
+    
+    def forward(self, batch_x):
+        """
+        Forward pass (prediction) for compatibility with other models
+        """
+        X = self._prepare_features(batch_x)
+        probas = self.model.predict_proba(X)
+        return torch.tensor(probas)
+    
+    def fit(self, batch):
+        """
+        Train the random forest model
+        """
+        X = self._prepare_features(batch['x'])
+        y = batch['y'].numpy()
+        self.model.fit(X, y)
+    
+    def get_pr(self, logits):
+        """Get predictions from logits (probabilities)"""
+        return logits
+    
+    def get_stats(self, gt, pr, train=False):
+        """
+        Calculate various evaluation metrics for model performance
+        Args:
+            gt: Ground truth labels
+            pr: Model predictions (probabilities)
+            train: Boolean indicating if these are training or test metrics
+        Returns:
+            Dictionary containing various evaluation metrics
+        """
+        prefix = "train" if train else "test"
+        pred_labels = pr.argmax(dim=-1)
+        
+        stats = {
+            f"{prefix}_acc": accuracy_score(gt.cpu(), pred_labels.cpu()),
+            f"{prefix}_f1_macro": f1_score(gt.cpu(), pred_labels.cpu(), average='macro'),
+            f"{prefix}_f1_weighted": f1_score(gt.cpu(), pred_labels.cpu(), average='weighted')
+        }
+        
+        try:
+            # Calculate ROC AUC and PR AUC metrics
+            stats[f"{prefix}_auroc"] = roc_auc_score(gt.cpu(), pr.cpu(), multi_class='ovr')
+            
+            # Calculate PR AUC for each class
+            gt_onehot = np.eye(3)[gt.cpu()]
+            pr_np = pr.cpu().numpy()
+            
+            # Calculate per-class PR AUC
+            for i in range(3):
+                precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
+                stats[f"{prefix}_auprc_class{i}"] = auc(recall, precision)
+            
+            # Average AUPRC across classes
+            stats[f"{prefix}_auprc_macro"] = np.mean([stats[f"{prefix}_auprc_class{i}"] for i in range(3)])
+            
+        except:
+            # Handle cases where metrics cannot be calculated
+            stats[f"{prefix}_auroc"] = 0.0
+            stats[f"{prefix}_auprc_macro"] = 0.0
+            for i in range(3):
+                stats[f"{prefix}_auprc_class{i}"] = 0.0
+            
+        return stats
+
+    def collate_fn(self, batch):
+        """
+        Collate function for compatibility with data loaders
+        """
+        inputs = {}
+        
+        x_dict = {}
+        x_dict['peptide_x'] = [example['peptide_x'] for example in batch]
+        x_dict['receptor_x'] = [example['receptor_x'] for example in batch]
+        
+        inputs['y'] = torch.tensor([example['y'] for example in batch])
+        inputs['x'] = x_dict
+        
+        return inputs
+
+    def batch_decode(self, batch):
+        """
+        Return the original sequences for interpretability
+        """
+        return [f"{peptide}:{receptor}" for peptide, receptor in 
+               zip(batch['x']['peptide_x'], batch['x']['receptor_x'])]

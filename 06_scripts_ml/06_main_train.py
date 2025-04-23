@@ -54,11 +54,14 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+# random forest model
+from models.random_forest_baseline import RandomForestBaselineModel
+
 # esm models
 from models.esm_model import ESMModel
 from models.esm_mid_model import ESMMidModel
 from models.esm_with_receptor_model import ESMWithReceptorModel
-#from models.esm_receptor_chemical import ESMReceptorChemical
+from models.esm_receptor_chemical_fusion_variants import ESMReceptorChemical
 from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
 from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
 from models.esm_contrast_model import ESMContrastiveModel
@@ -231,8 +234,8 @@ def get_args_parser():
                        help="Epochs between checkpoints")
     parser.add_argument("--disable_wandb", action="store_true",
                        help="Disable WandB logging")
-    parser.add_argument("--wandb_group", default="krasileva", type=str,
-                       help="WandB group name")
+#    parser.add_argument("--wandb_group", default="krasileva", type=str,
+#                       help="WandB group name")
     parser.add_argument("--model_checkpoint_path", type=str,
                        help="Path to model checkpoint for loading")
 
@@ -261,14 +264,15 @@ model_dict = {
     "esm2_mid": ESMMidModel,                              # ESM2 with mid-layer features
     "alphafold_pair_reps": AlphaFoldModel,                # AlphaFold-based model
     "esm2_with_receptor": ESMWithReceptorModel,           # ESM2 with receptor interaction
-    #"esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
+    "esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
     "glm2_with_receptor": GLMWithReceptorModel,           # GLM2 with receptor interaction
     "esm2_with_receptor_single_seq": ESMWithReceptorSingleSeqModel,  # ESM2 with single sequence receptor
     "glm2_with_receptor_single_seq": GLMWithReceptorSingleSeqModel,  # GLM2 with single sequence receptor
     "amplify": AMPModel,                                  # AMP (Antimicrobial Peptide) model
     "amplify_with_receptor": AMPWithReceptorModel,        # AMP model with receptor
     "esm2_with_receptor_attn_film": ESMWithReceptorAttnFilmModel,  # ESM2 with attention and FiLM
-    "esm2_contrast": ESMContrastiveModel                  # ESM2 with contrastive learning
+    "esm2_contrast": ESMContrastiveModel,                  # ESM2 with contrastive learning
+    "random_forest": RandomForestBaselineModel              # Random Forest baseline model
 }
 
 # Dictionary mapping model names to their corresponding dataset classes
@@ -285,7 +289,8 @@ dataset_dict = {
     "amplify": PeptideSeqDataset,
     "amplify_with_receptor": PeptideSeqWithReceptorDataset,
     "esm2_with_receptor_attn_film": PeptideSeqWithReceptorDataset,
-    "esm2_contrast": PeptideSeqDataset
+    "esm2_contrast": PeptideSeqDataset,
+    "random_forest": PeptideSeqWithReceptorDataset
 }
 
 # Dictionary mapping model names to their WandB experiment names
@@ -294,6 +299,7 @@ wandb_dict = {
     "glm2": "mamp_glm2",
     "esm2_mid": "mamp_esm2_mid",
     "alphafold_pair_reps": "mamp_alphafold_pair_reps",
+    "esm_receptor_chemical": "mamp_esm_receptor_chemical",
     "esm2_with_receptor": "mamp_esm2_with_receptor",
     "glm2_with_receptor": "mamp_glm2_with_receptor",
     "esm2_with_receptor_single_seq": "mamp_esm2_with_receptor_single_seq",
@@ -301,7 +307,8 @@ wandb_dict = {
     "amplify": "mamp_amplify",
     "amplify_with_receptor": "mamp_amplify_with_receptor",
     "esm2_with_receptor_attn_film": "mamp_esm2_with_receptor_attn_film",
-    "esm2_contrast": "mamp_esm2_contrast"
+    "esm2_contrast": "mamp_esm2_contrast",
+    "random_forest": "mamp_random_forest" 
 }
 
 
@@ -344,9 +351,9 @@ def main(args):
             tags = [args.model, str(Path(args.data_dir).name), "train"]
         wandb.init(
             project="mamp_ml",
-            entity="dmstev",
+            entity="dmstev-uc-berkeley",
             name=run_name,
-            resume="must",
+            #resume="must",
             #entity=args.wandb_group,
             config=args,
             dir=args.output_dir,
@@ -512,9 +519,10 @@ def main(args):
         if not args.disable_wandb and misc.is_main_process():
             run_name = f"{wandb_dict[args.model]}-{Path(args.data_dir).name}"
             wandb.init(
-                project="mamp",
+                project="mamp_ml",
+                entity="dmstev-uc-berkeley",
                 name=f"{run_name}_{args.cross_eval_kfold}cv",
-                group=args.wandb_group,
+                #group=args.wandb_group,
                 config=args,
                 dir=args.output_dir,
             )
