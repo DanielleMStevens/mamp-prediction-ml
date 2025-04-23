@@ -29,6 +29,6 @@ dependencies:
       - scipy
       - tqdm==4.62.2
       - typing-extensions==3.10.0.2
-      - pytorch_lightning==1.5.10
+      #- pytorch_lightning==1.5.10
       - wandb==0.12.21
       - git+https://github.com/NVIDIA/dllogger.git
