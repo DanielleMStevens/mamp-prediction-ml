@@ -1,0 +1,64 @@
+graph TD
+    subgraph Inputs
+        P_Seq[Peptide Sequence]
+        R_Seq[Receptor Sequence]
+        P_Bulk[Sequence Bulkiness (Optional)]
+        R_Bulk[Receptor Bulkiness (Optional)]
+    end
+
+    subgraph Preprocessing
+        Tokenizer[ESM Tokenizer (esm2_t30_150M_UR50D)]
+        P_Seq -- Tokenize --> P_Tokens[Peptide Tokens & Mask]
+        R_Seq -- Tokenize --> R_Tokens[Receptor Tokens & Mask]
+    end
+
+    subgraph ESM Encoding
+        style ESM fill:#ccf,stroke:#333,stroke-width:2px
+        ESM[ESM Model (esm2_t30_150M_UR50D)<br>Embeddings & First 20 Layers Frozen]
+        P_Tokens --> ESM --> P_Embed[Sequence Embeddings (last_hidden_state)]
+        R_Tokens --> ESM --> R_Embed[Receptor Embeddings (last_hidden_state)]
+    end
+
+    subgraph "Optional Bulkiness Processing"
+        style Bulkiness_Processing fill:#f9f,stroke:#333,stroke-width:1px,color:#333
+        P_Bulk --> P_Bulk_Norm[Normalize<br>(Float, NaN->0, Mean/Std)] --> P_Bulk_Proj[Seq Bulk Proj<br>(Linear->ReLU->Linear->LayerNorm)] --> P_Bulk_Feat[Peptide Bulkiness Feature]
+        R_Bulk --> R_Bulk_Norm[Normalize<br>(Float, NaN->0, Mean/Std)] --> R_Bulk_Proj[Rec Bulk Proj<br>(Linear->ReLU->Linear->LayerNorm)] --> R_Bulk_Feat[Receptor Bulkiness Feature]
+    end
+
+    subgraph Fusion [FiLMWithConcatenation Module]
+        style Fusion fill:#cfc,stroke:#333,stroke-width:2px
+        P_Embed --> LN_P[LayerNorm] --> P_Proj[Peptide Proj (Linear)]
+        R_Embed --> LN_R[LayerNorm] --> R_Proj[Receptor Proj (Linear)]
+
+        subgraph Optional Feature Addition
+            style Optional_Feature_Addition fill:#f9f,stroke:#333,stroke-width:1px,color:#333
+            P_Bulk_Feat --> Add1(Add)
+            R_Bulk_Feat --> Add2(Add)
+        end
+
+        P_Proj --> Add1 --> P_Feat_Combined[Combined Peptide Features]
+        R_Proj --> Add2 --> R_Feat_Combined[Combined Receptor Features]
+
+        P_Feat_Combined & P_Tokens[Sequence Mask] --> Pool_P[Masked Pooling<br>(Max & Mean)] --> P_Pooled[P_Max, P_Mean]
+        R_Feat_Combined & R_Tokens[Receptor Mask] --> Pool_R[Masked Pooling<br>(Max & Mean)] --> R_Pooled[R_Max, R_Mean]
+
+        P_Pooled & R_Pooled --> Concat[Concatenate<br>[P_Max, P_Mean, R_Max, R_Mean]<br>Dim: feature_dim * 4] --> FusionLayer[Fusion Layer<br>Linear(4H->2H)->ReLU->LayerNorm->Linear(2H->H)] --> Dropout_Fusion[Dropout(0.1)] --> Combined_Feature[Fused Representation<br>Dim: H (feature_dim)]
+    end
+
+    subgraph Classifier
+        style Classifier fill:#ffc,stroke:#333,stroke-width:2px
+        Combined_Feature --> CL1[Layer 1<br>Linear(H->H)->LayerNorm->ReLU->Dropout(0.2)] --> Mid_Feat1
+        Mid_Feat1 --> CL2[Layer 2<br>Linear(H->H/2)->LayerNorm->ReLU->Dropout(0.1)] --> Mid_Feat2
+        Mid_Feat2 --> CL3[Output Layer<br>Linear(H/2 -> Num Classes)] --> Logits
+    end
+
+    %% Connections
+    Inputs --> Preprocessing --> ESM Encoding
+    ESM Encoding --> Fusion
+    "Optional Bulkiness Processing" --> "Optional Feature Addition"
+
+    Fusion --> Classifier
+
+    %% Styling for optional parts
+    classDef optional fill:#f9f,stroke:#333,stroke-width:1px,color:#333,stroke-dasharray: 5 5;
+    class P_Bulk,R_Bulk,"Optional Bulkiness Processing","Optional Feature Addition" optional;
