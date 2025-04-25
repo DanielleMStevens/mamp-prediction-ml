@@ -281,9 +281,9 @@ def evaluate(model, dl, device, args, output_dir):
         class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
         plt.plot(fpr, tpr, label=f'{class_names[i]} (AUC = {stats[f"test_auroc"]:.2f})')
     plt.plot([0, 1], [0, 1], 'k--')  # Add diagonal line for reference
-    plt.xlabel('False Positive Rate', fontsize=7, fontname='Arial')
-    plt.ylabel('True Positive Rate', fontsize=7, fontname='Arial')
-    plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=7, fontname='Arial')
+    plt.xlabel('False Positive Rate', fontsize=8, fontname='Arial')
+    plt.ylabel('True Positive Rate', fontsize=8, fontname='Arial')
+    plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=8, fontname='Arial')
     plt.legend(prop={'family': 'Arial', 'size': 7})
     plt.tick_params(axis='both', which='major', labelsize=7)
     for tick in plt.gca().get_xticklabels():
@@ -299,9 +299,9 @@ def evaluate(model, dl, device, args, output_dir):
         precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
         class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
         plt.plot(recall, precision, label=f'{class_names[i]} (AUC = {stats[f"test_auprc_class{i}"]:.2f})')
-    plt.xlabel('Recall', fontsize=7, fontname='Arial')
-    plt.ylabel('Precision', fontsize=7, fontname='Arial')
-    plt.title(f'Precision-Recall Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=7, fontname='Arial')
+    plt.xlabel('Recall', fontsize=8, fontname='Arial')
+    plt.ylabel('Precision', fontsize=8, fontname='Arial')
+    plt.title(f'Precision-Recall Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=8, fontname='Arial')
     plt.legend(prop={'family': 'Arial', 'size': 7})
     plt.tick_params(axis='both', which='major', labelsize=7)
     for tick in plt.gca().get_xticklabels():
@@ -351,8 +351,8 @@ def evaluate(model, dl, device, args, output_dir):
     plt.subplot(2, 2, 1)
     plt.plot(numeric_epochs, df_metrics['auroc'], marker='o', color='#9370DB')  # Using a purple color
     plt.title('AUROC over epochs', fontsize=7, fontname='Arial')
-    plt.xlabel('Epoch', fontsize=7, fontname='Arial')
-    plt.ylabel('AUROC', fontsize=7, fontname='Arial')
+    plt.xlabel('Epoch', fontsize=8, fontname='Arial')
+    plt.ylabel('AUROC', fontsize=8, fontname='Arial')
     plt.tick_params(axis='both', which='major', labelsize=7)
     for tick in plt.gca().get_xticklabels():
         tick.set_fontname("Arial")
@@ -367,8 +367,8 @@ def evaluate(model, dl, device, args, output_dir):
         plt.plot(numeric_epochs, df_metrics[f'auprc_class{i}'], marker='o', 
                 color=purples[i], label=f'Class {i}')
     plt.title('AUPRC over epochs', fontsize=7, fontname='Arial')
-    plt.xlabel('Epoch', fontsize=7, fontname='Arial')
-    plt.ylabel('AUPRC', fontsize=7, fontname='Arial')
+    plt.xlabel('Epoch', fontsize=8, fontname='Arial')
+    plt.ylabel('AUPRC', fontsize=8, fontname='Arial')
     plt.legend(prop={'family': 'Arial', 'size': 7})
     plt.tick_params(axis='both', which='major', labelsize=7)
     for tick in plt.gca().get_xticklabels():
@@ -384,8 +384,8 @@ def evaluate(model, dl, device, args, output_dir):
     plt.plot(numeric_epochs, df_metrics['f1_macro'], marker='o', color=purples[1], label='F1 Macro')
     plt.plot(numeric_epochs, df_metrics['f1_weighted'], marker='o', color=purples[2], label='F1 Weighted')
     plt.title('Accuracy and F1 Scores over epochs', fontsize=7, fontname='Arial')
-    plt.xlabel('Epoch', fontsize=7, fontname='Arial')
-    plt.ylabel('Score', fontsize=7, fontname='Arial')
+    plt.xlabel('Epoch', fontsize=8, fontname='Arial')
+    plt.ylabel('Score', fontsize=8, fontname='Arial')
     plt.legend(prop={'family': 'Arial', 'size': 7})
     plt.tick_params(axis='both', which='major', labelsize=7)
     for tick in plt.gca().get_xticklabels():
@@ -398,8 +398,8 @@ def evaluate(model, dl, device, args, output_dir):
     plt.subplot(2, 2, 4)
     plt.plot(numeric_epochs, df_metrics['loss'], marker='o', color='#9370DB')  # Using a purple color
     plt.title('Loss over epochs', fontsize=7, fontname='Arial')
-    plt.xlabel('Epoch', fontsize=7, fontname='Arial')
-    plt.ylabel('Loss', fontsize=7, fontname='Arial')
+    plt.xlabel('Epoch', fontsize=8, fontname='Arial')
+    plt.ylabel('Loss', fontsize=8, fontname='Arial')
     plt.tick_params(axis='both', which='major', labelsize=7)
     for tick in plt.gca().get_xticklabels():
         tick.set_fontname("Arial")
