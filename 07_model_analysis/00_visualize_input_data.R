@@ -22,13 +22,14 @@ library(tidyverse, warn.conflicts = FALSE, quietly = TRUE)
 library(Biostrings, warn.conflicts = FALSE, quietly = TRUE)
 library(pwalign, warn.conflicts = FALSE, quietly = TRUE)
 library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
+library(ggridges, warn.conflicts = FALSE, quietly = TRUE)
 
 # color code for genera of interest
-epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#2a3c64", "#542a64", "#232232")
-names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop")
+epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
+names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop","screw")
 
-receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#2a3c64", "#542a64", "#232232")
-names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2")
+receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
+names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT")
 
 load_training_ML_data <- readxl::read_xlsx(path = "./02_in_data/All_LRR_PRR_ligand_data.xlsx")
 load_training_ML_data <- data.frame(load_training_ML_data)[1:12]
@@ -135,9 +136,14 @@ receptor_RLP23 <- receptor_RLP23[!duplicated(receptor_RLP23$Receptor.Sequence),]
 RLP23_comparison <- identity_calc(receptor_RLP23$Locus.ID.Genbank, receptor_RLP23$Receptor.Sequence, "RLP23")
 RLP23_comparison <- subset(RLP23_comparison, query_id != subject_id)
 
+# nut receptor
+receptor_NUT <- load_training_ML_data %>% filter(Receptor == receptors_list[12])
+receptor_NUT <- receptor_NUT[!duplicated(receptor_NUT$Receptor.Sequence),]
+NUT_comparison <- identity_calc(receptor_NUT$Locus.ID.Genbank, receptor_NUT$Receptor.Sequence, "NUT")
+NUT_comparison <- subset(NUT_comparison, query_id != subject_id)
 
 combine_receptor_comparison <- rbind(FLS2_comparison, PERU_comparison, MIK2_comparison, CORE_comparison, EFR_comparison, 
-                                    FLS3_comparison, INR_comparison, RLP42_comparison, RLP23_comparison)
+                                    FLS3_comparison, INR_comparison, RLP42_comparison, RLP23_comparison, NUT_comparison)
 receptor_stats <- combine_receptor_comparison %>% group_by(comparison) %>% distinct(query_id) %>% summarize(number = n())
 receptor_stats$number <- receptor_stats$number + 1
 
@@ -157,7 +163,7 @@ receptor_sequence_comparison_plot <- ggplot(combine_receptor_comparison, aes(x =
   geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 3)
 
 ggsave(filename = "./04_Preprocessing_results/receptor_sequence_comparison_plot.pdf", 
-plot = receptor_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.3)
+plot = receptor_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.35)
 
 
 ######################################################################
@@ -227,9 +233,14 @@ epitope_nlp <- epitope_nlp[!duplicated(epitope_nlp$Ligand.Sequence),]
 nlp_comparison <- identity_calc(epitope_nlp$Ligand.Sequence, epitope_nlp$Ligand.Sequence, "nlp")
 nlp_comparison <- subset(nlp_comparison, query_id > subject_id)
 
+# screw
+epitope_screw <- load_training_ML_data %>% filter(Ligand == epitope_list[11])
+epitope_screw <- epitope_screw[!duplicated(epitope_screw$Ligand.Sequence),]
+screw_comparison <- identity_calc(epitope_screw$Ligand.Sequence, epitope_screw$Ligand.Sequence, "screw")
+screw_comparison <- subset(screw_comparison, query_id > subject_id)
 
 combine_epitope_comparison <- rbind(In11_comparison, flg22_comparison, Pep25_comparison, SCOOP_comparison, csp22_comparison, 
-                                    elf18_comparison, flgII28_comparison, peppg_comparison, crip21_comparison, nlp_comparison)
+                                    elf18_comparison, flgII28_comparison, peppg_comparison, crip21_comparison, nlp_comparison, screw_comparison)
 epitope_stats <- combine_epitope_comparison %>% group_by(comparison) %>% distinct(query_id) %>% summarize(number = n())
 epitope_stats$number <- epitope_stats$number + 1
 
@@ -252,23 +263,21 @@ ggsave(filename = "./04_Preprocessing_results/epitope_sequence_comparison_plot.p
 plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.55)
 
 
-#load_training_ML_data$Ligand.Length <- as.numeric(nchar(load_training_ML_data$Ligand.Sequence))
-# plot the peptide length distribution
-#ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
-#see::geom_violinhalf() +
-#  theme_classic(scale = "width") +
-#  xlab("Peptide") +
- # ylab("Length")
-
+######################################################################
+#  parse and compare epitope variant lengths
+######################################################################
 
 # ridge plot
-#ggplot(load_training_ML_data, aes(x = Ligand, y = Ligand.Length)) +
- # ggridges::geom_density_ridges(scale = 2) +
-  #xlab("Peptide") +
-  #ylab("Length") +
-  #scale_y_discrete(expand = c(0, 0)) +     # will generally have to set the `expand` option
-  #scale_x_continuous(expand = c(0, 0)) +   # for both axes to remove unneeded padding
-  #coord_cartesian(clip = "off") + # to avoid clipping of the very top of the top ridgeline
-  #theme_ridges()
+epitope_length_comparison_plot <- ggplot(load_training_ML_data, aes(x = Ligand.Length, y = Ligand)) +
+  ggridges::geom_density_ridges(aes(fill = Ligand), 
+      rel_min_height = 0.01, alpha = 0.85, scale = 1.5) +
+  xlab("Length") +
+  ylab("") +
+  scale_fill_manual(values = epitope_colors) +
+  scale_y_discrete(expand = c(0, 0)) +     # will generally have to set the `expand` option
+  scale_x_continuous(expand = c(0, 0)) +   # for both axes to remove unneeded padding
+  theme_ridges(center = TRUE, font_size = 8) +
+  theme(legend.position = "none")
 
-
+ggsave(filename = "./04_Preprocessing_results/epitope_length_comparison_plot.pdf", 
+plot = epitope_length_comparison_plot, device = "pdf", dpi = 300, width = 2, height = 2)
