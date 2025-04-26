@@ -228,7 +228,7 @@ def get_args_parser():
     # Logging parameters
     parser.add_argument("--save_pred_dict", action="store_true",
                        help="Save prediction dictionary")
-    parser.add_argument("--eval_period", type=int, default=10,
+    parser.add_argument("--eval_period", type=int, default=5,
                        help="Epochs between evaluations")
     parser.add_argument("--save_period", type=int, default=1000,
                        help="Epochs between checkpoints")

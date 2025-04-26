@@ -1,5 +1,6 @@
 Receptor                                                                                            Best Model     pLDDT     pTM
 -----------------------------------------------------------------------------------------------------------------------------
+Alyssum_alyssoides_ABW72743_FLS2                                                                    model_1        84.5      0.594
 Ananas_comosus_ON556667_FLS2                                                                        model_1        88.4      0.631
 Arabidopsis_thaliana_AT2G32680_RLP23                                                                model_1        82.6      0.729
 Arabidopsis_thaliana_AT3G25020_Borsk-2_RLP42                                                        model_1        84.1      0.744
@@ -22,6 +23,7 @@ Arabidopsis_thaliana_AT3G25020_Shigu-1_RLP42                                    
 Arabidopsis_thaliana_AT3G25020_Y323H_RLP42                                                          model_1        84.1      0.742
 Arabidopsis_thaliana_AT3G25020_Yeg-1_RLP42                                                          model_1        84.1      0.745
 Arabidopsis_thaliana_AT4G08850_MIK2                                                                 model_1        85.4      0.628
+Arabidopsis_thaliana_AT5G25930_NUT                                                                  model_1        85.9      0.618
 Arabidopsis_thaliana_AT5G46330_605D_FLS2                                                            model_1        86.5      0.613
 Arabidopsis_thaliana_AT5G46330_607S_FLS2                                                            model_1        86.4      0.617
 Arabidopsis_thaliana_AT5G46330_629Y_FLS2                                                            model_1        86.4      0.614
@@ -30,6 +32,7 @@ Arabidopsis_thaliana_AT5G46330_633S_FLS2                                        
 Arabidopsis_thaliana_AT5G46330_Be-0_FLS2                                                            model_1        84.8      0.604
 Arabidopsis_thaliana_AT5G46330_D235A_FLS2                                                           model_1        84.8      0.604
 Arabidopsis_thaliana_AT5G46330_D255A_FLS2                                                           model_1        84.8      0.605
+Arabidopsis_thaliana_AT5G46330_D414A_FLS2                                                           model_1        86.9      0.610
 Arabidopsis_thaliana_AT5G46330_D679A_FLS2                                                           model_1        84.8      0.609
 Arabidopsis_thaliana_AT5G46330_DD_FLS2                                                              model_1        86.8      0.617
 Arabidopsis_thaliana_AT5G46330_E259A_FLS2                                                           model_1        84.4      0.606
@@ -84,12 +87,16 @@ Arabidopsis_thaliana_AT5G46330_LRR9_FLS2                                        
 Arabidopsis_thaliana_AT5G46330_N704A_FLS2                                                           model_1        84.9      0.604
 Arabidopsis_thaliana_AT5G46330_Q682A_FLS2                                                           model_1        84.6      0.601
 Arabidopsis_thaliana_AT5G46330_R234A_FLS2                                                           model_1        84.6      0.604
+Arabidopsis_thaliana_AT5G46330_R294A_H316A_FLS2                                                     model_1        86.9      0.613
 Arabidopsis_thaliana_AT5G46330_R430A_FLS2                                                           model_1        84.6      0.607
 Arabidopsis_thaliana_AT5G46330_S345D_FLS2                                                           model_1        86.4      0.616
 Arabidopsis_thaliana_AT5G46330_S345G_FLS2                                                           model_1        86.6      0.614
+Arabidopsis_thaliana_AT5G46330_S437Y_FLS2                                                           model_1        86.6      0.608
 Arabidopsis_thaliana_AT5G46330_S681A_FLS2                                                           model_1        84.6      0.604
 Arabidopsis_thaliana_AT5G46330_S706A_FLS2                                                           model_1        84.8      0.604
 Arabidopsis_thaliana_AT5G46330_S706C_FLS2                                                           model_1        84.8      0.604
+Arabidopsis_thaliana_AT5G46330_T342Y_FLS2                                                           model_1        86.7      0.618
+Arabidopsis_thaliana_AT5G46330_T434Y_FLS2                                                           model_1        86.6      0.611
 Arabidopsis_thaliana_At5g20480_D151A_EFR                                                            model_1        85.4      0.613
 Arabidopsis_thaliana_At5g20480_D199A_EFR                                                            model_1        85.2      0.616
 Arabidopsis_thaliana_At5g20480_D469A_D473A_EFR                                                      model_1        84.8      0.612
@@ -145,12 +152,14 @@ Brassica_rapa_Bra006560_EFR                                                     
 Brassica_rapa_Bra017563_FLS2                                                                        model_1        86.7      0.623
 Cajanus_cajan_Ccajan_07316_INR                                                                      model_1        85.3      0.750
 Cajanus_cajan_XP_020210262_FLS2                                                                     model_1        92.5      0.861
+Camelina_laxa_ABW72729_FLS2                                                                         model_1        84.6      0.597
 Camellia_sinensis_ON556651_FLS2                                                                     model_1        86.9      0.619
 Canavalia_ensiformis_Censi_INR-like_1_INR-like                                                      model_1        85.3      0.728
 Canavalia_ensiformis_Censi_INR-like_2_INR-like                                                      model_1        85.6      0.745
 Canavalia_ensiformis_Censiformis_INR-like_3_INR-like                                                model_1        86.4      0.759
 Capsicum_annum_CA02g12030_FLS2                                                                      model_1        86.9      0.615
 Capsicum_annum_CA05g03880_FLS3                                                                      model_1        85.9      0.617
+Chorispora_tenella_ABW72733_FLS2                                                                    model_1        84.6      0.599
 Citrus_limon_OP718788_FLS2                                                                          model_1        85.7      0.606
 Citrus_limon_OP718789_FLS2                                                                          model_1        85.8      0.609
 Citrus_sinensis_OP718785_FLS2                                                                       model_1        86.2      0.608
@@ -158,6 +167,9 @@ Citrus_sinensis_OP718786_FLS2                                                   
 Cucumis_melo_CmFLS2_HapI_FLS2                                                                       model_1        87.1      0.628
 Cucumis_sativus_ON556652_FLS2                                                                       model_1        87.7      0.624
 Dendrocalamus_strictus_Distr0011s35800_MIK2                                                         model_1        85.7      0.632
+Enarthrocarpus_arcuatus_ABW72738_FLS2                                                               model_1        84.3      0.614
+Eruca_vesicaria_ABW72739_FLS2                                                                       model_1        84.9      0.606
+Erysimum_cuspidatum_ABW72731_FLS2                                                                   model_1        84.7      0.601
 Euclidium_syriacum_Eusyr0135s0078_MIK2                                                              model_1        85.2      0.629
 Eutrema_salsugineum_Thhalv10028381m_MIK2                                                            model_1        84.4      0.622
 Fagus_crenata_BK068611_FLS2                                                                         model_1        87.9      0.619
@@ -178,14 +190,19 @@ Hylodesmum_podocarpum_Hpodo_INR-like_3_INR-like                                 
 Hylodesmum_podocarpum_Hpodo_INR-like_4_INR-like                                                     model_1        86.1      0.735
 Hylodesmum_podocarpum_Hpodo_INR-like_6_INR-like                                                     model_1        86.8      0.760
 Hylodesmum_podocarpum_Hpodo_INR-like_7_INR-like                                                     model_1        86.7      0.743
+Iberis_amara_ABW72735_FLS2                                                                          model_1        84.6      0.597
+Isatis_glauca_ABW72740_FLS2                                                                         model_1        84.2      0.610
 Kalanchoe_laxiflora_ON556668_FLS2                                                                   model_1        85.2      0.612
 Lablab_purpureus_Lp005646g0031_INR-like_INR-like                                                    model_1        84.6      0.737
 Lablab_purpureus_Lp005646g0031_INR_INR                                                              model_1        85.9      0.750
+Lepidium_alluaudii_ABW72732_FLS2                                                                    model_1        84.6      0.607
 Lycopersicum_esculentum_msk8_LeFLS2_FLS2                                                            model_1        85.9      0.608
 Macroptilium_lathyroides_Mlathy_INR_INR                                                             model_1        86.0      0.753
 Malus_domestica_UTN00798_FLS2                                                                       model_1        87.4      0.628
 Malus_domestica_XP_008371582_FLS2                                                                   model_1        87.1      0.630
 Malus_halliana_UTN00799_FLS2                                                                        model_1        87.6      0.630
+Matthiola_longipetala_ABW72730_FLS2                                                                 model_1        84.6      0.610
+Medicago_truncatula_Medtr3g110450_NUT                                                               model_1        82.2      0.604
 Morus_alba_ON556649_FLS2                                                                            model_1        86.8      0.595
 Mucuna_pruriens_Mprur_INR_INR                                                                       model_1        85.8      0.760
 Mucuna_pruriens_RDX68355_FLS2                                                                       model_1        86.6      0.616
@@ -215,7 +232,9 @@ Quercus_variabilis_UTN00789_FLS2                                                
 Rosa_chinensis_ON556657_FLS2                                                                        model_1        86.6      0.622
 Salix_babylonica_MH079058_FLS2                                                                      model_1        87.5      0.611
 Salix_suchowensis_ON556656_FLS2                                                                     model_1        86.6      0.614
+Sinapis_alba_ABW72742_FLS2                                                                          model_1        84.3      0.594
 Solanum_abancayense_OQ999432_PERU                                                                   model_1        87.1      0.467
+Solanum_abancayense_OQ999433_PERU                                                                   model_1        89.4      0.632
 Solanum_boliviense_OQ999438_PERU                                                                    model_1        89.2      0.634
 Solanum_bukasovii_OQ999471_PERU                                                                     model_1        89.0      0.618
 Solanum_candolleanum_OQ999442_PERU                                                                  model_1        89.3      0.637
@@ -245,6 +264,7 @@ Solanum_tuberosum_PGSC0003DMT400041350_FLS3                                     
 Solanum_tuberosum_Phureja_Group1_OQ999452_PERU                                                      model_1        89.2      0.631
 Solanum_tuberosum_Phureja_Group2_OQ999454_PERU                                                      model_1        89.0      0.635
 Solanum_tuberosum_Phureja_Group3_OQ999453_PERU                                                      model_1        87.1      0.466
+Solanum_tuberosum_Phureja_Group4_OQ999432_PERU                                                      model_1        89.3      0.631
 Trachelospermum_jasminoides_UTN00804_FLS2                                                           model_1        86.4      0.613
 Vigna_radiata_Vradi08g18340_INR-like_1_INR-like                                                     model_1        85.9      0.744
 Vigna_radiata_Vradi08g18340_INR_INR                                                                 model_1        86.2      0.757

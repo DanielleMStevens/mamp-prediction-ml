@@ -17,11 +17,11 @@ library(ggplot2)
 library(ggrepel)
 
 # color code for genera of interest
-epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#2a3c64", "#542a64", "#232232")
-names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop")
+epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
+names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop","screw")
 
-receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce", "#86c0ce","#7d9fc6", "#2a3c64", "#542a64", "#232232")
-names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","INR-like","RLP23", "PERU", "RLP42", "MIK2")
+receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce", "#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
+names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR", "INR-like","RLP23", "PERU", "RLP42", "MIK2","NUT")
 
 # load alphafold scores
 alphafold_scores <- read_table("./04_Preprocessing_results/alphafold_scores.txt", col_names = TRUE)
@@ -110,10 +110,10 @@ ggsave(filename = "./04_Preprocessing_results/max_winding_vs_lrrs.pdf", plot = m
 
 # plot LRR repeat number vs described number of LRRs
 lrr_repeat_vs_lrrs <- ggplot(load_training_ML_data, aes(x = Number.of.LRRs, y = max_lrr, color = Receptor, shape = Receptor.Type)) + 
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey", alpha = 0.5) +
-  geom_jitter(alpha = 0.7) + 
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey", alpha = 0.6) +
+  geom_jitter(alpha = 0.65, size = 1.2) + 
   xlim(20,30) + ylim(20,30) +
-  labs(x = "Described Number of LRRs", y = "Maximum LRR Repeat Number") + 
+  labs(x = "Described Number of LRRs", y = "Predicted Number of LRRs") + 
   theme_classic() +
   theme(legend.position = "none",
         axis.text.x = element_text(size = 8, color = "black"),
