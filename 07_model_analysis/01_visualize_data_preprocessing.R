@@ -82,17 +82,56 @@ load_training_ML_data <- data.frame(load_training_ML_data)[1:12]
 load_training_ML_data$Protein_key_LRR_Annotation <- str_replace_all(paste(load_training_ML_data$Plant.species, load_training_ML_data$Locus.ID.Genbank, load_training_ML_data$Receptor, sep = "_"), " ", "_")
 
 # load LRR-Annotation data and summarize max winding and max LRR repeat number
-load_lrr_annotation_data <- read_csv(file = "./04_Preprocessing_results/bfactor_winding_lrr_segments.csv")
+load_lrr_annotation_data <- as.data.frame(read_csv(file = "./04_Preprocessing_results/bfactor_winding_lrr_segments.csv"))
 colnames(load_lrr_annotation_data) <- c("Protein_key", "Residue_Index","Filtered_B-factor", "Winding_Number", "LRR_Repeat_Number")
+#load_lrr_annotation_data$Residue_Index <- as.integer(load_lrr_annotation_data$Residue_Index)
+#load_lrr_annotation_data$`Filtered_B-factor` <- as.numeric(load_lrr_annotation_data$`Filtered_B-factor`)
+
+# ----------- plot b-factor examples for counting lrrs -----------
+
+# Example 1: Solanum lycopersicum Solyc03g096190 CORE
+Solanum_lycopersicum_Solyc03g096190_CORE_Bfactor <- ggplot(subset(load_lrr_annotation_data, Protein_key == "Solanum_lycopersicum_Solyc03g096190_CORE"), aes(x = Residue_Index, y = `Filtered_B-factor`)) +
+  geom_hline(yintercept = 0, color = "black", linetype = "solid") +
+  geom_point(alpha = 0.5, color = "#e2b048", size = 0.7) +
+  theme_classic() +
+  ylim(-1, 1) +
+  labs(x = "Residue Index", y = "B-factor") +
+  theme(panel.border = element_rect(color = "black", fill = NA),
+        axis.text.x = element_text(size = 8, color = "black"),
+        axis.text.y = element_text(size = 8, color = "black"),
+        axis.title.x = element_text(size = 9, color = "black"),
+        axis.title.y = element_text(size = 9, color = "black"))
+
+ggsave(filename = "./04_Preprocessing_results/CORE_Bfactor.pdf", plot = Solanum_lycopersicum_Solyc03g096190_CORE_Bfactor, device = "pdf", dpi = 300, width = 3, height = 1)
+
+# Example 2: Vigna unguiculata Vigun07g219600 INR
+Vigna_unguiculata_Vigun07g219600_INR_Bfactor <- ggplot(subset(load_lrr_annotation_data, Protein_key == "Vigna_unguiculata_Vigun07g219600_INR"), aes(x = Residue_Index, y = `Filtered_B-factor`)) +
+  geom_hline(yintercept = 0, color = "black", linetype = "solid") +
+  geom_point(alpha = 0.5, color = "#86c0ce", size = 0.7) +
+  theme_classic() +
+  ylim(-1, 1) +
+  labs(x = "Residue Index", y = "B-factor") +
+  theme(panel.border = element_rect(color = "black", fill = NA),
+        axis.text.x = element_text(size = 8, color = "black"),
+        axis.text.y = element_text(size = 8, color = "black"),
+        axis.title.x = element_text(size = 9, color = "black"),
+        axis.title.y = element_text(size = 9, color = "black"))
+
+ggsave(filename = "./04_Preprocessing_results/INR_Bfactor.pdf", plot = Vigna_unguiculata_Vigun07g219600_INR_Bfactor, device = "pdf", dpi = 300, width = 3, height = 1)
+
+
+# ----------- plot max winding number vs described number of LRRs -----------
+
 load_lrr_annotation_data <- load_lrr_annotation_data %>% group_by(Protein_key) %>% summarize(max_winding = max(Winding_Number),max_lrr = max(LRR_Repeat_Number))
 load_lrr_annotation_data$max_winding <- as.integer(load_lrr_annotation_data$max_winding)
 load_training_ML_data <- right_join(load_training_ML_data, load_lrr_annotation_data, by = c("Protein_key_LRR_Annotation" = "Protein_key"))
+load_training_ML_data <- load_training_ML_data %>% dplyr::distinct(Protein_key_LRR_Annotation, .keep_all = TRUE)
 
 # plot max winding number vs described number of LRRs
 max_winding_vs_lrrs <- ggplot(load_training_ML_data, aes(x = Number.of.LRRs, y = max_winding, color = Receptor, shape = Receptor.Type)) + 
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey", alpha = 0.5) +
-  geom_jitter(alpha = 0.7) + 
-  xlim(20,30) + ylim(20,30) +
+  geom_jitter(alpha = 0.7, size = 1.5) + 
+  #xlim(16,30) + ylim(18,30) +
   labs(x = "Described Number of LRRs", y = "Maximum Winding Number") + 
   theme_classic() +
   theme(legend.position = "none",
@@ -111,8 +150,8 @@ ggsave(filename = "./04_Preprocessing_results/max_winding_vs_lrrs.pdf", plot = m
 # plot LRR repeat number vs described number of LRRs
 lrr_repeat_vs_lrrs <- ggplot(load_training_ML_data, aes(x = Number.of.LRRs, y = max_lrr, color = Receptor, shape = Receptor.Type)) + 
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey", alpha = 0.6) +
-  geom_jitter(alpha = 0.65, size = 1.2) + 
-  xlim(20,30) + ylim(20,30) +
+  geom_jitter(alpha = 0.65, size = 1.5) + 
+  #xlim(16,30) + ylim(16,30) +
   labs(x = "Described Number of LRRs", y = "Predicted Number of LRRs") + 
   theme_classic() +
   theme(legend.position = "none",
