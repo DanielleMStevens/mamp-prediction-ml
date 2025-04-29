@@ -131,7 +131,7 @@ load_training_ML_data <- load_training_ML_data %>% dplyr::distinct(Protein_key_L
 max_winding_vs_lrrs <- ggplot(load_training_ML_data, aes(x = Number.of.LRRs, y = max_winding, color = Receptor, shape = Receptor.Type)) + 
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey", alpha = 0.5) +
   geom_jitter(alpha = 0.7, size = 1.5) + 
-  #xlim(16,30) + ylim(18,30) +
+  xlim(16,32) + ylim(16,32) +
   labs(x = "Described Number of LRRs", y = "Maximum Winding Number") + 
   theme_classic() +
   theme(legend.position = "none",

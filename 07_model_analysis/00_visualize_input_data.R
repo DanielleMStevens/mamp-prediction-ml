@@ -51,7 +51,7 @@ identity_calc <- function(label_ids, sequence_list, comparison){
 }
 
 ######################################################################
-#  libraries to load
+#  plot of all input data by peptide immunogenicity
 ######################################################################
 
 # distribution of peptide outcomes
