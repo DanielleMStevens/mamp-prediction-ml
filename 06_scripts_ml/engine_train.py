@@ -279,13 +279,14 @@ def evaluate(model, dl, device, args, output_dir):
     for i in range(3):
         fpr, tpr, _ = roc_curve(gt_onehot[:, i], pr_np[:, i])
         class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
-        plt.plot(fpr, tpr, label=f'{class_names[i]} (AUC = {stats[f"test_auroc"]:.2f})')
+        colors = ['#4A4A4A', '#8B0000', '#00008B']  # Dark grey, dark red, dark blue
+        plt.plot(fpr, tpr, color=colors[i],label=f'{class_names[i]} (AUC = {stats[f"test_auroc"]:.2f})')
     plt.plot([0, 1], [0, 1], 'k--')  # Add diagonal line for reference
-    plt.xlabel('False Positive Rate', fontsize=8, fontname='Arial')
-    plt.ylabel('True Positive Rate', fontsize=8, fontname='Arial')
+    plt.xlabel('False Positive Rate', fontsize=10, fontname='Arial')
+    plt.ylabel('True Positive Rate', fontsize=10, fontname='Arial')
     plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=8, fontname='Arial')
     plt.legend(prop={'family': 'Arial', 'size': 7})
-    plt.tick_params(axis='both', which='major', labelsize=7)
+    plt.tick_params(axis='both', which='major', labelsize=9)
     for tick in plt.gca().get_xticklabels():
         tick.set_fontname("Arial")
     for tick in plt.gca().get_yticklabels():
@@ -295,15 +296,31 @@ def evaluate(model, dl, device, args, output_dir):
 
     # Create and save Precision-Recall curves
     plt.figure(figsize=(3, 3))
+    
+    # Calculate mean precision and recall across all classes
+    mean_precision = np.zeros_like(pr_np[:, 0])
+    mean_recall = np.linspace(0, 1, len(mean_precision))
+    
     for i in range(3):
         precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
         class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
-        plt.plot(recall, precision, label=f'{class_names[i]} (AUC = {stats[f"test_auprc_class{i}"]:.2f})')
-    plt.xlabel('Recall', fontsize=8, fontname='Arial')
-    plt.ylabel('Precision', fontsize=8, fontname='Arial')
+        colors = ['#4A4A4A', '#8B0000', '#00008B']  # Dark grey, dark red, dark blue
+        plt.plot(recall, precision, color=colors[i], label=f'{class_names[i]} (AUC = {stats[f"test_auprc_class{i}"]:.2f})')
+        
+        # Interpolate precision values for mean calculation
+        mean_precision += np.interp(mean_recall, recall[::-1], precision[::-1])
+    
+    # Calculate and plot mean precision
+    mean_precision /= 3
+    mean_auprc = np.mean([stats[f"test_auprc_class{i}"] for i in range(3)])
+    plt.plot(mean_recall, mean_precision, color='black', linestyle='--', 
+             label=f'Mean Average Precision (AUC = {mean_auprc:.2f})')
+    
+    plt.xlabel('Recall', fontsize=10, fontname='Arial')
+    plt.ylabel('Precision', fontsize=10, fontname='Arial')
     plt.title(f'Precision-Recall Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=8, fontname='Arial')
     plt.legend(prop={'family': 'Arial', 'size': 7})
-    plt.tick_params(axis='both', which='major', labelsize=7)
+    plt.tick_params(axis='both', which='major', labelsize=9)
     for tick in plt.gca().get_xticklabels():
         tick.set_fontname("Arial")
     for tick in plt.gca().get_yticklabels():

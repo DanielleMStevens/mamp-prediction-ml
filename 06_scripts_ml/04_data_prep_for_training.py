@@ -24,9 +24,11 @@ Output:
 """
 
 import pandas as pd
+import argparse
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 from typing import Dict, Tuple, List
+
 
 ########################################################################################
 # Parse a FASTA format file into a dictionary of sequences.
@@ -156,9 +158,7 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
 ########################################################################################
 
 # we can use sklearn.model_selection.train_test_split to split the data -> ex. stratify 
-def split_with_rare_handling(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    #try:
-        # Attempt stratified split
+def stratified_split(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     train_df, test_df = train_test_split(
             df, 
             test_size=0.2, 
@@ -166,18 +166,26 @@ def split_with_rare_handling(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFra
             stratify=df['Known Outcome']
     )
     return train_df, test_df
-    #except ValueError as e:
-    #    print("Warning: Could not stratify by Known Outcome, falling back to random split")
-        # Fallback to random split
-    #    train_df, test_df = train_test_split(
-    #        df, 
-   #         test_size=0.2, 
-    #        random_state=42
-    #    )
-    
 
 
-def main():
+def split_randomly(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    train_df, test_df = train_test_split(
+        df, 
+        test_size=0.2, 
+        random_state=42
+    )
+    return train_df, test_df
+
+
+
+# -----------------------------------------------------------------------------------------------
+def get_args_parser():
+    parser = argparse.ArgumentParser("Data preparation for MAMP prediction model")
+    parser.add_argument("--split_type", type=str, help="seq_stratify|immuno_stratify|random")
+    return parser
+
+
+def main(args):
     """
     Main execution function that orchestrates the data preparation process.
     
@@ -196,11 +204,20 @@ def main():
     
     # Process data and create splits
     receptor_ligand_pairs = process_data(in_data_dir, use_legacy_columns=True)
-    train_df, test_df = split_with_rare_handling(receptor_ligand_pairs)
+    if args.split_type == "seq_stratify":
+        train_df, test_df = stratified_split(receptor_ligand_pairs)
+    if args.split_type == "immuno_stratify":
+        train_df, test_df = stratified_split(receptor_ligand_pairs)
+    elif args.split_type == "random":
+        train_df, test_df = split_randomly(receptor_ligand_pairs)
+    else:
+        raise ValueError("Please specify a valid split type: 'stratify' or 'random'. "
+                        "Stratified split preserves class distribution between train/test sets. "
+                        "Random split performs standard random splitting.")
     
     # Save processed datasets
-    train_df.to_csv(out_dir / "train_stratify.csv", index=False)
-    test_df.to_csv(out_dir / "test_stratify.csv", index=False)
+    train_df.to_csv(out_dir / f"train_{args.split_type}.csv", index=False)
+    test_df.to_csv(out_dir / f"test_{args.split_type}.csv", index=False)
     
     # Print statistics
     print("\nDataset statistics:")
@@ -214,4 +231,7 @@ def main():
     print(test_df.groupby(['Known Outcome']).size())
 
 if __name__ == "__main__":
-    main() 
+    args = get_args_parser()
+    args = args.parse_args()
+    main(args) 
+
