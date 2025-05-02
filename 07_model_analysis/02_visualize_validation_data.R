@@ -50,8 +50,7 @@ test_summary <- test_data %>% group_by(Receptor) %>% summarize(n = n())
 test_summary$validation_data <- "validation_data"
 
 # Combine INR and INR-like counts and remove INR-like
-test_summary$n[test_summary$Receptor == "INR"] <- test_summary$n[test_summary$Receptor == "INR"]  
-test_summary$n[test_summary$Receptor == "INR-like"]
+test_summary$n[test_summary$Receptor == "INR"] <- test_summary$n[test_summary$Receptor == "INR"] + test_summary$n[test_summary$Receptor == "INR-like"]
 test_summary <- test_summary[test_summary$Receptor != "INR-like",]
 
 # plot a stacked bar chart of the number of sequences in each Receptor
