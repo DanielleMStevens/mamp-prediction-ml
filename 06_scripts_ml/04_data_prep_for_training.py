@@ -211,7 +211,7 @@ def main(args):
     elif args.split_type == "random":
         train_df, test_df = split_randomly(receptor_ligand_pairs)
     else:
-        raise ValueError("Please specify a valid split type: 'stratify' or 'random'. "
+        raise ValueError("Please specify a valid split type: 'immuno_stratify' or 'random'. "
                         "Stratified split preserves class distribution between train/test sets. "
                         "Random split performs standard random splitting.")
     

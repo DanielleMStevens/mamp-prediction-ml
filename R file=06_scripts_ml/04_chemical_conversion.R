@@ -55,7 +55,7 @@ test_data <- tryCatch(
 )
 
 # Check if the required sequence columns exist
-required_cols <- c("Sequence", "Receptor.Sequence") # Use exact names expected from CSV
+required_cols <- c("Sequence", "Receptor Sequence") # Use exact names expected from CSV
 if (!all(required_cols %in% colnames(train_data))) {
   stop("Missing required columns in training data. Needed: '", paste(required_cols, collapse="', '"), "'. Found: '", paste(colnames(train_data), collapse="', '"), "'")
 }
@@ -82,37 +82,40 @@ hydrophobicity_manavalan_data <- c(
 
 # --- Feature Conversion Function ---
 sequence_to_feature_values <- function(sequence, feature = "bulkiness") {
+  # Add debug print
+  print(paste("Processing sequence:", sequence))
+  
   # Return NA string representation if input is not a single character string
   if (!is.character(sequence) || length(sequence) != 1 || is.na(sequence)) {
+      print("Invalid sequence detected")
       return(NA_character_)
   }
+  
   # Return empty string if sequence is empty
   if (nchar(sequence) == 0) {
+       print("Empty sequence detected")
        return("")
   }
 
   amino_acids <- strsplit(sequence, "")[[1]]
-
-  feature_scale <- switch(feature, # feature should already be lowercase
+  
+  feature_scale <- switch(feature,
     "bulkiness" = bulkiness_data,
     "charge" = charge_data,
     "hydrophobicity" = hydrophobicity_manavalan_data,
-    # This stop should theoretically not be reached due to earlier validation
     stop(paste("Internal error: Invalid feature passed to conversion function:", feature))
   )
 
   # Get feature values, handling unknown amino acids
   feature_values <- sapply(amino_acids, function(aa) {
-    # Handle potential case sensitivity in amino acid codes if necessary, though scales use uppercase
     val <- feature_scale[toupper(aa)]
-    # Return NA if amino acid is not found in the scale
-    return(ifelse(is.null(val) || is.na(val), NA, val))
+    ifelse(is.null(val) || is.na(val), NA, val)
   }, USE.NAMES = FALSE)
 
-  # Round numeric values to 2 decimal places, convert NA to "NA" string
-  feature_values_formatted <- ifelse(is.na(feature_values), "NA", sprintf("%.2f", feature_values))
+  # Add debug print for feature values
+  print(paste("Feature values:", paste(feature_values, collapse=",")))
 
-  # Combine values into a comma-separated string
+  feature_values_formatted <- ifelse(is.na(feature_values), "NA", sprintf("%.2f", feature_values))
   return(paste(feature_values_formatted, collapse = ","))
 }
 
