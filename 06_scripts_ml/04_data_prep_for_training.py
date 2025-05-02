@@ -28,6 +28,7 @@ import argparse
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 from typing import Dict, Tuple, List
+import numpy as np
 
 
 ########################################################################################
@@ -150,10 +151,9 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
     return receptor_ligand_pairs
 
 ########################################################################################
-# Create a stratified train/test split while handling potential rare classes.
+# Create a stratified train/test split
 # Returns: Tuple[pd.DataFrame, pd.DataFrame]: Training and test dataframes
 # Note: Attempts stratified split based on 'Known Outcome' column
-# Note: Falls back to random split if stratification fails (e.g., due to rare classes)
 # Note: Uses 80/20 train/test split ratio
 ########################################################################################
 
@@ -169,9 +169,21 @@ def stratified_split(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
 
 
 def split_randomly(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    # Create a copy of the dataframe
+    df_shuffled = df.copy()
+    
+    # Shuffle the ligand sequences and outcomes while keeping receptor sequences fixed
+    shuffled_indices = np.random.RandomState(42).permutation(len(df))
+    # Keep receptor-related columns fixed while shuffling epitope-related columns together
+    # Use same shuffled indices to maintain relationships between epitope data
+    epitope_cols = ['Epitope', 'Sequence', 'Known Outcome']
+    for col in epitope_cols:
+        df_shuffled[col] = df[col].values[shuffled_indices]
+
+    # Correctly call train_test_split on the shuffled dataframe
     train_df, test_df = train_test_split(
-        df, 
-        test_size=0.2, 
+        df_shuffled,
+        test_size=0.2,
         random_state=42
     )
     return train_df, test_df
