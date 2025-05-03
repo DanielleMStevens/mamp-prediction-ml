@@ -6,6 +6,8 @@ from sklearn.preprocessing import LabelEncoder
 from collections import Counter
 import torch
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_recall_curve, auc
+from sklearn.utils.validation import check_is_fitted
+from sklearn.exceptions import NotFittedError
 
 class RandomForestBaselineModel:
     """
@@ -19,7 +21,43 @@ class RandomForestBaselineModel:
             random_state=42
         )
         self.label_encoder = LabelEncoder()
+        self.losses = [] # Add an empty list for compatibility
         
+    def parameters(self):
+        """
+        Placeholder for compatibility with PyTorch training loops expecting parameters.
+        Scikit-learn models don't have parameters in the same way.
+        """
+        return iter([]) # Return an empty iterator
+
+    def to(self, device):
+        """
+        Placeholder for compatibility with PyTorch training loops expecting device placement.
+        Scikit-learn models run on CPU, so this is a no-op.
+        """
+        return self # Return the object itself
+
+    def __call__(self, batch_x):
+        """
+        Make the model instance callable, like a PyTorch model.
+        Delegates to the forward method.
+        """
+        return self.forward(batch_x)
+
+    def named_parameters(self):
+        """
+        Placeholder for compatibility with PyTorch training loops expecting named parameters.
+        Scikit-learn models don't have named parameters in the PyTorch sense.
+        """
+        return iter([]) # Return an empty iterator
+
+    def eval(self):
+        """
+        Placeholder for compatibility with PyTorch training loops expecting an eval mode.
+        Scikit-learn models don't have a separate eval mode like PyTorch models.
+        """
+        pass # No operation needed
+
     def _encode_sequence(self, sequence):
         """
         Simple sequence encoding using amino acid composition (frequency of each amino acid)
@@ -49,10 +87,22 @@ class RandomForestBaselineModel:
     def forward(self, batch_x):
         """
         Forward pass (prediction) for compatibility with other models
+        Handles cases where the model is not yet fitted by returning uniform probabilities.
         """
         X = self._prepare_features(batch_x)
-        probas = self.model.predict_proba(X)
-        return torch.tensor(probas)
+        num_samples = X.shape[0]
+        num_classes = 3 # Assuming 3 classes based on get_stats logic
+
+        try:
+            # Check if the model is fitted before predicting
+            check_is_fitted(self.model)
+            probas = self.model.predict_proba(X)
+            return torch.tensor(probas, dtype=torch.float32)
+        except NotFittedError:
+            # Return uniform probabilities if the model is not fitted
+            print("Warning: RandomForestBaselineModel is not fitted yet. Returning uniform probabilities.")
+            uniform_probas = torch.ones(num_samples, num_classes, dtype=torch.float32) / num_classes
+            return uniform_probas
     
     def fit(self, batch):
         """

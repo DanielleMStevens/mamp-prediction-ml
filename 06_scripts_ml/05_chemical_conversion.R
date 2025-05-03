@@ -5,9 +5,7 @@ library(Peptides)
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) == 0) {
-  stop("Usage: Rscript 06_scripts_ml/04_chemical_conversion.R <feature1> [feature2] ...\n",
-       "   or: Rscript 06_scripts_ml/04_chemical_conversion.R all\n",
-       "   Example: Rscript 06_scripts_ml/04_chemical_conversion.R bulkiness charge\n",
+  stop("   Example: Rscript 06_scripts_ml/05_chemical_conversion.R bulkiness\n",
        "   Available features: bulkiness, charge, hydrophobicity, all")
 }
 

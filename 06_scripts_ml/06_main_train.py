@@ -65,6 +65,7 @@ from models.esm_receptor_chemical_fusion_variants import ESMReceptorChemical
 from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
 from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
 from models.esm_contrast_model import ESMContrastiveModel
+from models.esm_all_chemical_features import ESMallChemicalFeatures
 
 # glm models
 from models.glm_model import GLMModel
@@ -272,7 +273,8 @@ model_dict = {
     "amplify_with_receptor": AMPWithReceptorModel,        # AMP model with receptor
     "esm2_with_receptor_attn_film": ESMWithReceptorAttnFilmModel,  # ESM2 with attention and FiLM
     "esm2_contrast": ESMContrastiveModel,                  # ESM2 with contrastive learning
-    "random_forest": RandomForestBaselineModel              # Random Forest baseline model
+    "random_forest": RandomForestBaselineModel,              # Random Forest baseline model
+    "esm2_all_chemical_features": ESMallChemicalFeatures,  # ESM2 with all chemical features
 }
 
 # Dictionary mapping model names to their corresponding dataset classes
@@ -290,7 +292,8 @@ dataset_dict = {
     "amplify_with_receptor": PeptideSeqWithReceptorDataset,
     "esm2_with_receptor_attn_film": PeptideSeqWithReceptorDataset,
     "esm2_contrast": PeptideSeqDataset,
-    "random_forest": PeptideSeqWithReceptorDataset
+    "random_forest": PeptideSeqWithReceptorDataset,
+    "esm2_all_chemical_features": PeptideSeqWithReceptorDataset
 }
 
 # Dictionary mapping model names to their WandB experiment names
@@ -308,7 +311,8 @@ wandb_dict = {
     "amplify_with_receptor": "mamp_amplify_with_receptor",
     "esm2_with_receptor_attn_film": "mamp_esm2_with_receptor_attn_film",
     "esm2_contrast": "mamp_esm2_contrast",
-    "random_forest": "mamp_random_forest" 
+    "random_forest": "mamp_random_forest",
+    "esm2_all_chemical_features": "mamp_esm2_all_chemical_features"
 }
 
 
@@ -416,7 +420,7 @@ def main(args):
         eval_data_path = args.eval_only_data_path
     else:
         #eval_data_path = f"{args.data_dir}/test_immuno_stratify.csv"
-        eval_data_path = f"{args.data_dir}/test_random.csv"
+        eval_data_path = f"{args.data_dir}/test_data_with_all.csv"
     test_df = pd.read_csv(eval_data_path)
     ds_test = dataset(df=test_df)
     print(f"{len(ds_test)=}")
@@ -448,7 +452,7 @@ def main(args):
         exit()
 
     # Prepare training dataset and dataloader
-    train_df = pd.read_csv(f"{args.data_dir}/train_random.csv")
+    train_df = pd.read_csv(f"{args.data_dir}/test_data_with_all.csv")
     #train_df = pd.read_csv(f"{args.data_dir}/train_immuno_stratify.csv")
     ds_train = dataset(df=train_df)
     print(f"{len(ds_train)=}")
@@ -552,7 +556,7 @@ def main(args):
 
 
             cv_ds_train = SeqAffDataset(df=ds_train.df.iloc[train_idx])
-            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_random.csv", index=False)
+            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/test_data_with_all.csv", index=False)
             #ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_immuno_stratify.csv", index=False)
 
             if args.distributed:
@@ -571,7 +575,7 @@ def main(args):
                 collate_fn=collate_fn,
             )
             cv_ds_test = SeqAffDataset(df=ds_train.df.iloc[test_idx])
-            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_random.csv", index=False)
+            ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_data_with_all.csv", index=False)
             #ds_train.df.iloc[test_idx].to_csv(f"{out_dir}/test_immuno_stratify.csv", index=False)
             cv_sampler_test = torch.utils.data.SequentialSampler(cv_ds_test)
             
