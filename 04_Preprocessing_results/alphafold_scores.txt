@@ -108,6 +108,8 @@ Arabidopsis_thaliana_At5g20480_G274A_T275A_EFR                                  
 Arabidopsis_thaliana_At5g20480_H447A_N449A_EFR                                                      model_1        85.3      0.612
 Arabidopsis_thaliana_At5g20480_N103A_D106A_EFR                                                      model_1        85.1      0.614
 Arabidopsis_thaliana_At5g20480_N103A_EFR                                                            model_1        85.0      0.610
+Arabidopsis_thaliana_At5g20480_N143Q_EFR                                                            model_1        85.2      0.612
+Arabidopsis_thaliana_At5g20480_N288Q_EFR                                                            model_1        85.2      0.612
 Arabidopsis_thaliana_At5g20480_N564A_S568A_EFR                                                      model_1        85.2      0.611
 Arabidopsis_thaliana_At5g20480_N588A_N590A_EFR                                                      model_1        85.2      0.613
 Arabidopsis_thaliana_At5g20480_N590A_EFR                                                            model_1        84.9      0.612
@@ -141,6 +143,7 @@ Arabidopsis_thaliana_LR699756_RLP23                                             
 Arabidopsis_thaliana_LR797798_RLP23                                                                 model_1        84.4      0.739
 Arabidopsis_thaliana_OX291572_RLP23                                                                 model_1        84.3      0.745
 Biscutella_auriculata_ABW72734_FLS2                                                                 model_1        84.6      0.608
+Brachypodium_distachyon_XP_010227269_FLS2                                                           model_1        83.8      0.596
 Brascia_rapa_BraraC02577_MIK2                                                                       model_1        85.6      0.629
 Brasica_rapa_BraraC02577_MIK2                                                                       model_1        85.6      0.629
 Brassica_rapa_97L9_FLS2                                                                             model_1        85.1      0.661
@@ -183,6 +186,11 @@ Glycine_max_Glyma.10G228200_INR-like_3_INR-like                                 
 Glycine_max_Glyma.10G228600_INR-like_4_INR-like                                                     model_1        86.7      0.761
 Glycine_max_Glyma10G228000_INR-like_1_INR-like                                                      model_1        86.6      0.756
 Glycine_max_Glyma_05g128200_FLS2                                                                    model_1        86.6      0.613
+Glycine_max_Glyma_05g128200_N391H_FLS2                                                              model_1        86.7      0.614
+Glycine_max_Glyma_05g128200_Q248E_FLS2                                                              model_1        86.5      0.608
+Glycine_max_Glyma_05g128200_Q368F_FLS2                                                              model_1        86.7      0.614
+Glycine_max_Glyma_05g128200_R483I_FLS2                                                              model_1        86.9      0.617
+Glycine_max_Glyma_05g128200_T507I_FLS2                                                              model_1        86.6      0.616
 Glycine_max_Glyma_08g083300_FLS2                                                                    model_1        87.1      0.621
 Humulus_lupulus_XP_062096069_FLS2                                                                   model_1        87.6      0.605
 Hylodesmum_podocarpum_Hpodo_INR-like_2_INR-like                                                     model_1        86.6      0.755
@@ -196,6 +204,7 @@ Kalanchoe_laxiflora_ON556668_FLS2                                               
 Lablab_purpureus_Lp005646g0031_INR-like_INR-like                                                    model_1        84.6      0.737
 Lablab_purpureus_Lp005646g0031_INR_INR                                                              model_1        85.9      0.750
 Lepidium_alluaudii_ABW72732_FLS2                                                                    model_1        84.6      0.607
+Lotus_japonicus_LjT25G24_FLS2                                                                       model_1        87.8      0.616
 Lycopersicum_esculentum_msk8_LeFLS2_FLS2                                                            model_1        85.9      0.608
 Macroptilium_lathyroides_Mlathy_INR_INR                                                             model_1        86.0      0.753
 Malus_domestica_UTN00798_FLS2                                                                       model_1        87.4      0.628

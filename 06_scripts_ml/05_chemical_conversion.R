@@ -14,8 +14,8 @@ selected_features <- args
 
 
 # Read the training data
-train_data <- read.csv("05_datasets/train_stratify.csv")
-test_data <- read.csv("05_datasets/test_stratify.csv")
+train_data <- read.csv("05_datasets/train_immuno_stratify.csv")
+test_data <- read.csv("05_datasets/test_immuno_stratify.csv")
 
 # Function to convert sequence to bulkiness values
 sequence_to_bulkiness <- function(sequence) {
