@@ -58,24 +58,27 @@ import torch.optim as optim
 from models.random_forest_baseline import RandomForestBaselineModel
 
 # esm models
-from models.esm_model import ESMModel
-from models.esm_mid_model import ESMMidModel
+#from models.esm_model import ESMModel
+#from models.esm_mid_model import ESMMidModel
 from models.esm_with_receptor_model import ESMWithReceptorModel
 from models.esm_receptor_chemical_fusion_variants import ESMReceptorChemical
-from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
+#from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
 from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
 from models.esm_contrast_model import ESMContrastiveModel
 from models.esm_all_chemical_features import ESMallChemicalFeatures
+from models.esm_positon_weighted import BFactorWeightGenerator
+from models.esm_positon_weighted import ESMBfactorWeightedFeatures
+from models.esm_chain_rule_allchemical import ESM_chainRule_chemical
 
 # glm models
-from models.glm_model import GLMModel
-from models.glm_with_receptor_model import GLMWithReceptorModel
-from models.glm_with_receptor_single_seq_model import GLMWithReceptorSingleSeqModel
+#from models.glm_model import GLMModel
+#from models.glm_with_receptor_model import GLMWithReceptorModel
+#from models.glm_with_receptor_single_seq_model import GLMWithReceptorSingleSeqModel
 
 # alphafold and other models
-from models.alphafold_model import AlphaFoldModel
-from models.amp_with_receptor_model import AMPWithReceptorModel
-from models.amp_model import AMPModel
+#from models.alphafold_model import AlphaFoldModel
+#from models.amp_with_receptor_model import AMPWithReceptorModel
+#from models.amp_model import AMPModel
 
 from engine_train import train_one_epoch, evaluate
 from datasets.seq_dataset import PeptideSeqDataset
@@ -260,21 +263,23 @@ def get_args_parser():
 
 # Dictionary mapping model names to their implementations
 model_dict = {
-    "esm2": ESMModel,                                      # ESM2 base model
-    "glm2": GLMModel,                                      # GLM2 base model
-    "esm2_mid": ESMMidModel,                              # ESM2 with mid-layer features
-    "alphafold_pair_reps": AlphaFoldModel,                # AlphaFold-based model
+#    "esm2": ESMModel,                                      # ESM2 base model
+#    "glm2": GLMModel,                                      # GLM2 base model
+#    "esm2_mid": ESMMidModel,                              # ESM2 with mid-layer features
+#    "alphafold_pair_reps": AlphaFoldModel,                # AlphaFold-based model
     "esm2_with_receptor": ESMWithReceptorModel,           # ESM2 with receptor interaction
     "esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
-    "glm2_with_receptor": GLMWithReceptorModel,           # GLM2 with receptor interaction
-    "esm2_with_receptor_single_seq": ESMWithReceptorSingleSeqModel,  # ESM2 with single sequence receptor
-    "glm2_with_receptor_single_seq": GLMWithReceptorSingleSeqModel,  # GLM2 with single sequence receptor
-    "amplify": AMPModel,                                  # AMP (Antimicrobial Peptide) model
-    "amplify_with_receptor": AMPWithReceptorModel,        # AMP model with receptor
+#    "glm2_with_receptor": GLMWithReceptorModel,           # GLM2 with receptor interaction
+#    "esm2_with_receptor_single_seq": ESMWithReceptorSingleSeqModel,  # ESM2 with single sequence receptor
+#    "glm2_with_receptor_single_seq": GLMWithReceptorSingleSeqModel,  # GLM2 with single sequence receptor
+#    "amplify": AMPModel,                                  # AMP (Antimicrobial Peptide) model
+#    "amplify_with_receptor": AMPWithReceptorModel,        # AMP model with receptor
     "esm2_with_receptor_attn_film": ESMWithReceptorAttnFilmModel,  # ESM2 with attention and FiLM
     "esm2_contrast": ESMContrastiveModel,                  # ESM2 with contrastive learning
     "random_forest": RandomForestBaselineModel,              # Random Forest baseline model
     "esm2_all_chemical_features": ESMallChemicalFeatures,  # ESM2 with all chemical features
+    "esm2_bfactor_weighted": ESMBfactorWeightedFeatures,  # ESM2 with B-factor weighted features
+    "esm_chain_rule_allchemical": ESM_chainRule_chemical,  # ESM2 with chain rule and all chemical features
 }
 
 # Dictionary mapping model names to their corresponding dataset classes
@@ -293,7 +298,9 @@ dataset_dict = {
     "esm2_with_receptor_attn_film": PeptideSeqWithReceptorDataset,
     "esm2_contrast": PeptideSeqDataset,
     "random_forest": PeptideSeqWithReceptorDataset,
-    "esm2_all_chemical_features": PeptideSeqWithReceptorDataset
+    "esm2_all_chemical_features": PeptideSeqWithReceptorDataset,
+    "esm2_bfactor_weighted": PeptideSeqWithReceptorDataset,
+    "esm_chain_rule_allchemical": PeptideSeqWithReceptorDataset
 }
 
 # Dictionary mapping model names to their WandB experiment names
@@ -312,7 +319,9 @@ wandb_dict = {
     "esm2_with_receptor_attn_film": "mamp_esm2_with_receptor_attn_film",
     "esm2_contrast": "mamp_esm2_contrast",
     "random_forest": "mamp_random_forest",
-    "esm2_all_chemical_features": "mamp_esm2_all_chemical_features"
+    "esm2_all_chemical_features": "mamp_esm2_all_chemical_features",
+    "esm2_bfactor_weighted": "mamp_esm2_bfactor_weighted",
+    "esm_chain_rule_allchemical": "mamp_esm_chain_rule_allchemical"
 }
 
 
@@ -452,7 +461,7 @@ def main(args):
         exit()
 
     # Prepare training dataset and dataloader
-    train_df = pd.read_csv(f"{args.data_dir}/test_data_with_all.csv")
+    train_df = pd.read_csv(f"{args.data_dir}/train_data_with_all.csv")
     #train_df = pd.read_csv(f"{args.data_dir}/train_immuno_stratify.csv")
     ds_train = dataset(df=train_df)
     print(f"{len(ds_train)=}")
@@ -556,7 +565,7 @@ def main(args):
 
 
             cv_ds_train = SeqAffDataset(df=ds_train.df.iloc[train_idx])
-            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/test_data_with_all.csv", index=False)
+            ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_data_with_all.csv", index=False)
             #ds_train.df.iloc[train_idx].to_csv(f"{out_dir}/train_immuno_stratify.csv", index=False)
 
             if args.distributed:

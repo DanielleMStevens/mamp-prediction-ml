@@ -4,8 +4,8 @@ library(dplyr)
 library(ggplot2)
 
 # Read the data
-correct_df <- read_tsv("results/correct_classification_report.tsv")
-misclass_df <- read_tsv("results/misclassification_report.tsv")
+correct_df <- read_tsv("../model_results/esm2_bfactor_weighted_05_datasets/correct_classification_report.tsv")
+misclass_df <- read_tsv("../model_results/esm2_bfactor_weighted_05_datasets/misclassification_report.tsv")
 
 # color code for genera of interest
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
