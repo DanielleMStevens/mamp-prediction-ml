@@ -54,21 +54,27 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+# ---------- current models ----------
+
 # random forest model
 from models.random_forest_baseline import RandomForestBaselineModel
 
-# esm models
-#from models.esm_model import ESMModel
-#from models.esm_mid_model import ESMMidModel
+# esm models - current models
 from models.esm_with_receptor_model import ESMWithReceptorModel
 from models.esm_receptor_chemical_fusion_variants import ESMReceptorChemical
-#from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
-from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
-from models.esm_contrast_model import ESMContrastiveModel
 from models.esm_all_chemical_features import ESMallChemicalFeatures
 from models.esm_positon_weighted import BFactorWeightGenerator
 from models.esm_positon_weighted import ESMBfactorWeightedFeatures
 from models.esm_chain_rule_allchemical import ESM_chainRule_chemical
+
+# ---------- old models ----------
+
+# esm models
+#from models.esm_model import ESMModel
+#from models.esm_mid_model import ESMMidModel
+#from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
+#from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
+#from models.esm_contrast_model import ESMContrastiveModel
 
 # glm models
 #from models.glm_model import GLMModel
@@ -274,8 +280,8 @@ model_dict = {
 #    "glm2_with_receptor_single_seq": GLMWithReceptorSingleSeqModel,  # GLM2 with single sequence receptor
 #    "amplify": AMPModel,                                  # AMP (Antimicrobial Peptide) model
 #    "amplify_with_receptor": AMPWithReceptorModel,        # AMP model with receptor
-    "esm2_with_receptor_attn_film": ESMWithReceptorAttnFilmModel,  # ESM2 with attention and FiLM
-    "esm2_contrast": ESMContrastiveModel,                  # ESM2 with contrastive learning
+#    "esm2_with_receptor_attn_film": ESMWithReceptorAttnFilmModel,  # ESM2 with attention and FiLM
+#    "esm2_contrast": ESMContrastiveModel,                  # ESM2 with contrastive learning
     "random_forest": RandomForestBaselineModel,              # Random Forest baseline model
     "esm2_all_chemical_features": ESMallChemicalFeatures,  # ESM2 with all chemical features
     "esm2_bfactor_weighted": ESMBfactorWeightedFeatures,  # ESM2 with B-factor weighted features
