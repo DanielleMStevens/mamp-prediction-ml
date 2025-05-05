@@ -249,6 +249,15 @@ class ESMBfactorWeightedFeatures(nn.Module):
         self.esm = AutoModel.from_pretrained("facebook/esm2_t30_150M_UR50D")
         self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")
         
+        # notes: other size models from ESM2:
+        # Checkpoint name	Num layers	Num parameters
+        # esm2_t48_15B_UR50D	48	15B
+        # esm2_t36_3B_UR50D	36	3B
+        # esm2_t33_650M_UR50D	33	650M
+        # esm2_t30_150M_UR50D	30	150M
+        # esm2_t12_35M_UR50D	12	35M
+        # esm2_t6_8M_UR50D	6	8M
+
         # --- Debug Tokenizer Info ---
         # This helps diagnose tokenization issues during development
         print(f"DEBUG Tokenizer Info:")
@@ -581,8 +590,14 @@ class ESMBfactorWeightedFeatures(nn.Module):
             skip_special_tokens=True  # Remove special tokens like [PAD]
         )
         
-        # Split each sequence at the separator token to get peptide and receptor parts
-        return [seq.split(self.tokenizer.sep_token) for seq in decoded]
+        # ESM2 doesn't have a dedicated separator token (sep_token is None)
+        # We previously defaulted to using EOS token (<eos>) as separator
+        # in self.separator_token_id
+        
+        # Split each sequence at the EOS token to get peptide and receptor parts
+        # Note: self.tokenizer.eos_token is "<eos>"
+        #return [seq.split(self.tokenizer.sep_token) for seq in decoded]
+        return [seq.split(self.tokenizer.eos_token) for seq in decoded]
 
     def get_pr(self, logits):
         """
@@ -598,7 +613,7 @@ class ESMBfactorWeightedFeatures(nn.Module):
 
     def get_stats(self, gt, pr, train=False):
         """
-        Calculate evaluation metrics.
+        Calculate evaluation metrics and include predicted probabilities.
         
         Args:
             gt: Ground truth labels
@@ -606,7 +621,7 @@ class ESMBfactorWeightedFeatures(nn.Module):
             train: Whether these are training or test metrics
             
         Returns:
-            dict: Dictionary of evaluation metrics
+            dict: Dictionary of evaluation metrics including probabilities
         """
         # Set prefix for metric names
         prefix = "train" if train else "test"
@@ -643,5 +658,21 @@ class ESMBfactorWeightedFeatures(nn.Module):
             stats[f"{prefix}_auprc_macro"] = 0.0
             for i in range(3):
                 stats[f"{prefix}_auprc_class{i}"] = 0.0
+
+        # Save test probabilities to CSV if this is test data and final epoch
+        if not train and hasattr(self, 'current_epoch') and self.current_epoch == self.hparams.epochs - 1:
+            # Convert predictions and ground truth to numpy arrays
+            probs = pr.cpu().numpy()
+            labels = gt.cpu().numpy()
+            
+            # Create DataFrame with probabilities and true labels
+            results_df = pd.DataFrame(probs, columns=['prob_class0', 'prob_class1', 'prob_class2'])
+            results_df['true_label'] = labels
+            
+            # Save to CSV
+            results_df.to_csv('test_predictions.csv', index=False)
+            
+        # Keep probabilities in stats dictionary for consistency
+        #stats[f"{prefix}_probabilities"] = pr.cpu().numpy()
             
         return stats

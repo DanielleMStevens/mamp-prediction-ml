@@ -269,12 +269,16 @@ def get_args_parser():
 
 # Dictionary mapping model names to their implementations
 model_dict = {
+    "esm2_with_receptor": ESMWithReceptorModel,           # ESM2 with receptor interaction
+    "esm2_all_chemical_features": ESMallChemicalFeatures,  # ESM2 with all chemical features
+    "esm2_bfactor_weighted": ESMBfactorWeightedFeatures,  # ESM2 with B-factor weighted features}
+}
+
 #    "esm2": ESMModel,                                      # ESM2 base model
 #    "glm2": GLMModel,                                      # GLM2 base model
 #    "esm2_mid": ESMMidModel,                              # ESM2 with mid-layer features
 #    "alphafold_pair_reps": AlphaFoldModel,                # AlphaFold-based model
-    "esm2_with_receptor": ESMWithReceptorModel,           # ESM2 with receptor interaction
-    "esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
+#    "esm_receptor_chemical": ESMReceptorChemical,            # ESM2 with chemical interaction
 #    "glm2_with_receptor": GLMWithReceptorModel,           # GLM2 with receptor interaction
 #    "esm2_with_receptor_single_seq": ESMWithReceptorSingleSeqModel,  # ESM2 with single sequence receptor
 #    "glm2_with_receptor_single_seq": GLMWithReceptorSingleSeqModel,  # GLM2 with single sequence receptor
@@ -282,11 +286,8 @@ model_dict = {
 #    "amplify_with_receptor": AMPWithReceptorModel,        # AMP model with receptor
 #    "esm2_with_receptor_attn_film": ESMWithReceptorAttnFilmModel,  # ESM2 with attention and FiLM
 #    "esm2_contrast": ESMContrastiveModel,                  # ESM2 with contrastive learning
-    "random_forest": RandomForestBaselineModel,              # Random Forest baseline model
-    "esm2_all_chemical_features": ESMallChemicalFeatures,  # ESM2 with all chemical features
-    "esm2_bfactor_weighted": ESMBfactorWeightedFeatures,  # ESM2 with B-factor weighted features
-    "esm_chain_rule_allchemical": ESM_chainRule_chemical,  # ESM2 with chain rule and all chemical features
-}
+#    "random_forest": RandomForestBaselineModel,              # Random Forest baseline mode
+#    "esm_chain_rule_allchemical": ESM_chainRule_chemical,  # ESM2 with chain rule and all chemical features
 
 # Dictionary mapping model names to their corresponding dataset classes
 dataset_dict = {
