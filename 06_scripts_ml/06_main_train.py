@@ -56,18 +56,16 @@ import torch.optim as optim
 
 # ---------- current models ----------
 
-# random forest model
-from models.random_forest_baseline import RandomForestBaselineModel
-
 # esm models - current models
 from models.esm_with_receptor_model import ESMWithReceptorModel
-from models.esm_receptor_chemical_fusion_variants import ESMReceptorChemical
 from models.esm_all_chemical_features import ESMallChemicalFeatures
 from models.esm_positon_weighted import BFactorWeightGenerator
 from models.esm_positon_weighted import ESMBfactorWeightedFeatures
-from models.esm_chain_rule_allchemical import ESM_chainRule_chemical
 
 # ---------- old models ----------
+
+# random forest model
+#from models.random_forest_baseline import RandomForestBaselineModel
 
 # esm models
 #from models.esm_model import ESMModel
@@ -75,6 +73,8 @@ from models.esm_chain_rule_allchemical import ESM_chainRule_chemical
 #from models.esm_with_receptor_single_seq_model import ESMWithReceptorSingleSeqModel
 #from models.esm_with_receptor_attn_film_model import ESMWithReceptorAttnFilmModel
 #from models.esm_contrast_model import ESMContrastiveModel
+#from models.esm_chain_rule_allchemical import ESM_chainRule_chemical
+#from models.esm_receptor_chemical_fusion_variants import ESMReceptorChemical
 
 # glm models
 #from models.glm_model import GLMModel

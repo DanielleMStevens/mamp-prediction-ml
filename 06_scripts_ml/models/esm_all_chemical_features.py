@@ -67,9 +67,11 @@ class ESMallChemicalFeatures(nn.Module):
         super().__init__()
         
         # Load ESM model
-        self.esm = AutoModel.from_pretrained("facebook/esm2_t30_150M_UR50D")
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")
+        self.esm = AutoModel.from_pretrained("facebook/esm2_t33_650M_UR50D")
+        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t33_650M_UR50D")
         
+        #esm2_t33_650M_UR50D
+
         # Freeze early layers, leaving only the last 10 encoder layers trainable
         # (ESM2-t30 has 30 layers total, so layers 20-29 will be trainable)
         # Previous version - training last 10 layers
@@ -84,7 +86,7 @@ class ESMallChemicalFeatures(nn.Module):
         # New version - only train last layer
         modules_to_freeze = [
             self.esm.embeddings,
-            *self.esm.encoder.layer[:29]  # Freeze first 29 layers, leaving only last layer trainable
+            *self.esm.encoder.layer[:30]  # Freeze first 29 layers, leaving only last layer trainable
         ]
         for module in modules_to_freeze:
             for param in module.parameters():
@@ -98,11 +100,13 @@ class ESMallChemicalFeatures(nn.Module):
         
         # Classification head
         self.classifier = nn.Sequential(
-            nn.Linear(self.hidden_size, self.hidden_size // 2),  # Reduce dimensions faster
-            nn.LayerNorm(self.hidden_size // 2),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(self.hidden_size // 2, num_classes)  # Direct projection to classes
+            # Reduce from 1280 -> 640 dimensions
+            nn.Linear(self.hidden_size, self.hidden_size // 2),  
+            nn.LayerNorm(self.hidden_size // 2),  # Normalize the 640-dim output
+            nn.ReLU(),  # Non-linearity
+            nn.Dropout(0.2),  # Prevent overfitting
+            # Final projection from 640 -> 3 classes (immune response categories)
+            nn.Linear(self.hidden_size // 2, num_classes)
         )
         
         # Loss with label smoothing
@@ -128,10 +132,11 @@ class ESMallChemicalFeatures(nn.Module):
         
         # Get ESM embeddings
         combined_tokens = batch_x['combined_tokens']
-        # Ensure mask is boolean
+        # Convert mask to boolean tensor - this mask indicates valid tokens vs padding
+        # Used by ESM model to avoid attending to padding tokens during self-attention
         combined_mask = batch_x['combined_mask'].bool()
         
-        # Get ESM embeddings
+        # Get ESM embeddings, passing the attention mask to properly handle padding
         outputs = self.esm(
             input_ids=combined_tokens,
             attention_mask=combined_mask,
@@ -154,12 +159,18 @@ class ESMallChemicalFeatures(nn.Module):
         ], dim=-1)
         
         # Apply FiLM conditioning
+        # FiLM (Feature-wise Linear Modulation) modulates the sequence features based on:
+        # 1. pooled_output: The max-pooled ESM embeddings that capture global sequence context
+        # 2. chemical_features: The chemical properties (bulkiness, charge, hydrophobicity) of both peptide and receptor
+        # This helps the model learn interactions between sequence and chemical properties
         conditioned_output = self.film(sequence_output, pooled_output, chemical_features)
         
         # Pool conditioned output (using the same boolean mask)
+        # 1. Mask out padding tokens by setting them to negative infinity
+        # 2. Take max over sequence dimension to get a fixed-size representation
+        # This creates a single vector per sequence that captures the most important features
         masked_conditioned = conditioned_output.masked_fill(~combined_mask.unsqueeze(-1), -torch.inf)
         final_pooled, _ = torch.max(masked_conditioned, dim=1)
-        
         # Classify
         logits = self.classifier(final_pooled)
         return logits
@@ -183,12 +194,22 @@ class ESMallChemicalFeatures(nn.Module):
         tokenizer = self.tokenizer
         
         # Get sequences and labels
-        sequences = [str(item['peptide_x']) for item in batch]
-        receptors = [str(item['receptor_x']) for item in batch]
-        labels = torch.tensor([item['y'] for item in batch])
+        # Extract peptide sequences and convert to strings, handling any non-string inputs
+        sequences = [str(item['peptide_x']).strip() for item in batch]
         
-        # Combine sequences with separator
-        combined = [f"{seq} {tokenizer.sep_token} {rec}" for seq, rec in zip(sequences, receptors)]
+        # Extract receptor sequences and convert to strings, handling any non-string inputs  
+        receptors = [str(item['receptor_x']).strip() for item in batch]
+        
+        # Extract labels and convert to tensor, ensuring proper dtype
+        labels = torch.tensor([item['y'] for item in batch], dtype=torch.long)
+        
+        # Combine peptide and receptor sequences with ESM separator token
+        # Format: [peptide sequence] [SEP] [receptor sequence]
+        # The separator token helps the model distinguish between peptide and receptor
+        combined = [
+            f"{peptide_seq} {tokenizer.sep_token} {receptor_seq}" 
+            for peptide_seq, receptor_seq in zip(sequences, receptors)
+        ]
         
         # Tokenize with max_length parameter
         encoded = tokenizer(
@@ -201,17 +222,24 @@ class ESMallChemicalFeatures(nn.Module):
         
         # Process chemical features
         def process_features(batch, prefix):
+            # This function processes chemical features (bulkiness, charge, hydrophobicity) for sequences
+            # For each feature type:
+            # - If the feature exists in the batch data (e.g. 'sequence_bulkiness'), extract it into a tensor
+            # - If the feature doesn't exist, create a zero tensor matching the sequence length
             features = {}
             for feat in ['bulkiness', 'charge', 'hydrophobicity']:
                 key = f"{prefix}_{feat}"
                 if key in batch[0]:
+                    # Extract feature values from batch into tensor
                     features[feat] = torch.tensor([item[key] for item in batch])
                 else:
+                    # Create zero tensor with shape matching the sequence length
                     features[feat] = torch.zeros(len(batch), encoded['input_ids'].size(1))
             return features
         
-        seq_features = process_features(batch, 'sequence')
-        rec_features = process_features(batch, 'receptor')
+        # Process features for both peptide sequences and receptor sequences
+        seq_features = process_features(batch, 'sequence')  # Gets chemical features for peptide sequences
+        rec_features = process_features(batch, 'receptor')  # Gets chemical features for receptor sequences
         
         # Return with 'y' instead of 'labels' to match expected structure
         return {
