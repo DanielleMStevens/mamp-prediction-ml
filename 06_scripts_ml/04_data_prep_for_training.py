@@ -162,7 +162,7 @@ def stratified_split(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     train_df, test_df = train_test_split(
             df, 
             test_size=0.2, 
-            random_state=42, 
+            random_state=123,
             stratify=df['Known Outcome']
     )
     return train_df, test_df
@@ -221,6 +221,7 @@ def main(args):
         train_df, test_df = split_randomly(receptor_ligand_pairs)
     else:
         raise ValueError("Please specify a valid split type: 'immuno_stratify' or 'random'. "
+                        "Example: python 04_data_prep_for_training.py --split_type immuno_stratify"
                         "Stratified split preserves class distribution between train/test sets. "
                         "Random split performs standard random splitting.")
     

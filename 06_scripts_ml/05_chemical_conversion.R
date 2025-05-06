@@ -5,7 +5,7 @@ library(Peptides)
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) == 0) {
-  stop("   Example: Rscript 06_scripts_ml/05_chemical_conversion.R bulkiness\n",
+  stop("   Example: Rscript 06_scripts_ml/05_chemical_conversion.R bulkiness train.csv test.csv\n",
        "   Available features: bulkiness, charge, hydrophobicity, all")
 }
 
@@ -14,8 +14,8 @@ selected_features <- args
 
 
 # Read the training data
-train_data <- read.csv("05_datasets/train_immuno_stratify.csv")
-test_data <- read.csv("05_datasets/test_immuno_stratify.csv")
+train_data <- read.csv(paste("05_datasets/", args[2], sep = ""))
+test_data <- read.csv(paste("05_datasets/", args[3], sep = ""))
 
 # Function to convert sequence to bulkiness values
 sequence_to_bulkiness <- function(sequence) {
@@ -114,5 +114,5 @@ if (args[1] == "all") {
 
 
 # Save the processed data
-write.csv(train_data, paste0("05_datasets/train_data_with_", args[1], ".csv"), row.names = FALSE)
-write.csv(test_data, paste0("05_datasets/test_data_with_", args[1], ".csv"), row.names = FALSE)
+write.csv(train_data, paste0("05_datasets/train_data_with_", args[1], "_", args[2]), row.names = FALSE)
+write.csv(test_data, paste0("05_datasets/test_data_with_", args[1], "_", args[3]), row.names = FALSE)
