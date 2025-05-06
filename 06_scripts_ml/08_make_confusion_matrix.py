@@ -233,9 +233,23 @@ def main(args):
     print("\nClassification Reports (Correct and Misclassified) Exported.")
     report = classification_report(gt, preds)
     
-    # Save classification report to a text file
+    # Save classification report to a text file with better formatting
     with open(os.path.join(args.output_dir, 'classification_report.txt'), 'w') as f:
+        f.write("Classification Performance Report\n")
+        f.write("=" * 50 + "\n\n")
+        f.write("Class Labels:\n")
+        f.write("0: Immunogenic\n")
+        f.write("1: Non-Immunogenic\n")
+        f.write("2: Weakly Immunogenic\n\n")
+        f.write("Performance Metrics:\n")
+        f.write("-" * 30 + "\n")
         f.write(report)
+        f.write("\nMetric Definitions:\n")
+        f.write("-" * 30 + "\n")
+        f.write("precision: True Positives / (True Positives + False Positives)\n")
+        f.write("recall: True Positives / (True Positives + False Negatives)\n")
+        f.write("f1-score: 2 * (precision * recall) / (precision + recall)\n")
+        f.write("support: Number of samples for each class\n")
 
 if __name__ == '__main__':
     args = parse_args()
