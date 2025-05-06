@@ -4,8 +4,8 @@ library(dplyr)
 library(ggplot2)
 
 # Read the data
-correct_df <- read_tsv("../model_results/esm2_all_chemical_features_05_datasets/correct_classification_report.tsv")
-misclass_df <- read_tsv("../model_results/esm2_all_chemical_features_05_datasets/misclassification_report.tsv")
+correct_df <- read_tsv("../model_results/esm2_bfactor_weighted_05_datasets/correct_classification_report.tsv")
+misclass_df <- read_tsv("../model_results/esm2_bfactor_weighted_05_datasets/misclassification_report.tsv")
 
 # color code for genera of interest
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
@@ -38,12 +38,12 @@ receptor_distribution_plot <- ggplot(combined_counts, aes(x = Plot_Count, y = Re
   geom_vline(xintercept = 0, linetype = "dashed", color = "black") + # Add line at zero
   #labels = function(x) abs(x), 
   scale_x_continuous(name = "Number of Combinations",
-          limits = c(-120, 80), breaks = seq(-120, 80, 40), labels = c(120, 80, 40, 0, 40, 80)) +
+          limits = c(-160, 120), breaks = seq(-160, 120, 40), labels = c(160, 120, 80, 40, 0, 40, 80, 120)) +
   labs(y = "Receptor") +
   theme_classic() +
   scale_fill_manual(values = receptor_colors) +
-  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, color = "black", size = 8),
-        axis.text.y = element_text(color = "black", size = 8),
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
         axis.title.x = element_text(color = "black", size = 8),
         axis.title.y = element_text(color = "black", size = 8),
         plot.title = element_text(hjust = 0.5),
@@ -58,5 +58,5 @@ receptor_distribution_plot <- ggplot(combined_counts, aes(x = Plot_Count, y = Re
    coord_cartesian(clip = "off") # Allows annotations outside plot area
 
 
-ggsave(filename = "./08_Validation_data_plots/receptor_distribution_plot.pdf", plot = receptor_distribution_plot, 
-device = "pdf", dpi = 300, width = 2.3, height = 2.7)
+ggsave(filename = "./07_model_results/receptor_distribution_plot.pdf", plot = receptor_distribution_plot, 
+device = "pdf", dpi = 300, width = 2.4, height = 2.6)

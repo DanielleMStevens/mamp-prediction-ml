@@ -45,7 +45,7 @@ identity_calc <- function(label_ids, sequence_list, comparison){
 #  plot of test data 
 ######################################################################
 
-test_data <- readr::read_csv(file = "./05_datasets/test_stratify.csv")
+test_data <- readr::read_csv(file = "./05_datasets/test_data_with_all.csv")
 test_summary <- test_data %>% group_by(Receptor) %>% summarize(n = n())
 test_summary$validation_data <- "validation_data"
 
@@ -90,7 +90,7 @@ ggsave(filename = "./04_Preprocessing_results/Validation_data_plots/test_summary
 ######################################################################
 
 # distribution of peptide outcomes
-test_data <- readr::read_csv(file = "./05_datasets/test_stratify.csv")
+test_data <- readr::read_csv(file = "./05_datasets/test_data_with_all.csv")
 peptide_distrubution <- test_data %>% group_by(Epitope, `Known Outcome`) %>% summarize(n=n())
 immunogenicity_distrubution <- ggplot(data = peptide_distrubution, aes(x=`Known Outcome`, y=n, fill=Epitope)) +
   geom_bar(stat="identity") +
