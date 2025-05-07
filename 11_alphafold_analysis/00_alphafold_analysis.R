@@ -1,0 +1,126 @@
+#-----------------------------------------------------------------------------------------------
+# Krasileva Lab - Plant & Microbial Biology Department UC Berkeley
+# Author: Danielle M. Stevens
+# Last Updated: 07/06/2020
+# Script Purpose: 
+# Inputs: 
+# Outputs: 
+#-----------------------------------------------------------------------------------------------
+
+######################################################################
+#  libraries to load
+######################################################################
+
+# compare sequences of eptiopes and receptors to document sequence variation
+# Install Bioconductor
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+#BiocManager::install("Biostrings")
+
+#load packages
+library(readxl, warn.conflicts = FALSE, quietly = TRUE)
+library(tidyverse, warn.conflicts = FALSE, quietly = TRUE)
+library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
+library(ggridges, warn.conflicts = FALSE, quietly = TRUE)
+
+# color code for genera of interest
+epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
+names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop","screw")
+
+receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
+names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT")
+
+# load data from excel file
+load_AF3_data <- readxl::read_xlsx(path = "./11_alphafold_analysis/validation_data_AF3.xlsx")
+colnames(load_AF3_data) <- c("TC#","Plant species","Receptor","Locus ID/Genbank","Epitope","Sequence","Receptor Name",
+"Receptor Sequence","Known Outcome","empty","pTM","ipTM","Prediction")
+
+######################################################################
+#  plot distribution of correct and misclassified predictions
+######################################################################
+
+# Create summary with negative values for correct predictions
+load_AF3_data_summary <- load_AF3_data %>% 
+  group_by(Receptor, Prediction) %>% 
+  summarise(n = n()) %>%
+  mutate(n = ifelse(Prediction == "Correct", -n, n))
+
+load_AF3_data_summary$n[load_AF3_data_summary$Receptor == "INR" & load_AF3_data_summary$Prediction == "Correct"] <- 
+  load_AF3_data_summary$n[load_AF3_data_summary$Receptor == "INR" & load_AF3_data_summary$Prediction == "Correct"] + 
+  load_AF3_data_summary$n[load_AF3_data_summary$Receptor == "INR-like" & load_AF3_data_summary$Prediction == "Correct"]
+load_AF3_data_summary <- load_AF3_data_summary[load_AF3_data_summary$Receptor != "INR-like",]
+
+#organize receptors for plotting to match model results
+receptor_order <- c("FLS2", "RLP23", "CORE", "EFR", "MIK2", "RLP42", "PERU",  "INR", "CuRe1", "FLS3", "NUT")
+load_AF3_data_summary <- load_AF3_data_summary %>% mutate(Receptor = factor(Receptor, levels = rev(receptor_order))) # rev() for top-down display
+
+# plot distribution of correct and misclassified predictions
+AF3_distribution_plot <- ggplot(load_AF3_data_summary, aes(x = n, y = Receptor, fill = Receptor)) +
+  geom_col() +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "black") + # Add line at zero
+  scale_x_continuous(name = "Number of Combinations",
+          limits = c(-120, 80), breaks = seq(-120, 80, 40), labels = c(120, 80, 40, 0, 40, 80)) +
+  labs(y = "Receptor") +
+  theme_classic() +
+  scale_fill_manual(values = receptor_colors) +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "none",
+        plot.margin = unit(c(1, 0.5, 0.5, 0.5), "cm")) + # Add padding (top, right, bottom, left)
+   geom_text(aes(label = abs(n), x = n + ifelse(n < 0, -2, 2)),
+     hjust = ifelse(load_AF3_data_summary$n < 0, 1, 0), size = 2.5, color = "black") +
+   annotate("text", x = -max(abs(load_AF3_data_summary$n)) * 0.8, y = length(receptor_order) + 0.5,
+      label = "Correct", hjust = 0, vjust = -1, size = 2.5, color = "black") +
+   annotate("text", x = max(abs(load_AF3_data_summary$n)) * 0.8, y = length(receptor_order) + 0.5, 
+      label = "Misclassified", hjust = 0.7, vjust = -1, size = 2.5, color = "black") +
+   coord_cartesian(clip = "off") # Allows annotations outside plot area
+
+ggsave(filename = "./11_alphafold_analysis/AF3_distribution_plot.pdf", plot = AF3_distribution_plot, 
+device = "pdf", dpi = 300, width = 2.4, height = 2.6)
+
+######################################################################
+#  plot distribution of correct and misclassified predictions based on ipTM and pTM values
+######################################################################
+
+iptm_ptm_plot <- ggplot(load_AF3_data, aes(x = pTM, y = ipTM, color = Receptor)) +
+  #annotate("rect", xmin = -Inf, xmax = Inf, ymin = 0.8, ymax = Inf, fill = "black", alpha = 0.1, linetype = "dashed") +
+  geom_jitter(alpha = 0.75, size = 1.3, stroke = NA) +
+  geom_hline(yintercept = 0.8, linetype = "dashed", color = "black") +
+  theme_bw() +
+  scale_x_continuous(name = "pTM", limits = c(0.8, 0.95), breaks = seq(0.8, 0.95, 0.05), labels = c(0.8, 0.85, 0.9, 0.95)) +
+  scale_color_manual(values = receptor_colors) +
+  labs(x = "pTM", y = "ipTM") +
+  theme(axis.text.x = element_text(color = "black", size = 6),
+        axis.text.y = element_text(color = "black", size = 6),
+        axis.title.x = element_text(color = "black", size = 7),
+        axis.title.y = element_text(color = "black", size = 7),
+        plot.title = element_text(hjust = 0.5),
+        axis.ticks.length = unit(0.05, "cm"),
+        legend.position = "none",
+        strip.text = element_text(size = 5.5)) +
+  facet_wrap(~factor(`Known Outcome`, levels = c("Immunogenic", "Weakly Immunogenic", "Non-Immunogenic")), ncol = 3)
+
+  ggsave(filename = "./11_alphafold_analysis/iptm_ptm_plot.pdf", plot = iptm_ptm_plot, 
+device = "pdf", dpi = 300, width = 3.2, height = 1.3)
+
+  iptm_ptm_plot_no_FLS2 <- ggplot(load_AF3_data[load_AF3_data$Receptor != "FLS2",], aes(x = pTM, y = ipTM, color = Receptor)) +
+  #annotate("rect", xmin = -Inf, xmax = Inf, ymin = 0.8, ymax = Inf, fill = "black", alpha = 0.1, linetype = "dashed") +
+  geom_jitter(alpha = 0.75, size = 1.3, stroke = NA) +
+  geom_hline(yintercept = 0.8, linetype = "dashed", color = "black") +
+  scale_x_continuous(name = "pTM", limits = c(0.8, 0.95), breaks = seq(0.8, 0.95, 0.05), labels = c(0.8, 0.85, 0.9, 0.95)) +
+  theme_bw() +
+  scale_color_manual(values = receptor_colors) +
+  labs(x = "pTM", y = "ipTM") +
+  theme(axis.text.x = element_text(color = "black", size = 6),
+        axis.text.y = element_text(color = "black", size = 6),
+        axis.title.x = element_text(color = "black", size = 7),
+        axis.title.y = element_text(color = "black", size = 7),
+        strip.text = element_text(size = 5.5), 
+        axis.ticks.length = unit(0.05, "cm"),
+  legend.position = "none") +
+  facet_wrap(~factor(`Known Outcome`, levels = c("Immunogenic", "Weakly Immunogenic", "Non-Immunogenic")), ncol = 3)
+
+  ggsave(filename = "./11_alphafold_analysis/iptm_ptm_plot_no_FLS2.pdf", plot = iptm_ptm_plot_no_FLS2, 
+device = "pdf", dpi = 300, width = 3.2, height = 1.3)
