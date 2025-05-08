@@ -9,6 +9,11 @@ python 06_scripts_ml/06_main_train.py \
     --save_period 10 \
     --model_checkpoint_path ../model_results/esm2_with_receptor_05_datasets
 
+python 07_model_results/02_make_confusion_matrix.py \
+    --predictions_path ../model_results/esm2_with_receptor_05_datasets/test_preds.pth \
+    --output_dir ../model_results/esm2_with_receptor_05_datasets \
+    --data_info_path 05_datasets/test_random.csv
+
 # ------- Run 2: ESM2 with Receptor Model - 05_datasets/*_immuno_stratify.csv -------
 # Saved As: 05_immuno_stratify_esm2_with_receptor_05_datasets
 
