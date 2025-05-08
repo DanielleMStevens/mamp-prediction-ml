@@ -660,7 +660,8 @@ class ESMBfactorWeightedFeatures(nn.Module):
                 stats[f"{prefix}_auprc_class{i}"] = 0.0
 
         # Save test probabilities to CSV if this is test data and final epoch
-        if not train and hasattr(self, 'current_epoch') and self.current_epoch == self.hparams.epochs - 1:
+        #if not train and hasattr(self, 'current_epoch') and self.current_epoch == self.hparams.epochs - 1:
+        if not train:
             # Convert predictions and ground truth to numpy arrays
             probs = pr.cpu().numpy()
             labels = gt.cpu().numpy()
@@ -668,7 +669,8 @@ class ESMBfactorWeightedFeatures(nn.Module):
             # Create DataFrame with probabilities and true labels
             results_df = pd.DataFrame(probs, columns=['prob_class0', 'prob_class1', 'prob_class2'])
             results_df['true_label'] = labels
-            
+            results_df['predicted_label'] = pred_labels.cpu().numpy()
+                
             # Save to CSV
             results_df.to_csv('test_predictions.csv', index=False)
             

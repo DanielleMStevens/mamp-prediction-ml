@@ -393,8 +393,14 @@ def main(args):
     # Initialize model and load checkpoint if specified
     model = model_dict[args.model](args)
     if args.model_checkpoint_path:
-        state_dict = torch.load(args.model_checkpoint_path)["model"]
-        model.load_state_dict(state_dict)
+        checkpoint = torch.load(args.model_checkpoint_path, weights_only=False)
+        state_dict = checkpoint["model"]
+        
+        # Print the keys in the state dict to help debug
+        print("State dict keys:", state_dict.keys())
+        
+        # Load state dict with strict=False to handle missing keys
+        model.load_state_dict(state_dict, strict=False)
         
     # Initialize dataset class
     dataset = dataset_dict[args.model]

@@ -5,6 +5,7 @@ import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_recall_curve, auc
 import numpy as np
+import pandas as pd
 
 class FiLMWithAttention(nn.Module):
     """
@@ -174,6 +175,20 @@ class ESMWithReceptorModel(nn.Module):
             
             # Average AUPRC across classes
             stats[f"{prefix}_auprc_macro"] = np.mean([stats[f"{prefix}_auprc_class{i}"] for i in range(3)])
+            
+            # Save predictions to CSV if this is test data
+            if not train:
+                # Convert predictions and ground truth to numpy arrays
+                probs = pr.cpu().numpy()
+                labels = gt.cpu().numpy()
+                
+                # Create DataFrame with probabilities and true labels
+                results_df = pd.DataFrame(probs, columns=['prob_class0', 'prob_class1', 'prob_class2'])
+                results_df['true_label'] = labels
+                results_df['predicted_label'] = pred_labels.cpu().numpy()
+                
+                # Save to CSV
+                results_df.to_csv('test_predictions.csv', index=False)
             
         except:
             # Handle cases where metrics cannot be calculated
