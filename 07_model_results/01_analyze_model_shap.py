@@ -8,8 +8,11 @@ understand how the model makes its decisions. It supports both peptide and recep
 and can analyze their contributions to the final predictions.
 
 Usage:
-    python 07_analyze_model_shap.py --model_path path/to/model --data_path path/to/data.csv 
-                                   [--output_dir output/dir] [--num_samples 100] [--device cuda]
+    python 07_analyze_model_shap.py --model_path models/checkpoint-50.pth \
+                                   --data_path 05_datasets/stratify/test.csv \
+                                   --output_dir 07_model_results/shap_analysis \
+                                   --num_samples 100 \
+                                   --device cpu
 
 Requirements:
     - torch
