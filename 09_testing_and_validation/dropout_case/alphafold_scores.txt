@@ -1,0 +1,5 @@
+Receptor                                                                                            Best Model     pLDDT     pTM
+-----------------------------------------------------------------------------------------------------------------------------
+Arabidopsis_thaliana_AT1G17750_PEPR                                                                 model_1        86.3      0.609
+Arabidopsis_thaliana_AT1G73080_PEPR                                                                 model_1        86.7      0.621
+Ipomoea_batatas_ITF02g07720_PEPR                                                                    model_1        86.9      0.609
