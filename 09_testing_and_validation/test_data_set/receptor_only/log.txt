@@ -1,0 +1,13 @@
+2025-05-07 18:25:58,857 Running colabfold 1.5.5 (bfc0e83d3b87730f6903f6c385b08c426d1e791e)
+2025-05-07 18:26:17,134 Running on GPU
+2025-05-07 18:27:36,214 Found 5 citations for tools or databases
+2025-05-07 18:27:36,215 Query 1/1: Nicotiana_benthamiana_Niben101Scf02323g01010_CORE (length 1054)
+2025-05-07 18:27:46,271 Setting max_seq=512, max_extra_seq=5120
+2025-05-07 18:31:04,702 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.1 pTM=0.579
+2025-05-07 18:31:52,944 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84 pTM=0.599 tol=8.84
+2025-05-07 18:32:41,089 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.5 pTM=0.598 tol=5.11
+2025-05-07 18:33:28,971 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84.7 pTM=0.599 tol=3.89
+2025-05-07 18:33:29,444 alphafold2_ptm_model_1_seed_000 took 270.5s (3 recycles)
+2025-05-07 18:33:31,588 reranking models by 'plddt' metric
+2025-05-07 18:33:31,588 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.7 pTM=0.599
+2025-05-07 18:33:35,122 Done
