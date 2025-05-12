@@ -21,6 +21,8 @@ library(readxl, warn.conflicts = FALSE, quietly = TRUE)
 library(tidyverse, warn.conflicts = FALSE, quietly = TRUE)
 library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
 library(ggridges, warn.conflicts = FALSE, quietly = TRUE)
+library(Biostrings, warn.conflicts = FALSE, quietly = TRUE)
+library(pwalign, warn.conflicts = FALSE, quietly = TRUE)
 
 # color code for genera of interest
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
@@ -30,7 +32,7 @@ receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce"
 names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT")
 
 # load data from excel file
-load_AF3_data <- readxl::read_xlsx(path = "./11_alphafold_analysis/validation_data_AF3.xlsx")
+load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/validation_data_AF3.xlsx")
 colnames(load_AF3_data) <- c("TC#","Plant species","Receptor","Locus ID/Genbank","Epitope","Sequence","Receptor Name",
 "Receptor Sequence","Known Outcome","empty","pTM","ipTM","Prediction")
 
@@ -77,7 +79,7 @@ AF3_distribution_plot <- ggplot(load_AF3_data_summary, aes(x = n, y = Receptor, 
       label = "Misclassified", hjust = 0.7, vjust = -1, size = 2.5, color = "black") +
    coord_cartesian(clip = "off") # Allows annotations outside plot area
 
-ggsave(filename = "./11_alphafold_analysis/AF3_distribution_plot.pdf", plot = AF3_distribution_plot, 
+ggsave(filename = "./10_alphafold_analysis/Validation_data/AF3_distribution_plot.pdf", plot = AF3_distribution_plot, 
 device = "pdf", dpi = 300, width = 2.4, height = 2.6)
 
 ######################################################################
@@ -102,7 +104,7 @@ iptm_ptm_plot <- ggplot(load_AF3_data, aes(x = pTM, y = ipTM, color = Receptor))
         strip.text = element_text(size = 5.5)) +
   facet_wrap(~factor(`Known Outcome`, levels = c("Immunogenic", "Weakly Immunogenic", "Non-Immunogenic")), ncol = 3)
 
-  ggsave(filename = "./11_alphafold_analysis/iptm_ptm_plot.pdf", plot = iptm_ptm_plot, 
+  ggsave(filename = "./10_alphafold_analysis/Validation_data/iptm_ptm_plot.pdf", plot = iptm_ptm_plot, 
 device = "pdf", dpi = 300, width = 3.2, height = 1.3)
 
   iptm_ptm_plot_no_FLS2 <- ggplot(load_AF3_data[load_AF3_data$Receptor != "FLS2",], aes(x = pTM, y = ipTM, color = Receptor)) +
@@ -122,5 +124,85 @@ device = "pdf", dpi = 300, width = 3.2, height = 1.3)
   legend.position = "none") +
   facet_wrap(~factor(`Known Outcome`, levels = c("Immunogenic", "Weakly Immunogenic", "Non-Immunogenic")), ncol = 3)
 
-  ggsave(filename = "./11_alphafold_analysis/iptm_ptm_plot_no_FLS2.pdf", plot = iptm_ptm_plot_no_FLS2, 
+  ggsave(filename = "./10_alphafold_analysis/Validation_data/iptm_ptm_plot_no_FLS2.pdf", plot = iptm_ptm_plot_no_FLS2, 
 device = "pdf", dpi = 300, width = 3.2, height = 1.3)
+
+
+# ------------------------------------ same analysis but with dropout data -----------------------------------------
+
+######################################################################
+#  function to calculate 
+######################################################################
+
+identity_calc <- function(label_ids, sequence_list, comparison){
+  hold_data <- data.frame("query_id" = character(0), "subject_id" = character(0), "comparison" = character(0), "identity" = numeric(0))
+  for (i in 1:length(label_ids)){
+    for (j in 2:length(label_ids)){
+      alignment <- pwalign::pid(pwalign::pairwiseAlignment(sequence_list[i], sequence_list[j], substitutionMatrix = "BLOSUM62", scoreOnly = FALSE))
+      hold_data <- rbind(hold_data, data.frame("query_id" = label_ids[i], "subject_id" = label_ids[j], "comparison" = comparison, "identity" = alignment))
+    }
+  }
+  return(hold_data)
+}
+
+# load data from excel file
+load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/AF3_dropout_data.xlsx")
+load_AF3_data <- load_AF3_data[,c(1,2,5,6,8,9,10,11,12)]
+
+drop_out_immunogenicity_dist_plot <- ggplot(load_AF3_data %>% group_by(`Immunogenicity`) %>% summarize(n = n()), aes(x = `Immunogenicity`, y = n)) +
+  geom_bar(stat = "identity", fill = "grey50") +
+  theme_classic() +
+  ylim(0, 35) +
+  theme(axis.text.x = element_text(color = "black", size = 7, angle = 45, hjust = 1),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        strip.text = element_text(size = 5.5), 
+        axis.ticks.length = unit(0.05, "cm"),
+        legend.position = "none") +
+  xlab("") +
+  ylab("Count") +
+  geom_text(aes(label = n), vjust = -0.5, size = 2)
+
+ggsave(filename = "./10_alphafold_analysis/Dropout_data/drop_out_immunogenicity_dist_plot.pdf", plot = drop_out_immunogenicity_dist_plot, 
+device = "pdf", dpi = 300, width = 1.5, height = 1.9)
+
+# pepr receptor
+PEPR_comparison <- identity_calc(load_AF3_data$`Ectodomain Sequence`, load_AF3_data$`Ectodomain Sequence`, "PEPR")
+PEPR_comparison <- subset(PEPR_comparison, query_id != subject_id)
+
+# pep ligand comparison
+pep_comparison <- identity_calc(load_AF3_data$`Ligand Sequence`, load_AF3_data$`Ligand Sequence`, "pep")
+pep_comparison <- subset(pep_comparison, query_id != subject_id)
+
+PEPR_comparison_plot <- ggplot(PEPR_comparison, aes(x = comparison, y = identity)) +
+  stat_ydensity(fill = "grey50", alpha = 0.85, scale = "width") +
+  geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA) +
+  theme_classic() +
+  xlab("") +
+  ylab("Percent Identity")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), 
+        axis.text.y = element_text(color = "black"),
+        legend.position = "none") +
+  scale_y_continuous(limits = c(0, 120), breaks = c(20,40,60,80,100)) +
+  #geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 3)
+  coord_flip() 
+
+ggsave(filename = "./10_alphafold_analysis/Dropout_data/PEPR_comparison_plot.pdf", plot = PEPR_comparison_plot, 
+device = "pdf", dpi = 300, width = 2, height = 1)
+
+pep_comparison_plot <- ggplot(pep_comparison, aes(x = comparison, y = identity)) +
+  stat_ydensity(fill = "grey50", alpha = 0.85, scale = "width") +
+  geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA) +
+  theme_classic() +
+  xlab("") +
+  ylab("Percent Identity")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), 
+        axis.text.y = element_text(color = "black"),
+        legend.position = "none") +
+  scale_y_continuous(limits = c(0, 120), breaks = c(20,40,60,80,100)) +
+  #geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 3)
+  coord_flip() 
+
+  ggsave(filename = "./10_alphafold_analysis/Dropout_data/pep_comparison_plot.pdf", plot = pep_comparison_plot, 
+device = "pdf", dpi = 300, width = 2, height = 1)
