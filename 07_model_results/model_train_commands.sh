@@ -67,7 +67,7 @@ python 06_scripts_ml/06_main_train.py \
 
 
 # ------- Run 6: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
-# Saved As: 06_immuno_stratify_esm2_with_position_weighted_05_datasets
+# Saved As: 09_esm2_bfactor_weighted_05_datasets
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
