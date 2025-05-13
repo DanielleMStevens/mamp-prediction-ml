@@ -8,7 +8,11 @@ script_dir = Path(__file__).parent
 models_dir = script_dir / "models"
 sys.path.append(str(models_dir))
 
-from models.esm_receptor_chemical import ESMReceptorChemical  # Import your model
+# esm models - current models
+from models.esm_with_receptor_model import ESMWithReceptorModel
+from models.esm_all_chemical_features import ESMallChemicalFeatures
+from models.esm_positon_weighted import BFactorWeightGenerator
+from models.esm_positon_weighted import ESMBfactorWeightedFeatures
 
 def get_model_summary():
     # Create a sample model

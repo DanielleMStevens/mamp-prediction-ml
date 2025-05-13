@@ -3,9 +3,18 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 
-# Read the data
-correct_df <- read_tsv("../model_results/esm2_bfactor_weighted_05_datasets/correct_classification_report.tsv")
-misclass_df <- read_tsv("../model_results/esm2_bfactor_weighted_05_datasets/misclassification_report.tsv")
+# Get command line arguments
+args <- commandArgs(trailingOnly = TRUE)
+
+# Check if correct number of arguments provided
+if (length(args) != 2) {
+  stop("Please provide paths to both the correct classification and misclassification files.
+Usage: Rscript script.R <correct_classification_file> <misclassification_file>")
+}
+
+# Read the data from command line arguments
+correct_df <- read_tsv(args[1])
+misclass_df <- read_tsv(args[2])
 
 # color code for genera of interest
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
@@ -58,5 +67,7 @@ receptor_distribution_plot <- ggplot(combined_counts, aes(x = Plot_Count, y = Re
    coord_cartesian(clip = "off") # Allows annotations outside plot area
 
 
-ggsave(filename = "./07_model_results/receptor_distribution_plot.pdf", plot = receptor_distribution_plot, 
+# Get directory of input file from command line args
+input_dir <- dirname(args[1])
+ggsave(filename = file.path(input_dir, "receptor_distribution_plot.pdf"), plot = receptor_distribution_plot,
 device = "pdf", dpi = 300, width = 2.4, height = 2.6)

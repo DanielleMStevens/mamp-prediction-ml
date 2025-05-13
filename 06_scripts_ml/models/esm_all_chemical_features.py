@@ -67,10 +67,17 @@ class ESMallChemicalFeatures(nn.Module):
         super().__init__()
         
         # Load ESM model
-        self.esm = AutoModel.from_pretrained("facebook/esm2_t33_650M_UR50D")
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t33_650M_UR50D")
+        self.esm = AutoModel.from_pretrained("facebook/esm2_t30_150M_UR50D")
+        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")
         
-        #esm2_t33_650M_UR50D
+         # notes: other size models from ESM2:
+        # Checkpoint name	Num layers	Num parameters
+        # esm2_t48_15B_UR50D	48	15B
+        # esm2_t36_3B_UR50D	36	3B
+        # esm2_t33_650M_UR50D	33	650M
+        # esm2_t30_150M_UR50D	30	150M
+        # esm2_t12_35M_UR50D	12	35M
+        # esm2_t6_8M_UR50D	6	8M
 
         # Freeze early layers, leaving only the last 10 encoder layers trainable
         # (ESM2-t30 has 30 layers total, so layers 20-29 will be trainable)
@@ -86,7 +93,7 @@ class ESMallChemicalFeatures(nn.Module):
         # New version - only train last layer
         modules_to_freeze = [
             self.esm.embeddings,
-            *self.esm.encoder.layer[:30]  # Freeze first 29 layers, leaving only last layer trainable
+            *self.esm.encoder.layer[:29]  # Freeze first 29 layers, leaving only last layer trainable
         ]
         for module in modules_to_freeze:
             for param in module.parameters():

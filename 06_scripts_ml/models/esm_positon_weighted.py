@@ -90,10 +90,11 @@ class BFactorWeightGenerator:
     """
     Generates weights based on B-factors from preprocessed data.
     
-    B-factors in protein structures indicate the degree of atomic thermal motion.
-    Lower B-factors suggest more stable/rigid regions, while higher B-factors 
-    indicate more flexible regions. This class loads B-factor data from a CSV
-    file and converts it to weights for different protein regions.
+    The B-factors here represent positions along a transformed LRR coil structure.
+    Each Leucine-Rich Repeat (LRR) is mapped onto a standardized coil, where the
+    B-factor values indicate the numerical position along this coil. This allows
+    us to weight different regions of the LRR based on their relative position
+    in the repeating structural motif.
     """
     def __init__(self, bfactor_csv_path=None, min_weight=0.5, max_weight=2):
         """
@@ -261,7 +262,6 @@ class ESMBfactorWeightedFeatures(nn.Module):
         # --- Debug Tokenizer Info ---
         # This helps diagnose tokenization issues during development
         print(f"DEBUG Tokenizer Info:")
-        print(f"  - sep_token: {self.tokenizer.sep_token}, sep_token_id: {self.tokenizer.sep_token_id}")
         print(f"  - eos_token: {self.tokenizer.eos_token}, eos_token_id: {self.tokenizer.eos_token_id}")
         print(f"  - cls_token: {self.tokenizer.cls_token}, cls_token_id: {self.tokenizer.cls_token_id}")
         print(f"  - pad_token: {self.tokenizer.pad_token}, pad_token_id: {self.tokenizer.pad_token_id}")
@@ -280,7 +280,7 @@ class ESMBfactorWeightedFeatures(nn.Module):
         # Only fine-tune the later layers for the specific task
         modules_to_freeze = [
             self.esm.embeddings,  # Freeze embedding layer
-            *self.esm.encoder.layer[:20]  # Freeze first 20 transformer layers
+            *self.esm.encoder.layer[:29]  # Freeze first 20 transformer layers
         ]
         for module in modules_to_freeze:
             for param in module.parameters():
@@ -667,9 +667,16 @@ class ESMBfactorWeightedFeatures(nn.Module):
             labels = gt.cpu().numpy()
             
             # Create DataFrame with probabilities and true labels
+            # Create DataFrame with probabilities, labels and sequences
             results_df = pd.DataFrame(probs, columns=['prob_class0', 'prob_class1', 'prob_class2'])
-            results_df['true_label'] = labels
+            if labels is not None:
+                results_df['true_label'] = labels
             results_df['predicted_label'] = pred_labels.cpu().numpy()
+            
+            # Add receptor and epitope sequences
+            if hasattr(self, 'receptor_seqs') and hasattr(self, 'epitope_seqs'):
+                results_df['receptor_sequence'] = self.receptor_seqs
+                results_df['epitope_sequence'] = self.epitope_seqs
                 
             # Save to CSV
             results_df.to_csv('test_predictions.csv', index=False)
