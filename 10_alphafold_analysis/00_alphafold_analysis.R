@@ -32,7 +32,7 @@ receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce"
 names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT")
 
 # load data from excel file
-load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/validation_data_AF3.xlsx")
+load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/AF3_validation_data.xlsx")
 colnames(load_AF3_data) <- c("TC#","Plant species","Receptor","Locus ID/Genbank","Epitope","Sequence","Receptor Name",
 "Receptor Sequence","Known Outcome","empty","pTM","ipTM","Prediction")
 
@@ -145,10 +145,16 @@ identity_calc <- function(label_ids, sequence_list, comparison){
   return(hold_data)
 }
 
+######################################################################
+#  plots for Fig. S11
+######################################################################
+
 # load data from excel file
 load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/AF3_dropout_data.xlsx")
 load_AF3_data <- load_AF3_data[,c(1,2,5,6,8,9,10,11,12)]
 
+
+# --------------------------------- immunogenicity distribution ---------------------------------
 drop_out_immunogenicity_dist_plot <- ggplot(load_AF3_data %>% group_by(`Immunogenicity`) %>% summarize(n = n()), aes(x = `Immunogenicity`, y = n)) +
   geom_bar(stat = "identity", fill = "grey50") +
   theme_classic() +
@@ -175,6 +181,7 @@ PEPR_comparison <- subset(PEPR_comparison, query_id != subject_id)
 pep_comparison <- identity_calc(load_AF3_data$`Ligand Sequence`, load_AF3_data$`Ligand Sequence`, "pep")
 pep_comparison <- subset(pep_comparison, query_id != subject_id)
 
+# --------------------------------- PEPR comparison ---------------------------------
 PEPR_comparison_plot <- ggplot(PEPR_comparison, aes(x = comparison, y = identity)) +
   stat_ydensity(fill = "grey50", alpha = 0.85, scale = "width") +
   geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA) +
@@ -191,6 +198,7 @@ PEPR_comparison_plot <- ggplot(PEPR_comparison, aes(x = comparison, y = identity
 ggsave(filename = "./10_alphafold_analysis/Dropout_data/PEPR_comparison_plot.pdf", plot = PEPR_comparison_plot, 
 device = "pdf", dpi = 300, width = 2, height = 1)
 
+# --------------------------------- pep comparison ---------------------------------
 pep_comparison_plot <- ggplot(pep_comparison, aes(x = comparison, y = identity)) +
   stat_ydensity(fill = "grey50", alpha = 0.85, scale = "width") +
   geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA) +
@@ -206,3 +214,35 @@ pep_comparison_plot <- ggplot(pep_comparison, aes(x = comparison, y = identity))
 
   ggsave(filename = "./10_alphafold_analysis/Dropout_data/pep_comparison_plot.pdf", plot = pep_comparison_plot, 
 device = "pdf", dpi = 300, width = 2, height = 1)
+
+load_AF3_data_dropout_summary <- load_AF3_data %>% 
+  group_by(`Prediction based on 0.8 ipTM Cutoff`) %>% 
+  summarise(n = n()) %>%
+  mutate(n = ifelse(`Prediction based on 0.8 ipTM Cutoff` == "Correct", -n, n))
+
+Prediction_approach_AF3_ML_dropout <- ggplot(load_AF3_data_dropout_summary, aes(x = n, y = "PEPR")) +
+  geom_col(fill = "grey50", alpha = 0.85,) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "black") + # Add line at zero
+  scale_x_continuous(name = "Number of Combinations",
+          limits = c(-120, 80), breaks = seq(-120, 80, 40), labels = c(120, 80, 40, 0, 40, 80)) +
+  labs(y = "Receptor") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "none",
+        plot.margin = unit(c(1, 0.5, 0.5, 0.5), "cm")) + # Add padding (top, right, bottom, left)
+   geom_text(aes(label = abs(n), x = n + ifelse(n < 0, -2, 2)),
+     hjust = ifelse(load_AF3_data_dropout_summary$n < 0, 1, 0), size = 2.5, color = "black") +
+#   annotate("text", x = -max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = length(receptor_order) + 0.5,
+#      label = "Correct", hjust = 0, vjust = -1, size = 2.5, color = "black") +
+#   annotate("text", x = max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = length(receptor_order) + 0.5, 
+#      label = "Misclassified", hjust = 0.7, vjust = -1, size = 2.5, color = "black") +
+   coord_cartesian(clip = "off") # Allows annotations outside plot area
+
+
+
+ggsave(filename = "./10_alphafold_analysis/Dropout_data/Prediction_approach_AF3_ML_dropout.pdf", plot = Prediction_approach_AF3_ML_dropout, 
+device = "pdf", dpi = 300, width = 2.4, height = 2.6)
