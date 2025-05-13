@@ -172,5 +172,12 @@ python 06_scripts_ml/06_main_train.py \
     --save_period 10 
 
 
+python 07_model_results/02_make_confusion_matrix.py \
+    --predictions_path 07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/misclassification_report.tsv
 
