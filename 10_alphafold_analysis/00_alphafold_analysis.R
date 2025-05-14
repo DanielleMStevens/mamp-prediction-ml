@@ -221,8 +221,7 @@ device = "pdf", dpi = 300, width = 2, height = 1)
 
 # load data from excel file
 # Load prediction data
-#load_mamp_ml_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/02_test_predictions.csv")
-load_mamp_ml_prediction_data <- read.csv(file.choose())
+load_mamp_ml_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/model_00_dropout_predictions.csv")
 
 # Create confusion matrix
 conf_matrix <- table(load_mamp_ml_prediction_data$true_label, 
@@ -264,6 +263,21 @@ load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame
 load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame("Prediction" = "Misclassified",
                           "n" = sum(conf_matrix) - sum(diag(conf_matrix)),
                           "method" = "mamp-ml"))
+
+# load SeqOnly model data
+load_SeqOnly_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/model_02_dropout_predictions.csv")
+
+# Create confusion matrix
+conf_matrix_SeqOnly <- table(load_SeqOnly_prediction_data$true_label, 
+                    load_SeqOnly_prediction_data$predicted_label)
+
+load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame("Prediction" = "Correct",
+                          "n" = -(sum(diag(conf_matrix_SeqOnly))),
+                          "method" = "SeqOnly"))
+
+load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame("Prediction" = "Misclassified",
+                          "n" = sum(conf_matrix_SeqOnly) - sum(diag(conf_matrix_SeqOnly)),
+                          "method" = "SeqOnly"))
 
 # attach mamp-ml prediction data results and plot
 Prediction_approach_AF3_ML_dropout <- ggplot(load_AF3_data_dropout_summary, aes(x = n, y = method)) +
