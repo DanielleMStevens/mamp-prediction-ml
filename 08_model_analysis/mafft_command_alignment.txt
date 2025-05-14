@@ -1,0 +1,1 @@
+mafft --thread 8 --threadtb 5 --threadit 0 --reorder --maxiterate 1000 input > output
