@@ -245,6 +245,32 @@ ggsave(filename = "./10_alphafold_analysis/Dropout_data/confusion_matrix.pdf",
        plot = confusion_plot, device = "pdf", dpi = 300, width = 2.4, height = 1.8)
 
 
+
+# load SeqOnly model data
+load_SeqOnly_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/model_02_dropout_predictions.csv")
+
+# Create confusion matrix
+conf_matrix_SeqOnly <- table(load_SeqOnly_prediction_data$true_label, 
+                    load_SeqOnly_prediction_data$predicted_label)
+
+
+# Plot confusion matrix
+confusion_plot_SeqOnly <- ggplot(data = as.data.frame(as.table(conf_matrix_SeqOnly)),
+                        aes(x = Var2, y = Var1, fill = Freq)) +
+  geom_tile() +
+  geom_text(aes(label = Freq), color = "black") +
+  scale_fill_gradient(low = "white", high = "grey50") +
+  labs(x = "Predicted Label",
+       y = "True Label",
+       fill = "Count") +
+  theme_classic() +
+  theme(panel.border = element_rect(color = "black", fill = NA, linewidth = 1)) +
+  scale_x_discrete(limits = as.character(0:2)) +
+  scale_y_discrete(limits = rev(as.character(0:2)))
+
+ggsave(filename = "./10_alphafold_analysis/Dropout_data/confusion_plot_SeqOnly.pdf", 
+       plot = confusion_plot_SeqOnly, device = "pdf", dpi = 300, width = 2.4, height = 1.8)
+
 ######################################################################
 #  load prediction data from AF3 and MAMP-ML and make comparison plot
 ######################################################################
@@ -263,13 +289,6 @@ load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame
 load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame("Prediction" = "Misclassified",
                           "n" = sum(conf_matrix) - sum(diag(conf_matrix)),
                           "method" = "mamp-ml"))
-
-# load SeqOnly model data
-load_SeqOnly_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/model_02_dropout_predictions.csv")
-
-# Create confusion matrix
-conf_matrix_SeqOnly <- table(load_SeqOnly_prediction_data$true_label, 
-                    load_SeqOnly_prediction_data$predicted_label)
 
 load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame("Prediction" = "Correct",
                           "n" = -(sum(diag(conf_matrix_SeqOnly))),
@@ -296,10 +315,10 @@ Prediction_approach_AF3_ML_dropout <- ggplot(load_AF3_data_dropout_summary, aes(
         plot.margin = unit(c(1, 0.5, 0.5, 0.5), "cm")) + # Add padding (top, right, bottom, left)
    geom_text(aes(label = abs(n), x = n + ifelse(n < 0, -2, 2)),
      hjust = ifelse(load_AF3_data_dropout_summary$n < 0, 1, 0), size = 2.5, color = "black") +
-   annotate("text", x = -max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = 2.5,
-      label = "Correct", hjust = 0, vjust = -1, size = 2.5, color = "black") +
-   annotate("text", x = max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = 2.5,
-      label = "Misclassified", hjust = 0.7, vjust = -1, size = 2.5, color = "black") +
+   annotate("text", x = -max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = 3.5,
+      label = "Correct", hjust = 0, vjust = 0, size = 2.5, color = "black") +
+   annotate("text", x = max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = 3.5,
+      label = "Misclassified", hjust = 0.7, vjust = 0, size = 2.5, color = "black") +
    coord_cartesian(clip = "off") # Allows annotations outside plot area
 
 
