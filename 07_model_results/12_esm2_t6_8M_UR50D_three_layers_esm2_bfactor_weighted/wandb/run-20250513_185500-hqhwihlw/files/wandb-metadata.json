@@ -1,0 +1,33 @@
+{
+    "os": "macOS-15.3-arm64-arm-64bit",
+    "python": "3.9.21",
+    "heartbeatAt": "2025-05-14T01:55:01.790070",
+    "startedAt": "2025-05-14T01:55:00.554127",
+    "docker": null,
+    "cpu_count": 10,
+    "cuda": null,
+    "args": [
+        "--model",
+        "esm2_bfactor_weighted",
+        "--data_dir",
+        "05_datasets",
+        "--device",
+        "cpu",
+        "--epochs",
+        "20",
+        "--save_period",
+        "10"
+    ],
+    "state": "running",
+    "program": "/Users/briansu/workspace/mamp_prediction_ml/06_scripts_ml/06_main_train.py",
+    "codePath": "06_scripts_ml/06_main_train.py",
+    "git": {
+        "remote": "https://github.com/DanielleMStevens/mamp_prediction_ml.git",
+        "commit": "5b357f4af38faa4d65d59f7f6eb82e5e50604cba"
+    },
+    "email": "briansuaccs@email.com",
+    "root": "/Users/briansu/workspace/mamp_prediction_ml",
+    "host": "Brians-MacBook-Pro-M1-Max.local",
+    "username": "briansu",
+    "executable": "/Users/briansu/anaconda3/envs/esmfold/bin/python"
+}

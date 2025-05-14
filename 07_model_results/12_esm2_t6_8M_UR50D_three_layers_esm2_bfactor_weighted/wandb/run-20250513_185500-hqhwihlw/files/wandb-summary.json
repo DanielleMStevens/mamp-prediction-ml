@@ -1,0 +1,1 @@
+{"train_loss": 0.0399189218878746, "lr": 1.4122396545099138e-09, "train_ce": 0.0399189218878746, "train_acc": 1.0, "train_f1_macro": 1.0, "train_f1_weighted": 1.0, "train_auroc": 0.0, "train_auprc_macro": 0.0, "train_auprc_class0": 0.0, "train_auprc_class1": 0.0, "train_auprc_class2": 0.0, "_timestamp": 1747193792, "_runtime": 6092, "_step": 2679, "_wandb": {"runtime": 6185}}
