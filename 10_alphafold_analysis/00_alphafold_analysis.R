@@ -323,4 +323,4 @@ Prediction_approach_AF3_ML_dropout <- ggplot(load_AF3_data_dropout_summary, aes(
 
 
 ggsave(filename = "./10_alphafold_analysis/Dropout_data/Prediction_approach_AF3_ML_dropout.pdf", plot = Prediction_approach_AF3_ML_dropout, 
-device = "pdf", dpi = 300, width = 2.6, height = 1.6)
+device = "pdf", dpi = 300, width = 2.2, height = 1.6)

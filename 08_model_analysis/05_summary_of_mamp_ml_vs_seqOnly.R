@@ -26,7 +26,7 @@ confusion_plot <- ggplot(data = as.data.frame(as.table(conf_matrix)),
   scale_x_discrete(limits = as.character(0:2)) +
   scale_y_discrete(limits = rev(as.character(0:2)))
 
-ggsave(filename = "./10_alphafold_analysis/Validation_data/confusion_matrix_mamp_ml.pdf", 
+ggsave(filename = "./10_alphafold_analysis/Independent_test_data/confusion_matrix_mamp_ml.pdf", 
        plot = confusion_plot, device = "pdf", dpi = 300, width = 2.4, height = 1.8)
 
 
@@ -51,5 +51,5 @@ confusion_plot <- ggplot(data = as.data.frame(as.table(conf_matrix)),
   scale_x_discrete(limits = as.character(0:2)) +
   scale_y_discrete(limits = rev(as.character(0:2)))
 
-ggsave(filename = "./10_alphafold_analysis/Validation_data/confusion_matrix_SeqOnly.pdf", 
+ggsave(filename = "./10_alphafold_analysis/Independent_test_data/confusion_matrix_SeqOnly.pdf", 
        plot = confusion_plot, device = "pdf", dpi = 300, width = 2.4, height = 1.8)
