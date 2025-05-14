@@ -221,7 +221,7 @@ device = "pdf", dpi = 300, width = 2, height = 1)
 
 # load data from excel file
 # Load prediction data
-load_mamp_ml_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/test_predictions.csv")
+load_mamp_ml_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/02_test_predictions.csv")
 
 # Create confusion matrix
 conf_matrix <- table(load_mamp_ml_prediction_data$true_label, 
@@ -238,14 +238,11 @@ confusion_plot <- ggplot(data = as.data.frame(as.table(conf_matrix)),
        fill = "Count") +
   theme_classic() +
   theme(panel.border = element_rect(color = "black", fill = NA, linewidth = 1)) +
-  scale_x_discrete(limits = rev(as.character(0:2))) +
+  scale_x_discrete(limits = as.character(0:2)) +
   scale_y_discrete(limits = rev(as.character(0:2)))
 
 ggsave(filename = "./10_alphafold_analysis/Dropout_data/confusion_matrix.pdf", 
-       plot = confusion_plot,
-       device = "pdf", dpi = 300, width = 4, height = 4)
-
-
+       plot = confusion_plot, device = "pdf", dpi = 300, width = 2.4, height = 1.8)
 
 
 ######################################################################
@@ -257,12 +254,23 @@ load_AF3_data_dropout_summary <- load_AF3_data %>%
   summarise(n = n()) %>%
   mutate(n = ifelse(`Prediction based on 0.8 ipTM Cutoff` == "Correct", -n, n))
 
-Prediction_approach_AF3_ML_dropout <- ggplot(load_AF3_data_dropout_summary, aes(x = n, y = "PEPR")) +
+colnames(load_AF3_data_dropout_summary) <- c("Prediction", "n")
+load_AF3_data_dropout_summary$method <- "AF3"
+load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame("Prediction" = "Correct",
+                          "n" = -(sum(diag(conf_matrix))),
+                          "method" = "mamp-ml"))
+
+load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame("Prediction" = "Misclassified",
+                          "n" = sum(conf_matrix) - sum(diag(conf_matrix)),
+                          "method" = "mamp-ml"))
+
+# attach mamp-ml prediction data results and plot
+Prediction_approach_AF3_ML_dropout <- ggplot(load_AF3_data_dropout_summary, aes(x = n, y = method)) +
   geom_col(fill = "grey50", alpha = 0.85,) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "black") + # Add line at zero
   scale_x_continuous(name = "Number of Combinations",
-          limits = c(-120, 80), breaks = seq(-120, 80, 40), labels = c(120, 80, 40, 0, 40, 80)) +
-  labs(y = "Receptor") +
+          limits = c(-80, 80), breaks = c(-80, -40, 0, 40, 80), labels = c(80, 40, 0, 40, 80)) +
+  labs(y = "Method") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5, color = "black", size = 7),
         axis.text.y = element_text(color = "black", size = 7),
@@ -273,13 +281,12 @@ Prediction_approach_AF3_ML_dropout <- ggplot(load_AF3_data_dropout_summary, aes(
         plot.margin = unit(c(1, 0.5, 0.5, 0.5), "cm")) + # Add padding (top, right, bottom, left)
    geom_text(aes(label = abs(n), x = n + ifelse(n < 0, -2, 2)),
      hjust = ifelse(load_AF3_data_dropout_summary$n < 0, 1, 0), size = 2.5, color = "black") +
-#   annotate("text", x = -max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = length(receptor_order) + 0.5,
-#      label = "Correct", hjust = 0, vjust = -1, size = 2.5, color = "black") +
-#   annotate("text", x = max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = length(receptor_order) + 0.5, 
-#      label = "Misclassified", hjust = 0.7, vjust = -1, size = 2.5, color = "black") +
+   annotate("text", x = -max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = 2.5,
+      label = "Correct", hjust = 0, vjust = -1, size = 2.5, color = "black") +
+   annotate("text", x = max(abs(load_AF3_data_dropout_summary$n)) * 0.8, y = 2.5,
+      label = "Misclassified", hjust = 0.7, vjust = -1, size = 2.5, color = "black") +
    coord_cartesian(clip = "off") # Allows annotations outside plot area
 
 
-
 ggsave(filename = "./10_alphafold_analysis/Dropout_data/Prediction_approach_AF3_ML_dropout.pdf", plot = Prediction_approach_AF3_ML_dropout, 
-device = "pdf", dpi = 300, width = 2.4, height = 2.6)
+device = "pdf", dpi = 300, width = 2.6, height = 1.6)

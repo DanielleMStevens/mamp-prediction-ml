@@ -269,3 +269,11 @@ python 06_scripts_ml/06_main_train.py \
     --model_checkpoint_path 07_model_results/07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted/checkpoint-19.pth \
     --device cpu \
     --disable_wandb
+
+# testing if SeqOnly performs better than mamp-ml for dropout case
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --eval_only_data_path 09_testing_and_dropout/dropout_case/data_validation_all.csv \
+    --model_checkpoint_path 07_model_results/02_immuno_stratify_esm2_with_receptor/checkpoint-19.pth \
+    --device cpu \
+    --disable_wandb
