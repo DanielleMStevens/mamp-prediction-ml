@@ -171,7 +171,6 @@ python 06_scripts_ml/06_main_train.py \
     --epochs 20 \
     --save_period 10 
 
-
 python 07_model_results/02_make_confusion_matrix.py \
     --predictions_path 07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/test_preds.pth \
     --output_dir 07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted \
@@ -181,3 +180,92 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/misclassification_report.tsv
 
+# ------- Run 10: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
+# ---------- tesing model size: esm2_t33_650M_UR50D, unfreeze last layer only
+# Saved As: 10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets \
+    --device cpu \
+    --epochs 20 \
+    --save_period 10 
+
+python 07_model_results/02_make_confusion_matrix.py \
+    --predictions_path 07_model_results/09_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/09_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/09_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/09_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+# ------- Run 11: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 2 layers 
+# Saved As: 11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets \
+    --device cpu \
+    --epochs 20 \
+    --save_period 10 
+
+python 07_model_results/02_make_confusion_matrix.py \
+    --predictions_path 07_model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+# ------- Run 12: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 3 layers 
+# Saved As: 12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets \
+    --device cpu \
+    --epochs 20 \
+    --save_period 10 
+
+python 07_model_results/02_make_confusion_matrix.py \
+    --predictions_path 07_model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/misclassification_report.tsv
+
+# ------- Runnning Final Model: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers 
+# Saved As: 00_mamp_ml
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets \
+    --device cpu \
+    --epochs 25 \
+    --save_period 5 
+
+python 07_model_results/02_make_confusion_matrix.py \
+    --predictions_path 07_model_results/00_mamp_ml/test_preds.pth \
+    --output_dir 07_model_results/00_mamp_ml \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/00_mamp_ml/correct_classification_report.tsv \
+    07_model_results/00_mamp_ml/misclassification_report.tsv
+
+# --
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --eval_only_data_path 09_testing_and_dropout/test_data_set/data_validation_all.csv \
+    --model_checkpoint_path 07_model_results/07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted/checkpoint-19.pth \
+    --device cpu \
+    --disable_wandb

@@ -215,6 +215,43 @@ pep_comparison_plot <- ggplot(pep_comparison, aes(x = comparison, y = identity))
   ggsave(filename = "./10_alphafold_analysis/Dropout_data/pep_comparison_plot.pdf", plot = pep_comparison_plot, 
 device = "pdf", dpi = 300, width = 2, height = 1)
 
+######################################################################
+#  load prediction data from MAMP-ML and plot confusion matrix
+######################################################################
+
+# load data from excel file
+# Load prediction data
+load_mamp_ml_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/test_predictions.csv")
+
+# Create confusion matrix
+conf_matrix <- table(load_mamp_ml_prediction_data$true_label, 
+                    load_mamp_ml_prediction_data$predicted_label)
+
+# Plot confusion matrix
+confusion_plot <- ggplot(data = as.data.frame(as.table(conf_matrix)),
+                        aes(x = Var2, y = Var1, fill = Freq)) +
+  geom_tile() +
+  geom_text(aes(label = Freq), color = "black") +
+  scale_fill_gradient(low = "white", high = "grey50") +
+  labs(x = "Predicted Label",
+       y = "True Label",
+       fill = "Count") +
+  theme_classic() +
+  theme(panel.border = element_rect(color = "black", fill = NA, linewidth = 1)) +
+  scale_x_discrete(limits = rev(as.character(0:2))) +
+  scale_y_discrete(limits = rev(as.character(0:2)))
+
+ggsave(filename = "./10_alphafold_analysis/Dropout_data/confusion_matrix.pdf", 
+       plot = confusion_plot,
+       device = "pdf", dpi = 300, width = 4, height = 4)
+
+
+
+
+######################################################################
+#  load prediction data from AF3 and MAMP-ML and make comparison plot
+######################################################################
+
 load_AF3_data_dropout_summary <- load_AF3_data %>% 
   group_by(`Prediction based on 0.8 ipTM Cutoff`) %>% 
   summarise(n = n()) %>%

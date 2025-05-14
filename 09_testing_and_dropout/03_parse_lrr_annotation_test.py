@@ -111,11 +111,11 @@ def write_fasta(sequences, output_file):
 
 def main():
     # Input files
-    receptor_fasta = "09_testing_and_validation/dropout_case/receptor_full_length_dropout_test.fasta"
-    lrr_results = "09_testing_and_validation/dropout_case/lrr_annotation_results_dropout_test.txt"
+    receptor_fasta = "09_testing_and_dropout/test_data_set/receptor_full_length_model_validation.fasta"
+    lrr_results = "09_testing_and_dropout/test_data_set/lrr_annotation_results_independent_test.txt"
     
     # Output files
-    output_fasta = "09_testing_and_validation/dropout_case/lrr_domain_sequences_dropout_test.fasta"
+    output_fasta = "09_testing_and_dropout/test_data_set/lrr_domain_sequences_independent_test.fasta"
     
     # Read receptor sequences
     sequence_map = read_receptor_sequences(receptor_fasta)
