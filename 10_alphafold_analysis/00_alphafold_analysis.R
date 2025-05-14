@@ -221,7 +221,8 @@ device = "pdf", dpi = 300, width = 2, height = 1)
 
 # load data from excel file
 # Load prediction data
-load_mamp_ml_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/02_test_predictions.csv")
+#load_mamp_ml_prediction_data <- read.csv("./09_testing_and_dropout/dropout_case/02_test_predictions.csv")
+load_mamp_ml_prediction_data <- read.csv(file.choose())
 
 # Create confusion matrix
 conf_matrix <- table(load_mamp_ml_prediction_data$true_label, 

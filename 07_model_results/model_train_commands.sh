@@ -243,14 +243,15 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/misclassification_report.tsv
 
 # ------- Runnning Final Model: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers 
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12
 # Saved As: 00_mamp_ml
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
     --data_dir 05_datasets \
     --device cpu \
-    --epochs 25 \
+    --batch_size 12 \
+    --epochs 20 \
     --save_period 5 
 
 python 07_model_results/02_make_confusion_matrix.py \
@@ -262,15 +263,36 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/00_mamp_ml/correct_classification_report.tsv \
     07_model_results/00_mamp_ml/misclassification_report.tsv
 
-# --
+############################################################################
+# testing mamp-ml performance on test_data_set
+############################################################################
+
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
     --eval_only_data_path 09_testing_and_dropout/test_data_set/data_validation_all.csv \
-    --model_checkpoint_path 07_model_results/07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted/checkpoint-19.pth \
+    --model_checkpoint_path 07_model_results/00_mamp_ml/checkpoint-19.pth \
     --device cpu \
     --disable_wandb
 
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --eval_only_data_path 09_testing_and_dropout/test_data_set/data_validation_all.csv \
+    --model_checkpoint_path 07_model_results/02_immuno_stratify_esm2_with_receptor/checkpoint-19.pth \
+    --device cpu \
+    --disable_wandb
+
+############################################################################
 # testing if SeqOnly performs better than mamp-ml for dropout case
+############################################################################
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --eval_only_data_path 09_testing_and_dropout/dropout_case/data_validation_all.csv \
+    --model_checkpoint_path 07_model_results/00_mamp_ml/checkpoint-19.pth \
+    --device cpu \
+    --disable_wandb
+
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
     --eval_only_data_path 09_testing_and_dropout/dropout_case/data_validation_all.csv \
