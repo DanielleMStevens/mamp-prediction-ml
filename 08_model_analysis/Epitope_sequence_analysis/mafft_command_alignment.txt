@@ -1,0 +1,1 @@
+mafft --thread 4 --threadtb 5 --threadit 0 --reorder --auto input > output
