@@ -16,7 +16,16 @@ The code is broken down into the following: Prepping the data for training and v
 │   ├── All_LRR_PRR_ligand_data.xlsx
 ├── 03_out_data/
 │   ├── lrr_annotation_plots/*.pdf # plots from LRR-Annotation on boundaries for LRR domain
-│   ├── modeled_structures/*.pdf # plots from LRR-Annotation on boundaries for LRR domain
+│   ├── modeled_structures/
+│   │   ├── pdb_for_lrr_annotator/*.pdb # converted pdb files from AlphaFold models for LRR-Annotation
+│   │   ├── pdb_for_lrr_annotator/*_env/ # AlphaFold models output
+│   │   ├── alphafold_model_stats.txt # tracked output of alphafold stats
+│   ├── training_data_summary/ # ignore for now
+│   ├── lrr_annotation_results.txt # summary of LRR-Annotation domain extract from XX script
+│   ├── lrr_domain_sequences.fasta # fasta file of just LRR domain from XX script
+│   ├── receptor_full_length.fasta # fasta file of full length receptor sequence from 06_scripts_ml/01_prep_receptor_sequences_for_modeling.R
+├── 04_Preprocessing_results/
+│   ├── Train_plots/
 
 ```
 
