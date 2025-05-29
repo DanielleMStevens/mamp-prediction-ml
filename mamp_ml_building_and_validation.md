@@ -1,16 +1,44 @@
 # Prediction of MAMP-Receptor Interactions through a Protein Language Model
 
-## Overview
+## 00. Overview
 
 This repository contains the code for the paper "Prediction of MAMP-Receptor Interactions through a Protein Language Model" by Danielle Stevens, et al.
 
+The code is broken down into the following: Prepping the data for training and validation, model hyperparameter optization and assessement
 
-## Prepping train + validation datasets
-
-All the data for model training and validation is found in the excel sheet (All_LRR_PRR_ligand_data.xlsx) in 02_in_data. This data needs to be transformed in to a fasta file to run though AlphaFold in a semi-automated manner. 
 ```
-# This will generate a fasta file (receptor_full_length.fasta) in 03_out_data
+.
+# code base for LRR_Annotation
+├── 01_LRR_Annotation/
+│   ├── analyze_bfactor_peaks.py
+│   ├── extract_lrr_sequences.py
+├── 02_in_data/
+│   ├── All_LRR_PRR_ligand_data.xlsx
+├── 03_out_data/
+│   ├── lrr_annotation_plots/*.pdf # plots from LRR-Annotation on boundaries for LRR domain
+│   ├── modeled_structures/*.pdf # plots from LRR-Annotation on boundaries for LRR domain
+
+```
+
+
+## 01. Prepping train + validation datasets
+
+All the data for model training and validation is found in the excel sheet (All_LRR_PRR_ligand_data.xlsx) in 02_in_data. The file path is the following:
+```
+.
+├── 02_in_data/
+│   ├── All_LRR_PRR_ligand_data.xlsx
+```
+
+This data needs to be transformed in to a fasta file to run though AlphaFold in a semi-automated manner. 
+```
+# run this script on the command line 
 Rscript 06_scripts_ml/01_prep_receptor_sequences_for_modeling.R
+
+# it will generate a fasta file in the following file path:
+.
+├── 02_in_data/
+│   ├── All_LRR_PRR_ligand_data.xlsx
 ```
 
 Once the fasta file is generated, we will run it though local colabfold to generate predictive structures for each receptor sequence. To do so efficeintly, it is recommnded to run on a GPU (ideally NVIDIA). We initally used our local HPC, so the first few commands are for our HPC GPU's and may need to be modified for your system. This will generate AlphaFold structures (only one) for each unique receptor sequence.
