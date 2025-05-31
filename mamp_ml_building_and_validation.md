@@ -11,21 +11,39 @@ The code is broken down into the following: Prepping the data for training and v
 # code base for LRR_Annotation
 ├── 01_LRR_Annotation/
 │   ├── analyze_bfactor_peaks.py
-│   ├── extract_lrr_sequences.py
+│   └── extract_lrr_sequences.py
 ├── 02_in_data/
-│   ├── All_LRR_PRR_ligand_data.xlsx
+│   └── All_LRR_PRR_ligand_data.xlsx
 ├── 03_out_data/
 │   ├── lrr_annotation_plots/*.pdf # plots from LRR-Annotation on boundaries for LRR domain
 │   ├── modeled_structures/
 │   │   ├── pdb_for_lrr_annotator/*.pdb # converted pdb files from AlphaFold models for LRR-Annotation
 │   │   ├── pdb_for_lrr_annotator/*_env/ # AlphaFold models output
-│   │   ├── alphafold_model_stats.txt # tracked output of alphafold stats
+│   │   └── alphafold_model_stats.txt # tracked output of alphafold stats
 │   ├── training_data_summary/ # ignore for now
 │   ├── lrr_annotation_results.txt # summary of LRR-Annotation domain extract from XX script
 │   ├── lrr_domain_sequences.fasta # fasta file of just LRR domain from XX script
-│   ├── receptor_full_length.fasta # fasta file of full length receptor sequence from 06_scripts_ml/01_prep_receptor_sequences_for_modeling.R
+│   └── receptor_full_length.fasta # fasta file of full length receptor sequence from 06_scripts_ml/01_prep_receptor_sequences_for_modeling.R
 ├── 04_Preprocessing_results/
 │   ├── Train_plots/
+│   ├── Validation_data_plots/
+│   ├── alphafold_scores.txt # summary of AlphaFold stats from alphafold_model_stats.txt
+│   └── bfactor_winding_lrr_segments.txt # output of B-factor from LRR-Annotation
+├── 05_datasets/*.csv # datasets used for model training and evaluation
+├── 06_scripts_ml/
+│   ├── models/ 
+│   ├── losses/ # scripts for calculating loss
+│   ├── datasets/ # scripts for managing datasets
+│   ├── 01_prep_receptor_sequences_for_modeling.R # converts excel sheet to fasta file for receptor modeling
+│   ├── 02_alphafold_to_lrr_annotation.py # summarizes AlphaFold and converts receptors for LRR-Annotation
+│   ├── 03_parse_lrr_annotations.py # run and parse LRR-Annotation (extracts domain sequence)
+│   ├── 04_data_prep_for_training.py # prep sequence data for model training (protein sequence only)
+│   ├── 05_chemical_conversion.R # converts sequence data into chemical feature data in a format for model training/prediction
+│   └── 06_main_train.py, engine_train.py, misc.py # main training scripts
+├── 07_model_results/
+│   ├── 00-12* models/ # models built and tested
+│   ├── 00_visualize_model_predictions.R # plots the number of correct versus misclassfied interactions from validation data
+
 
 ```
 
