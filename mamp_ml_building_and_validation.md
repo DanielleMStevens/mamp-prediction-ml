@@ -2,14 +2,13 @@
 
 ## 00. Overview
 
-This repository contains the code for the paper "Prediction of MAMP-Receptor Interactions through a Protein Language Model" by Danielle Stevens, et al.
+This repository contains the code for the paper "A deep learning approach to epitope immunogenicity in plants" by Danielle Stevens, et al.
 
-The code is broken down into the following: Prepping the data for training and validation, model hyperparameter optization and assessement
+The code is broken down into the following: Prepping the data for training and validation, model hyperparameter optization and independent assessement.
 
 ```
 .
-# code base for LRR_Annotation
-├── 01_LRR_Annotation/
+├── 01_LRR_Annotation/ # code base for LRR_Annotation
 │   ├── analyze_bfactor_peaks.py
 │   └── extract_lrr_sequences.py
 ├── 02_in_data/
@@ -94,8 +93,39 @@ python 06_scripts_ml/02_alphafold_to_lrr_annotation.py
 python 06_scripts_ml/03_parse_lrr_annotations.py
 
 # script will split the data depending on the 
-python 06_scripts_ml/04_data_prep_for_training.py
+python 06_scripts_ml/04_data_prep_for_training.py --split_type (immuno_stratify|random)
 ```
+
+Once the data is split, we will then transform and add chemical feature data (amino acid bulkiness, charge, and hydrophobicity) before model training and evaluation.
+```
+Rscript 06_scripts_ml/05_chemical_conversion.R all train_input.csv test_input.csv
+```
+
+We will then need to edit the main training script for which file to train and test with and run each model as described in model_train_commands.sh
+```
+.
+├── 06_scripts_ml/
+│   ├── model_train_commands.sh
+│   ├── 06_main_train.py
+```
+For each model, we ran two additional script to evaluate their performance. One assess the number of correct and misclassified perdictions based on the true label. The second make a confusion matrix of predicted and true labels of each class (immunogenic, weakly immunogenic, and non-immunogenic).
+
+```
+# below is an example however each one is detailed in model_train_command.sh
+# the model name will need to be swapped as well as the input data for the associated 
+# model training/test schema
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/04_immuno_stratify_esm2_all_chemical_features/correct_classification_report.tsv \
+    07_model_results/04_immuno_stratify_esm2_all_chemical_features/misclassification_report.tsv
+```
+
+
 
 
 
