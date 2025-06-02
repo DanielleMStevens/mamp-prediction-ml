@@ -1,5 +1,8 @@
 # Prediction of MAMP-Receptor Interactions through a Protein Language Model
 
+Table of contents:
+
+
 ## 00. Overview
 
 This repository contains the code for the paper "A deep learning approach to epitope immunogenicity in plants" by Danielle Stevens, et al.
@@ -45,9 +48,60 @@ The code is broken down into the following: Prepping the data for training and v
 
 
 ```
+## 01. Analyzing and visualizing input data
+
+To illustrate the input data used for model training and testing, we assessed the diversity by both sequence and length. We used Biostrings (now pwalign) package to perform all-by-all global sequence similarity comparisons as well as visualized the length variation of protein ligands. 
+
+```
+# To make these plots, run the following command:
+Rscript 08_model_analysis/00_visualize_input_data.R
+
+# which will save all the plots generate in the following directory path:
+├── 04_Preprocessing_results/
+│   ├── peptide_distrubution.pdf
+│   ├── receptor_sequence_comparison_plot.pdf
+│   ├── epitope_sequence_comparison_plot.pdf
+│   ├── epitope_length_comparison_plot.pdf
+
+# To run the following script below will make similar plots for just training and validation
+Rscript 08_model_analysis/01_visualize_train_data.R
+Rscript 08_model_analysis/02_visualize_validation_data.R
+
+# which will save all the plots in the following directories
+├── 04_Preprocessing_results/
+│   ├── Train_data_plots
+│   ├── Validation_data_plots
+```
+
+We then wanted to visualize different metrics of our data processing pipeline (AlphaFold + LRR-Annotation). These commands are run below in [## 01. Prepping train + validation datasets], but the commands to visualize the outputs can be found here.
+
+```
+# To make the following plots, run the following command:
+Rscript 08_model_analysis/03_visualize_data_pipeline.R 
+
+# which will save all the plots generated in the following directory path:
+├── 04_Preprocessing_results/
+│   ├── pTM_plot.pdf
+│   ├── pLDDT_pTM_scatter.pdf
+│   ├── CORE_Bfactor.pdf
+│   ├── INR_Bfactor.pdf
+│   ├── max_winding_vs_lrrs.pdf
+│   ├── lrr_repeat_vs_lrrs.pdf
+```
+
+Finally, after some interations we realized additional features would improve our model predictions. This includes different amino acid properties such as charge, hydrophobicity, and bulkiness. We wanted to visualize these properties and confirm that they provide information that can differentiate different receptors and protein ligands. Similar to Li et al., 2024, we made a PCA of the average values of the properities above for each receptor and ligand. 
+
+```
+# To make the following plots, run the following script:
+Rscript 08_model_analysis/04_chemical_feature_plots.R 
+
+# which will save all the plots generated in the following directory path:
+├── 04_Preprocessing_results/
+│   ├── Chemical_feature_analysis/
+```
 
 
-## 01. Prepping train + validation datasets
+## 02. Prepping train + validation datasets
 
 All the data for model training and validation is found in the excel sheet (All_LRR_PRR_ligand_data.xlsx) in 02_in_data. The file path is the following:
 ```
@@ -101,6 +155,9 @@ Once the data is split, we will then transform and add chemical feature data (am
 Rscript 06_scripts_ml/05_chemical_conversion.R all train_input.csv test_input.csv
 ```
 
+## 03. Model training and assessment
+
+
 We will then need to edit the main training script for which file to train and test with and run each model as described in model_train_commands.sh
 ```
 .
@@ -125,7 +182,18 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/04_immuno_stratify_esm2_all_chemical_features/misclassification_report.tsv
 ```
 
+## 04. Final model assessment 
 
+Once we determined which model architecture and hyperparameters performed best, we want to evalute it through two cases, an independent functional dataset as well as one receptor dropout case. We built this model with the intention of using it as an in silico screen for receptor-ligand variants but not new receptor-ligand pairs. To assess its performance for this task, we collected independent immunogenicity data by screening new CORE receptor variants with our library of csp22 variants via ROS production.
+
+We can first visualize that data by running the script below:
+```
+Rscript 09_testing_and_dropout/00_ROS_test_data.R 
+
+# which will save all the plots generated in the following directory path:
+├── 09_testing_and_dropout/
+│   ├── ROS_screen_plots/
+```
 
 
 
