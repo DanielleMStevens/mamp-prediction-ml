@@ -195,6 +195,20 @@ Rscript 09_testing_and_dropout/00_ROS_test_data.R
 │   ├── ROS_screen_plots/
 ```
 
+Using that data, we can independently assess how our model is performing. To do so, we made additional scripts which will process this data for model prediction.
+
+```
+# Run the following scripts on the command line:
+Rscript 09_testing_and_dropout/01_convert_sheet_to_fasta.R 
+```
+This will prep the receptor sequences into a fasta file. We will then need to run alphafold to model each receptor sequence and then run a version of LRR-Annotation to parse out the ectodomain. Activate the conda environment for ESM-2 and run the following command on a computer with a Nivida GPU. If a GPU is unavailable, local co-labfold can be run on a CPU but will need some minor modifications to the script. Refer the to localcolabfold GitHub for reference.
+
+```
+# Run the following command:
+colabfold_batch --num-models 1 ./09_testing_and_dropout/test_data_set/receptor_full_length_model_validation.fasta ./09_testing_and_dropout/test_data_set/receptor_only/
+```
+With those structures, we will convert them for parsing via 
+
 
 
 
