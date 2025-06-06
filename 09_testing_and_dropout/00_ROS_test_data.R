@@ -39,7 +39,7 @@ bubble_plot <- ggplot(data, aes(x = Sol_Number, y = Epitope)) +
 
 
 # If you want to save the plot:
-ggsave("./08_Validation_data_plots/ROS_bubble_plot.pdf", plot = bubble_plot, width = 10, height = 2.2, dpi = 300)
+ggsave("./09_testing_and_dropout/ROS_screen_plots/ROS_bubble_plot.pdf", plot = bubble_plot, width = 10, height = 2.2, dpi = 300)
 
 
 # Create summary plot of immunogenic outcomes grouped by Sol_Number
@@ -67,4 +67,4 @@ summary_plot <- ggplot(data[!is.na(data$value),], aes(x = Sol_Number, fill = fac
             size = 2.5)
 
 # Save the summary plot
-ggsave("./08_Validation_data_plots/ROS_summary_plot.pdf", plot = summary_plot, width = 1.9, height = 2.2, dpi = 300)
+ggsave("./09_testing_and_dropout/ROS_screen_plots/ROS_summary_plot.pdf", plot = summary_plot, width = 1.9, height = 2.2, dpi = 300)
