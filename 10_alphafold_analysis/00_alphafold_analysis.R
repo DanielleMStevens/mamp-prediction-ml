@@ -31,14 +31,15 @@ names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","n
 receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
 names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT")
 
-# load data from excel file
-load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/AF3_validation_data.xlsx")
-colnames(load_AF3_data) <- c("TC#","Plant species","Receptor","Locus ID/Genbank","Epitope","Sequence","Receptor Name",
-"Receptor Sequence","Known Outcome","empty","pTM","ipTM","Prediction")
 
 ######################################################################
 #  plot distribution of correct and misclassified predictions
 ######################################################################
+
+# load data from excel file
+load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/AF3_validation_data.xlsx")
+colnames(load_AF3_data) <- c("TC#","Plant species","Receptor","Locus ID/Genbank","Epitope","Sequence","Receptor Name",
+"Receptor Sequence","Known Outcome","empty","pTM","ipTM","Prediction")
 
 # Create summary with negative values for correct predictions
 load_AF3_data_summary <- load_AF3_data %>% 
@@ -126,6 +127,64 @@ device = "pdf", dpi = 300, width = 3.2, height = 1.3)
 
   ggsave(filename = "./10_alphafold_analysis/Validation_data/iptm_ptm_plot_no_FLS2.pdf", plot = iptm_ptm_plot_no_FLS2, 
 device = "pdf", dpi = 300, width = 3.2, height = 1.3)
+
+# ------------------------------------ same analysis but with independent test data -----------------------------------------
+
+
+######################################################################
+#  plots for Fig. 4E-F
+######################################################################
+
+# load data from excel file
+load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/AF3_new_test_data.xlsx")
+load_AF3_data_new_test <- load_AF3_data[,c(9,10,11,12)]
+colnames(load_AF3_data_new_test) <- c("Immunogenicity", "pTM", "ipTM", "Prediction")
+
+load_AF3_data_new_test_summary <- load_AF3_data_new_test %>% 
+  group_by(Prediction) %>% 
+  summarise(n = n())
+
+load_AF3_data_new_test_summary <- reshape2::melt(load_AF3_data_new_test_summary)
+load_AF3_data_new_test_summary$variable <- c("AF3")
+
+
+load_AF3_data_new_test_summary <- rbind(load_AF3_data_new_test_summary,
+                                        data.frame("Prediction" = c("Correct", "Misclassified"), 
+                                        "variable" = c("mamp-ml", "mamp-ml"),
+                                        "value" = c(75, 26)))
+
+load_AF3_data_new_test_summary <- load_AF3_data_new_test_summary %>%
+  mutate(value = ifelse(Prediction == "Correct", -value, value))
+
+
+
+# attach mamp-ml prediction data results and plot
+Prediction_approach_AF3_ML_test_data <- ggplot(load_AF3_data_new_test_summary, aes(x = value, y = variable)) +
+  geom_col(fill = "grey50", alpha = 0.85) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "black") + # Add line at zero
+  scale_x_continuous(name = "Number of Combinations",
+          limits = c(-120, 120), breaks = c(-120, -80, -40, 0, 40, 80, 120), labels = c(120, 80, 40, 0, 40, 80, 120)) +
+  labs(y = "Method") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "none",
+        plot.margin = unit(c(1, 0.5, 0.5, 0.5), "cm")) + # Add padding (top, right, bottom, left)
+   geom_text(aes(label = abs(value), x = value + ifelse(value < 0, -2, 2)),
+     hjust = ifelse(load_AF3_data_new_test_summary$value < 0, 1, 0), size = 2.5, color = "black") +
+   annotate("text", x = -max(abs(load_AF3_data_new_test_summary$value)) * 0.8, y = 3.5,
+      label = "Correct", hjust = 0, vjust = 0, size = 2.5, color = "black") +
+   annotate("text", x = max(abs(load_AF3_data_new_test_summary$value)) * 0.8, y = 3.5,
+      label = "Misclassified", hjust = 0.7, vjust = 0, size = 2.5, color = "black") +
+   coord_cartesian(clip = "off") # Allows annotations outside plot area
+
+
+ggsave(filename = "./10_alphafold_analysis/Independent_test_data/Prediction_approach_AF3_ML_test_data.pdf", plot = Prediction_approach_AF3_ML_test_data, 
+device = "pdf", dpi = 300, width = 1.9, height = 1.4)
+
 
 
 # ------------------------------------ same analysis but with dropout data -----------------------------------------
@@ -300,7 +359,7 @@ load_AF3_data_dropout_summary <- rbind(load_AF3_data_dropout_summary, data.frame
 
 # attach mamp-ml prediction data results and plot
 Prediction_approach_AF3_ML_dropout <- ggplot(load_AF3_data_dropout_summary, aes(x = n, y = method)) +
-  geom_col(fill = "grey50", alpha = 0.85,) +
+  geom_col(fill = "grey50", alpha = 0.85) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "black") + # Add line at zero
   scale_x_continuous(name = "Number of Combinations",
           limits = c(-80, 80), breaks = c(-80, -40, 0, 40, 80), labels = c(80, 40, 0, 40, 80)) +
