@@ -4,7 +4,7 @@ library(readxl)
 library(reshape2)
 
 # Read the Excel file from the same directory
-data <- as.data.frame(readxl::read_xlsx(path = "./08_Validation_data_plots/Summary_csp22_validation_data.xlsx"))
+data <- as.data.frame(readxl::read_xlsx(path = "./09_testing_and_dropout/ROS_screen_plots/Summary_csp22_validation_data.xlsx"))
 save_sol_name <- data[1,]
 data <- data[-1,]
 data <- reshape2::melt(data, id.vars = c("Sol Number"))
