@@ -247,8 +247,8 @@ class ESMBfactorWeightedFeatures(nn.Module):
         super().__init__()
         
         # Load pretrained ESM2 model and tokenizer
-        self.esm = AutoModel.from_pretrained("facebook/esm2_t33_650M_UR50D")
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t33_650M_UR50D")
+        self.esm = AutoModel.from_pretrained("facebook/esm2_t6_8M_UR50D")
+        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t6_8M_UR50D")
         
         # notes: other size models from ESM2:
         # Checkpoint name	Num layers	Num parameters
@@ -280,7 +280,7 @@ class ESMBfactorWeightedFeatures(nn.Module):
         # Only fine-tune the later layers for the specific task
         modules_to_freeze = [
             self.esm.embeddings,  # Freeze embedding layer
-            *self.esm.encoder.layer[:32]  # Freeze first 20 transformer layers
+            *self.esm.encoder.layer[:5]  # Freeze first 5 transformer layers
         ]
         for module in modules_to_freeze:
             for param in module.parameters():
