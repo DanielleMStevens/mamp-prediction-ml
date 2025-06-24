@@ -310,7 +310,13 @@ class ESMBfactorWeightedFeatures(nn.Module):
         )
         
         # Loss function with label smoothing for better generalization
-        self.criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
+        # used for models 1-16
+        #self.criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
+
+        #used for model 17
+        class_weights = torch.tensor([1.0, 1.0, 3.0])  # Give 3x weight to weakly immunogenic
+        self.criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=0.1)
+       
         self.losses = ["ce"]  # Track which loss types are used
         
         # Save configuration hyperparameters
