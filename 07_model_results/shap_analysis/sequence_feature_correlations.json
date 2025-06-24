@@ -1,0 +1,398 @@
+{
+  "correlations_with_confidence": [
+    [
+      "receptor_entropy",
+      0.5451284818425826
+    ],
+    [
+      "receptor_charged_pct",
+      0.36573572715998065
+    ],
+    [
+      "receptor_length",
+      -0.3346470850576462
+    ],
+    [
+      "peptide_hydrophobic_pct",
+      -0.2545565763243947
+    ],
+    [
+      "peptide_entropy",
+      -0.2243541343245495
+    ],
+    [
+      "peptide_avg_charge",
+      0.22007296787004393
+    ],
+    [
+      "peptide_charged_pct",
+      0.2186856968557947
+    ],
+    [
+      "receptor_avg_bulkiness",
+      0.21259538566950514
+    ],
+    [
+      "peptide_length",
+      -0.21215951388850907
+    ],
+    [
+      "receptor_avg_charge",
+      -0.15050427837495273
+    ],
+    [
+      "length_ratio",
+      -0.10424877563326142
+    ],
+    [
+      "peptide_polar_pct",
+      0.09117814822700893
+    ],
+    [
+      "receptor_polar_pct",
+      -0.05441896384600073
+    ],
+    [
+      "receptor_hydrophobic_pct",
+      -0.05009190604146552
+    ],
+    [
+      "receptor_avg_hydrophobicity",
+      0.046334609780883884
+    ],
+    [
+      "peptide_avg_bulkiness",
+      0.02330233836376048
+    ],
+    [
+      "peptide_avg_hydrophobicity",
+      0.0152261254316209
+    ]
+  ],
+  "top_features_analyzed": [
+    "receptor_entropy",
+    "receptor_charged_pct",
+    "receptor_length",
+    "peptide_hydrophobic_pct",
+    "peptide_entropy",
+    "peptide_avg_charge",
+    "peptide_charged_pct",
+    "receptor_avg_bulkiness",
+    "peptide_length",
+    "receptor_avg_charge",
+    "length_ratio",
+    "peptide_polar_pct"
+  ],
+  "class_summary_statistics": {
+    "Immunogenic": {
+      "receptor_entropy": {
+        "mean": 3.9309350242683943,
+        "std": 0.03697200250530891,
+        "median": 3.9360097529277107,
+        "min": 3.8738547574964537,
+        "max": 3.989212293435237,
+        "n_samples": 5
+      },
+      "receptor_charged_pct": {
+        "mean": 15.634907653964692,
+        "std": 1.6560117125471852,
+        "median": 15.032679738562091,
+        "min": 13.908450704225354,
+        "max": 17.6056338028169,
+        "n_samples": 5
+      },
+      "receptor_length": {
+        "mean": 571.6,
+        "std": 22.570777567465417,
+        "median": 568.0,
+        "min": 542.0,
+        "max": 612.0,
+        "n_samples": 5
+      },
+      "peptide_hydrophobic_pct": {
+        "mean": 27.874058308840922,
+        "std": 20.57872044353974,
+        "median": 23.076923076923077,
+        "min": 0.0,
+        "max": 63.63636363636363,
+        "n_samples": 5
+      },
+      "peptide_entropy": {
+        "mean": 2.822046271720269,
+        "std": 0.5811402893167911,
+        "median": 2.7321588913645702,
+        "min": 1.9528195311147831,
+        "max": 3.4642346527265664,
+        "n_samples": 5
+      },
+      "peptide_avg_charge": {
+        "mean": 0.08231668693625216,
+        "std": 0.1894600354265205,
+        "median": 0.11666666666666667,
+        "min": -0.18181818181818182,
+        "max": 0.38461538461538464,
+        "n_samples": 5
+      },
+      "peptide_charged_pct": {
+        "mean": 23.10403364751191,
+        "std": 10.755278104736972,
+        "median": 18.181818181818183,
+        "min": 12.5,
+        "max": 38.46153846153847,
+        "n_samples": 5
+      },
+      "receptor_avg_bulkiness": {
+        "mean": 15.279297320910246,
+        "std": 0.24108846134904865,
+        "median": 15.2106161971831,
+        "min": 14.897564575645756,
+        "max": 15.558006535947715,
+        "n_samples": 5
+      },
+      "peptide_length": {
+        "mean": 16.2,
+        "std": 4.166533331199932,
+        "median": 16.0,
+        "min": 11.0,
+        "max": 23.0,
+        "n_samples": 5
+      },
+      "receptor_avg_charge": {
+        "mean": -0.01782476604799188,
+        "std": 0.01471262361139359,
+        "median": -0.01602112676056338,
+        "min": -0.03380281690140845,
+        "max": 0.004797047970479705,
+        "n_samples": 5
+      },
+      "length_ratio": {
+        "mean": 0.02824291333219877,
+        "std": 0.0066237762923569395,
+        "median": 0.028169014084507043,
+        "min": 0.01936619718309859,
+        "max": 0.03758169934640523,
+        "n_samples": 5
+      },
+      "peptide_polar_pct": {
+        "mean": 28.96236613627918,
+        "std": 13.813175375053572,
+        "median": 27.77777777777778,
+        "min": 9.090909090909092,
+        "max": 52.17391304347826,
+        "n_samples": 5
+      }
+    },
+    "Non-Immunogenic": {
+      "receptor_entropy": {
+        "mean": 3.9265500602619157,
+        "std": 0.05932497079763955,
+        "median": 3.9115519533467196,
+        "min": 3.8305700653916985,
+        "max": 3.9898640357892035,
+        "n_samples": 5
+      },
+      "receptor_charged_pct": {
+        "mean": 14.91823977260143,
+        "std": 1.1253626258665554,
+        "median": 14.165497896213184,
+        "min": 13.908450704225354,
+        "max": 16.292134831460675,
+        "n_samples": 5
+      },
+      "receptor_length": {
+        "mean": 654.4,
+        "std": 70.95519713171122,
+        "median": 712.0,
+        "min": 567.0,
+        "max": 713.0,
+        "n_samples": 5
+      },
+      "peptide_hydrophobic_pct": {
+        "mean": 50.18181818181818,
+        "std": 10.529768898596549,
+        "median": 50.0,
+        "min": 36.36363636363637,
+        "max": 63.63636363636363,
+        "n_samples": 5
+      },
+      "peptide_entropy": {
+        "mean": 2.987528981931453,
+        "std": 0.30323411170887865,
+        "median": 3.1746742319786425,
+        "min": 2.5219280948873624,
+        "max": 3.265583322887733,
+        "n_samples": 5
+      },
+      "peptide_avg_charge": {
+        "mean": -0.05818181818181819,
+        "std": 0.12393013227601435,
+        "median": -0.045454545454545456,
+        "min": -0.2,
+        "max": 0.13636363636363635,
+        "n_samples": 5
+      },
+      "peptide_charged_pct": {
+        "mean": 18.545454545454543,
+        "std": 2.9653648055091075,
+        "median": 18.181818181818183,
+        "min": 13.636363636363635,
+        "max": 22.727272727272727,
+        "n_samples": 5
+      },
+      "receptor_avg_bulkiness": {
+        "mean": 15.3092032748953,
+        "std": 0.17632009625732342,
+        "median": 15.216966292134831,
+        "min": 15.079649368863956,
+        "max": 15.51968309859155,
+        "n_samples": 5
+      },
+      "peptide_length": {
+        "mean": 17.4,
+        "std": 5.642694391866353,
+        "median": 22.0,
+        "min": 10.0,
+        "max": 22.0,
+        "n_samples": 5
+      },
+      "receptor_avg_charge": {
+        "mean": -0.016662459050561535,
+        "std": 0.0008471918748810628,
+        "median": -0.01604938271604938,
+        "min": -0.017696629213483143,
+        "max": -0.015848527349228612,
+        "n_samples": 5
+      },
+      "length_ratio": {
+        "mean": 0.025931855863488246,
+        "std": 0.006092154926587038,
+        "median": 0.030855539971949508,
+        "min": 0.017605633802816902,
+        "max": 0.03089887640449438,
+        "n_samples": 5
+      },
+      "peptide_polar_pct": {
+        "mean": 21.999999999999996,
+        "std": 10.307663842224265,
+        "median": 27.27272727272727,
+        "min": 9.090909090909092,
+        "max": 31.818181818181817,
+        "n_samples": 5
+      }
+    },
+    "Weakly Immunogenic": {
+      "receptor_entropy": {
+        "mean": 3.895323146590846,
+        "std": 0.032695287957262245,
+        "median": 3.9115519533467196,
+        "min": 3.8303589876693827,
+        "max": 3.917470536871408,
+        "n_samples": 5
+      },
+      "receptor_charged_pct": {
+        "mean": 15.255757296850442,
+        "std": 1.0877250672107885,
+        "median": 15.74468085106383,
+        "min": 13.623188405797102,
+        "max": 16.292134831460675,
+        "n_samples": 5
+      },
+      "receptor_length": {
+        "mean": 703.4,
+        "std": 8.475848040166836,
+        "median": 705.0,
+        "min": 690.0,
+        "max": 712.0,
+        "n_samples": 5
+      },
+      "peptide_hydrophobic_pct": {
+        "mean": 42.515151515151516,
+        "std": 9.366332847006786,
+        "median": 46.666666666666664,
+        "min": 25.0,
+        "max": 50.0,
+        "n_samples": 5
+      },
+      "peptide_entropy": {
+        "mean": 3.2618668330788907,
+        "std": 0.13710911397125905,
+        "median": 3.1746742319786425,
+        "min": 3.1068905956085184,
+        "max": 3.4428621651554656,
+        "n_samples": 5
+      },
+      "peptide_avg_charge": {
+        "mean": -0.016233766233766232,
+        "std": 0.020119394006272294,
+        "median": 0.0,
+        "min": -0.045454545454545456,
+        "max": 0.0,
+        "n_samples": 5
+      },
+      "peptide_charged_pct": {
+        "mean": 25.398268398268396,
+        "std": 6.204319580310191,
+        "median": 27.27272727272727,
+        "min": 13.636363636363635,
+        "max": 32.142857142857146,
+        "n_samples": 5
+      },
+      "receptor_avg_bulkiness": {
+        "mean": 15.240636914492399,
+        "std": 0.025676353855782905,
+        "median": 15.23859574468085,
+        "min": 15.216966292134831,
+        "max": 15.28714899713467,
+        "n_samples": 5
+      },
+      "peptide_length": {
+        "mean": 21.8,
+        "std": 4.1182520563948,
+        "median": 22.0,
+        "min": 15.0,
+        "max": 28.0,
+        "n_samples": 5
+      },
+      "receptor_avg_charge": {
+        "mean": -0.01879001590208391,
+        "std": 0.0033905514387407346,
+        "median": -0.017696629213483143,
+        "min": -0.025106382978723404,
+        "max": -0.01489971346704871,
+        "n_samples": 5
+      },
+      "length_ratio": {
+        "mean": 0.03103453666808619,
+        "std": 0.006108991673725326,
+        "median": 0.03089887640449438,
+        "min": 0.02127659574468085,
+        "max": 0.04057971014492753,
+        "n_samples": 5
+      },
+      "peptide_polar_pct": {
+        "mean": 26.20779220779221,
+        "std": 9.75752582217178,
+        "median": 20.0,
+        "min": 18.181818181818183,
+        "max": 42.857142857142854,
+        "n_samples": 5
+      }
+    }
+  },
+  "summary": {
+    "strongest_positive_correlation": [
+      "receptor_entropy",
+      0.5451284818425826
+    ],
+    "strongest_negative_correlation": [
+      "receptor_length",
+      -0.3346470850576462
+    ],
+    "most_important_feature": [
+      "receptor_entropy",
+      0.5451284818425826
+    ],
+    "total_samples_analyzed": 15,
+    "features_with_significant_correlation": 11
+  }
+}
