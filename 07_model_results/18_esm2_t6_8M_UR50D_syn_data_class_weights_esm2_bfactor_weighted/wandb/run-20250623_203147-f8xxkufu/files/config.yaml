@@ -1,0 +1,202 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.21
+    framework: huggingface
+    huggingface_version: 4.48.3
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.9.21
+    start_time: 1750735907
+    t:
+      1:
+      - 1
+      - 5
+      - 11
+      - 49
+      - 51
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 11
+      - 41
+      - 49
+      - 51
+      - 53
+      - 55
+      3:
+      - 2
+      - 13
+      - 15
+      - 16
+      4: 3.9.21
+      5: 0.12.21
+      6: 4.48.3
+      8:
+      - 4
+      - 5
+      11:
+      - 1
+aa_expand:
+  desc: null
+  value: scratch
+af_extract_feat:
+  desc: null
+  value: both
+backbone:
+  desc: null
+  value: esm2_t33_650M_UR50D
+batch_size:
+  desc: null
+  value: 12
+contrastive_output:
+  desc: null
+  value: true
+cross_eval_kfold:
+  desc: null
+  value: null
+data_dir:
+  desc: null
+  value: 05_datasets
+debug:
+  desc: null
+  value: ''
+detic_path:
+  desc: null
+  value: /path/to/file
+device:
+  desc: null
+  value: cpu
+disable_wandb:
+  desc: null
+  value: false
+dist_eval:
+  desc: null
+  value: false
+dist_on_itp:
+  desc: null
+  value: false
+dist_url:
+  desc: null
+  value: env://
+distributed:
+  desc: null
+  value: false
+double_subsample_destabilizing_ratio:
+  desc: null
+  value: 8
+epochs:
+  desc: null
+  value: 20
+eval:
+  desc: null
+  value: false
+eval_only_data_path:
+  desc: null
+  value: null
+eval_period:
+  desc: null
+  value: 5
+eval_reverse:
+  desc: null
+  value: false
+finetune:
+  desc: null
+  value: ''
+finetune_backbone:
+  desc: null
+  value: /scratch/cluster/jozhang/models/openfold_params/finetuning_ptm_2.pt
+freeze_at:
+  desc: null
+  value: 14
+head_dim:
+  desc: null
+  value: 128
+lambda_double:
+  desc: null
+  value: 1.0
+lambda_pos:
+  desc: null
+  value: 4
+lambda_single:
+  desc: null
+  value: 0.1
+local_rank:
+  desc: null
+  value: -1
+loss_single_aug:
+  desc: null
+  value: none
+lr:
+  desc: null
+  value: 0.0003
+max_context_length:
+  desc: null
+  value: 2000
+min_lr:
+  desc: null
+  value: 1.0e-09
+model:
+  desc: null
+  value: esm2_bfactor_weighted
+model_checkpoint_path:
+  desc: null
+  value: null
+n_extra_msa_seqs:
+  desc: null
+  value: 1024
+n_fed_cats:
+  desc: null
+  value: -1
+n_msa_seqs:
+  desc: null
+  value: 128
+name_to_x:
+  desc: null
+  value: ../out_data/colabfold_name_to_x.pt
+num_workers:
+  desc: null
+  value: 10
+output_dir:
+  desc: null
+  value: ../model_results/esm2_bfactor_weighted_05_datasets
+pos_thresh:
+  desc: null
+  value: 0.5
+repeat_thresh:
+  desc: null
+  value: 0.001
+resume:
+  desc: null
+  value: ''
+save_period:
+  desc: null
+  value: 10
+save_pred_dict:
+  desc: null
+  value: false
+seed:
+  desc: null
+  value: 0
+single_dec:
+  desc: null
+  value: naive
+start_epoch:
+  desc: null
+  value: 0
+test:
+  desc: null
+  value: false
+warmup_epochs:
+  desc: null
+  value: 10
+weight_decay:
+  desc: null
+  value: 0.5
+world_size:
+  desc: null
+  value: 1
