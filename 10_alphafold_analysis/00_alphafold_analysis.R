@@ -136,7 +136,7 @@ device = "pdf", dpi = 300, width = 3.2, height = 1.3)
 ######################################################################
 
 # load data from excel file
-load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/AF3_new_test_data.xlsx")
+load_AF3_data <- readxl::read_xlsx(path = "./10_alphafold_analysis/AF3_new_test_data.xlsx", sheet = "AF3")
 load_AF3_data_new_test <- load_AF3_data[,c(9,10,11,12)]
 colnames(load_AF3_data_new_test) <- c("Immunogenicity", "pTM", "ipTM", "Prediction")
 
@@ -157,8 +157,7 @@ load_AF3_data_new_test_summary <- load_AF3_data_new_test_summary %>%
   mutate(value = ifelse(Prediction == "Correct", -value, value))
 
 
-
-# attach mamp-ml prediction data results and plot
+# ------------- plot number of correct and misclassified predictions for AF3 and mamp-ml ------------
 Prediction_approach_AF3_ML_test_data <- ggplot(load_AF3_data_new_test_summary, aes(x = value, y = variable)) +
   geom_col(fill = "grey50", alpha = 0.85) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "black") + # Add line at zero
@@ -182,9 +181,28 @@ Prediction_approach_AF3_ML_test_data <- ggplot(load_AF3_data_new_test_summary, a
    coord_cartesian(clip = "off") # Allows annotations outside plot area
 
 
-ggsave(filename = "./10_alphafold_analysis/Independent_test_data/Prediction_approach_AF3_ML_test_data.pdf", plot = Prediction_approach_AF3_ML_test_data, 
+ggsave(filename = "./10_alphafold_analysis/Validation_data/Prediction_approach_AF3_ML_test_data.pdf", plot = Prediction_approach_AF3_ML_test_data, 
 device = "pdf", dpi = 300, width = 1.9, height = 1.4)
 
+
+# ------------- plot AF3 (ipTM and pTM) values to show that correct prediction are only due to overall poor prediction scores ------------
+
+AF3_ipTM_pTM_plot_validation_data <- ggplot(subset(load_AF3_data_new_test, Immunogenicity != "NT"), aes(x = pTM, y = ipTM, color = Prediction)) +
+  geom_point(alpha = 0.75, size = 1.3, stroke = NA) +
+  facet_wrap(~factor(`Immunogenicity`, levels = c("Immunogenic", "Weakly Immunogenic", "Non-Immunogenic")), ncol = 3) +
+  theme_bw() +
+  ylim(0,1) +
+  geom_hline(yintercept = 0.8, linetype = "dashed", color = "black") +
+  scale_x_continuous(name = "pTM", limits = c(0.8, 0.95), breaks = seq(0.8, 0.95, 0.05), labels = c(0.8, 0.85, 0.9, 0.95)) +
+  scale_color_manual(values = c("Correct" = "cadetblue", "Misclassified" = "dark red")) +
+  labs(x = "pTM", y = "ipTM") +
+  theme(axis.text.x = element_text(color = "black", size = 7), axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8), axis.title.y = element_text(color = "black", size = 8),
+        legend.position = "bottom", strip.text = element_text(size = 5.5), legend.box = "vertical", legend.spacing.y = unit(0.1, "cm"),
+        legend.text = element_text(size = 7), legend.title = element_text(size = 8))
+
+ggsave(filename = "./10_alphafold_analysis/Validation_data/AF3_score_breakdown_data.pdf", plot = AF3_ipTM_pTM_plot_validation_data, 
+device = "pdf", dpi = 300, width = 3.4, height = 1.95)
 
 
 # ------------------------------------ same analysis but with dropout data -----------------------------------------
