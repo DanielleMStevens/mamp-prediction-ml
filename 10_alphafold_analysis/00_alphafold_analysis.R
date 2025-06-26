@@ -80,7 +80,7 @@ AF3_distribution_plot <- ggplot(load_AF3_data_summary, aes(x = n, y = Receptor, 
       label = "Misclassified", hjust = 0.7, vjust = -1, size = 2.5, color = "black") +
    coord_cartesian(clip = "off") # Allows annotations outside plot area
 
-ggsave(filename = "./10_alphafold_analysis/Validation_data/AF3_distribution_plot.pdf", plot = AF3_distribution_plot, 
+ggsave(filename = "./10_alphafold_analysis/Test_data/AF3_distribution_plot.pdf", plot = AF3_distribution_plot, 
 device = "pdf", dpi = 300, width = 2.4, height = 2.6)
 
 ######################################################################
@@ -105,7 +105,7 @@ iptm_ptm_plot <- ggplot(load_AF3_data, aes(x = pTM, y = ipTM, color = Receptor))
         strip.text = element_text(size = 5.5)) +
   facet_wrap(~factor(`Known Outcome`, levels = c("Immunogenic", "Weakly Immunogenic", "Non-Immunogenic")), ncol = 3)
 
-  ggsave(filename = "./10_alphafold_analysis/Validation_data/iptm_ptm_plot.pdf", plot = iptm_ptm_plot, 
+  ggsave(filename = "./10_alphafold_analysis/Test_data/iptm_ptm_plot.pdf", plot = iptm_ptm_plot, 
 device = "pdf", dpi = 300, width = 3.2, height = 1.3)
 
   iptm_ptm_plot_no_FLS2 <- ggplot(load_AF3_data[load_AF3_data$Receptor != "FLS2",], aes(x = pTM, y = ipTM, color = Receptor)) +
@@ -125,7 +125,7 @@ device = "pdf", dpi = 300, width = 3.2, height = 1.3)
   legend.position = "none") +
   facet_wrap(~factor(`Known Outcome`, levels = c("Immunogenic", "Weakly Immunogenic", "Non-Immunogenic")), ncol = 3)
 
-  ggsave(filename = "./10_alphafold_analysis/Validation_data/iptm_ptm_plot_no_FLS2.pdf", plot = iptm_ptm_plot_no_FLS2, 
+  ggsave(filename = "./10_alphafold_analysis/Test_data/iptm_ptm_plot_no_FLS2.pdf", plot = iptm_ptm_plot_no_FLS2, 
 device = "pdf", dpi = 300, width = 3.2, height = 1.3)
 
 # ------------------------------------ same analysis but with independent test data -----------------------------------------
@@ -182,7 +182,7 @@ Prediction_approach_AF3_ML_test_data <- ggplot(load_AF3_data_new_test_summary, a
 
 
 ggsave(filename = "./10_alphafold_analysis/Validation_data/Prediction_approach_AF3_ML_test_data.pdf", plot = Prediction_approach_AF3_ML_test_data, 
-device = "pdf", dpi = 300, width = 1.9, height = 1.4)
+device = "pdf", dpi = 300, width = 2.4, height = 1.4)
 
 
 # ------------- plot AF3 (ipTM and pTM) values to show that correct prediction are only due to overall poor prediction scores ------------
@@ -198,11 +198,11 @@ AF3_ipTM_pTM_plot_validation_data <- ggplot(subset(load_AF3_data_new_test, Immun
   labs(x = "pTM", y = "ipTM") +
   theme(axis.text.x = element_text(color = "black", size = 7), axis.text.y = element_text(color = "black", size = 7),
         axis.title.x = element_text(color = "black", size = 8), axis.title.y = element_text(color = "black", size = 8),
-        legend.position = "bottom", strip.text = element_text(size = 5.5), legend.box = "vertical", legend.spacing.y = unit(0.1, "cm"),
-        legend.text = element_text(size = 7), legend.title = element_text(size = 8))
+        legend.position = "none", strip.text = element_text(size = 5.5),
+        legend.text = element_text(size = 7), legend.title = element_text(size = 8), legend.direction = "vertical")
 
 ggsave(filename = "./10_alphafold_analysis/Validation_data/AF3_score_breakdown_data.pdf", plot = AF3_ipTM_pTM_plot_validation_data, 
-device = "pdf", dpi = 300, width = 3.4, height = 1.95)
+device = "pdf", dpi = 300, width = 3.5, height = 1.5)
 
 
 # ------------------------------------ same analysis but with dropout data -----------------------------------------
