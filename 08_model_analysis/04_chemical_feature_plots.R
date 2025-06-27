@@ -106,6 +106,62 @@ pca_chemical_receptors <- ggplot(pca_df %>% filter(Receptor != "INR-like"), aes(
 ggsave(filename = "./04_Preprocessing_results/Chemical_feature_analysis/pca_chemical_receptors.pdf", dpi = 300, plot = pca_chemical_receptors, width = 2, height = 1.5)
 
 
+# --- same data but with umap instead of pca ----
+
+# Prepare data for UMAP by calculating mean values per receptor
+#receptor_features <- Receptor_bulkiness_list %>%
+#  group_by(Receptor.Name) %>%
+#  summarize(
+#    Receptor_Bulkiness = mean(Receptor_Bulkiness),
+#    Receptor_Charge = mean(Receptor_Charge), 
+#    Receptor_Hydrophobicity = mean(Receptor_Hydrophobicity)
+#  ) %>%
+#  mutate(Receptor = Receptor_bulkiness_list$Receptor[match(Receptor.Name, Receptor_bulkiness_list$Receptor.Name)])
+
+# Scale the features while keeping Receptor.Name
+#features_scaled <- receptor_features %>%
+#  select(-Receptor.Name, -Receptor) %>% # Remove non-numeric columns
+#  scale() %>%
+#  as.data.frame()
+
+# Add Receptor.Name back to scaled data
+#features_scaled$Receptor.Name <- receptor_features$Receptor.Name
+#features_scaled$Receptor <- receptor_features$Receptor
+
+# Perform UMAP
+#umap_result <- umap::umap(features_scaled[,1:3]) # Only use numeric columns
+
+# Create dataframe for plotting with Receptor.Name preserved
+#umap_df <- as.data.frame(umap_result$layout) %>%
+#  rename(UMAP1 = V1, UMAP2 = V2) %>%
+#  mutate(
+#    Receptor.Name = features_scaled$Receptor.Name,  # Add Receptor.Name back
+#    Receptor = features_scaled$Receptor             # Add Receptor back
+#  )
+
+# Create UMAP plot
+# First check what data we have
+#print("Unique receptors in data:")
+#print(table(umap_df$Receptor))
+
+#umap_chemical_receptors <- ggplot(umap_df %>% filter(Receptor != "INR-like"), aes(x = UMAP1, y = UMAP2, color = Receptor)) +
+#  geom_point(size = 2, alpha = 0.6, stroke = 0) +
+#  scale_color_manual(values = receptor_colors) +
+#  theme_bw() +
+#  theme(legend.position = "none",
+#        axis.text.x = element_text(color = "black", size = 7),
+#        axis.text.y = element_text(color = "black", size = 7), 
+#        axis.title = element_text(color = "black", size = 8),
+#        panel.grid = element_blank()) +
+#  labs(x = "UMAP1",
+#       y = "UMAP2",
+#       title = "")
+
+#ggsave(filename = "./04_Preprocessing_results/Chemical_feature_analysis/umap_chemical_receptors.pdf", dpi = 300, plot = umap_chemical_receptors, width = 2, height = 1.5)
+
+
+
+
 ######################################################################
 #  plot PCA of chemical features - epitopes 
 ######################################################################
@@ -145,7 +201,7 @@ pca_df <- as.data.frame(pca_result$x) %>%
 print("Unique epitopes in data:")
 print(table(pca_df$Epitope))
 
-pca_chemical_epitopes <- ggplot(pca_df, aes(x = PC1, y = PC2, color = Epitope)) +
+pca_chemical_epitopes <- ggplot(pca_df, aes(x = PC1, y = PC3, color = Epitope)) +
   geom_point(size = 2, alpha = 0.6, stroke = 0) +
   scale_color_manual(values = epitope_colors) +
   theme_bw() +
@@ -160,6 +216,43 @@ pca_chemical_epitopes <- ggplot(pca_df, aes(x = PC1, y = PC2, color = Epitope)) 
 
 ggsave(filename = "./04_Preprocessing_results/Chemical_feature_analysis/pca_chemical_epitopes.pdf", dpi = 300, plot = pca_chemical_epitopes, width = 2, height = 1.5)
 
+
+# --- same data but with umap instead of pca ----
+
+# Perform UMAP
+library(uwot)
+set.seed(42) # For reproducibility
+
+# Prepare data for UMAP using the scaled features
+umap_result <- uwot::umap(features_scaled[complete.cases(features_scaled[,1:3]),1:3], 
+                    n_neighbors = 15,
+                    min_dist = 0.1,
+                    n_components = 2)
+
+# Create dataframe for plotting
+umap_df <- data.frame(
+  UMAP1 = umap_result[,1],
+  UMAP2 = umap_result[,2],
+  Epitope_Sequence = features_scaled$Epitope_Sequence[complete.cases(features_scaled[,1:3])],
+  Epitope = features_scaled$Epitope[complete.cases(features_scaled[,1:3])]
+)
+
+# Create UMAP plot
+umap_chemical_epitopes <- ggplot(umap_df, aes(x = UMAP1, y = UMAP2, color = Epitope)) +
+  geom_point(size = 2, alpha = 0.6, stroke = 0) +
+  scale_color_manual(values = epitope_colors) +
+  theme_bw() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(color = "black", size = 7), 
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title = element_text(color = "black", size = 8),
+        panel.grid = element_blank()) +
+  labs(x = "UMAP1",
+       y = "UMAP2",
+       title = "")
+
+
+ggsave(filename = "./04_Preprocessing_results/Chemical_feature_analysis/umap_chemical_epitopes.pdf", dpi = 300, plot = umap_chemical_epitopes, width = 2, height = 1.5)
 
 
 ######################################################################
