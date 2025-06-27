@@ -118,6 +118,9 @@ ngou_ortholog_rank_plot <- ggplot(data_ordered, aes(x = index, y = Average, colo
 # Save boxplot
 ggsave("./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_SCORE_homologs.pdf", plot = ngou_ortholog_rank_plot, width = 6.5, height = 4.5, dpi = 300)
 
+write.csv(data_ordered %>% arrange(match(Receptor, data$Receptor), match(Ligand_Name, data$Ligand_Name)), 
+"./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_SCORE_homologs_with_categories.csv", row.names = FALSE)
+
 # ------------ Ngou et al. 2025 SCORE LRR Swaps ROS screen data ------------
 
 # Create a data frame with row numbers for x-axis and split into immunogenic categories
@@ -154,7 +157,12 @@ ngou_lrr_swap_rank_plot <- ggplot(data_ordered, aes(x = index, y = Average, colo
 
  
 # Save boxplot
-ggsave("./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_LRR_swaps.pdf", plot = ngou_lrr_swap_rank_plot, width = 5, height = 4.5, dpi = 300)
+ggsave("./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_LRR_swaps.pdf", plot = ngou_lrr_swap_rank_plot, width = 5.5, height = 4.5, dpi = 300)
+
+write.csv(data_ordered %>% arrange(match(Receptor, data$Receptor), match(Ligand_Name, data$Ligand_Name)), 
+"./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_LRR_swaps_with_categories.csv", row.names = FALSE)
+
+
 
 # ------------ Ngou et al. 2025 SCORE LRR Swaps ROS screen data ------------
 
@@ -195,6 +203,9 @@ ngou_lrr_AA_substitution_plot <- ggplot(data_ordered, aes(x = index, y = Average
 ggsave("./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_AA_substitution.pdf", plot = ngou_lrr_AA_substitution_plot, width = 7.5, height = 7.5, dpi = 300)
 
 
+# Export data with immunogenicity categories
+write.csv(data_ordered %>% arrange(match(Receptor, data$Receptor), match(Ligand_Name, data$Ligand_Name)), 
+"./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_AA_substitution_with_categories.csv", row.names = FALSE)
 
 
 
