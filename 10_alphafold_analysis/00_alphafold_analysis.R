@@ -151,7 +151,7 @@ load_AF3_data_new_test_summary$variable <- c("AF3")
 load_AF3_data_new_test_summary <- rbind(load_AF3_data_new_test_summary,
                                         data.frame("Prediction" = c("Correct", "Misclassified"), 
                                         "variable" = c("mamp-ml", "mamp-ml"),
-                                        "value" = c(75, 26)))
+                                        "value" = c(88, 32)))
 
 load_AF3_data_new_test_summary <- load_AF3_data_new_test_summary %>%
   mutate(value = ifelse(Prediction == "Correct", -value, value))
