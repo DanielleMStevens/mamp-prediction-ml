@@ -83,7 +83,7 @@ ggsave("./09_testing_and_dropout/ROS_screen_plots/ROS_summary_plot.pdf", plot = 
 # ------------ Ngou et al. 2025 SCORE Ortholog ROS screen data ------------
 
 # Create a data frame with row numbers for x-axis and split into immunogenic categories
-data <- as.data.frame(readxl::read_xlsx(path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/ROS_data/Ngou_ROS_raw_data.xlsx"))
+data <- as.data.frame(readxl::read_xlsx(path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/ROS_data/Ngou_ROS_raw_data.xlsx", sheet = "SCORE_orthologs"))
 data_ordered <- data %>% group_by(Receptor) %>% arrange(Average) %>% mutate(index = row_number())
 remaining_data <- data_ordered$Average[data_ordered$Average > 3]
 third_size <- length(remaining_data) / 2
@@ -120,7 +120,79 @@ ggsave("./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_SCORE_homologs.pd
 
 # ------------ Ngou et al. 2025 SCORE LRR Swaps ROS screen data ------------
 
+# Create a data frame with row numbers for x-axis and split into immunogenic categories
+data <- as.data.frame(readxl::read_xlsx(path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/ROS_data/Ngou_ROS_raw_data.xlsx", sheet = "LRR_swap"))
+data_ordered <- data %>% group_by(Receptor) %>% arrange(Average) %>% mutate(index = row_number())
+remaining_data <- data_ordered$Average[data_ordered$Average > 3]
+third_size <- length(remaining_data) / 2
+thresholds <- sort(remaining_data)[c(ceiling(third_size))]
 
+# Add immunogenicity category based on value ranges
+data_ordered <- data_ordered %>% mutate(immunogenicity = case_when(Average <= 3 ~ "Non-immunogenic",
+    Average <= thresholds[1] ~ "Weakly immunogenic", TRUE ~ "Immunogenic"))
+
+# Create plot with colored points by category  
+ngou_lrr_swap_rank_plot <- ggplot(data_ordered, aes(x = index, y = Average, color = immunogenicity)) +
+  geom_hline(yintercept = 2, linetype = "solid", color = "black", size = 0.25) +
+  geom_hline(yintercept = thresholds[1], linetype = "solid", color = "black", size = 0.25) +
+  geom_point(size = 1.2, alpha = 0.7, stroke = 0) +
+  facet_wrap(~Receptor, scales = "free_y") +
+  scale_color_manual(values = c("Non-immunogenic" = "dark red",
+                               "Weakly immunogenic" = "dark blue", 
+                               "Immunogenic" = "grey")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8, color = "black"),
+        axis.text.y = element_text(size = 8, color = "black"),
+        axis.title = element_text(size = 9, color = "black"),
+        panel.border = element_rect(color = "black", fill = NA),
+        panel.grid = element_line(color = "grey95", size = 0.2),
+        strip.text = element_text(size = 8, color = "black"),
+        legend.position = "none",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 8)) +
+  labs(x = "Rank", y = "RLU Value")
+
+ 
+# Save boxplot
+ggsave("./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_LRR_swaps.pdf", plot = ngou_lrr_swap_rank_plot, width = 5, height = 4.5, dpi = 300)
+
+# ------------ Ngou et al. 2025 SCORE LRR Swaps ROS screen data ------------
+
+# Create a data frame with row numbers for x-axis and split into immunogenic categories
+data <- as.data.frame(readxl::read_xlsx(path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/ROS_data/Ngou_ROS_raw_data.xlsx", sheet = "AA_substitution"))
+data_ordered <- data %>% group_by(Receptor) %>% arrange(Average) %>% mutate(index = row_number())
+remaining_data <- data_ordered$Average[data_ordered$Average > 3]
+third_size <- length(remaining_data) / 2
+thresholds <- sort(remaining_data)[c(ceiling(third_size))]
+
+# Add immunogenicity category based on value ranges
+data_ordered <- data_ordered %>% mutate(immunogenicity = case_when(Average <= 3 ~ "Non-immunogenic",
+    Average <= thresholds[1] ~ "Weakly immunogenic", TRUE ~ "Immunogenic"))
+
+# Create plot with colored points by category  
+ngou_lrr_AA_substitution_plot <- ggplot(data_ordered, aes(x = index, y = Average, color = immunogenicity)) +
+  geom_hline(yintercept = 2, linetype = "solid", color = "black", size = 0.25) +
+  geom_hline(yintercept = thresholds[1], linetype = "solid", color = "black", size = 0.25) +
+  geom_point(size = 1.2, alpha = 0.7, stroke = 0) +
+  facet_wrap(~Receptor, scales = "free_y") +
+  scale_color_manual(values = c("Non-immunogenic" = "dark red",
+                               "Weakly immunogenic" = "dark blue", 
+                               "Immunogenic" = "grey")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8, color = "black"),
+        axis.text.y = element_text(size = 8, color = "black"),
+        axis.title = element_text(size = 9, color = "black"),
+        panel.border = element_rect(color = "black", fill = NA),
+        panel.grid = element_line(color = "grey95", size = 0.2),
+        strip.text = element_text(size = 8, color = "black"),
+        legend.position = "none",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 8)) +
+  labs(x = "Rank", y = "RLU Value")
+
+ 
+# Save boxplot
+ggsave("./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_AA_substitution.pdf", plot = ngou_lrr_AA_substitution_plot, width = 7.5, height = 7.5, dpi = 300)
 
 
 
