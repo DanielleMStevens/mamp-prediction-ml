@@ -3,6 +3,7 @@ library(ggplot2)
 library(readxl)
 library(reshape2)
 library(tidyverse)
+library(ggdist)
 
 # Read the Excel file from the same directory
 data <- as.data.frame(readxl::read_xlsx(path = "./09_testing_and_dropout/ROS_screen_plots/Summary_csp22_validation_data.xlsx"))

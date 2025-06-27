@@ -358,6 +358,24 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 # ---------- adjust weight class in pytorch as (1.0, 1.0, 3.0) - line 317 of esm_positon_weighted.py
 # Saved As: 18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
 
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets \
+    --device cpu \
+    --batch_size 12 \
+    --epochs 20 \
+    --save_period 10 
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/misclassification_report.tsv
+
+
 
 
 
@@ -392,15 +410,15 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
-    --eval_only_data_path 09_testing_and_dropout/test_data_set/data_validation_all.csv \
-    --model_checkpoint_path 07_model_results/00_mamp_ml/checkpoint-19.pth \
+    --eval_only_data_path 09_testing_and_dropout/validation_data_set/data_validation_all.csv \
+    --model_checkpoint_path 07_model_results/00_mamp_ml_best_params/checkpoint-19.pth \
     --device cpu \
     --disable_wandb
 
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
-    --eval_only_data_path 09_testing_and_dropout/test_data_set/data_validation_all.csv \
+    --eval_only_data_path 09_testing_and_dropout/validation_data_set/data_validation_all.csv \
     --model_checkpoint_path 07_model_results/02_immuno_stratify_esm2_with_receptor/checkpoint-19.pth \
     --device cpu \
     --disable_wandb

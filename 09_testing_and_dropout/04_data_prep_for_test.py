@@ -87,7 +87,7 @@ def parse_fasta(fasta_path: Path) -> Dict[str, str]:
 ########################################################################################
 
 def load_receptor_sequences(in_data_dir: Path) -> Dict[str, str]:
-    fasta_path = in_data_dir.parent / "09_testing_and_dropout" / "test_data_set" / "lrr_domain_sequences_independent_test.fasta"
+    fasta_path = in_data_dir.parent / "09_testing_and_dropout" / "validation_data_set" / "lrr_domain_sequences_independent_test.fasta"
     if not fasta_path.exists():
         raise FileNotFoundError(f"Could not find receptor sequence file at {fasta_path}")
         
@@ -163,7 +163,7 @@ def main():
     # Setup paths
     base_dir = Path(__file__).parent.parent
     in_data_dir = base_dir / "02_in_data"
-    out_dir = base_dir / "09_testing_and_dropout" / "test_data_set" 
+    out_dir = base_dir / "09_testing_and_dropout" / "validation_data_set" 
     out_dir.mkdir(parents=True, exist_ok=True)
     
     # Process data and create splits
