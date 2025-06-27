@@ -97,7 +97,7 @@ data_ordered <- data_ordered %>% mutate(immunogenicity = case_when(Average <= 3 
 ngou_ortholog_rank_plot <- ggplot(data_ordered, aes(x = index, y = Average, color = immunogenicity)) +
   geom_hline(yintercept = 2, linetype = "solid", color = "black", size = 0.25) +
   geom_hline(yintercept = thresholds[1], linetype = "solid", color = "black", size = 0.25) +
-  geom_point(size = 1.2, alpha = 0.5, stroke = 0) +
+  geom_point(size = 1.2, alpha = 0.7, stroke = 0) +
   facet_wrap(~Receptor, scales = "free_y") +
   scale_color_manual(values = c("Non-immunogenic" = "dark red",
                                "Weakly immunogenic" = "dark blue", 
@@ -116,7 +116,7 @@ ngou_ortholog_rank_plot <- ggplot(data_ordered, aes(x = index, y = Average, colo
 
  
 # Save boxplot
-ggsave("./09_testing_and_dropout/ROS_screen_plots/Ngou_ROS_SCORE_homologs.pdf", plot = ngou_ortholog_rank_plot, width = 5.5, height = 4.5, dpi = 300)
+ggsave("./09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ROS_SCORE_homologs.pdf", plot = ngou_ortholog_rank_plot, width = 6.5, height = 4.5, dpi = 300)
 
 # ------------ Ngou et al. 2025 SCORE LRR Swaps ROS screen data ------------
 
