@@ -212,5 +212,19 @@ With those structures, we will convert them for parsing via
 
 
 
+## 05. Zero vs. few shot on SCORE-csp22
 
+Now that we have a working model and framework, we wanted to assess how accurate our model was to a new receptor-ligand pair, SCORE-csp22. For context, SCORE is a convergently evolved LRR-RLK that also recognizes the csp22 ligand yet its sequence is highly diverge from CORE. This provides an excellent test case to assess how model's ability to generalize to new receptor-ligand pairs.
 
+First, all SCORE data was split into three main groups: orthologs, LRR swaps, and AA substitutions. We then ran these through our mamp-ml model (zero shot) using the live co-lab notebook online to get predictions and were copied over to an excel sheet (Ngou_zero_shot_case.xlsx).
+
+```
+# first we will convert our excel sheet data into a fasta file to run through AlphaFold and LRR-Annotation
+Rscript 09_testing_and_dropout/01_convert_sheet_to_fasta.R 
+```
+
+Then we will run AlphaFold on the fasta file
+```
+## update line 149 first before running.
+python 09_testing_and_dropout/02_alphafold_to_lrr_annotation_test.py 
+```
