@@ -223,8 +223,22 @@ First, all SCORE data was split into three main groups: orthologs, LRR swaps, an
 Rscript 09_testing_and_dropout/01_convert_sheet_to_fasta.R 
 ```
 
-Then we will run AlphaFold on the fasta file
+Then we will run AlphaFold on the fasta file. Since we have access to an HPC, we will spin up a GPU and run the following commands:
 ```
-## update line 149 first before running.
+# This will activate 
+module load anaconda3
+conda activate localfold
+module load gcc/10.5.0
+export PATH="/global/scratch/users/dmstev/localcolabfold/colabfold-conda/bin:$PATH"
+
+colabfold_batch --num-models 1 ./09_testing_and_dropout/Ngou_2025_SCORE_data/receptor_full_length_ngou_test.fasta ./09_testing_and_dropout/Ngou_2025_SCORE_data/receptor_only/
+```
+
+This will generate structural models of each receptor via AlphaFold2 and store them plus their scores and metrics in the receptor_only folder. Once we have these structures, we will run the below python scripts to clean up the data and run the top structures through LRR-Annotation to determine the ectodomain receptor sequence.
+
+```
+## update line 149, 178, 186, 189, 190 first before running.
 python 09_testing_and_dropout/02_alphafold_to_lrr_annotation_test.py 
+
+python 09_testing_and_dropout
 ```
