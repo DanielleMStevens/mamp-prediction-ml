@@ -1,0 +1,622 @@
+2025-06-30 23:05:38,550 Running colabfold 1.5.5 (bfc0e83d3b87730f6903f6c385b08c426d1e791e)
+2025-06-30 23:05:48,537 Running on GPU
+2025-06-30 23:06:18,782 Found 5 citations for tools or databases
+2025-06-30 23:06:18,783 Query 1/69: Drimys_winteri_DW_2033242_SCORE (length 620)
+2025-06-30 23:07:16,511 Padding length to 630
+2025-06-30 23:08:53,100 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=94 pTM=0.846
+2025-06-30 23:10:00,406 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.7 pTM=0.864 tol=0.73
+2025-06-30 23:11:08,026 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.8 pTM=0.864 tol=0.432
+2025-06-30 23:12:15,798 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.864 tol=0.34
+2025-06-30 23:12:15,800 alphafold2_ptm_model_1_seed_000 took 299.3s (3 recycles)
+2025-06-30 23:12:16,183 reranking models by 'plddt' metric
+2025-06-30 23:12:16,183 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.864
+2025-06-30 23:12:16,868 Query 2/69: Eucalyptus_grandis_EG_38711_SCORE (length 621)
+2025-06-30 23:12:46,650 Padding length to 630
+2025-06-30 23:13:53,272 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=91.5 pTM=0.814
+2025-06-30 23:15:00,706 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=91.5 pTM=0.821 tol=0.653
+2025-06-30 23:16:07,992 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=91.3 pTM=0.822 tol=0.814
+2025-06-30 23:17:15,529 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=91.6 pTM=0.822 tol=0.583
+2025-06-30 23:17:15,530 alphafold2_ptm_model_1_seed_000 took 268.9s (3 recycles)
+2025-06-30 23:17:15,919 reranking models by 'plddt' metric
+2025-06-30 23:17:15,920 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=91.6 pTM=0.822
+2025-06-30 23:17:16,610 Query 3/69: Pistacia_vera_PV_19246_SCORE (length 621)
+2025-06-30 23:17:47,821 Padding length to 630
+2025-06-30 23:18:54,799 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.9 pTM=0.84
+2025-06-30 23:20:02,424 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.7 pTM=0.859 tol=0.765
+2025-06-30 23:21:10,008 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.9 pTM=0.864 tol=0.336
+2025-06-30 23:22:17,512 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.9 pTM=0.863 tol=0.182
+2025-06-30 23:22:17,513 alphafold2_ptm_model_1_seed_000 took 269.7s (3 recycles)
+2025-06-30 23:22:17,911 reranking models by 'plddt' metric
+2025-06-30 23:22:17,911 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.9 pTM=0.863
+2025-06-30 23:22:18,598 Query 4/69: Zanthoxylum_bungeanum_ZB12_12782_SCORE (length 622)
+2025-06-30 23:22:52,685 Padding length to 630
+2025-06-30 23:23:59,709 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=94.1 pTM=0.835
+2025-06-30 23:25:07,610 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=95 pTM=0.86 tol=0.887
+2025-06-30 23:26:15,502 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=95.2 pTM=0.863 tol=0.209
+2025-06-30 23:27:23,378 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=95.2 pTM=0.863 tol=0.311
+2025-06-30 23:27:23,379 alphafold2_ptm_model_1_seed_000 took 270.7s (3 recycles)
+2025-06-30 23:27:23,771 reranking models by 'plddt' metric
+2025-06-30 23:27:23,771 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=95.2 pTM=0.863
+2025-06-30 23:27:24,448 Query 5/69: Clausena_lansium_CL_7080_SCORE (length 622)
+2025-06-30 23:27:52,436 Padding length to 630
+2025-06-30 23:28:59,517 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.8 pTM=0.833
+2025-06-30 23:30:07,148 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.6 pTM=0.855 tol=0.683
+2025-06-30 23:31:14,925 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.7 pTM=0.855 tol=0.853
+2025-06-30 23:32:22,739 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.856 tol=0.611
+2025-06-30 23:32:22,740 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-06-30 23:32:23,128 reranking models by 'plddt' metric
+2025-06-30 23:32:23,128 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.856
+2025-06-30 23:32:24,236 Query 6/69: Citrus_reticulata_CR_18281_SCORE (length 623)
+2025-06-30 23:32:55,429 Padding length to 630
+2025-06-30 23:34:02,520 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.834
+2025-06-30 23:35:10,272 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.6 pTM=0.857 tol=0.408
+2025-06-30 23:36:18,062 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.856 tol=0.798
+2025-06-30 23:37:25,855 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.7 pTM=0.859 tol=0.617
+2025-06-30 23:37:25,856 alphafold2_ptm_model_1_seed_000 took 270.4s (3 recycles)
+2025-06-30 23:37:26,244 reranking models by 'plddt' metric
+2025-06-30 23:37:26,244 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.7 pTM=0.859
+2025-06-30 23:37:26,914 Query 7/69: Dimocarpus_longan_DL_9869_SCORE (length 623)
+2025-06-30 23:38:00,748 Padding length to 630
+2025-06-30 23:39:07,926 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.9 pTM=0.833
+2025-06-30 23:40:15,698 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.8 pTM=0.857 tol=0.57
+2025-06-30 23:41:23,301 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.9 pTM=0.861 tol=0.6
+2025-06-30 23:42:30,869 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=95 pTM=0.861 tol=0.28
+2025-06-30 23:42:30,870 alphafold2_ptm_model_1_seed_000 took 270.1s (3 recycles)
+2025-06-30 23:42:31,251 reranking models by 'plddt' metric
+2025-06-30 23:42:31,251 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=95 pTM=0.861
+2025-06-30 23:42:31,917 Query 8/69: Zanthoxylum_bungeanum_ZB5_5760_SCORE (length 623)
+2025-06-30 23:43:01,258 Padding length to 630
+2025-06-30 23:44:08,443 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.8 pTM=0.832
+2025-06-30 23:45:16,161 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.9 pTM=0.856 tol=0.487
+2025-06-30 23:46:23,868 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=95 pTM=0.857 tol=0.563
+2025-06-30 23:47:31,681 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=95.1 pTM=0.859 tol=0.263
+2025-06-30 23:47:31,682 alphafold2_ptm_model_1_seed_000 took 270.4s (3 recycles)
+2025-06-30 23:47:32,062 reranking models by 'plddt' metric
+2025-06-30 23:47:32,062 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=95.1 pTM=0.859
+2025-06-30 23:47:32,736 Query 9/69: Betula_platyphylla_BP_23899_SCORE (length 624)
+2025-06-30 23:48:08,383 Padding length to 630
+2025-06-30 23:49:15,305 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.8 pTM=0.848
+2025-06-30 23:50:22,978 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.6 pTM=0.864 tol=0.813
+2025-06-30 23:51:30,634 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.7 pTM=0.863 tol=0.607
+2025-06-30 23:52:38,268 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.865 tol=0.444
+2025-06-30 23:52:38,269 alphafold2_ptm_model_1_seed_000 took 269.9s (3 recycles)
+2025-06-30 23:52:38,653 reranking models by 'plddt' metric
+2025-06-30 23:52:38,653 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.865
+2025-06-30 23:52:39,318 Query 10/69: Dipteronia_dyeriana_DD_16206_SCORE (length 625)
+2025-06-30 23:53:11,042 Padding length to 630
+2025-06-30 23:54:18,145 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.8 pTM=0.832
+2025-06-30 23:55:25,877 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.7 pTM=0.857 tol=0.85
+2025-06-30 23:56:33,584 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.9 pTM=0.863 tol=0.455
+2025-06-30 23:57:41,342 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.9 pTM=0.862 tol=0.368
+2025-06-30 23:57:41,344 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-06-30 23:57:41,729 reranking models by 'plddt' metric
+2025-06-30 23:57:41,729 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.9 pTM=0.862
+2025-06-30 23:57:42,689 Query 11/69: Citrus_maxima_CM_14337_SCORE (length 625)
+2025-06-30 23:58:08,904 Padding length to 630
+2025-06-30 23:59:16,117 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.5 pTM=0.823
+2025-07-01 00:00:23,804 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.5 pTM=0.852 tol=0.822
+2025-07-01 00:01:31,584 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.7 pTM=0.857 tol=0.707
+2025-07-01 00:02:39,314 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.857 tol=0.354
+2025-07-01 00:02:39,316 alphafold2_ptm_model_1_seed_000 took 270.4s (3 recycles)
+2025-07-01 00:02:39,704 reranking models by 'plddt' metric
+2025-07-01 00:02:39,705 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.857
+2025-07-01 00:02:40,384 Query 12/69: Citrus_maxima_CM_AC_L7-11_SCORE (length 625)
+2025-07-01 00:03:10,251 Padding length to 630
+2025-07-01 00:04:17,536 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.6 pTM=0.811
+2025-07-01 00:05:25,237 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94 pTM=0.844 tol=0.862
+2025-07-01 00:06:32,897 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.2 pTM=0.847 tol=0.326
+2025-07-01 00:07:40,552 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.4 pTM=0.848 tol=0.577
+2025-07-01 00:07:40,553 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-07-01 00:07:40,941 reranking models by 'plddt' metric
+2025-07-01 00:07:40,941 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.4 pTM=0.848
+2025-07-01 00:07:41,611 Query 13/69: Citrus_maxima_CM_AC_L8-10_SCORE (length 625)
+2025-07-01 00:08:12,562 Padding length to 630
+2025-07-01 00:09:20,940 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.836
+2025-07-01 00:10:30,032 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.5 pTM=0.856 tol=0.687
+2025-07-01 00:11:38,956 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.857 tol=0.394
+2025-07-01 00:12:47,984 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.859 tol=0.678
+2025-07-01 00:12:48,454 alphafold2_ptm_model_1_seed_000 took 275.9s (3 recycles)
+2025-07-01 00:12:49,473 reranking models by 'plddt' metric
+2025-07-01 00:12:49,499 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.859
+2025-07-01 00:12:52,213 Query 14/69: Citrus_maxima_CM_AC_L10_SCORE (length 625)
+2025-07-01 00:13:36,689 Padding length to 630
+2025-07-01 00:14:43,978 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.829
+2025-07-01 00:15:51,828 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.4 pTM=0.851 tol=1.46
+2025-07-01 00:16:59,656 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.854 tol=0.761
+2025-07-01 00:18:07,490 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.7 pTM=0.854 tol=0.38
+2025-07-01 00:18:07,491 alphafold2_ptm_model_1_seed_000 took 270.8s (3 recycles)
+2025-07-01 00:18:07,870 reranking models by 'plddt' metric
+2025-07-01 00:18:07,870 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.7 pTM=0.854
+2025-07-01 00:18:08,544 Query 15/69: Citrus_maxima_CM_CF_L7-11_SCORE (length 625)
+2025-07-01 00:18:34,708 Padding length to 630
+2025-07-01 00:19:41,872 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.5 pTM=0.829
+2025-07-01 00:20:49,484 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.4 pTM=0.849 tol=0.694
+2025-07-01 00:21:57,096 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.849 tol=0.428
+2025-07-01 00:23:04,756 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.7 pTM=0.852 tol=0.313
+2025-07-01 00:23:04,757 alphafold2_ptm_model_1_seed_000 took 270.0s (3 recycles)
+2025-07-01 00:23:05,137 reranking models by 'plddt' metric
+2025-07-01 00:23:05,137 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.7 pTM=0.852
+2025-07-01 00:23:05,817 Query 16/69: Citrus_maxima_CM_CF_L8-10_SCORE (length 625)
+2025-07-01 00:23:36,339 Padding length to 630
+2025-07-01 00:24:43,549 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.5 pTM=0.83
+2025-07-01 00:25:51,461 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.5 pTM=0.852 tol=0.852
+2025-07-01 00:26:59,247 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.852 tol=0.738
+2025-07-01 00:28:07,082 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.853 tol=0.405
+2025-07-01 00:28:07,084 alphafold2_ptm_model_1_seed_000 took 270.7s (3 recycles)
+2025-07-01 00:28:07,468 reranking models by 'plddt' metric
+2025-07-01 00:28:07,468 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.853
+2025-07-01 00:28:08,143 Query 17/69: Citrus_maxima_CM_CF_L10_SCORE (length 625)
+2025-07-01 00:28:34,560 Padding length to 630
+2025-07-01 00:29:41,787 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.4 pTM=0.834
+2025-07-01 00:30:49,295 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.5 pTM=0.856 tol=1.06
+2025-07-01 00:31:56,842 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.7 pTM=0.854 tol=0.612
+2025-07-01 00:33:04,483 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.857 tol=1.19
+2025-07-01 00:33:04,485 alphafold2_ptm_model_1_seed_000 took 269.9s (3 recycles)
+2025-07-01 00:33:04,870 reranking models by 'plddt' metric
+2025-07-01 00:33:04,870 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.857
+2025-07-01 00:33:05,550 Query 18/69: Citrus_maxima_CM_PG_L8-10_SCORE (length 625)
+2025-07-01 00:33:34,994 Padding length to 630
+2025-07-01 00:34:42,182 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.823
+2025-07-01 00:35:49,962 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.4 pTM=0.842 tol=1.04
+2025-07-01 00:36:57,780 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.848 tol=0.363
+2025-07-01 00:38:05,616 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.849 tol=0.954
+2025-07-01 00:38:05,618 alphafold2_ptm_model_1_seed_000 took 270.6s (3 recycles)
+2025-07-01 00:38:06,006 reranking models by 'plddt' metric
+2025-07-01 00:38:06,006 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.849
+2025-07-01 00:38:06,688 Query 19/69: Citrus_maxima_CM_PG_L10_SCORE (length 625)
+2025-07-01 00:38:33,332 Padding length to 630
+2025-07-01 00:39:40,803 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.825
+2025-07-01 00:40:48,580 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.5 pTM=0.849 tol=1.11
+2025-07-01 00:41:56,160 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.7 pTM=0.853 tol=0.596
+2025-07-01 00:43:03,599 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.7 pTM=0.852 tol=0.446
+2025-07-01 00:43:03,601 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-07-01 00:43:03,989 reranking models by 'plddt' metric
+2025-07-01 00:43:03,989 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.7 pTM=0.852
+2025-07-01 00:43:04,671 Query 20/69: Citrus_maxima_CM_SO_L8-10_SCORE (length 625)
+2025-07-01 00:43:40,178 Padding length to 630
+2025-07-01 00:44:47,300 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.5 pTM=0.823
+2025-07-01 00:45:55,147 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.4 pTM=0.849 tol=0.761
+2025-07-01 00:47:02,999 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.849 tol=1.39
+2025-07-01 00:48:10,907 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.6 pTM=0.85 tol=0.572
+2025-07-01 00:48:10,909 alphafold2_ptm_model_1_seed_000 took 270.7s (3 recycles)
+2025-07-01 00:48:11,290 reranking models by 'plddt' metric
+2025-07-01 00:48:11,290 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.6 pTM=0.85
+2025-07-01 00:48:11,960 Query 21/69: Citrus_maxima_CM_SO_L10_SCORE (length 625)
+2025-07-01 00:48:42,563 Padding length to 630
+2025-07-01 00:49:49,731 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.821
+2025-07-01 00:50:57,354 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.4 pTM=0.846 tol=0.702
+2025-07-01 00:52:05,038 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.847 tol=0.433
+2025-07-01 00:53:12,558 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.6 pTM=0.849 tol=1.02
+2025-07-01 00:53:12,559 alphafold2_ptm_model_1_seed_000 took 270.0s (3 recycles)
+2025-07-01 00:53:12,943 reranking models by 'plddt' metric
+2025-07-01 00:53:12,943 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.6 pTM=0.849
+2025-07-01 00:53:13,609 Query 22/69: Citrus_maxima_CM_ZB12_L8-10_SCORE (length 625)
+2025-07-01 00:53:38,990 Padding length to 630
+2025-07-01 00:54:46,322 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.5 pTM=0.827
+2025-07-01 00:55:54,359 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.5 pTM=0.854 tol=0.779
+2025-07-01 00:57:02,135 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.7 pTM=0.857 tol=0.571
+2025-07-01 00:58:09,747 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.858 tol=0.286
+2025-07-01 00:58:09,748 alphafold2_ptm_model_1_seed_000 took 270.8s (3 recycles)
+2025-07-01 00:58:10,130 reranking models by 'plddt' metric
+2025-07-01 00:58:10,130 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.858
+2025-07-01 00:58:10,795 Query 23/69: Citrus_maxima_CM_ZB12_10_SCORE (length 625)
+2025-07-01 00:58:40,643 Padding length to 630
+2025-07-01 00:59:47,407 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.833
+2025-07-01 01:00:54,851 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.4 pTM=0.854 tol=1.35
+2025-07-01 01:02:02,378 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.854 tol=0.651
+2025-07-01 01:03:10,111 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.7 pTM=0.856 tol=0.285
+2025-07-01 01:03:10,126 alphafold2_ptm_model_1_seed_000 took 269.5s (3 recycles)
+2025-07-01 01:03:10,930 reranking models by 'plddt' metric
+2025-07-01 01:03:10,931 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.7 pTM=0.856
+2025-07-01 01:03:12,502 Query 24/69: Citrus_maxima_CM_ZB5_L8-10_SCORE (length 625)
+2025-07-01 01:03:41,569 Padding length to 630
+2025-07-01 01:04:48,849 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.829
+2025-07-01 01:05:56,771 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.5 pTM=0.854 tol=0.865
+2025-07-01 01:07:04,624 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.7 pTM=0.855 tol=0.681
+2025-07-01 01:08:12,410 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.858 tol=0.825
+2025-07-01 01:08:12,411 alphafold2_ptm_model_1_seed_000 took 270.8s (3 recycles)
+2025-07-01 01:08:12,802 reranking models by 'plddt' metric
+2025-07-01 01:08:12,802 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.858
+2025-07-01 01:08:13,480 Query 25/69: Citrus_maxima_CM_ZB5_10_SCORE (length 625)
+2025-07-01 01:08:41,662 Padding length to 630
+2025-07-01 01:09:48,898 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.6 pTM=0.826
+2025-07-01 01:10:56,808 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.6 pTM=0.85 tol=0.66
+2025-07-01 01:12:04,569 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.6 pTM=0.853 tol=0.583
+2025-07-01 01:13:12,402 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.854 tol=0.961
+2025-07-01 01:13:12,403 alphafold2_ptm_model_1_seed_000 took 270.7s (3 recycles)
+2025-07-01 01:13:12,788 reranking models by 'plddt' metric
+2025-07-01 01:13:12,789 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.854
+2025-07-01 01:13:13,465 Query 26/69: Citrus_maxima_KDS_SCORE (length 625)
+2025-07-01 01:13:37,449 Padding length to 630
+2025-07-01 01:14:44,918 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.808
+2025-07-01 01:15:52,634 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.1 pTM=0.835 tol=0.602
+2025-07-01 01:17:01,423 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.2 pTM=0.835 tol=0.47
+2025-07-01 01:18:10,012 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.4 pTM=0.837 tol=1.14
+2025-07-01 01:18:10,697 alphafold2_ptm_model_1_seed_000 took 273.2s (3 recycles)
+2025-07-01 01:18:11,910 reranking models by 'plddt' metric
+2025-07-01 01:18:11,912 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.4 pTM=0.837
+2025-07-01 01:18:15,331 Query 27/69: Citrus_maxima_AAA_SCORE (length 625)
+2025-07-01 01:18:55,510 Padding length to 630
+2025-07-01 01:20:02,605 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.2 pTM=0.816
+2025-07-01 01:21:10,210 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.7 pTM=0.84 tol=0.79
+2025-07-01 01:22:17,942 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94 pTM=0.845 tol=0.654
+2025-07-01 01:23:25,744 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.1 pTM=0.848 tol=0.994
+2025-07-01 01:23:25,745 alphafold2_ptm_model_1_seed_000 took 270.2s (3 recycles)
+2025-07-01 01:23:26,140 reranking models by 'plddt' metric
+2025-07-01 01:23:26,140 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.1 pTM=0.848
+2025-07-01 01:23:26,931 Query 28/69: Citrus_maxima_SDD_SCORE (length 625)
+2025-07-01 01:23:55,508 Padding length to 630
+2025-07-01 01:25:02,616 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.8 pTM=0.817
+2025-07-01 01:26:10,356 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.2 pTM=0.835 tol=1
+2025-07-01 01:27:18,016 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.4 pTM=0.837 tol=0.516
+2025-07-01 01:28:25,644 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.8 pTM=0.843 tol=0.348
+2025-07-01 01:28:25,646 alphafold2_ptm_model_1_seed_000 took 270.1s (3 recycles)
+2025-07-01 01:28:26,034 reranking models by 'plddt' metric
+2025-07-01 01:28:26,034 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.8 pTM=0.843
+2025-07-01 01:28:26,719 Query 29/69: Citrus_maxima_HDA_SCORE (length 625)
+2025-07-01 01:28:51,768 Padding length to 630
+2025-07-01 01:29:58,757 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.6 pTM=0.812
+2025-07-01 01:31:06,389 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.2 pTM=0.833 tol=2.79
+2025-07-01 01:32:13,977 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.4 pTM=0.835 tol=1.25
+2025-07-01 01:33:21,593 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.6 pTM=0.84 tol=0.504
+2025-07-01 01:33:21,595 alphafold2_ptm_model_1_seed_000 took 269.8s (3 recycles)
+2025-07-01 01:33:21,979 reranking models by 'plddt' metric
+2025-07-01 01:33:21,979 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.6 pTM=0.84
+2025-07-01 01:33:22,652 Query 30/69: Citrus_maxima_WDA_SCORE (length 625)
+2025-07-01 01:33:46,458 Padding length to 630
+2025-07-01 01:34:53,994 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.5 pTM=0.81
+2025-07-01 01:36:01,701 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93 pTM=0.832 tol=1.66
+2025-07-01 01:37:09,351 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.4 pTM=0.836 tol=0.776
+2025-07-01 01:38:17,121 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.6 pTM=0.841 tol=0.692
+2025-07-01 01:38:17,123 alphafold2_ptm_model_1_seed_000 took 270.7s (3 recycles)
+2025-07-01 01:38:17,507 reranking models by 'plddt' metric
+2025-07-01 01:38:17,507 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.6 pTM=0.841
+2025-07-01 01:38:18,189 Query 31/69: Citrus_maxima_SDA_SCORE (length 625)
+2025-07-01 01:38:43,379 Padding length to 630
+2025-07-01 01:39:50,835 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.7 pTM=0.812
+2025-07-01 01:40:58,600 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.3 pTM=0.837 tol=0.601
+2025-07-01 01:42:06,223 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.4 pTM=0.84 tol=0.516
+2025-07-01 01:43:13,715 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.5 pTM=0.841 tol=0.488
+2025-07-01 01:43:13,716 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-07-01 01:43:14,101 reranking models by 'plddt' metric
+2025-07-01 01:43:14,101 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.5 pTM=0.841
+2025-07-01 01:43:14,793 Query 32/69: Citrus_maxima_SDS_SCORE (length 625)
+2025-07-01 01:43:38,955 Padding length to 630
+2025-07-01 01:44:46,469 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93 pTM=0.818
+2025-07-01 01:45:54,221 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.8 pTM=0.842 tol=0.864
+2025-07-01 01:47:02,071 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.8 pTM=0.844 tol=0.789
+2025-07-01 01:48:09,840 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.9 pTM=0.845 tol=0.524
+2025-07-01 01:48:09,841 alphafold2_ptm_model_1_seed_000 took 270.9s (3 recycles)
+2025-07-01 01:48:10,236 reranking models by 'plddt' metric
+2025-07-01 01:48:10,236 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.9 pTM=0.845
+2025-07-01 01:48:10,915 Query 33/69: Citrus_maxima_DDD_SCORE (length 625)
+2025-07-01 01:48:34,506 Padding length to 630
+2025-07-01 01:49:42,011 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.2 pTM=0.82
+2025-07-01 01:50:49,864 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94 pTM=0.842 tol=1.09
+2025-07-01 01:51:57,531 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.2 pTM=0.85 tol=1.19
+2025-07-01 01:53:05,254 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.3 pTM=0.85 tol=0.753
+2025-07-01 01:53:05,256 alphafold2_ptm_model_1_seed_000 took 270.7s (3 recycles)
+2025-07-01 01:53:05,645 reranking models by 'plddt' metric
+2025-07-01 01:53:05,646 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.3 pTM=0.85
+2025-07-01 01:53:06,335 Query 34/69: Citrus_maxima_EDS_SCORE (length 625)
+2025-07-01 01:53:29,846 Padding length to 630
+2025-07-01 01:54:37,219 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.6 pTM=0.81
+2025-07-01 01:55:44,911 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.1 pTM=0.833 tol=0.613
+2025-07-01 01:56:52,493 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.2 pTM=0.835 tol=0.719
+2025-07-01 01:57:59,878 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.3 pTM=0.837 tol=1.41
+2025-07-01 01:57:59,880 alphafold2_ptm_model_1_seed_000 took 270.0s (3 recycles)
+2025-07-01 01:58:00,271 reranking models by 'plddt' metric
+2025-07-01 01:58:00,271 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.3 pTM=0.837
+2025-07-01 01:58:00,950 Query 35/69: Citrus_maxima_DDS_SCORE (length 625)
+2025-07-01 01:58:24,953 Padding length to 630
+2025-07-01 01:59:32,344 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.8 pTM=0.812
+2025-07-01 02:00:40,176 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.6 pTM=0.838 tol=1.02
+2025-07-01 02:01:47,966 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.6 pTM=0.841 tol=0.544
+2025-07-01 02:02:55,767 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.7 pTM=0.842 tol=0.642
+2025-07-01 02:02:55,768 alphafold2_ptm_model_1_seed_000 took 270.8s (3 recycles)
+2025-07-01 02:02:56,154 reranking models by 'plddt' metric
+2025-07-01 02:02:56,154 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.7 pTM=0.842
+2025-07-01 02:02:56,821 Query 36/69: Citrus_maxima_YDS_SCORE (length 625)
+2025-07-01 02:03:21,837 Padding length to 630
+2025-07-01 02:04:28,973 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.5 pTM=0.814
+2025-07-01 02:05:36,728 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.2 pTM=0.838 tol=0.964
+2025-07-01 02:06:44,453 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.6 pTM=0.843 tol=0.407
+2025-07-01 02:07:52,166 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.7 pTM=0.846 tol=0.369
+2025-07-01 02:07:52,168 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-07-01 02:07:52,561 reranking models by 'plddt' metric
+2025-07-01 02:07:52,561 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.7 pTM=0.846
+2025-07-01 02:07:53,244 Query 37/69: Citrus_maxima_RES_SCORE (length 625)
+2025-07-01 02:08:17,766 Padding length to 630
+2025-07-01 02:09:25,008 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.812
+2025-07-01 02:10:32,883 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.2 pTM=0.836 tol=0.827
+2025-07-01 02:11:40,547 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.3 pTM=0.836 tol=0.656
+2025-07-01 02:12:48,079 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.4 pTM=0.837 tol=0.59
+2025-07-01 02:12:48,080 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-07-01 02:12:48,462 reranking models by 'plddt' metric
+2025-07-01 02:12:48,463 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.4 pTM=0.837
+2025-07-01 02:12:49,146 Query 38/69: Citrus_maxima_DAD_SCORE (length 625)
+2025-07-01 02:13:13,286 Padding length to 630
+2025-07-01 02:14:20,631 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.4 pTM=0.821
+2025-07-01 02:15:28,440 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.3 pTM=0.851 tol=1.28
+2025-07-01 02:16:36,163 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.5 pTM=0.854 tol=0.536
+2025-07-01 02:17:43,834 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.6 pTM=0.856 tol=0.434
+2025-07-01 02:17:43,835 alphafold2_ptm_model_1_seed_000 took 270.5s (3 recycles)
+2025-07-01 02:17:44,220 reranking models by 'plddt' metric
+2025-07-01 02:17:44,221 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.6 pTM=0.856
+2025-07-01 02:17:44,894 Query 39/69: Citrus_maxima_DDA_SCORE (length 625)
+2025-07-01 02:18:09,879 Padding length to 630
+2025-07-01 02:19:17,122 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.806
+2025-07-01 02:20:24,953 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93 pTM=0.832 tol=0.805
+2025-07-01 02:21:32,633 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.2 pTM=0.835 tol=0.697
+2025-07-01 02:22:41,355 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.2 pTM=0.834 tol=0.312
+2025-07-01 02:22:41,356 alphafold2_ptm_model_1_seed_000 took 271.5s (3 recycles)
+2025-07-01 02:22:41,752 reranking models by 'plddt' metric
+2025-07-01 02:22:41,752 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.2 pTM=0.834
+2025-07-01 02:22:42,487 Query 40/69: Citrus_maxima_QDG_SCORE (length 625)
+2025-07-01 02:23:07,630 Padding length to 630
+2025-07-01 02:24:16,209 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.5 pTM=0.81
+2025-07-01 02:25:24,935 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.4 pTM=0.838 tol=1.45
+2025-07-01 02:26:32,794 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.6 pTM=0.842 tol=0.432
+2025-07-01 02:27:40,616 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.6 pTM=0.843 tol=0.319
+2025-07-01 02:27:40,793 alphafold2_ptm_model_1_seed_000 took 273.1s (3 recycles)
+2025-07-01 02:27:41,782 reranking models by 'plddt' metric
+2025-07-01 02:27:41,790 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.6 pTM=0.843
+2025-07-01 02:27:44,123 Query 41/69: Citrus_maxima_WDS_SCORE (length 625)
+2025-07-01 02:28:13,693 Padding length to 630
+2025-07-01 02:29:20,641 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.3 pTM=0.807
+2025-07-01 02:30:28,064 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.1 pTM=0.833 tol=2.12
+2025-07-01 02:31:35,750 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.2 pTM=0.834 tol=0.765
+2025-07-01 02:32:43,493 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.3 pTM=0.837 tol=0.507
+2025-07-01 02:32:43,494 alphafold2_ptm_model_1_seed_000 took 269.8s (3 recycles)
+2025-07-01 02:32:43,878 reranking models by 'plddt' metric
+2025-07-01 02:32:43,878 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.3 pTM=0.837
+2025-07-01 02:32:44,779 Query 42/69: Citrus_maxima_EEE_SCORE (length 625)
+2025-07-01 02:33:16,789 Padding length to 630
+2025-07-01 02:34:23,958 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.812
+2025-07-01 02:35:31,743 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.4 pTM=0.838 tol=0.761
+2025-07-01 02:36:39,512 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.6 pTM=0.841 tol=0.562
+2025-07-01 02:37:47,310 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.7 pTM=0.844 tol=0.795
+2025-07-01 02:37:47,311 alphafold2_ptm_model_1_seed_000 took 270.5s (3 recycles)
+2025-07-01 02:37:47,699 reranking models by 'plddt' metric
+2025-07-01 02:37:47,699 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.7 pTM=0.844
+2025-07-01 02:37:48,389 Query 43/69: Citrus_maxima_WFS_SCORE (length 625)
+2025-07-01 02:38:27,972 Padding length to 630
+2025-07-01 02:39:34,913 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.9 pTM=0.808
+2025-07-01 02:40:42,686 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.9 pTM=0.835 tol=0.602
+2025-07-01 02:41:50,522 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.9 pTM=0.835 tol=0.399
+2025-07-01 02:42:58,299 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.9 pTM=0.838 tol=0.56
+2025-07-01 02:42:58,302 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-07-01 02:42:58,685 reranking models by 'plddt' metric
+2025-07-01 02:42:58,685 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.9 pTM=0.838
+2025-07-01 02:42:59,375 Query 44/69: Citrus_maxima_WFSN_SCORE (length 625)
+2025-07-01 02:43:23,783 Padding length to 630
+2025-07-01 02:44:31,220 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.9 pTM=0.81
+2025-07-01 02:45:38,900 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.9 pTM=0.836 tol=1.34
+2025-07-01 02:46:46,443 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.1 pTM=0.837 tol=0.373
+2025-07-01 02:47:53,956 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.1 pTM=0.84 tol=0.561
+2025-07-01 02:47:53,958 alphafold2_ptm_model_1_seed_000 took 270.2s (3 recycles)
+2025-07-01 02:47:54,346 reranking models by 'plddt' metric
+2025-07-01 02:47:54,346 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.1 pTM=0.84
+2025-07-01 02:47:55,025 Query 45/69: Citrus_maxima_SSS_SCORE (length 625)
+2025-07-01 02:48:19,963 Padding length to 630
+2025-07-01 02:49:27,232 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.2 pTM=0.818
+2025-07-01 02:50:35,134 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.9 pTM=0.843 tol=1.17
+2025-07-01 02:51:43,000 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.1 pTM=0.848 tol=0.648
+2025-07-01 02:52:50,804 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.1 pTM=0.849 tol=0.329
+2025-07-01 02:52:50,842 alphafold2_ptm_model_1_seed_000 took 270.9s (3 recycles)
+2025-07-01 02:52:51,510 reranking models by 'plddt' metric
+2025-07-01 02:52:51,510 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.1 pTM=0.849
+2025-07-01 02:52:52,516 Query 46/69: Citrus_maxima_KHS_SCORE (length 625)
+2025-07-01 02:53:16,679 Padding length to 630
+2025-07-01 02:54:24,103 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.6 pTM=0.805
+2025-07-01 02:55:31,811 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.2 pTM=0.833 tol=1.52
+2025-07-01 02:56:39,357 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.4 pTM=0.834 tol=0.704
+2025-07-01 02:57:47,032 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.4 pTM=0.833 tol=0.515
+2025-07-01 02:57:47,041 alphafold2_ptm_model_1_seed_000 took 270.4s (3 recycles)
+2025-07-01 02:57:47,677 reranking models by 'plddt' metric
+2025-07-01 02:57:47,677 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.4 pTM=0.833
+2025-07-01 02:57:49,124 Query 47/69: Citrus_maxima_KSS_SCORE (length 625)
+2025-07-01 02:58:14,076 Padding length to 630
+2025-07-01 02:59:21,284 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.6 pTM=0.812
+2025-07-01 03:00:29,167 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.3 pTM=0.834 tol=0.628
+2025-07-01 03:01:36,945 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.3 pTM=0.834 tol=0.538
+2025-07-01 03:02:44,728 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.4 pTM=0.836 tol=0.28
+2025-07-01 03:02:44,741 alphafold2_ptm_model_1_seed_000 took 270.7s (3 recycles)
+2025-07-01 03:02:45,409 reranking models by 'plddt' metric
+2025-07-01 03:02:45,410 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.4 pTM=0.836
+2025-07-01 03:02:46,558 Query 48/69: Citrus_maxima_KSF_SCORE (length 625)
+2025-07-01 03:03:12,968 Padding length to 630
+2025-07-01 03:04:20,373 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.804
+2025-07-01 03:05:28,237 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.3 pTM=0.835 tol=0.738
+2025-07-01 03:06:35,855 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.2 pTM=0.835 tol=0.69
+2025-07-01 03:07:43,523 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.4 pTM=0.836 tol=1.06
+2025-07-01 03:07:43,537 alphafold2_ptm_model_1_seed_000 took 270.6s (3 recycles)
+2025-07-01 03:07:43,930 reranking models by 'plddt' metric
+2025-07-01 03:07:43,930 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.4 pTM=0.836
+2025-07-01 03:07:44,893 Query 49/69: Citrus_maxima_KHF_SCORE (length 625)
+2025-07-01 03:08:10,925 Padding length to 630
+2025-07-01 03:09:18,266 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.804
+2025-07-01 03:10:25,968 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.1 pTM=0.826 tol=1.17
+2025-07-01 03:11:33,541 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.2 pTM=0.83 tol=0.441
+2025-07-01 03:12:41,228 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.2 pTM=0.832 tol=0.372
+2025-07-01 03:12:41,233 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-07-01 03:12:41,636 reranking models by 'plddt' metric
+2025-07-01 03:12:41,636 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.2 pTM=0.832
+2025-07-01 03:12:42,367 Query 50/69: Citrus_maxima_GGG_SCORE (length 625)
+2025-07-01 03:13:07,740 Padding length to 630
+2025-07-01 03:14:15,031 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.808
+2025-07-01 03:15:22,860 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93 pTM=0.831 tol=0.691
+2025-07-01 03:16:30,538 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.2 pTM=0.836 tol=0.739
+2025-07-01 03:17:38,348 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.2 pTM=0.835 tol=0.357
+2025-07-01 03:17:38,361 alphafold2_ptm_model_1_seed_000 took 270.6s (3 recycles)
+2025-07-01 03:17:38,989 reranking models by 'plddt' metric
+2025-07-01 03:17:38,989 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.2 pTM=0.835
+2025-07-01 03:17:39,935 Query 51/69: Citrus_maxima_DAS_SCORE (length 625)
+2025-07-01 03:18:05,898 Padding length to 630
+2025-07-01 03:19:13,227 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.4 pTM=0.818
+2025-07-01 03:20:21,183 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.2 pTM=0.848 tol=1.05
+2025-07-01 03:21:28,883 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.4 pTM=0.852 tol=0.404
+2025-07-01 03:22:36,575 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.6 pTM=0.855 tol=0.962
+2025-07-01 03:22:36,577 alphafold2_ptm_model_1_seed_000 took 270.7s (3 recycles)
+2025-07-01 03:22:36,963 reranking models by 'plddt' metric
+2025-07-01 03:22:36,963 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.6 pTM=0.855
+2025-07-01 03:22:37,639 Query 52/69: Citrus_maxima_KKK_SCORE (length 625)
+2025-07-01 03:23:01,638 Padding length to 630
+2025-07-01 03:24:08,865 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.799
+2025-07-01 03:25:16,755 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.1 pTM=0.83 tol=1.4
+2025-07-01 03:26:24,536 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.3 pTM=0.833 tol=0.592
+2025-07-01 03:27:32,385 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.4 pTM=0.832 tol=0.543
+2025-07-01 03:27:32,402 alphafold2_ptm_model_1_seed_000 took 270.8s (3 recycles)
+2025-07-01 03:27:32,885 reranking models by 'plddt' metric
+2025-07-01 03:27:32,885 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.4 pTM=0.832
+2025-07-01 03:27:33,980 Query 53/69: Citrus_maxima_DKA_SCORE (length 625)
+2025-07-01 03:27:58,438 Padding length to 630
+2025-07-01 03:29:09,257 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.2 pTM=0.818
+2025-07-01 03:30:16,985 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.1 pTM=0.844 tol=0.678
+2025-07-01 03:31:24,778 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.4 pTM=0.851 tol=0.668
+2025-07-01 03:32:32,618 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.4 pTM=0.853 tol=0.63
+2025-07-01 03:32:32,624 alphafold2_ptm_model_1_seed_000 took 274.2s (3 recycles)
+2025-07-01 03:32:33,229 reranking models by 'plddt' metric
+2025-07-01 03:32:33,229 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.4 pTM=0.853
+2025-07-01 03:32:34,324 Query 54/69: Citrus_maxima_DKS_SCORE (length 625)
+2025-07-01 03:33:05,379 Padding length to 630
+2025-07-01 03:34:13,320 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.4 pTM=0.82
+2025-07-01 03:35:21,240 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.2 pTM=0.845 tol=0.672
+2025-07-01 03:36:28,973 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.4 pTM=0.851 tol=0.447
+2025-07-01 03:37:36,791 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.5 pTM=0.853 tol=0.935
+2025-07-01 03:37:36,807 alphafold2_ptm_model_1_seed_000 took 271.2s (3 recycles)
+2025-07-01 03:37:38,282 reranking models by 'plddt' metric
+2025-07-01 03:37:38,294 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.5 pTM=0.853
+2025-07-01 03:37:42,669 Query 55/69: Citrus_maxima_DSS_SCORE (length 625)
+2025-07-01 03:38:19,750 Padding length to 630
+2025-07-01 03:39:26,843 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.2 pTM=0.817
+2025-07-01 03:40:34,691 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.1 pTM=0.843 tol=0.564
+2025-07-01 03:41:42,543 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.4 pTM=0.851 tol=0.636
+2025-07-01 03:42:50,270 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.5 pTM=0.853 tol=0.399
+2025-07-01 03:42:50,272 alphafold2_ptm_model_1_seed_000 took 270.5s (3 recycles)
+2025-07-01 03:42:50,656 reranking models by 'plddt' metric
+2025-07-01 03:42:50,656 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.5 pTM=0.853
+2025-07-01 03:42:51,440 Query 56/69: Citrus_maxima_YDK_SCORE (length 625)
+2025-07-01 03:43:16,473 Padding length to 630
+2025-07-01 03:44:23,855 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.808
+2025-07-01 03:45:31,701 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.5 pTM=0.839 tol=0.908
+2025-07-01 03:46:39,340 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.6 pTM=0.841 tol=0.458
+2025-07-01 03:47:46,961 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.8 pTM=0.847 tol=0.303
+2025-07-01 03:47:46,963 alphafold2_ptm_model_1_seed_000 took 270.5s (3 recycles)
+2025-07-01 03:47:47,349 reranking models by 'plddt' metric
+2025-07-01 03:47:47,349 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.8 pTM=0.847
+2025-07-01 03:47:48,025 Query 57/69: Citrus_maxima_QDK_SCORE (length 625)
+2025-07-01 03:48:12,151 Padding length to 630
+2025-07-01 03:49:19,240 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.6 pTM=0.81
+2025-07-01 03:50:27,021 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.4 pTM=0.839 tol=1.14
+2025-07-01 03:51:34,739 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.6 pTM=0.843 tol=0.505
+2025-07-01 03:52:42,665 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.7 pTM=0.845 tol=0.461
+2025-07-01 03:52:42,666 alphafold2_ptm_model_1_seed_000 took 270.5s (3 recycles)
+2025-07-01 03:52:43,053 reranking models by 'plddt' metric
+2025-07-01 03:52:43,053 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.7 pTM=0.845
+2025-07-01 03:52:43,741 Query 58/69: Citrus_maxima_FFF_SCORE (length 625)
+2025-07-01 03:53:07,044 Padding length to 630
+2025-07-01 03:54:14,573 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.1 pTM=0.816
+2025-07-01 03:55:22,323 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.7 pTM=0.833 tol=0.67
+2025-07-01 03:56:29,934 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.9 pTM=0.834 tol=1.14
+2025-07-01 03:57:37,614 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94 pTM=0.84 tol=1.17
+2025-07-01 03:57:37,615 alphafold2_ptm_model_1_seed_000 took 270.6s (3 recycles)
+2025-07-01 03:57:37,998 reranking models by 'plddt' metric
+2025-07-01 03:57:37,998 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94 pTM=0.84
+2025-07-01 03:57:38,685 Query 59/69: Citrus_maxima_WHS_SCORE (length 625)
+2025-07-01 03:58:02,976 Padding length to 630
+2025-07-01 03:59:10,516 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.5 pTM=0.807
+2025-07-01 04:00:18,273 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.4 pTM=0.833 tol=0.963
+2025-07-01 04:01:26,070 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.5 pTM=0.834 tol=0.752
+2025-07-01 04:02:33,885 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.6 pTM=0.837 tol=0.379
+2025-07-01 04:02:33,886 alphafold2_ptm_model_1_seed_000 took 270.9s (3 recycles)
+2025-07-01 04:02:34,279 reranking models by 'plddt' metric
+2025-07-01 04:02:34,280 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.6 pTM=0.837
+2025-07-01 04:02:34,960 Query 60/69: Citrus_maxima_WHAN_SCORE (length 625)
+2025-07-01 04:02:59,454 Padding length to 630
+2025-07-01 04:04:06,831 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.4 pTM=0.806
+2025-07-01 04:05:14,657 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.2 pTM=0.831 tol=0.957
+2025-07-01 04:06:22,315 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.4 pTM=0.833 tol=0.494
+2025-07-01 04:07:30,078 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.6 pTM=0.837 tol=0.942
+2025-07-01 04:07:30,079 alphafold2_ptm_model_1_seed_000 took 270.6s (3 recycles)
+2025-07-01 04:07:30,473 reranking models by 'plddt' metric
+2025-07-01 04:07:30,474 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.6 pTM=0.837
+2025-07-01 04:07:31,165 Query 61/69: Citrus_maxima_WHA_SCORE (length 625)
+2025-07-01 04:07:54,982 Padding length to 630
+2025-07-01 04:09:02,389 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.3 pTM=0.807
+2025-07-01 04:10:10,244 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.4 pTM=0.835 tol=0.868
+2025-07-01 04:11:18,016 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.4 pTM=0.836 tol=0.635
+2025-07-01 04:12:25,861 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.5 pTM=0.839 tol=0.609
+2025-07-01 04:12:25,863 alphafold2_ptm_model_1_seed_000 took 270.9s (3 recycles)
+2025-07-01 04:12:26,246 reranking models by 'plddt' metric
+2025-07-01 04:12:26,247 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.5 pTM=0.839
+2025-07-01 04:12:26,931 Query 62/69: Ckanehirae_CK_5995_SCORE (length 626)
+2025-07-01 04:12:58,169 Padding length to 630
+2025-07-01 04:14:05,300 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.2 pTM=0.824
+2025-07-01 04:15:13,099 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=92.5 pTM=0.828 tol=0.404
+2025-07-01 04:16:20,740 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=92.6 pTM=0.822 tol=0.492
+2025-07-01 04:17:28,425 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=92.6 pTM=0.825 tol=0.359
+2025-07-01 04:17:28,426 alphafold2_ptm_model_1_seed_000 took 270.3s (3 recycles)
+2025-07-01 04:17:28,810 reranking models by 'plddt' metric
+2025-07-01 04:17:28,811 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=92.6 pTM=0.825
+2025-07-01 04:17:29,488 Query 63/69: Punica_granatum_PG_8946_SCORE (length 627)
+2025-07-01 04:18:03,141 Padding length to 630
+2025-07-01 04:19:10,080 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.4 pTM=0.833
+2025-07-01 04:20:17,786 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.1 pTM=0.861 tol=0.934
+2025-07-01 04:21:25,516 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.2 pTM=0.862 tol=0.458
+2025-07-01 04:22:33,292 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.2 pTM=0.862 tol=0.464
+2025-07-01 04:22:33,294 alphafold2_ptm_model_1_seed_000 took 270.2s (3 recycles)
+2025-07-01 04:22:33,687 reranking models by 'plddt' metric
+2025-07-01 04:22:33,687 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.2 pTM=0.862
+2025-07-01 04:22:34,365 Query 64/69: Quercus_rubra_QR_976_SCORE (length 628)
+2025-07-01 04:23:06,670 Padding length to 630
+2025-07-01 04:24:13,987 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.4 pTM=0.834
+2025-07-01 04:25:21,802 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.2 pTM=0.851 tol=0.469
+2025-07-01 04:26:29,532 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.4 pTM=0.853 tol=0.38
+2025-07-01 04:27:37,298 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.5 pTM=0.855 tol=0.306
+2025-07-01 04:27:37,299 alphafold2_ptm_model_1_seed_000 took 270.6s (3 recycles)
+2025-07-01 04:27:37,685 reranking models by 'plddt' metric
+2025-07-01 04:27:37,685 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.5 pTM=0.855
+2025-07-01 04:27:38,364 Query 65/69: Syzygium_oleosum_SO_37247_SCORE (length 628)
+2025-07-01 04:28:10,126 Padding length to 630
+2025-07-01 04:29:16,981 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.2 pTM=0.83
+2025-07-01 04:30:24,557 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.9 pTM=0.856 tol=0.984
+2025-07-01 04:31:32,276 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.9 pTM=0.857 tol=0.629
+2025-07-01 04:32:40,009 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94 pTM=0.857 tol=0.357
+2025-07-01 04:32:40,011 alphafold2_ptm_model_1_seed_000 took 269.9s (3 recycles)
+2025-07-01 04:32:40,407 reranking models by 'plddt' metric
+2025-07-01 04:32:40,407 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94 pTM=0.857
+2025-07-01 04:32:41,106 Query 66/69: Corymbia_citriodora_CC_16240_SCORE (length 628)
+2025-07-01 04:33:11,879 Padding length to 630
+2025-07-01 04:34:20,128 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.6 pTM=0.821
+2025-07-01 04:35:28,370 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.5 pTM=0.854 tol=1.28
+2025-07-01 04:36:36,350 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.7 pTM=0.856 tol=0.652
+2025-07-01 04:37:44,214 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.8 pTM=0.858 tol=0.31
+2025-07-01 04:37:44,216 alphafold2_ptm_model_1_seed_000 took 272.3s (3 recycles)
+2025-07-01 04:37:44,606 reranking models by 'plddt' metric
+2025-07-01 04:37:44,606 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.8 pTM=0.858
+2025-07-01 04:37:45,339 Query 67/69: Papaver_bracteatum_PB_3845999_SCORE (length 630)
+2025-07-01 04:39:29,114 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.9 pTM=0.825
+2025-07-01 04:40:36,910 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.8 pTM=0.849 tol=1.25
+2025-07-01 04:41:44,502 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.9 pTM=0.849 tol=0.405
+2025-07-01 04:42:53,155 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.9 pTM=0.848 tol=0.367
+2025-07-01 04:42:53,900 alphafold2_ptm_model_1_seed_000 took 271.9s (3 recycles)
+2025-07-01 04:42:55,125 reranking models by 'plddt' metric
+2025-07-01 04:42:55,151 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.9 pTM=0.848
+2025-07-01 04:42:57,370 Query 68/69: Melastoma_candidum_MC_3498_SCORE (length 630)
+2025-07-01 04:44:37,220 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=92.8 pTM=0.822
+2025-07-01 04:45:45,045 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=93.8 pTM=0.857 tol=1.42
+2025-07-01 04:46:52,982 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=93.9 pTM=0.858 tol=0.5
+2025-07-01 04:48:00,704 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=93.9 pTM=0.859 tol=0.347
+2025-07-01 04:48:00,705 alphafold2_ptm_model_1_seed_000 took 270.6s (3 recycles)
+2025-07-01 04:48:01,103 reranking models by 'plddt' metric
+2025-07-01 04:48:01,103 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=93.9 pTM=0.859
+2025-07-01 04:48:01,868 Query 69/69: Acorus_americanus_AA_21312_SCORE (length 645)
+2025-07-01 04:50:42,754 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=93.9 pTM=0.839
+2025-07-01 04:51:54,568 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=94.5 pTM=0.857 tol=1.13
+2025-07-01 04:53:06,561 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=94.8 pTM=0.858 tol=0.477
+2025-07-01 04:54:18,653 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=94.8 pTM=0.859 tol=0.307
+2025-07-01 04:54:18,655 alphafold2_ptm_model_1_seed_000 took 337.9s (3 recycles)
+2025-07-01 04:54:19,071 reranking models by 'plddt' metric
+2025-07-01 04:54:19,076 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=94.8 pTM=0.859
+2025-07-01 04:54:19,824 Done
