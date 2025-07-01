@@ -238,7 +238,17 @@ This will generate structural models of each receptor via AlphaFold2 and store t
 
 ```
 ## update line 149, 178, 186, 189, 190 first before running.
-python 09_testing_and_dropout/02_alphafold_to_lrr_annotation_test.py 
+python 09_testing_and_dropout/02_alphafold_to_lrr_annotation_test.py ./09_testing_and_dropout/Ngou_2025_SCORE_data/receptor_only/log.txt
 
-python 09_testing_and_dropout
+## then update lines 114, 115, 118 first before running
+python python 09_testing_and_dropout/03_parse_lrr_annotation_test.py
+```
+We will then prepare our data in the formate for training and testing as well as add additional features. 
+
+```
+##Update line 90 and 108 and 116
+python 09_testing_and_dropout/04_data_prep_for_test.py
+
+## then in the 09_testing_and_dropout directory, run the following:
+Rscript 05_chemical_conversion_test.R all Ngou_data_few_shot_seq.csv
 ```
