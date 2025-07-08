@@ -24,24 +24,9 @@ prediction_summary <- data %>%
   group_by(locus_id, prediction_accuracy) %>%
   summarise(count = n(), .groups = 'drop')
 
-# Create stacked bar plot
-ggplot(prediction_summary, aes(x = locus_id, y = count, fill = prediction_accuracy)) +
-  geom_bar(stat = "identity") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Receptor", 
-       y = "Count",
-       fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#88CCEE", "Incorrect" = "#CC6677"))
+prediction_summary$group_type <- 'Orthologs'
+prediction_summary_all_groups <- prediction_summary
 
-# Create boxplot comparing correct vs incorrect predictions across receptors
-ggplot(prediction_summary, aes(y = count, fill = prediction_accuracy)) +
-  geom_boxplot(position = position_dodge(width = 0.75)) +
-  theme_bw() +
-  labs(x = "Receptor",
-       y = "Count",
-       fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#2ecc71", "Incorrect" = "#e74c3c"))
 
 
 # Calculate counts of correct/incorrect predictions per receptor and known label
@@ -49,11 +34,19 @@ prediction_summary <- data %>%
   group_by(locus_id, prediction_accuracy, `Known Label`) %>%
   summarise(count = n(), .groups = 'drop')
 
+# ------------ Zero-shot plot of ortholog data as a stacked bar plot ------------
+
 # Create stacked bar plot showing immunogenic outcomes
-ggplot(prediction_summary, aes(x = locus_id, y = count, fill = interaction(`Known Label`, prediction_accuracy))) +
+ortholog_stacked_bar_plot_zero_shot <- ggplot(prediction_summary, aes(x = locus_id, y = count, fill = interaction(`Known Label`, prediction_accuracy))) +
   geom_bar(stat = "identity") +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        legend.text = element_text(color = "black", size = 7),
+        legend.title = element_text(color = "black", size = 6)
+      ) +
   labs(x = "Receptor", 
        y = "Count",
        fill = "Prediction Accuracy") +
@@ -67,16 +60,42 @@ ggplot(prediction_summary, aes(x = locus_id, y = count, fill = interaction(`Know
   )) +
   guides(fill = guide_legend(title = "Outcome & Accuracy"))
 
-# Create boxplot comparing correct vs incorrect predictions across immunogenic outcomes
-ggplot(prediction_summary, aes(x = factor(`Known Label`), y = count, fill = prediction_accuracy)) +
-  geom_boxplot(position = position_dodge(width = 0.75)) +
-  theme_bw() +
-  labs(x = "Immunogenic Outcome (0=Immunogenic, 1=Non-immunogenic, 2=Weakly)",
-       y = "Count",
-       fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#2ecc71", "Incorrect" = "#e74c3c"))
+ggsave("ortholog_stacked_bar_plot_zero_shot.pdf", ortholog_stacked_bar_plot_zero_shot, width = 4.5, height = 2.2, dpi = 300, path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/", device = "pdf")
 
+
+# ------------ Zero-shot plot of ortholog data as a boxplot ------------
+
+# Create boxplot comparing correct vs incorrect predictions across immunogenic outcomes
+totals <- prediction_summary %>%
+  group_by(`Known Label`, prediction_accuracy) %>%
+  summarise(total = sum(count))
+
+ortholog_box_plot_zero_shot <- ggplot(prediction_summary, aes(x = factor(`Known Label`), y = count, fill = prediction_accuracy)) +
+  geom_boxplot(position = position_dodge(width = 0.75), outlier.shape = NA) +
+  geom_text(data = totals, aes(x = as.numeric(`Known Label`) + c(0.8, 1.2), y = 100,
+            label = total, group = prediction_accuracy), 
+            position = position_dodge(width = 0), size = 2.5) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        legend.position = "none"
+      ) +
+  ylim(0, 110) +
+  labs(x = "",
+       y = "Count", 
+       fill = "Prediction Accuracy") +
+  scale_fill_manual(values = c("Correct" = "#88CCEE", "Incorrect" = "#CC6677")) +
+  scale_x_discrete(labels = c("0" = "Immunogenic", "1" = "Non-Immunogenic", "2" = "Weakly Immunogenic"))
+
+ggsave("ortholog_box_plot_zero_shot.pdf", ortholog_box_plot_zero_shot, width = 2, height = 2.2, dpi = 300, path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/", device = "pdf")
+
+
+#################################################################################
 # ------------ Ngou et al. 2025 SCORE LRR Swaps ROS screen data ------------
+#################################################################################
+
 
 data <- readxl::read_excel("./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/Ngou_zero_shot_case.xlsx", sheet = "Ngou_LRR_Swaps")
 
@@ -88,36 +107,27 @@ prediction_summary <- data %>%
   group_by(locus_id, prediction_accuracy) %>%
   summarise(count = n(), .groups = 'drop')
 
-# Create stacked bar plot
-ggplot(prediction_summary, aes(x = locus_id, y = count, fill = prediction_accuracy)) +
-  geom_bar(stat = "identity") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Receptor", 
-       y = "Count",
-       fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#88CCEE", "Incorrect" = "#CC6677"))
-
-# Create boxplot comparing correct vs incorrect predictions across receptors
-ggplot(prediction_summary, aes(y = count, fill = prediction_accuracy)) +
-  geom_boxplot(position = position_dodge(width = 0.75)) +
-  theme_bw() +
-  labs(x = "Receptor",
-       y = "Count",
-       fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#2ecc71", "Incorrect" = "#e74c3c"))
-
+prediction_summary$group_type <- 'LRR_Swaps'
+prediction_summary_all_groups <- rbind(prediction_summary_all_groups, prediction_summary)
 
 # Calculate counts of correct/incorrect predictions per receptor and known label
 prediction_summary <- data %>%
   group_by(locus_id, prediction_accuracy, `Known Label`) %>%
   summarise(count = n(), .groups = 'drop')
 
+# ------------ Zero-shot plot of lrr_swaps data as a stacked bar plot ------------
+
 # Create stacked bar plot showing immunogenic outcomes
-ggplot(prediction_summary, aes(x = locus_id, y = count, fill = interaction(`Known Label`, prediction_accuracy))) +
+lrr_swaps_stacked_bar_plot_zero_shot <- ggplot(prediction_summary, aes(x = locus_id, y = count, fill = interaction(`Known Label`, prediction_accuracy))) +
   geom_bar(stat = "identity") +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        legend.text = element_text(color = "black", size = 7),
+        legend.title = element_text(color = "black", size = 6)
+      ) +
   labs(x = "Receptor", 
        y = "Count",
        fill = "Prediction Accuracy") +
@@ -131,16 +141,40 @@ ggplot(prediction_summary, aes(x = locus_id, y = count, fill = interaction(`Know
   )) +
   guides(fill = guide_legend(title = "Outcome & Accuracy"))
 
-# Create boxplot comparing correct vs incorrect predictions across immunogenic outcomes
-ggplot(prediction_summary, aes(x = factor(`Known Label`), y = count, fill = prediction_accuracy)) +
-  geom_boxplot(position = position_dodge(width = 0.75)) +
-  theme_bw() +
-  labs(x = "Immunogenic Outcome (0=Immunogenic, 1=Non-immunogenic, 2=Weakly)",
-       y = "Count",
-       fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#2ecc71", "Incorrect" = "#e74c3c"))
+ggsave("lrr_swaps_stacked_bar_plot_zero_shot.pdf", lrr_swaps_stacked_bar_plot_zero_shot, width = 4.5, height = 2.2, dpi = 300, path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/", device = "pdf")
 
+# ------------ Zero-shot plot of lrr_swaps data as a boxplot ------------
+
+# Create boxplot comparing correct vs incorrect predictions across immunogenic outcomes
+totals <- prediction_summary %>%
+  group_by(`Known Label`, prediction_accuracy) %>%
+  summarise(total = sum(count))
+
+lrr_swaps_box_plot_zero_shot <- ggplot(prediction_summary, aes(x = factor(`Known Label`), y = count, fill = prediction_accuracy)) +
+  geom_boxplot(position = position_dodge(width = 0.75), outlier.shape = NA) +
+  geom_text(data = totals, aes(x = as.numeric(`Known Label`) + c(0.8, 1.2), y = 100,
+            label = total, group = prediction_accuracy), 
+            position = position_dodge(width = 0), size = 2.5) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        legend.position = "none"
+      ) +
+  ylim(0, 110) +
+  labs(x = "",
+       y = "Count", 
+       fill = "Prediction Accuracy") +
+  scale_fill_manual(values = c("Correct" = "#88CCEE", "Incorrect" = "#CC6677")) +
+  scale_x_discrete(labels = c("0" = "Immunogenic", "1" = "Non-Immunogenic", "2" = "Weakly Immunogenic"))
+
+ggsave("lrr_swaps_box_plot_zero_shot.pdf", lrr_swaps_box_plot_zero_shot, width = 2, height = 2.2, dpi = 300, path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/", device = "pdf")
+
+
+############################################################################################
 # ------------ Ngou et al. 2025 SCORE AA Substitution ROS screen data ------------
+############################################################################################
 
 data <- readxl::read_excel("./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/Ngou_zero_shot_case.xlsx", sheet = "Ngou_AA_Substitutions")
 
@@ -152,57 +186,113 @@ prediction_summary <- data %>%
   group_by(locus_id, prediction_accuracy) %>%
   summarise(count = n(), .groups = 'drop')
 
-# Create stacked bar plot
-ggplot(prediction_summary, aes(x = locus_id, y = count, fill = prediction_accuracy)) +
-  geom_bar(stat = "identity") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Receptor", 
-       y = "Count",
-       fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#88CCEE", "Incorrect" = "#CC6677"))
-
-# Create boxplot comparing correct vs incorrect predictions across receptors
-ggplot(prediction_summary, aes(y = count, fill = prediction_accuracy)) +
-  geom_boxplot(position = position_dodge(width = 0.75)) +
-  theme_bw() +
-  labs(x = "Receptor",
-       y = "Count",
-       fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#2ecc71", "Incorrect" = "#e74c3c"))
-
+prediction_summary$group_type <- 'AA_Sub'
+prediction_summary_all_groups <- rbind(prediction_summary_all_groups, prediction_summary)
 
 # Calculate counts of correct/incorrect predictions per receptor and known label
 prediction_summary <- data %>%
   group_by(locus_id, prediction_accuracy, `Known Label`) %>%
   summarise(count = n(), .groups = 'drop')
 
+# ------------ Zero-shot plot of aa_subs data as a stacked bar plot ------------
+# weird font error I thought I already fixed
+prediction_summary[prediction_summary$`Known Label` %in% c("Non-immunogenic"),][3] <- "Non-Immunogenic"
+prediction_summary[prediction_summary$`Known Label` %in% c("Weakly immunogenic"),][3] <- "Weakly Immunogenic"
+
+
 # Create stacked bar plot showing immunogenic outcomes
-ggplot(prediction_summary, aes(x = locus_id, y = count, fill = interaction(`Known Label`, prediction_accuracy))) +
+aa_subs_stacked_bar_plot_zero_shot <- ggplot(prediction_summary, aes(x = locus_id, y = count, fill = interaction(`Known Label`, prediction_accuracy))) +
   geom_bar(stat = "identity") +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        legend.text = element_text(color = "black", size = 7),
+        legend.title = element_text(color = "black", size = 6)
+      ) +
   labs(x = "Receptor", 
        y = "Count",
        fill = "Prediction Accuracy") +
   scale_fill_manual(values = c(
-    "0.Correct" = "#a8d5e5",    # Muted light blue for correct immunogenic
-    "1.Correct" = "#5c97c1",    # Muted medium blue for correct non-immunogenic
-    "2.Correct" = "#4a6b84",    # Muted navy for correct weakly immunogenic  
-    "0.Incorrect" = "#ffd966",  # Brighter yellow for incorrect immunogenic
-    "1.Incorrect" = "#ffb347",  # Brighter orange for incorrect non-immunogenic
-    "2.Incorrect" = "#ff8c42"   # Brighter dark orange for incorrect weakly immunogenic
+    "Immunogenic.Correct" = "#a8d5e5",    # Muted light blue for correct immunogenic
+    "Non-Immunogenic.Correct" = "#5c97c1",    # Muted medium blue for correct non-immunogenic
+    "Weakly Immunogenic.Correct" = "#4a6b84",    # Muted navy for correct weakly immunogenic  
+    "Immunogenic.Incorrect" = "#ffd966",  # Brighter yellow for incorrect immunogenic
+    "Non-Immunogenic.Incorrect" = "#ffb347",  # Brighter orange for incorrect non-immunogenic
+    "Weakly Immunogenic.Incorrect" = "#ff8c42"   # Brighter dark orange for incorrect weakly immunogenic
   )) +
   guides(fill = guide_legend(title = "Outcome & Accuracy"))
 
+ggsave("aa_subs_stacked_bar_plot_zero_shot.pdf", aa_subs_stacked_bar_plot_zero_shot, width = 7, height = 2.2, dpi = 300, path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/", device = "pdf")
+
+# ------------ Zero-shot plot of lrr_swaps data as a boxplot ------------
+
 # Create boxplot comparing correct vs incorrect predictions across immunogenic outcomes
-ggplot(prediction_summary, aes(x = factor(`Known Label`), y = count, fill = prediction_accuracy)) +
-  geom_boxplot(position = position_dodge(width = 0.75)) +
+totals <- prediction_summary %>%
+  group_by(`Known Label`, prediction_accuracy) %>%
+  summarise(total = sum(count))
+
+aa_subs_box_plot_zero_shot <- ggplot(prediction_summary, aes(x = factor(`Known Label`), y = count, fill = prediction_accuracy)) +
+  geom_boxplot(position = position_dodge(width = 0.75), outlier.shape = NA) +
+  geom_text(data = totals, aes(x = as.numeric(`Known Label`) + c(0.8, 1.2), y = 100,
+            label = total, group = prediction_accuracy), 
+            position = position_dodge(width = 0), size = 2.5) +
   theme_bw() +
-  labs(x = "Immunogenic Outcome (0=Immunogenic, 1=Non-immunogenic, 2=Weakly)",
-       y = "Count",
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        legend.position = "none"
+      ) +
+  ylim(0, 110) +
+  labs(x = "",
+       y = "Count", 
        fill = "Prediction Accuracy") +
-  scale_fill_manual(values = c("Correct" = "#2ecc71", "Incorrect" = "#e74c3c"))
+  scale_fill_manual(values = c("Correct" = "#88CCEE", "Incorrect" = "#CC6677")) 
+
+
+  scale_x_discrete(labels = c("0" = "Immunogenic", "1" = "Non-Immunogenic", "2" = "Weakly Immunogenic"))
+
+ggsave("aa_subs_box_plot_zero_shot.pdf", aa_subs_box_plot_zero_shot, width = 2, height = 2.2, dpi = 300, path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/", device = "pdf")
+
+
+
+
+############################################################################################
+# Zero-shot summary as a boxplot seperated by each group (Orthologs, LRR_Swaps, AA_Subs)
+############################################################################################
+
+# Calculate summary statistics for labels
+summary_stats <- prediction_summary_all_groups %>%
+  group_by(group_type, prediction_accuracy) %>%
+  summarise(total = sum(count), .groups = 'drop')
+
+summary_zero_shot_box_plot <- ggplot(prediction_summary_all_groups, aes(x = factor(group_type, levels = c("Orthologs", "LRR_Swaps", "AA_Sub")), 
+                                        y = count, fill = prediction_accuracy)) +
+  geom_boxplot(position = position_dodge(width = 0.75), outlier.shape = NA) +
+  geom_text(data = summary_stats,
+            aes(y = max(prediction_summary_all_groups$count) + 15,
+                label = total,
+                group = prediction_accuracy),
+            position = position_dodge(width = 0.75),
+            size = 2.5,
+            color = "black") +
+  theme_bw() +
+  ylim(0, 120) +
+  labs(x = "Receptor Group Type", y = "Avg. Count per 103 csp22 ligands", 
+       fill = "Prediction Accuracy") +
+  scale_fill_manual(values = c("Correct" = "#88CCEE", "Incorrect" = "#CC6677")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 8),
+        axis.title.y = element_text(color = "black", size = 8),
+        legend.position = "none"
+  )
+
+ggsave("summary_zero_shot_box_plot.pdf", summary_zero_shot_box_plot, width = 2.5, height = 2.5, dpi = 300, path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/", device = "pdf")
+
+
 
 ######################################################################
 # Prediction data from Ngou et al. 2025 to plot few-shot predictions
