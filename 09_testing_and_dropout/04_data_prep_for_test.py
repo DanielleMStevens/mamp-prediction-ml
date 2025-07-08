@@ -87,7 +87,7 @@ def parse_fasta(fasta_path: Path) -> Dict[str, str]:
 ########################################################################################
 
 def load_receptor_sequences(in_data_dir: Path) -> Dict[str, str]:
-    fasta_path = in_data_dir.parent / "09_testing_and_dropout" / "validation_data_set" / "lrr_domain_sequences_independent_test.fasta"
+    fasta_path = in_data_dir.parent / "09_testing_and_dropout" / "Ngou_2025_SCORE_data" / "lrr_domain_sequences_independent_test.fasta"
     if not fasta_path.exists():
         raise FileNotFoundError(f"Could not find receptor sequence file at {fasta_path}")
         
@@ -105,7 +105,7 @@ def process_data(in_data_dir: Path, use_legacy_columns: bool = True) -> pd.DataF
     excel_path = in_data_dir / "All_LRR_PRR_ligand_data.xlsx"
     if not excel_path.exists():
         raise FileNotFoundError(f"Could not find Excel data file at {excel_path}")
-    data_df = pd.read_excel(excel_path, sheet_name='Model_Validation')
+    data_df = pd.read_excel(excel_path, sheet_name='Ngou_data_few_shot')
 
     # Select required columns and create a copy
     required_columns = ["Plant species", "Receptor", "Locus ID/Genbank", "Ligand", "Ligand Sequence", "Immunogenicity"]
@@ -163,13 +163,13 @@ def main():
     # Setup paths
     base_dir = Path(__file__).parent.parent
     in_data_dir = base_dir / "02_in_data"
-    out_dir = base_dir / "09_testing_and_dropout" / "validation_data_set" 
+    out_dir = base_dir / "09_testing_and_dropout" / "Ngou_2025_SCORE_data" 
     out_dir.mkdir(parents=True, exist_ok=True)
     
     # Process data and create splits
     receptor_ligand_pairs = process_data(in_data_dir, use_legacy_columns=True)
     # Save processed dataset without splitting
-    receptor_ligand_pairs.to_csv(out_dir / "test_data.csv", index=False)
+    receptor_ligand_pairs.to_csv(out_dir / "Ngou_data_few_shot_seq.csv", index=False)
     
  
 if __name__ == "__main__":

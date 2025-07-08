@@ -12,7 +12,7 @@ if (length(args) == 0) {
 selected_features <- args
 
 # Read the training data
-data <- read.csv(paste("validation_data_set/", args[2], sep = ""))
+data <- read.csv(paste("Ngou_2025_SCORE_data/", args[2], sep = ""))
 
 # Function to convert sequence to bulkiness values
 sequence_to_bulkiness <- function(sequence) {
@@ -95,4 +95,4 @@ if (args[1] == "all") {
 
 
 # Save the processed data
-write.csv(data, paste0("validation_data_set/data_validation_", args[1], ".csv"), row.names = FALSE)
+write.csv(data, paste0("Ngou_2025_SCORE_data/data_validation_", args[1], ".csv"), row.names = FALSE)

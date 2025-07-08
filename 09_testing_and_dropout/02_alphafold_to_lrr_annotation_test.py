@@ -146,7 +146,7 @@ def run_lrr_annotation(pdb_directory):
     A.compute_regressions()
 
     # Extract LRR sequences
-    output_file = Path('./09_testing_and_dropout/test_data_set/lrr_annotation_results_independent_test.txt')
+    output_file = Path('./09_testing_and_dropout/Ngou_2025_SCORE_data/lrr_annotation_results_independent_test.txt')
     
     with open(output_file, 'w') as f:
         f.write("PDB_Filename\tRegion_Number\tStart_Position\tEnd_Position\tSequence_Length\tFull_Sequence_Length\tTotal_LRR_Regions\tSequence\n")
@@ -175,7 +175,7 @@ def run_lrr_annotation(pdb_directory):
 
     # Generate plots
     P.load(A.windings, A.breakpoints, A.slopes)
-    plot_dir = Path('./09_testing_and_dropout/test_data_set/lrr_annotation_plots')
+    plot_dir = Path('./09_testing_and_dropout/Ngou_2025_SCORE_data/lrr_annotation_plots')
     plot_dir.mkdir(parents=True, exist_ok=True)
     P.plot_regressions(save=True, directory=str(plot_dir))
 
@@ -183,11 +183,11 @@ def main():
     # Set up paths
     project_root = Path(__file__).parent.parent
     log_file = Path(sys.argv[1]) if len(sys.argv) > 1 else sys.exit("Error: Please provide the path to the ColabFold log.txt file as an argument")
-    scores_file = project_root / "09_testing_and_dropout" / "test_data_set" / "alphafold_scores.txt"
+    scores_file = project_root / "09_testing_and_dropout" / "Ngou_2025_SCORE_data" / "alphafold_scores.txt"
     
     # Source and target directories for PDB files
-    source_dir = project_root / "09_testing_and_dropout" / "test_data_set" / "receptor_only"
-    target_dir = project_root / "09_testing_and_dropout" / "test_data_set" / "pdb_for_lrr_annotator"
+    source_dir = project_root / "09_testing_and_dropout" / "Ngou_2025_SCORE_data" / "receptor_only"
+    target_dir = project_root / "09_testing_and_dropout" / "Ngou_2025_SCORE_data" / "pdb_for_lrr_annotator"
     
     if not log_file.exists():
         print(f"Error: Log file not found at {log_file}")

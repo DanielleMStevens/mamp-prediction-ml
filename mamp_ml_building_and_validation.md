@@ -242,6 +242,10 @@ python 09_testing_and_dropout/02_alphafold_to_lrr_annotation_test.py ./09_testin
 
 ## then update lines 114, 115, 118 first before running
 python python 09_testing_and_dropout/03_parse_lrr_annotation_test.py
+
+# we will also need to generate bandpass b-factor values to update the training model with
+# update lines 246, 263 with path for Ngou data
+python python 01_LRR_Annotation/analyze_bfactor_peaks.py
 ```
 We will then prepare our data in the formate for training and testing as well as add additional features. 
 
@@ -252,3 +256,21 @@ python 09_testing_and_dropout/04_data_prep_for_test.py
 ## then in the 09_testing_and_dropout directory, run the following:
 Rscript 05_chemical_conversion_test.R all Ngou_data_few_shot_seq.csv
 ```
+
+For the Ngou data, we are going to compare zero-shot versus few-shot prediction. So we will run additional script to break the data in to train/test splits for few-shot. 
+
+```
+python 09_testing_and_dropout/06_few_shot_script.py
+Created 05_datasets/few_shot_2 with 2 training samples
+  - Class distribution: {'Immunogenic': 1, 'Weakly Immunogenic': 1}
+Created 05_datasets/few_shot_4 with 4 training samples
+  - Class distribution: {'Weakly Immunogenic': 3, 'Immunogenic': 1}
+Created 05_datasets/few_shot_8 with 8 training samples
+  - Class distribution: {'Weakly Immunogenic': 5, 'Immunogenic': 2, 'Non-Immunogenic': 1}
+Created 05_datasets/few_shot_16 with 16 training samples
+  - Class distribution: {'Non-Immunogenic': 8, 'Weakly Immunogenic': 6, 'Immunogenic': 2}
+Created 05_datasets/few_shot_32 with 32 training samples
+  - Class distribution: {'Non-Immunogenic': 21, 'Weakly Immunogenic': 7, 'Immunogenic': 4}
+```
+
+We will then update main train for these script and assess how mamp-ml improves. See 
