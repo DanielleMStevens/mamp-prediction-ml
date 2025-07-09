@@ -376,11 +376,409 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/misclassification_report.tsv
 
 
+# ------- Run 19: ESM2 with Position Weighted Model - 05_datasets/few_shot_2/train_data_2_shot.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 2, use few shot data (2 shot)
+# Saved As: 19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_2 \
+    --device cpu \
+    --batch_size 2 \
+    --epochs 10 \
+    --save_period 5 \
+    --lr 2e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_2/test_data_2_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/misclassification_report.tsv
+
+# Saved As: 20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_4 \
+    --device cpu \
+    --batch_size 4 \
+    --epochs 10 \
+    --save_period 5 \
+    --lr 1e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_4/test_data_4_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/misclassification_report.tsv
+
+# Saved As: 21_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_8 \
+    --device cpu \
+    --batch_size 8 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 1e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/21_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/21_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_8/test_data_8_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/21_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/21_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/misclassification_report.tsv
+
+# Saved As: 22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_16 \
+    --device cpu \
+    --batch_size 16 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 2e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_16/test_data_16_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/misclassification_report.tsv
+
+# Saved As: 23_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_32 \
+    --device cpu \
+    --batch_size 32 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 3e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/23_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/23_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_32/test_data_32_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/23_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/23_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+# Saved As: 24_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_64 \
+    --device cpu \
+    --batch_size 64 \
+    --epochs 20 \
+    --save_period 5 \
+    --lr 3e-4 \
+    --warmup_epochs 5 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/24_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/24_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_64/test_data_64_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/24_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/24_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted/misclassification_report.tsv
+
+# Saved As: 25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_128 \
+    --device cpu \
+    --batch_size 128 \
+    --epochs 25 \
+    --save_period 5 \
+    --lr 5e-4 \
+    --warmup_epochs 5 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_128/test_data_128_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/misclassification_report.tsv
 
 
 
 
 
+
+# -------------------------------------------------- version 1 and 2 --------------------------------------------------
+# ------- Run 19: ESM2 with Position Weighted Model - 05_datasets/few_shot_2/train_data_2_shot.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 2, use few shot data (2 shot)
+# Saved As: 19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_2 \
+    --device cpu \
+    --batch_size 4 \
+    --epochs 10 \
+    --save_period 5 \
+    --lr 1e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_2/test_data_2_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/misclassification_report.tsv
+
+# ------- Run 20: ESM2 with Position Weighted Model - 05_datasets/few_shot_4/train_data_4_shot.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 8, use few shot data (4 shot)
+# Saved As: 20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_4 \
+    --device cpu \
+    --batch_size 8 \
+    --epochs 10 \
+    --save_period 5 \
+    --lr 1e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_4/test_data_4_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/misclassification_report.tsv
+
+# ------- Run 21: ESM2 with Position Weighted Model - 05_datasets/few_shot_8/train_data_8_shot.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 16, use few shot data (8 shot)
+
+# Saved As: 24_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_8 \
+    --device cpu \
+    --batch_size 16 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 1e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/24_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/24_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_8/test_data_8_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/24_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/24_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/misclassification_report.tsv
+
+# ------- Run 22: ESM2 with Position Weighted Model - 05_datasets/few_shot_16/train_data_16_shot.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 32, use few shot data (16 shot)
+# Saved As: 23_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_16 \
+    --device cpu \
+    --batch_size 32 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 1e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+
+# Saved As: 22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_16 \
+    --device cpu \
+    --batch_size 16 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 2e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_16/test_data_16_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/24_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/misclassification_report.tsv
+
+# Saved As: 20_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_2 \
+    --device cpu \
+    --batch_size 2 \
+    --epochs 10 \
+    --save_period 5 \
+    --lr 2e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/20_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/20_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_2/test_data_2_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/20_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/20_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+# Saved As: 21_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_4 \
+    --device cpu \
+    --batch_size 4 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 2e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/21_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/21_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_4/test_data_4_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/21_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/21_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/misclassification_report.tsv
+
+# Saved As: 22_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_8 \
+    --device cpu \
+    --batch_size 8 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 3e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/25_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/25_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_8/test_data_8_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/22_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/22_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+# Saved As: 23_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_16 \
+    --device cpu \
+    --batch_size 16 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 2e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/23_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/23_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_16/test_data_16_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/23_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/23_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+
+
+# Saved As: 24_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_32 \
+    --device cpu \
+    --batch_size 32 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 2e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/24_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/24_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_32/test_data_32_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/24_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/24_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/misclassification_report.tsv
+
+# Saved As: 26_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets/few_shot_32 \
+    --device cpu \
+    --batch_size 32 \
+    --epochs 15 \
+    --save_period 5 \
+    --lr 3e-4 \
+    --warmup_epochs 2 \
+    --disable_wandb
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/26_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/26_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/few_shot_32/test_data_32_shot.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/26_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/26_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/misclassification_report.tsv
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --eval_only_data_path 09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_LRR_AA_sub_data.csv \
+    --model_checkpoint_path 07_model_results/26_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/checkpoint-14.pth \
+    --device cpu \
+    --disable_wandb
 
 # ------- Runnning Final Mode Parameters: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12

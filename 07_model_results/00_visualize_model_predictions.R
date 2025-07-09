@@ -20,8 +20,8 @@ misclass_df <- read_tsv(args[2])
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
 names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop","screw")
 
-receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
-names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT")
+receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D", "black")
+names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT", "SCORE")
 
 
 # --- Data Preparation ---
@@ -46,8 +46,8 @@ receptor_distribution_plot <- ggplot(combined_counts, aes(x = Plot_Count, y = Re
   geom_col() +
   geom_vline(xintercept = 0, linetype = "dashed", color = "black") + # Add line at zero
   #labels = function(x) abs(x), 
-  scale_x_continuous(name = "Number of Combinations",
-          limits = c(-160, 120), breaks = seq(-160, 120, 40), labels = c(160, 120, 80, 40, 0, 40, 80, 120)) +
+  #scale_x_continuous(name = "Number of Combinations",
+  #        limits = c(-160, 120), breaks = seq(-160, 120, 40), labels = c(160, 120, 80, 40, 0, 40, 80, 120)) +
   labs(y = "Receptor") +
   theme_classic() +
   scale_fill_manual(values = receptor_colors) +
