@@ -5,7 +5,7 @@ library(ggplot2)
 library(pROC)
 library(PRROC)
 library(reshape2)
-
+library(tidyverse)
 
 ######################################################################
 # Prediction data from Ngou et al. 2025 to plot zero-shot predictions
@@ -26,8 +26,6 @@ prediction_summary <- data %>%
 
 prediction_summary$group_type <- 'Orthologs'
 prediction_summary_all_groups <- prediction_summary
-
-
 
 # Calculate counts of correct/incorrect predictions per receptor and known label
 prediction_summary <- data %>%
@@ -297,3 +295,107 @@ ggsave("summary_zero_shot_box_plot.pdf", summary_zero_shot_box_plot, width = 2.5
 ######################################################################
 # Prediction data from Ngou et al. 2025 to plot few-shot predictions
 ######################################################################
+
+data <- read_csv("./09_testing_and_dropout/Ngou_2025_SCORE_data/model_25_ortholog_test_predictions.csv")
+data$prediction_accuracy <- ifelse(data$true_label == data$predicted_label, "Correct", "Incorrect")
+prediction_summary <- data %>% group_by(true_label, prediction_accuracy) %>% summarise(count = n(), .groups = 'drop')
+prediction_summary$group_type = "Orthologs"
+
+data2 <- read_csv("./09_testing_and_dropout/Ngou_2025_SCORE_data/model_25_lrr_swap_test_predictions.csv")
+data2$prediction_accuracy <- ifelse(data2$true_label == data2$predicted_label, "Correct", "Incorrect")
+prediction_summary2 <- data2 %>% group_by(true_label, prediction_accuracy) %>% summarise(count = n(), .groups = 'drop')
+prediction_summary2$group_type = "LRR_Swaps"
+
+data3 <- read_csv("./09_testing_and_dropout/Ngou_2025_SCORE_data/model_25_aa_sub_test_predictions.csv")
+data3$prediction_accuracy <- ifelse(data3$true_label == data3$predicted_label, "Correct", "Incorrect")
+prediction_summary3 <- data3 %>% group_by(true_label, prediction_accuracy) %>% summarise(count = n(), .groups = 'drop')
+prediction_summary3$group_type = "AA_Sub"
+
+all_sum <- rbind(prediction_summary, prediction_summary2, prediction_summary3)
+total_all_models <- all_sum %>% group_by(group_type, prediction_accuracy) %>% summarise(total = sum(count))
+total_all_models$model <- "kshot_128"
+
+total2 <- prediction_summary_all_groups %>% group_by(group_type, prediction_accuracy) %>% summarise(total = sum(count))
+total2$model <- "zero-shot"
+total_all_models <- rbind(total_all_models, total2)
+rm(total2)
+
+data <- read_csv("./09_testing_and_dropout/Ngou_2025_SCORE_data/model_23_ortholog_test_predictions.csv")
+data$prediction_accuracy <- ifelse(data$true_label == data$predicted_label, "Correct", "Incorrect")
+prediction_summary <- data %>% group_by(true_label, prediction_accuracy) %>% summarise(count = n(), .groups = 'drop')
+prediction_summary$group_type = "Orthologs"
+
+data2 <- read_csv("./09_testing_and_dropout/Ngou_2025_SCORE_data/model_23_lrr_swap_test_predictions.csv")
+data2$prediction_accuracy <- ifelse(data2$true_label == data2$predicted_label, "Correct", "Incorrect")
+prediction_summary2 <- data2 %>% group_by(true_label, prediction_accuracy) %>% summarise(count = n(), .groups = 'drop')
+prediction_summary2$group_type = "LRR_Swaps"
+
+data3 <- read_csv("./09_testing_and_dropout/Ngou_2025_SCORE_data/model_23_aa_sub_test_predictions.csv")
+data3$prediction_accuracy <- ifelse(data3$true_label == data3$predicted_label, "Correct", "Incorrect")
+prediction_summary3 <- data3 %>% group_by(true_label, prediction_accuracy) %>% summarise(count = n(), .groups = 'drop')
+prediction_summary3$group_type = "AA_Sub"
+all_sum <- rbind(prediction_summary, prediction_summary2, prediction_summary3)
+
+total2 <- all_sum %>% group_by(group_type, prediction_accuracy) %>% summarise(total = sum(count))
+total2$model <- "kshot_32"
+total_all_models <- rbind(total_all_models, total2)
+rm(total2)
+
+
+# Calculate accuracy percentages for each model and group
+accuracy_by_group <- total_all_models %>%
+  group_by(model, group_type) %>%
+  summarize(
+    accuracy = sum(total[prediction_accuracy == "Correct"]) / sum(total) * 100,
+    .groups = 'drop'
+  ) %>%
+  pivot_wider(
+    names_from = model,
+    values_from = accuracy
+  ) %>%
+  mutate(
+    percent_improvement_128 = kshot_128 - `zero-shot`,
+    percent_improvement_32 = kshot_32 - `zero-shot`
+  ) %>%
+  select(group_type, `zero-shot`, kshot_128, kshot_32, percent_improvement_128, percent_improvement_32)
+
+# Create a long format dataframe for plotting improvements
+improvement_data <- accuracy_by_group %>%
+  select(group_type, percent_improvement_128, percent_improvement_32) %>%
+  pivot_longer(
+    cols = c(percent_improvement_128, percent_improvement_32),
+    names_to = "model",
+    values_to = "improvement"
+  ) %>%
+  mutate(
+    model = case_when(
+      model == "percent_improvement_128" ~ "128-shot",
+      model == "percent_improvement_32" ~ "32-shot"
+    )
+  )
+  
+
+improvement_data$model <- factor(improvement_data$model, levels = c("32-shot", "128-shot"))
+improvement_data$group_type <- factor(improvement_data$group_type, levels = c("Orthologs", "LRR_Swaps", "AA_Sub"))
+
+# Create the bar plot
+improvement_data_plot <- ggplot(improvement_data, aes(x = group_type, y = improvement, fill = improvement > 0)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = paste0(round(improvement, 1), "%"), vjust = ifelse(improvement > 0, -0.5, 1.5)), size = 2.5, color = "black") +
+  scale_fill_manual(values = c("darkred", "black")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7, color = "black"),
+    axis.text.y = element_text(size = 7, color = "black"),
+    axis.title.x = element_text(size = 8, color = "black"),
+    axis.title.y = element_text(size = 8, color = "black"),
+    strip.text = element_text(size = 8, color = "black"),
+    legend.position = "none") +
+  ylim(-30, 70) +
+  labs(x = "Receptor Group Type", y = "Percent Improvement Over Zero-Shot") +
+  facet_wrap(~model, nrow=1)   
+
+ggsave("Kshot_improvement_data_plot.pdf", improvement_data_plot, width = 2.5, height = 2.5, dpi = 300, path = "./09_testing_and_dropout/Ngou_2025_SCORE_data/Zero_shot_mamp_ml/", device = "pdf")
+
+
+
+

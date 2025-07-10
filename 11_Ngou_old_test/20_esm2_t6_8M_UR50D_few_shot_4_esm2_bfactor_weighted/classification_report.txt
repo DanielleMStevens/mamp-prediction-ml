@@ -1,0 +1,26 @@
+Classification Performance Report
+==================================================
+
+Class Labels:
+0: Immunogenic
+1: Non-Immunogenic
+2: Weakly Immunogenic
+
+Performance Metrics:
+------------------------------
+              precision    recall  f1-score   support
+
+           0       0.15      0.11      0.13       971
+           1       0.72      0.89      0.80      5150
+           2       0.55      0.01      0.02       974
+
+    accuracy                           0.67      7095
+   macro avg       0.47      0.34      0.32      7095
+weighted avg       0.62      0.67      0.60      7095
+
+Metric Definitions:
+------------------------------
+precision: True Positives / (True Positives + False Positives)
+recall: True Positives / (True Positives + False Negatives)
+f1-score: 2 * (precision * recall) / (precision + recall)
+support: Number of samples for each class

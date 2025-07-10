@@ -544,6 +544,15 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/misclassification_report.tsv
 
+# running 25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted with each of brunos data sets
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --eval_only_data_path 09_testing_and_dropout/Ngou_2025_SCORE_data/Ngou_ortholog_data.csv \
+    --model_checkpoint_path 07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/checkpoint-24.pth \
+    --device cpu \
+    --disable_wandb
+
 
 # ------- Runnning Final Mode Parameters: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12
