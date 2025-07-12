@@ -109,7 +109,7 @@ class BFactorWeightGenerator:
         if bfactor_csv_path is None:
             # Try different common paths
             possible_paths = [
-                "04_Preprocessing_results/bfactor_winding_lrr_segments.csv"
+                "09_testing_and_dropout/Ngou_2025_SCORE_data/bfactor_winding_lrr_segments.csv"
             ]
             for path in possible_paths:
                 if os.path.exists(path):
@@ -310,12 +310,12 @@ class ESMBfactorWeightedFeatures(nn.Module):
         )
         
         # Loss function with label smoothing for better generalization
-        # used for models 1-16
-        #self.criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
+        # used for models 1-16, 19
+        self.criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
 
-        #used for model 17
-        class_weights = torch.tensor([1.0, 1.0, 1.0])  # Give 3x weight to weakly immunogenic
-        self.criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=0.1)
+        #used for model 17, 18
+        #class_weights = torch.tensor([1.0, 1.0, 1.0])  # Give 3x weight to weakly immunogenic
+        #self.criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=0.1)
        
         self.losses = ["ce"]  # Track which loss types are used
         

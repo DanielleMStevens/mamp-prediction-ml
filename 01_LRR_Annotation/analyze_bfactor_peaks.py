@@ -243,7 +243,7 @@ def analyze_lrr_bfactor_peaks(pdb_dir, period=25, filter_order=10, cache_dir=Non
 
 if __name__ == "__main__":
     # --- Configuration ---
-    PDB_DIRECTORY = "./03_out_data/modeled_structures/pdb_for_lrr_annotator/"
+    PDB_DIRECTORY = "./09_testing_and_dropout/Ngou_2025_SCORE_data/pdb_for_lrr_annotator/"
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
     CACHE_DIRECTORY = os.path.join(SCRIPT_DIR, "cache")
     # --- End Configuration ---
@@ -260,7 +260,7 @@ if __name__ == "__main__":
 
     if not peak_data.empty:
         print("\n--- B-Factor Peak Analysis Results ---")
-        output_csv = os.path.join("04_Preprocessing_results", "bfactor_winding_lrr_segments.csv")
+        output_csv = os.path.join("09_testing_and_dropout", "Ngou_2025_SCORE_data", "bfactor_winding_lrr_segments.csv")
         peak_data.to_csv(output_csv, index=False)
         print(f"\nResults saved to {output_csv}")
     else:
