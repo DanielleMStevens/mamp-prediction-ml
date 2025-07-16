@@ -4,7 +4,7 @@
 
 This repository contains the code for the paper: </br>
 mamp-ml: A deep learning approach to epitope immunogenicity in plants. </br>
-Stevens et al. 2025. _BioRxiv_. DOI: xxx <> </br>
+Stevens et al. 2025. _BioRxiv_. DOI: [10.1101/2025.07.11.664399](https://doi.org/10.1101/2025.07.11.664399) </br>
 
 To follow the meta-analysis as well building the model for immunogenicity prediciton in plants, see the following markdown file [mamp_ml_building_and_validation](./mamp_ml_building_and_validation.md).
 
