@@ -341,40 +341,20 @@ total2$model <- "kshot_32"
 total_all_models <- rbind(total_all_models, total2)
 rm(total2)
 
-
 # Calculate accuracy percentages for each model and group
 accuracy_by_group <- total_all_models %>%
   group_by(model, group_type) %>%
-  summarize(
-    accuracy = sum(total[prediction_accuracy == "Correct"]) / sum(total) * 100,
-    .groups = 'drop'
-  ) %>%
-  pivot_wider(
-    names_from = model,
-    values_from = accuracy
-  ) %>%
-  mutate(
-    percent_improvement_128 = kshot_128 - `zero-shot`,
-    percent_improvement_32 = kshot_32 - `zero-shot`
-  ) %>%
+  summarize(accuracy = sum(total[prediction_accuracy == "Correct"]) / sum(total) * 100, .groups = 'drop') %>%
+  pivot_wider(names_from = model, values_from = accuracy) %>%
+  mutate(percent_improvement_128 = kshot_128 - `zero-shot`,percent_improvement_32 = kshot_32 - `zero-shot`) %>%
   select(group_type, `zero-shot`, kshot_128, kshot_32, percent_improvement_128, percent_improvement_32)
 
 # Create a long format dataframe for plotting improvements
 improvement_data <- accuracy_by_group %>%
   select(group_type, percent_improvement_128, percent_improvement_32) %>%
-  pivot_longer(
-    cols = c(percent_improvement_128, percent_improvement_32),
-    names_to = "model",
-    values_to = "improvement"
-  ) %>%
-  mutate(
-    model = case_when(
-      model == "percent_improvement_128" ~ "128-shot",
-      model == "percent_improvement_32" ~ "32-shot"
-    )
-  )
+  pivot_longer(cols = c(percent_improvement_128, percent_improvement_32),names_to = "model",values_to = "improvement") %>%
+  mutate(model = case_when(model == "percent_improvement_128" ~ "128-shot",model == "percent_improvement_32" ~ "32-shot"))
   
-
 improvement_data$model <- factor(improvement_data$model, levels = c("32-shot", "128-shot"))
 improvement_data$group_type <- factor(improvement_data$group_type, levels = c("Orthologs", "LRR_Swaps", "AA_Sub"))
 
