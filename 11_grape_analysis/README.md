@@ -9,11 +9,14 @@ seqkit seq -m 250 -g VITVvi_vCabSauv08_v1.fasta > VITVvi_vCabSauv08_v1_filtered.
 
 ```
 pip3 install pybiolib
-srun --pty -A ac_kvkallow -p savio2_1080ti --qos=savio_normal -t 4:00:00 --gres=gpu:1 --job-name=mamp_prediciton_ml --mail-user=dmstev@berkeley.edu --mail-type=ALL bash -I
+srun --pty -A ac_kvkallow -p savio2_1080ti --qos=savio_normal -t 12:00:00 --gres=gpu:3 --job-name=mamp_prediciton_ml --mail-user=dmstev@berkeley.edu --mail-type=ALL bash -I
+
+srun --pty -A ac_kvkallow -p savio4_gpu --qos=a5k_gpu4_normal -t 10:30:00 --gres=gpu:A5000:1 --cpus-per-task 4 --job-name=mamp_prediciton_ml --mail-user=dmstev@berkeley.edu --mail-type=ALL bash -I
 
 
-# Split fasta into chunks of 1000 sequences
-seqkit split2 -s 1000 VITVvi_vCabSauv08_v1_filtered.fasta -O split_fastas/
+
+# Split fasta into chunks of 250 sequences
+seqkit split2 -s 250 VITVvi_vCabSauv08_v1_filtered.fasta -O split_fastas/
 
 # Create output directory for DeepTMHMM results
 mkdir deeptmhmm_results
@@ -21,8 +24,13 @@ mkdir deeptmhmm_results
 # Run DeepTMHMM on each chunk
 for file in split_fastas/*.fasta; do
   base=$(basename "$file" .fasta)
-  biolib run DTU/DeepTMHMM --fasta "$file" --outdir "deeptmhmm_results/${base}"
+  biolib run DTU/DeepTMHMM --fasta "$file" --verbose
+  part_num=$(echo $base | grep -o 'part_[0-9]*' | grep -o '[0-9]*')
+  mv biolib_results "biolib_results_${part_num}"
 done
+
+biolib run --local 'DTU/DeepTMHMM:1.0.24' --fasta VITVvi_vCabSauv08_v1_filtered.part_115.fasta
+
 
 # Combine all results into one file
 cat deeptmhmm_results/*/predictions.txt > combined_deeptmhmm_predictions.txt
