@@ -40,8 +40,10 @@ if (length(missing_genes) > 0) {
   if (length(missing_genes) > 10) cat("... and", length(missing_genes) - 10, "more\n")
 }
 
-# Extract sequences for found genes
+# Extract sequences and check for duplicates
 output_lines <- c()
+unique_seqs <- list()  # Store unique sequences
+
 for (i in seq_along(header_lines)) {
   header <- fasta_lines[header_lines[i]]
   gene_name <- sub(" .*", "", sub("^>", "", header))
@@ -50,10 +52,17 @@ for (i in seq_along(header_lines)) {
     # Get sequence lines
     start <- header_lines[i]
     end <- ifelse(i < length(header_lines), header_lines[i+1] - 1, length(fasta_lines))
-    output_lines <- c(output_lines, fasta_lines[start:end])
+    seq_lines <- fasta_lines[(start+1):end]
+    seq <- paste(seq_lines, collapse="")  # Full sequence
+    
+    # Only add if sequence is unique
+    if (!seq %in% names(unique_seqs)) {
+      unique_seqs[[seq]] <- header
+      output_lines <- c(output_lines, header, seq_lines)
+    }
   }
 }
 
 # Write output
 writeLines(output_lines, "vitus_RLK_defense_clade_sequences.fasta")
-cat("\nDone! Wrote", length(grep("^>", output_lines)), "sequences to output file\n")
+cat("\nDone! Wrote", length(grep("^>", output_lines)), "sequences (after removing duplicates) to output file\n")

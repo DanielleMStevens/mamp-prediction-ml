@@ -119,3 +119,16 @@ mafft --auto all_kinase_hits_for_tree.fasta > all_kinase_hits_for_tree_alignment
 FastTree all_kinase_hits_for_tree_alignment > all_kinase_hits.tre
 ```
 
+We can quickly visualize the tree in itol and see which clade has most of the likely defense-associated receptors based on the evolution of the kinase domain. We will then extract those receptors.
+
+```
+# run in the 11_grape_analysis folder
+Rscript 02_extract_defense_RLKs.R 
+
+Total lines in clade file: 199 
+Unique genes in clade file: 176 
+Duplicates removed: 23 
+Genes found in FASTA: 176 
+Genes NOT found in FASTA: 0 
+```
+
