@@ -1,13 +1,16 @@
-# NCBI Datasets
+# Analysing grape genome to see if we can use mamp-ml to find other convergently evolved csp22 repceptor
 
-## remove small proteins (less than 250 in length)
-conda install -c bioconda seqkit
-seqkit seq -m 250 -g VITVvi_vCabSauv08_v1.fasta > VITVvi_vCabSauv08_v1_filtered.fasta
-
-## download tmhmm 
+Back in 2020, it was reported 
 
 
 ```
+## remove small proteins (less than 250 in length)
+conda install -c bioconda seqkit
+seqkit seq -m 250 -g VITVvi_vCabSauv08_v1.fasta > VITVvi_vCabSauv08_v1_filtered.fasta
+``
+
+```
+## download tmhmm 
 pip3 install pybiolib
 srun --pty -A ac_kvkallow -p savio2_1080ti --qos=savio_normal -t 12:00:00 --gres=gpu:3 --job-name=mamp_prediciton_ml --mail-user=dmstev@berkeley.edu --mail-type=ALL bash -I
 
