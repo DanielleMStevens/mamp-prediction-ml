@@ -1,0 +1,13 @@
+#                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+#
+# Program:         hmmsearch
+# Version:         3.4 (Aug 2023)
+# Pipeline mode:   SEARCH
+# Query file:      pfam_models/PF18805.hmm
+# Target file:     filtered_tm_sp_proteins.fasta
+# Option settings: hmmsearch -A LRR9_alignment.stk --tblout LRR9_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF18805.hmm filtered_tm_sp_proteins.fasta 
+# Current dir:     /Users/briansu/workspace/mamp_prediction_ml/11_grape_analysis
+# Date:            Wed Jul 23 14:38:04 2025
+# [ok]

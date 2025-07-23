@@ -32,9 +32,6 @@ for file in split_fastas/*.fasta; do
   mv biolib_results "biolib_results_${part_num}"
 done
 
-#biolib run --local 'DTU/DeepTMHMM:1.0.24' --fasta VITVvi_vCabSauv08_v1_filtered.part_115.fasta
-
-
 # Combine all results into one file
 cat deeptmhmm_results/*_predicted_topologies.3line > combined_deeptmhmm_predictions.txt
 grep -o '>' combined_deeptmhmm_predictions.txt | wc -l
@@ -43,19 +40,6 @@ grep -o '>' combined_deeptmhmm_predictions.txt | wc -l
 We will then filter out any proteins with the 'glob' tag. These proteins are unlikely to go to the membrane.
 ```
 Rscript 11_grape_analysis/00_parse_deeptmhmm_hits.R 
-```
-
-# Search all the protein fasta files for the kinase doamin
-download hmm model for kinase domain: https://www.ebi.ac.uk/interpro/entry/pfam/PF00069/logo/
-```
-conda install -c bioconda hmmer
-hmmsearch -A kinase_alignment.stk --tblout kinase_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 PF00069.hmm VITVvi_vCabSauv08_v1_filtered.fasta 
-
-# Convert the output from hmmersearch into a fasta file
-esl-reformat fasta kinase_alignment.stk > reformat_kinase_hits.fasta
-
-# run script to extract just 
-Rscript 11_grape_analysis/00_parse_kinase_hits.R   
 
 Total entries processed: 57036 
 Entries kept (TM/SP/SP+TM): 14215 
@@ -63,6 +47,72 @@ Entries excluded (GLOB): 42821
 Output written to: 11_grape_analysis/filtered_tm_sp_proteins.fasta 
 ```
 
+We next are going to use HMMER to filter for LRR and kinase domain hits. The former will allow us to filter for LRR-PRR proteins and the latter will help us seperate RLPs and RLKs. We can download the hmm profiles from pfam (https://www.ebi.ac.uk/interpro/entry/pfam/).
+
+First we will download several pfam models for LRRs (PF07725.hmm, PF12799.hmm, PF13855.hmm, PF18831.hmm, PF01462.hmm, PF07723.hmm, PF08263.hmm, PF13516.hmm, PF18805.hmm, PF18837.hmm). Then download the kinase domain file (PF00069 and PF07714).
+
+```
+conda install -c bioconda hmmer
+
+# run for all LRR hmm profiles
+hmmsearch -A LRR1_alignment.stk --tblout LRR1_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF07725.hmm filtered_tm_sp_proteins.fasta 
+hmmsearch -A LRR2_alignment.stk --tblout LRR2_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF12799.hmm filtered_tm_sp_proteins.fasta 
+hmmsearch -A LRR3_alignment.stk --tblout LRR3_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF13855.hmm filtered_tm_sp_proteins.fasta 
+hmmsearch -A LRR4_alignment.stk --tblout LRR4_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF18831.hmm filtered_tm_sp_proteins.fasta 
+hmmsearch -A LRR5_alignment.stk --tblout LRR5_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF01462.hmm filtered_tm_sp_proteins.fasta 
+hmmsearch -A LRR6_alignment.stk --tblout LRR6_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF07723.hmm filtered_tm_sp_proteins.fasta
+hmmsearch -A LRR7_alignment.stk --tblout LRR7_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF08263.hmm filtered_tm_sp_proteins.fasta 
+hmmsearch -A LRR8_alignment.stk --tblout LRR8_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF13516.hmm filtered_tm_sp_proteins.fasta 
+hmmsearch -A LRR9_alignment.stk --tblout LRR9_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF18805.hmm filtered_tm_sp_proteins.fasta 
+hmmsearch -A LRR10_alignment.stk --tblout LRR10_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF18837.hmm filtered_tm_sp_proteins.fasta 
+
+# Convert the output from hmmersearch into a fasta files
+esl-reformat fasta LRR1_alignment.stk > LRR1_alignment.fasta
+esl-reformat fasta LRR2_alignment.stk > LRR2_alignment.fasta
+esl-reformat fasta LRR3_alignment.stk > LRR3_alignment.fasta
+esl-reformat fasta LRR6_alignment.stk > LRR6_alignment.fasta
+esl-reformat fasta LRR7_alignment.stk > LRR7_alignment.fasta
+esl-reformat fasta LRR8_alignment.stk > LRR8_alignment.fasta
+
+# combine all lrr hits fasta into one file
+cat lrr_hits/*_alignment.fasta > combine_lrr_hmmer_hits.fasta
+
+# edit 01_parse_hmmer_hits file paths
+# Define file paths
+kinase_hits_file <- "11_grape_analysis/combine_lrr_hmmer_hits.fasta"
+full_length_file <- "11_grape_analysis/filtered_tm_sp_proteins.fasta"
+output_file <- "11_grape_analysis/full_length_lrr_hits.fasta"
+
+# run script to extract just 
+Rscript 11_grape_analysis/01_parse_hmmer_hits.R
+grep -o '>' full_length_lrr_hits.fasta | wc -l
+1089
+```
+We can then finally seperate our hits for RLPs versus RLKs (have kinase domain). For RLKs, some of the hits will likely be developmental receptors. So we can make a tree and try to filter for primarily receptors that are near FLS2 (XII) clade.
+
+```
+hmmsearch -A kinase_alignment.stk --tblout kinase_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 PF00069.hmm VITVvi_vCabSauv08_v1_filtered.fasta 
+hmmsearch -A kinase_alignment.stk --tblout kinase_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 PF00069.hmm VITVvi_vCabSauv08_v1_filtered.fasta 
+
+# Convert the output from hmmersearch into a fasta file
+esl-reformat fasta kinase_alignment.stk > reformat_kinase_hits.fasta
+
+# combine all lrr hits fasta into one file
+cat lrr_hits/*_alignment.fasta > combine_lrr_hmmer_hits.fasta
+
+# edit 01_parse_hmmer_hits file paths
+# Define file paths
+kinase_hits_file <- "11_grape_analysis/combine_lrr_hmmer_hits.fasta"
+full_length_file <- "11_grape_analysis/filtered_tm_sp_proteins.fasta"
+output_file <- "11_grape_analysis/full_length_lrr_hits.fasta"
+
+# run script to extract just 
+Rscript 11_grape_analysis/01_parse_hmmer_hits.R
+
+```
+
+
+Old scripts. Ignore for now.
 ```
 mamba create --name deepsig
 mamba activate deepsig 
