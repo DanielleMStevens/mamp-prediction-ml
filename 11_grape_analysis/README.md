@@ -91,41 +91,31 @@ grep -o '>' full_length_lrr_hits.fasta | wc -l
 We can then finally seperate our hits for RLPs versus RLKs (have kinase domain). For RLKs, some of the hits will likely be developmental receptors. So we can make a tree and try to filter for primarily receptors that are near FLS2 (XII) clade.
 
 ```
-hmmsearch -A kinase_alignment.stk --tblout kinase_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 PF00069.hmm VITVvi_vCabSauv08_v1_filtered.fasta 
-hmmsearch -A kinase_alignment.stk --tblout kinase_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 PF00069.hmm VITVvi_vCabSauv08_v1_filtered.fasta 
+hmmsearch -A kinase_alignment.stk --tblout kinase_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF00069.hmm full_length_lrr_hits.fasta 
 
 # Convert the output from hmmersearch into a fasta file
 esl-reformat fasta kinase_alignment.stk > reformat_kinase_hits.fasta
 
-# combine all lrr hits fasta into one file
-cat lrr_hits/*_alignment.fasta > combine_lrr_hmmer_hits.fasta
-
 # edit 01_parse_hmmer_hits file paths
 # Define file paths
-kinase_hits_file <- "11_grape_analysis/combine_lrr_hmmer_hits.fasta"
+lrr_hits_file <- "11_grape_analysis/reformat_kinase_hits.fasta"
 full_length_file <- "11_grape_analysis/filtered_tm_sp_proteins.fasta"
-output_file <- "11_grape_analysis/full_length_lrr_hits.fasta"
+output_file <- "11_grape_analysis/full_length_kinase_hits.fasta"
 
 # run script to extract just 
 Rscript 11_grape_analysis/01_parse_hmmer_hits.R
-
+grep -o '>' full_length_kinase_hits.fasta | wc -l
+690
 ```
 
-
-Old scripts. Ignore for now.
+We will then rerun the same script for a subset of receptors and make a quick tree to see the receptor distribution.
 ```
-mamba create --name deepsig
-mamba activate deepsig 
-mamba install -c conda-forge tensorflow 
-mamba install -c bioconda -c anaconda deepsig 
- python --version   
- python3 -m pip install 'tensorflow[and-cuda]'  
+hmmsearch -A kinase_alignment_references.stk --tblout kinase_domains_references.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF00069.hmm receptors_for_tree_building.fasta 
+esl-reformat fasta kinase_alignment_references.stk > reformat_kinase_reference_hits.fasta
 
+cat reformat_kinase_reference_hits.fasta reformat_kinase_hits.fasta > all_kinase_hits_for_tree.fasta
 
- module load ml/tensorflow/2.14.0-py3.9.0
-mamba create --name deepsig -c bioconda -c anaconda deepsig  
-mamba create --name deepsig 
+mafft --auto all_kinase_hits_for_tree.fasta > all_kinase_hits_for_tree_alignment
+FastTree all_kinase_hits_for_tree_alignment > all_kinase_hits.tre
+```
 
-conda install -c bioconda phobius
-mamba create --name deepsig -c bioconda -c anaconda deepsig
- ```

@@ -7,9 +7,9 @@
 library(Biostrings)
 
 # Input and output files for LRR domain analysis
-lrr_hits_file <- "11_grape_analysis/combine_lrr_hmmer_hits.fasta"
+lrr_hits_file <- "11_grape_analysis/reformat_kinase_hits.fasta"
 full_length_file <- "11_grape_analysis/filtered_tm_sp_proteins.fasta"
-output_file <- "11_grape_analysis/full_length_lrr_hits.fasta"
+output_file <- "11_grape_analysis/full_length_kinase_hits.fasta"
 
 # Function to extract gene ID from header
 extract_gene_id <- function(header) {

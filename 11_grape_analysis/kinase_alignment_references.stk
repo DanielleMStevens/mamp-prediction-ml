@@ -1,0 +1,58 @@
+# STOCKHOLM 1.0
+#=GF ID Pkinase
+#=GF AC PF00069.31
+#=GF DE Protein kinase domain
+#=GF AU hmmsearch (HMMER 3.4)
+
+#=GS Solanum/851-1120     DE [subseq from] lycopersicum|Solyc04g009640|FLS3
+#=GS Nicotiana/430-706    DE [subseq from] benthamiana|Niben101Scf03455g01008|FLS2
+#=GS Quercus/867-1147     DE [subseq from] variabilis|UTN00789|FLS2
+#=GS Vitis/870-1153       DE [subseq from] riparia|PQ283347|FLS2
+#=GS Arabidopsis/872-1152 DE [subseq from] thaliana|AT5G46330|FLS2
+#=GS Glycine/871-1154     DE [subseq from] max|Glyma_08g083300|FLS2
+#=GS Solanum/721-975      DE [subseq from] lycopersicum|XP_069151269|CORE
+#=GS Nicotiana/728-1000   DE [subseq from] benthamiana|Niben101Scf02323g01010|CORE
+#=GS Arabidopsis/714-934  DE [subseq from] thaliana|At5g20480|EFR
+
+Solanum/851-1120             --ESNLIGVGGSGSVYKAT-LASGIVVAIKVLDLENEEVCK--RFDTECEVMRNVRHKNLVSVITT.CSS.....EHIRA.FVLQYMPNGSLDNWLY..........kEDRH..LKLR......QRVTIMLDVAMAIEYLHHGNdtpIVHCDLKPANVLLDEDMVARVGDFGISKILAVSKSm......aHTKTLGTLGY
+#=GR Solanum/851-1120     PP ..6789*************.79*************999877..5**********************.***.....*****.*************998..........46667..****......*****************877788**************9999************999998......88999******
+Nicotiana/430-706            ---ENIIGASSLSTVYKGR-LEDGKIVAVKKLNHRFAAEAD-KCFDREVKTLSQLRHKNLVKVLGY.AWE.....SKKLKaIVLEYMEKGNLDNIIY...........DQMVddWTLS......NRIDILVSVASGLSYLHSGYdfpIVHCDLKPSNILLDENMEAHVSDFGTARMLGIHLQdgs.sissASAFEGTIGY
+#=GR Nicotiana/430-706    PP ...6789************.7**************999877.69******************9997.666.....555544***************8...........7665556667......7789*************876677****************************9988777788.8999**********
+Quercus/867-1147             --EDNIIGASSLSTVYKGR-LEDGQIIAVKKLNLHQFSEEANKCFDREINTLKQLRHRNLVKVLGY.AWE.....SGKLKaLVLEYMENGNLDSIIHdp.......evDQSR..WTLS......ERIKVFISIATGLDYLHSGYdfpIVHCDMKPSNILLDEDWEAHVSDFGTARMLGVHLQdgr.slsaTSAFEGTIGY
+#=GR Quercus/867-1147     PP ..6789*************.7******************************************998.766.....666544****************98.......887788..8888......999**************876677****************************9988877888.999999********
+Vitis/870-1153               -SEENIIGSSSLSTVYKGR-MEDGKIVAVKKLNLQQFSLESDKCFNREVKTLSQLRHRNLVKVLGY.AWE.....SGKIKaLVLEYMEKGNLDSIIH...........EPGV..DPSRwt..llERINVCISIARGLVYLHSGYdfpIVHCDLKPSNILLDGDWEAHVSDFGTARILGVHLQdgs.svcsSSAFEGTIGY
+#=GR Vitis/870-1153       PP .57889*************.7******************************************998.766.....666544****************...........6555..333345..55899**************876677**************9999**********9988777788.8999999*******
+Arabidopsis/872-1152         --SANIIGSSSLSTVYKGQ-LEDGTVIAVKVLNLKEFSAESDKWFYTEAKTLSQLKHRNLVKILGFaWES.....GKTKA.LVLPFMENGNLEDTIH...........GSAApiGSLL......EKIDLCVHIASGIDYLHSGYgfpIVHCDLKPANILLDSDRVAHVSDFGTARILGFREDgst..tasTSAFEGTIGY
+#=GR Arabidopsis/872-1152 PP ..5678************9.7*******************************************973566.....88889.***************9...........4443214445......67799************876688*****************************988887888..999999*******
+Glycine/871-1154             ---DSIIGSSSLSTVYKGQ-MEDGQVVAIKRLNLQQFSANTDKIFKREANTLSQMRHRNLVKVLGY.AWE....sGKMKA.LVLEYMENGNLDSIIHgk.......gvDQSV..TSRWt...lsERVRVFISIASALDYLHSGYdfpIVHCDLKPSNILLDREWEAHVSDFGTARILGLHEQags.tlssSAALQGTVGY
+#=GR Glycine/871-1154     PP ...678************9.7*****************************************9987.655....155567.****************77.......763333..33334...447778999**********876677**************99**************99999999.998888999*****
+Solanum/721-975              ---SNLLGMGAFGSVYKGISEHDGTVFAVKVLDLSHHAASR--SFLAECEVLKNIRHRNLVKVLSA.CSGidyegNEFKA.IVYEYMDKGNLQDWLHftpqensepqeE---..---HkklgfiQRLNIAIDVACALDYLHNDCqppIIHRDLKPSNILLDENMTAHVGDFGLARFVPPEIPnssensksLTGVGGTIGY
+#=GR Solanum/721-975      PP ...678*****************************999877..5**********************.9988888788889.****************998754444443........15555558899*************888899**************9999**********9987766667788889999******
+Nicotiana/728-1000           -----LLAMGGFGSVYKGISEDDGTVFAVKVLDLSHHAASR--SFLAECEILKNIRHRNLVKVLSA.CSSidyegNEFKA.IVYEYMDNGSLEEWLHfrld...qeshEHKK..LGFL......QRLNIAIDVACALDYLHNDCqppIIHRDLKPSNILLDENMTGHVGDFGLARFIPPAIHnssakqksSTGVGGTIGY
+#=GR Nicotiana/728-1000   PP .....5667**************************999877..5**********************.**99999888889.***************98886...55555555..5555......8899*************888899**************9999**********998776667778887778889****
+Arabidopsis/714-934          --STNLIGSGNFGNVFKGLLGPENKLVAVKVLNLLKHGATK--SFMAECETFKGIRHRNLVKLITV.CSSldsegNDFRA.LVYEFMPKGSLDMWLQledl..ervndHSRS..LTPA......EKLNIAIDVASALEYLHVHChdpVAHCDIKPSNILLDDDLTAHVSDFGLAQLLYKYDResflnqfsSAGVRGTIGY
+#=GR Arabidopsis/714-934  PP ..5678*****************************999876..5**********************.***9999999***.**********9999998888..889877778..****......*****************877788**************999***********99987777999987777789*****
+#=GC PP_cons                 .567789*************8**************999988*98********************99.887.....77777.***************9...........5566..6666......8899*************877...**************999***********9988877........8999******
+#=GC RF                      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.xxx.....xxxxx.xxxxxxxxxxxxxxxx...........xxxx..xxxx......xxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx........xxxxxxxxxx
+
+Solanum/851-1120             IAPEYGSEGIVSTRGDVYSYGIMLMEVLAKRRPTGEEIFNE--NLGLRE.........--WITRAFprtmmevvdadmfHDGEK------Itse.......seicILSMIELALDCTKATPESRITMKDVVK----
+#=GR Solanum/851-1120     PP *****999999******************999999443333..222333...........333332211233335544422222......1444.......33357899*******************9986....
+Nicotiana/430-706            LAPEFAYMRKVTTKVDVFSFGVIVMEIITKRRPTG-FTGADELPMTLHQ.........IVQNAVANginel..vqivdpNLASYISKKQDV..............VEGLLKLALSCTSPDPEDRPDMEQVLS----
+#=GR Nicotiana/430-706    PP *********************************76.4444445555555.........3322222233344..444466666667777777..............9***********************997....
+Quercus/867-1147             LAPEFAYMTKVTTKVDIFSFGIIVMEFLTKRRPTGLIEEDG-LPISLRQ.........LVEKALANge........ndlHRIVDP-----Mlalnis..edheelLKELLKIALLCTQPNPEDRPDINEVL-----
+#=GR Quercus/867-1147     PP **********************************9777766.6677777.........4433333344........444333333.....1344443..33322233344444445567888888888876.....
+Vitis/870-1153               LAPELAYMRELTTKVDVFSFGIIVMEFLTKRRPTGLTAED-GMPLTLRE.........MVDMALASefkrl...lqmidP----------Flassat..ekagevLEEVLKLALSCTCTEPEDRPDMNEVLSS---
+#=GR Vitis/870-1153       PP *********************************9955554.47777777.........6666655533343...444440..........2444555..555555************************9975...
+Arabidopsis/872-1152         LAPEFAYMRKVTTKADVFSFGIIMMELMTKQRPTSLND-EDSQDMTLRQ.........LV--EKSIgng......rkgmVRVLD------MelgdsivslkqeeaIEDFLKLCLFCTSSRPEDRPDMNEILTH---
+#=GR Arabidopsis/872-1152 PP ***********************************554.4557777777.........22..2221233......333322223......134444477777333455555555666899***********99...
+Glycine/871-1154             MAPEFAYMRKVTTEADVFSFGIIVMEFLTKRRPTGLSEEDG-LPITLHEvvtkalangIEQLVDIVd..........plLTWNVTKNHDEV..............LAELFKLSLCCTLPDPEHRPNTNEVLS----
+#=GR Glycine/871-1154     PP *********************************98666654.2233333111233223444444444..........43223333444445..............666666777788899****99999986....
+Solanum/721-975              TPPELGMGSDASTYGDGYSFGILLLEMFTGRKPTDEMFKDNLNLHNYAN.........AALPDRVMhitdpi.llqerdE-----------..............-------------------------------
+#=GR Solanum/721-975      PP *********************************9988888777777777.........44444444443555.5544444........................................................
+Nicotiana/728-1000           TAPELGMGSDASIYGDVYSFGIMLLETFTGRRPTDEMFKDSLNLRNYAK.........ASLPDRVMhitdpv.llqerdEVGTDYKLVNNR..............SSSATDLFQSFL-------------------
+#=GR Nicotiana/728-1000   PP **********************************988888877777777.........55544555555666.776666666666777777..............999999988876...................
+Arabidopsis/714-934          AAPEYGMGGQPSIQGDVYSFGILLLEMFSGKKPTDES------------.........--------.............------------..............-------------------------------
+#=GR Arabidopsis/714-934  PP ******99999**********************9843...................................................................................................
+#=GC PP_cons                 *********************************9966665556566666.........44444333.............344445666663..............777888888888999****999999877...
+#=GC RF                      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.........xxxxxxxx.............xxxxxxxxxxxx..............xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//

@@ -1,0 +1,22 @@
+#                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+Solanum              -          Pkinase              PF00069.31   1.3e-49  158.2   0.0   1.9e-49  157.6   0.0   1.2   1   0   0   1   1   1   1 lycopersicum|Solyc04g009640|FLS3
+Nicotiana            -          Pkinase              PF00069.31   7.8e-49  155.6   0.0   1.1e-48  155.1   0.0   1.2   1   0   0   1   1   1   1 benthamiana|Niben101Scf03455g01008|FLS2
+Quercus              -          Pkinase              PF00069.31   3.2e-47  150.3   0.0   4.5e-47  149.8   0.0   1.2   1   0   0   1   1   1   1 variabilis|UTN00789|FLS2
+Vitis                -          Pkinase              PF00069.31   3.8e-47  150.1   0.0   5.1e-47  149.6   0.0   1.1   1   0   0   1   1   1   1 riparia|PQ283347|FLS2
+Arabidopsis          -          Pkinase              PF00069.31   8.8e-46  145.6   0.0   1.3e-45  145.0   0.0   1.2   1   0   0   1   1   1   1 thaliana|AT5G46330|FLS2
+Glycine              -          Pkinase              PF00069.31   2.5e-45  144.1   0.0   3.7e-45  143.5   0.0   1.2   1   0   0   1   1   1   1 max|Glyma_08g083300|FLS2
+Solanum              -          Pkinase              PF00069.31   6.7e-44  139.4   0.0     1e-43  138.8   0.0   1.2   1   0   0   1   1   1   1 lycopersicum|XP_069151269|CORE
+Nicotiana            -          Pkinase              PF00069.31   1.6e-43  138.2   0.0   2.2e-43  137.7   0.0   1.2   1   0   0   1   1   1   1 benthamiana|Niben101Scf02323g01010|CORE
+Arabidopsis          -          Pkinase              PF00069.31   2.5e-41  131.0   0.0   3.4e-41  130.5   0.0   1.2   1   0   0   1   1   1   1 thaliana|At5g20480|EFR
+#
+# Program:         hmmsearch
+# Version:         3.4 (Aug 2023)
+# Pipeline mode:   SEARCH
+# Query file:      pfam_models/PF00069.hmm
+# Target file:     receptors_for_tree_building.fasta
+# Option settings: hmmsearch -A kinase_alignment_references.stk --tblout kinase_domains_references.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF00069.hmm receptors_for_tree_building.fasta 
+# Current dir:     /Users/briansu/workspace/mamp_prediction_ml/11_grape_analysis
+# Date:            Wed Jul 23 15:23:51 2025
+# [ok]
