@@ -1,552 +1,444 @@
-2025-07-29 15:47:24,276 Running colabfold 1.5.5 (bfc0e83d3b87730f6903f6c385b08c426d1e791e)
-2025-07-29 15:47:36,328 Running on GPU
-2025-07-29 15:48:02,142 Found 5 citations for tools or databases
-2025-07-29 15:48:02,143 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_009.ver1.0.g160060.t01___SP_TM (already done)
-2025-07-29 15:48:02,144 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g427230.t01___SP_TM (already done)
-2025-07-29 15:48:02,144 Skipping VITVvi_vCabSauv08_v1.1_Primary000005F.ver1.0.g301520.t01___SP_TM (already done)
-2025-07-29 15:48:02,145 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_009.ver1.0.g160060.t02___SP_TM (already done)
-2025-07-29 15:48:02,145 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g427230.t02___SP_TM (already done)
-2025-07-29 15:48:02,145 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151550.t01___TM (already done)
-2025-07-29 15:48:02,146 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_016.ver1.0.g161440.t01___TM (already done)
-2025-07-29 15:48:02,147 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t05___SP_TM (already done)
-2025-07-29 15:48:02,147 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t05___SP_TM (already done)
-2025-07-29 15:48:02,148 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151670.t01___TM (already done)
-2025-07-29 15:48:02,148 Skipping VITVvi_vCabSauv08_v1.1_Primary000000F.ver1.0.g256070.t02___SP_TM (already done)
-2025-07-29 15:48:02,149 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000028F_013.ver1.0.g124480.t02___SP_TM (already done)
-2025-07-29 15:48:02,149 Skipping VITVvi_vCabSauv08_v1.1_Primary000028F.ver1.0.g386150.t01___SP_TM (already done)
-2025-07-29 15:48:02,150 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t06___SP_TM (already done)
-2025-07-29 15:48:02,151 Skipping VITVvi_vCabSauv08_v1.1_Primary000083F.ver1.0.g466110.t02___TM (already done)
-2025-07-29 15:48:02,151 Skipping VITVvi_vCabSauv08_v1.1_Primary000163F.ver1.0.g543490.t02___TM (already done)
-2025-07-29 15:48:02,151 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000002F_098.ver1.0.g030310.t03___SP_TM (already done)
-2025-07-29 15:48:02,152 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t06___SP_TM (already done)
-2025-07-29 15:48:02,152 Skipping VITVvi_vCabSauv08_v1.1_Primary000083F.ver1.0.g466110.t01___TM (already done)
-2025-07-29 15:48:02,152 Skipping VITVvi_vCabSauv08_v1.1_Primary000163F.ver1.0.g543490.t01___TM (already done)
-2025-07-29 15:48:02,153 Skipping VITVvi_vCabSauv08_v1.1_Primary000052F.ver1.0.g428420.t01___TM (already done)
-2025-07-29 15:48:02,153 Skipping VITVvi_vCabSauv08_v1.1_Primary000026F.ver1.0.g379190.t02___SP_TM (already done)
-2025-07-29 15:48:02,154 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t06___SP_TM (already done)
-2025-07-29 15:48:02,154 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t05___SP_TM (already done)
-2025-07-29 15:48:02,155 Skipping VITVvi_vCabSauv08_v1.1_Primary000014F.ver1.0.g339150.t02___SP_TM (already done)
-2025-07-29 15:48:02,155 Skipping VITVvi_vCabSauv08_v1.1_Primary000044F.ver1.0.g416580.t01___TM (already done)
-2025-07-29 15:48:02,156 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t01___TM (already done)
-2025-07-29 15:48:02,156 Skipping VITVvi_vCabSauv08_v1.1_Primary000014F.ver1.0.g339150.t01___TM (already done)
-2025-07-29 15:48:02,157 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t01___TM (already done)
-2025-07-29 15:48:02,179 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059880.t02___TM (already done)
-2025-07-29 15:48:02,179 Skipping VITVvi_vCabSauv08_v1.1_Primary000578F.ver1.0.g617750.t01___TM (already done)
-2025-07-29 15:48:02,180 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000085F_008.ver1.0.g190190.t06___SP_TM (already done)
-2025-07-29 15:48:02,180 Skipping VITVvi_vCabSauv08_v1.1_Primary000085F.ver1.0.g470860.t06___SP_TM (already done)
-2025-07-29 15:48:02,181 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151710.t01___SP_TM (already done)
-2025-07-29 15:48:02,181 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000002F_098.ver1.0.g030310.t01___SP_TM (already done)
-2025-07-29 15:48:02,181 Skipping VITVvi_vCabSauv08_v1.1_Primary000578F.ver1.0.g617750.t02___TM (already done)
-2025-07-29 15:48:02,182 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000242F_002.ver1.0.g244220.t03___SP_TM (already done)
-2025-07-29 15:48:02,182 Skipping VITVvi_vCabSauv08_v1.1_Primary000242F.ver1.0.g577020.t03___SP_TM (already done)
-2025-07-29 15:48:02,183 Skipping VITVvi_vCabSauv08_v1.1_Primary000085F.ver1.0.g470860.t07___SP_TM (already done)
-2025-07-29 15:48:02,183 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000084F_001.ver1.0.g188110.t02___SP_TM (already done)
-2025-07-29 15:48:02,184 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059220.t01___SP_TM (already done)
-2025-07-29 15:48:02,184 Skipping VITVvi_vCabSauv08_v1.1_Primary000019F.ver1.0.g352910.t01___SP_TM (already done)
-2025-07-29 15:48:02,185 Skipping VITVvi_vCabSauv08_v1.1_Primary000115F.ver1.0.g504970.t01___SP_TM (already done)
-2025-07-29 15:48:02,185 Skipping VITVvi_vCabSauv08_v1.1_Primary000115F.ver1.0.g505260.t01___SP_TM (already done)
-2025-07-29 15:48:02,185 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t04___TM (already done)
-2025-07-29 15:48:02,186 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t03___TM (already done)
-2025-07-29 15:48:02,187 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t09___SP_TM (already done)
-2025-07-29 15:48:02,188 Skipping VITVvi_vCabSauv08_v1.1_Primary000057F.ver1.0.g434250.t01___SP_TM (already done)
-2025-07-29 15:48:02,188 Skipping VITVvi_vCabSauv08_v1.1_Primary000075F.ver1.0.g457140.t01___SP_TM (already done)
-2025-07-29 15:48:02,189 Skipping VITVvi_vCabSauv08_v1.1_Primary000002F.ver1.0.g279760.t01___SP_TM (already done)
-2025-07-29 15:48:02,189 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000002F_049.ver1.0.g027160.t01___SP_TM (already done)
-2025-07-29 15:48:02,189 Skipping VITVvi_vCabSauv08_v1.1_Primary000084F.ver1.0.g468390.t01___SP_TM (already done)
-2025-07-29 15:48:02,190 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t03___SP_TM (already done)
-2025-07-29 15:48:02,190 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t02___SP_TM (already done)
-2025-07-29 15:48:02,190 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t02___SP_TM (already done)
-2025-07-29 15:48:02,191 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t04___SP_TM (already done)
-2025-07-29 15:48:02,191 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_010.ver1.0.g161060.t01___TM (already done)
-2025-07-29 15:48:02,192 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000084F_001.ver1.0.g188110.t01___SP_TM (already done)
-2025-07-29 15:48:02,192 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000028F_013.ver1.0.g124480.t01___SP_TM (already done)
-2025-07-29 15:48:02,192 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000085F_008.ver1.0.g190190.t04___SP_TM (already done)
-2025-07-29 15:48:02,193 Skipping VITVvi_vCabSauv08_v1.1_Primary000028F.ver1.0.g386150.t02___SP_TM (already done)
-2025-07-29 15:48:02,193 Skipping VITVvi_vCabSauv08_v1.1_Primary000085F.ver1.0.g470860.t04___SP_TM (already done)
-2025-07-29 15:48:02,193 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000054F_003.ver1.0.g163900.t01___SP_TM (already done)
-2025-07-29 15:48:02,194 Skipping VITVvi_vCabSauv08_v1.1_Primary000000F.ver1.0.g256070.t01___SP_TM (already done)
-2025-07-29 15:48:02,194 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000024F_019.ver1.0.g114950.t01___SP_TM (already done)
-2025-07-29 15:48:02,194 Skipping VITVvi_vCabSauv08_v1.1_Primary000024F.ver1.0.g370700.t01___SP_TM (already done)
-2025-07-29 15:48:02,195 Skipping VITVvi_vCabSauv08_v1.1_Primary000001F.ver1.0.g268690.t01___SP_TM (already done)
-2025-07-29 15:48:02,195 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000085F_008.ver1.0.g190190.t01___SP_TM (already done)
-2025-07-29 15:48:02,196 Skipping VITVvi_vCabSauv08_v1.1_Primary000085F.ver1.0.g470860.t01___SP_TM (already done)
-2025-07-29 15:48:02,196 Skipping VITVvi_vCabSauv08_v1.1_Primary000026F.ver1.0.g379190.t01___SP_TM (already done)
-2025-07-29 15:48:02,196 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t07___SP_TM (already done)
-2025-07-29 15:48:02,197 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t01___SP_TM (already done)
-2025-07-29 15:48:02,197 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000242F_002.ver1.0.g244220.t01___SP_TM (already done)
-2025-07-29 15:48:02,198 Skipping VITVvi_vCabSauv08_v1.1_Primary000242F.ver1.0.g577020.t02___SP_TM (already done)
-2025-07-29 15:48:02,198 Skipping VITVvi_vCabSauv08_v1.1_Primary000014F.ver1.0.g339150.t03___SP_TM (already done)
-2025-07-29 15:48:02,198 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000046F_003.ver1.0.g153310.t01___SP_TM (already done)
-2025-07-29 15:48:02,199 Skipping VITVvi_vCabSauv08_v1.1_Primary000014F.ver1.0.g339150.t04___SP_TM (already done)
-2025-07-29 15:48:02,199 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_017.ver1.0.g161620.t01___SP_TM (already done)
-2025-07-29 15:48:02,200 Skipping VITVvi_vCabSauv08_v1.1_Primary000037F.ver1.0.g403360.t01___TM (already done)
-2025-07-29 15:48:02,200 Skipping VITVvi_vCabSauv08_v1.1_Primary000005F.ver1.0.g302190.t01___SP_TM (already done)
-2025-07-29 15:48:02,200 Skipping VITVvi_vCabSauv08_v1.1_Primary000103F.ver1.0.g492740.t01___TM (already done)
-2025-07-29 15:48:02,201 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000065F_003.ver1.0.g175540.t02___SP_TM (already done)
-2025-07-29 15:48:02,201 Skipping VITVvi_vCabSauv08_v1.1_Primary000065F.ver1.0.g446300.t02___SP_TM (already done)
-2025-07-29 15:48:02,202 Skipping VITVvi_vCabSauv08_v1.1_Primary000044F.ver1.0.g416570.t01___SP_TM (already done)
-2025-07-29 15:48:02,202 Skipping VITVvi_vCabSauv08_v1.1_Primary000067F.ver1.0.g450010.t01___SP_TM (already done)
-2025-07-29 15:48:02,203 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000001F_030.ver1.0.g014790.t01___SP_TM (already done)
-2025-07-29 15:48:02,203 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000018F_038.ver1.0.g099770.t02___SP_TM (already done)
-2025-07-29 15:48:02,204 Skipping VITVvi_vCabSauv08_v1.1_Primary000018F.ver1.0.g351410.t02___SP_TM (already done)
-2025-07-29 15:48:02,204 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151690.t01___TM (already done)
-2025-07-29 15:48:02,205 Skipping VITVvi_vCabSauv08_v1.1_Primary000044F.ver1.0.g416780.t01___TM (already done)
-2025-07-29 15:48:02,205 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000065F_003.ver1.0.g175540.t01___SP_TM (already done)
-2025-07-29 15:48:02,206 Skipping VITVvi_vCabSauv08_v1.1_Primary000065F.ver1.0.g446300.t01___SP_TM (already done)
-2025-07-29 15:48:02,206 Skipping VITVvi_vCabSauv08_v1.1_Primary000025F.ver1.0.g373870.t01___SP_TM (already done)
-2025-07-29 15:48:02,207 Skipping VITVvi_vCabSauv08_v1.1_Primary000078F.ver1.0.g459710.t01___SP_TM (already done)
-2025-07-29 15:48:02,207 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208720.t01___SP_TM (already done)
-2025-07-29 15:48:02,207 Skipping VITVvi_vCabSauv08_v1.1_Primary000009F.ver1.0.g320120.t01___SP_TM (already done)
-2025-07-29 15:48:02,208 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000067F_012.ver1.0.g178830.t01___SP_TM (already done)
-2025-07-29 15:48:02,208 Skipping VITVvi_vCabSauv08_v1.1_Primary000067F.ver1.0.g450030.t01___SP_TM (already done)
-2025-07-29 15:48:02,209 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000003F_039.ver1.0.g040450.t01___SP_TM (already done)
-2025-07-29 15:48:02,209 Skipping VITVvi_vCabSauv08_v1.1_Primary000003F.ver1.0.g287800.t02___SP_TM (already done)
-2025-07-29 15:48:02,210 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_017.ver1.0.g161640.t01___SP_TM (already done)
-2025-07-29 15:48:02,210 Skipping VITVvi_vCabSauv08_v1.1_Primary000052F.ver1.0.g428570.t01___SP_TM (already done)
-2025-07-29 15:48:02,210 Skipping VITVvi_vCabSauv08_v1.1_Primary000130F.ver1.0.g521070.t01___SP_TM (already done)
-2025-07-29 15:48:02,211 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000003F_039.ver1.0.g040450.t02___SP_TM (already done)
-2025-07-29 15:48:02,212 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059890.t01___TM (already done)
-2025-07-29 15:48:02,212 Skipping VITVvi_vCabSauv08_v1.1_Primary000003F.ver1.0.g287800.t01___SP_TM (already done)
-2025-07-29 15:48:02,213 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059920.t01___SP_TM (already done)
-2025-07-29 15:48:02,213 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059880.t01___SP_TM (already done)
-2025-07-29 15:48:02,213 Skipping VITVvi_vCabSauv08_v1.1_Primary000009F.ver1.0.g319970.t01___SP_TM (already done)
-2025-07-29 15:48:02,214 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000001F_030.ver1.0.g014780.t01___SP_TM (already done)
-2025-07-29 15:48:02,214 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000018F_013.ver1.0.g096470.t01___SP_TM (already done)
-2025-07-29 15:48:02,215 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000018F_038.ver1.0.g099770.t01___SP_TM (already done)
-2025-07-29 15:48:02,215 Skipping VITVvi_vCabSauv08_v1.1_Primary000018F.ver1.0.g351410.t01___SP_TM (already done)
-2025-07-29 15:48:02,215 Skipping VITVvi_vCabSauv08_v1.1_Primary000018F.ver1.0.g351460.t02___SP_TM (already done)
-2025-07-29 15:48:02,216 Skipping VITVvi_vCabSauv08_v1.1_Primary000107F.ver1.0.g497860.t01___SP_TM (already done)
-2025-07-29 15:48:02,216 Skipping VITVvi_vCabSauv08_v1.1_Primary000133F.ver1.0.g522520.t01___SP_TM (already done)
-2025-07-29 15:48:02,217 Skipping VITVvi_vCabSauv08_v1.1_Primary000044F.ver1.0.g416790.t01___SP_TM (already done)
-2025-07-29 15:48:02,217 Skipping VITVvi_vCabSauv08_v1.1_Primary000018F.ver1.0.g351460.t01___TM (already done)
-2025-07-29 15:48:02,217 Skipping VITVvi_vCabSauv08_v1.1_Primary000037F.ver1.0.g403350.t01___TM (already done)
-2025-07-29 15:48:02,218 Skipping VITVvi_vCabSauv08_v1.1_Primary000144F.ver1.0.g530000.t01___SP_TM (already done)
-2025-07-29 15:48:02,218 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g425970.t01___TM (already done)
-2025-07-29 15:48:02,219 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_016.ver1.0.g160440.t01___TM (already done)
-2025-07-29 15:48:02,219 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426170.t01___TM (already done)
-2025-07-29 15:48:02,220 Skipping VITVvi_vCabSauv08_v1.1_Primary000002F.ver1.0.g281350.t01___SP_TM (already done)
-2025-07-29 15:48:02,220 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_004.ver1.0.g160930.t01___TM (already done)
-2025-07-29 15:48:02,220 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_007.ver1.0.g159710.t01___TM (already done)
-2025-07-29 15:48:02,221 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_007.ver1.0.g159730.t01___TM (already done)
-2025-07-29 15:48:02,221 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208880.t01___SP_TM (already done)
-2025-07-29 15:48:02,222 Skipping VITVvi_vCabSauv08_v1.1_Primary000475F.ver1.0.g612460.t01___SP_TM (already done)
-2025-07-29 15:48:02,222 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_016.ver1.0.g160340.t01___SP_TM (already done)
-2025-07-29 15:48:02,223 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426040.t01___TM (already done)
-2025-07-29 15:48:02,223 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426070.t01___SP_TM (already done)
-2025-07-29 15:48:02,224 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426110.t01___SP_TM (already done)
-2025-07-29 15:48:02,224 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208870.t01___SP_TM (already done)
-2025-07-29 15:48:02,225 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g425980.t01___TM (already done)
-2025-07-29 15:48:02,225 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_016.ver1.0.g160380.t01___SP_TM (already done)
-2025-07-29 15:48:02,225 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000001F_030.ver1.0.g014780.t02___SP_TM (already done)
-2025-07-29 15:48:02,226 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g425940.t01___SP_TM (already done)
-2025-07-29 15:48:02,226 Skipping VITVvi_vCabSauv08_v1.1_Primary000037F.ver1.0.g403320.t01___TM (already done)
-2025-07-29 15:48:02,227 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000028F_020.ver1.0.g125390.t01___SP_TM (already done)
-2025-07-29 15:48:02,227 Skipping VITVvi_vCabSauv08_v1.1_Primary000107F.ver1.0.g497870.t01___SP_TM (already done)
-2025-07-29 15:48:02,228 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208810.t01___TM (already done)
-2025-07-29 15:48:02,228 Skipping VITVvi_vCabSauv08_v1.1_Primary000107F.ver1.0.g497910.t01___TM (already done)
-2025-07-29 15:48:02,229 Query 144/157: VITVvi_vCabSauv08_v1.1_Haplotig000130F_007.ver1.0.g224180.t01___SP_TM (length 1617)
-2025-07-29 15:49:08,272 Padding length to 1627
-2025-07-29 15:52:17,802 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=69.9 pTM=0.434
-2025-07-29 15:54:20,734 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=72.9 pTM=0.468 tol=12.6
-2025-07-29 15:56:23,778 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=73.6 pTM=0.47 tol=5.44
-2025-07-29 15:58:26,800 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=73.1 pTM=0.47 tol=3.79
-2025-07-29 15:58:26,802 alphafold2_ptm_model_1_seed_000 took 558.5s (3 recycles)
-2025-07-29 15:58:28,811 reranking models by 'plddt' metric
-2025-07-29 15:58:28,811 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=73.1 pTM=0.47
-2025-07-29 15:58:30,482 Query 145/157: VITVvi_vCabSauv08_v1.1_Primary000009F.ver1.0.g319920.t01___SP_TM (length 1622)
-2025-07-29 15:58:31,096 Sleeping for 7s. Reason: PENDING
-2025-07-29 15:58:38,321 Sleeping for 6s. Reason: RUNNING
-2025-07-29 15:58:44,542 Sleeping for 7s. Reason: RUNNING
-2025-07-29 15:58:51,771 Sleeping for 8s. Reason: RUNNING
-2025-07-29 15:58:59,995 Sleeping for 10s. Reason: RUNNING
-2025-07-29 15:59:10,238 Sleeping for 8s. Reason: RUNNING
-2025-07-29 15:59:18,468 Sleeping for 7s. Reason: RUNNING
-2025-07-29 15:59:25,694 Sleeping for 9s. Reason: RUNNING
-2025-07-29 15:59:34,933 Sleeping for 8s. Reason: RUNNING
-2025-07-29 15:59:43,148 Sleeping for 5s. Reason: RUNNING
-2025-07-29 15:59:48,373 Sleeping for 9s. Reason: RUNNING
-2025-07-29 15:59:57,603 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:00:02,825 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:00:10,050 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:00:15,267 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:00:25,501 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:00:31,724 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:00:37,951 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:00:46,188 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:00:56,423 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:01:04,657 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:01:10,882 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:01:17,100 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:01:24,344 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:01:29,563 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:01:36,798 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:01:46,037 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:01:51,275 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:01:59,492 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:02:09,734 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:02:16,971 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:02:25,220 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:02:32,448 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:02:40,682 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:02:47,903 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:02:57,137 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:03:04,355 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:03:11,574 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:03:17,814 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:03:26,066 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:03:35,299 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:03:41,517 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:03:48,750 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:03:53,979 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:04:00,204 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:04:09,449 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:04:15,671 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:04:25,914 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:04:35,152 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:04:45,389 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:04:52,619 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:04:58,843 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:05:04,068 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:05:10,311 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:05:20,550 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:05:29,790 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:06:04,759 Padding length to 1627
-2025-07-29 16:08:06,939 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=75.2 pTM=0.456
-2025-07-29 16:10:09,811 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=76.9 pTM=0.477 tol=9.61
-2025-07-29 16:12:12,968 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=77.5 pTM=0.476 tol=5.21
-2025-07-29 16:14:15,972 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=76.9 pTM=0.475 tol=5.04
-2025-07-29 16:14:15,974 alphafold2_ptm_model_1_seed_000 took 491.2s (3 recycles)
-2025-07-29 16:14:17,984 reranking models by 'plddt' metric
-2025-07-29 16:14:17,985 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=76.9 pTM=0.475
-2025-07-29 16:14:19,796 Query 146/157: VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208780.t01___TM (length 1675)
-2025-07-29 16:14:20,050 Sleeping for 5s. Reason: PENDING
-2025-07-29 16:14:25,272 Sleeping for 9s. Reason: PENDING
-2025-07-29 16:14:34,528 Sleeping for 9s. Reason: PENDING
-2025-07-29 16:14:43,762 Sleeping for 6s. Reason: PENDING
-2025-07-29 16:14:49,983 Sleeping for 7s. Reason: PENDING
-2025-07-29 16:14:57,200 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:15:04,427 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:15:12,659 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:15:18,923 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:15:24,661 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:15:34,909 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:15:45,145 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:15:54,382 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:16:03,620 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:16:09,844 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:16:15,066 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:16:23,295 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:16:29,512 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:16:38,741 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:16:47,982 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:16:57,213 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:17:05,453 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:17:12,679 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:17:22,919 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:17:31,144 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:17:37,362 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:17:45,583 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:17:53,816 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:18:04,049 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:18:12,298 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:18:18,524 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:18:23,742 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:18:29,964 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:18:35,195 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:18:44,444 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:18:49,664 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:18:57,906 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:19:07,139 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:19:15,377 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:19:20,615 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:19:30,845 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:19:38,085 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:19:46,318 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:19:53,549 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:20:01,778 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:20:08,996 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:20:16,217 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:20:21,434 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:20:30,679 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:20:36,904 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:20:47,156 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:20:55,391 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:21:03,617 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:21:11,844 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:21:17,062 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:21:27,296 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:21:36,538 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:21:41,752 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:21:48,971 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:21:57,207 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:22:03,425 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:22:09,663 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:22:17,888 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:22:28,124 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:22:34,347 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:22:43,599 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:22:52,845 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:23:01,090 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:23:07,307 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:23:17,554 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:23:22,777 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:23:29,002 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:23:39,253 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:23:46,489 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:23:52,711 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:24:00,944 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:24:07,168 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:24:12,384 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:24:22,621 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:24:30,849 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:24:37,079 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:24:43,315 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:24:49,543 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:24:59,788 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:25:43,213 Padding length to 1685
-2025-07-29 16:29:16,076 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=78.9 pTM=0.443
-2025-07-29 16:31:32,794 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=81.9 pTM=0.488 tol=19.7
-2025-07-29 16:33:49,632 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.2 pTM=0.494 tol=6.38
-2025-07-29 16:36:06,582 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.1 pTM=0.498 tol=5.12
-2025-07-29 16:36:06,584 alphafold2_ptm_model_1_seed_000 took 623.4s (3 recycles)
-2025-07-29 16:36:08,776 reranking models by 'plddt' metric
-2025-07-29 16:36:08,777 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.1 pTM=0.498
-2025-07-29 16:36:10,745 Query 147/157: VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151570.t01___TM (length 1861)
-2025-07-29 16:36:10,986 Sleeping for 6s. Reason: PENDING
-2025-07-29 16:36:17,218 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:36:25,454 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:36:33,675 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:36:39,890 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:36:49,174 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:36:57,419 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:37:07,663 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:37:17,901 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:37:24,120 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:37:31,348 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:37:39,592 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:37:49,839 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:38:00,079 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:38:05,295 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:38:11,514 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:38:20,761 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:38:25,989 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:38:31,208 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:38:37,435 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:38:42,685 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:38:50,913 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:39:00,148 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:39:10,402 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:39:19,635 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:39:27,870 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:39:35,093 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:39:45,336 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:39:51,558 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:39:57,781 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:40:04,000 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:40:13,236 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:40:21,471 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:40:27,693 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:40:37,943 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:40:45,179 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:40:51,405 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:41:00,637 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:41:06,857 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:41:17,089 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:41:27,355 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:41:35,586 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:41:45,826 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:41:54,059 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:42:02,281 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:42:10,512 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:42:16,730 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:42:22,954 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:42:33,197 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:42:42,429 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:42:49,650 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:42:57,890 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:43:04,989 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:43:10,225 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:43:17,443 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:43:25,690 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:43:31,907 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:43:38,136 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:43:43,359 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:43:53,606 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:44:02,827 Sleeping for 6s. Reason: RUNNING
-2025-07-29 16:44:09,045 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:44:14,617 Sleeping for 5s. Reason: RUNNING
-2025-07-29 16:44:19,830 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:44:29,066 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:44:38,306 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:44:46,550 Sleeping for 10s. Reason: RUNNING
-2025-07-29 16:44:56,795 Sleeping for 8s. Reason: RUNNING
-2025-07-29 16:45:41,647 Padding length to 1871
-2025-07-29 16:49:27,904 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=58.4 pTM=0.406
-2025-07-29 16:52:19,695 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=65.1 pTM=0.418 tol=11.3
-2025-07-29 16:55:11,669 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=68.8 pTM=0.418 tol=7.5
-2025-07-29 16:58:03,513 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=70.8 pTM=0.413 tol=6.23
-2025-07-29 16:58:03,516 alphafold2_ptm_model_1_seed_000 took 741.9s (3 recycles)
-2025-07-29 16:58:06,167 reranking models by 'plddt' metric
-2025-07-29 16:58:06,168 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=70.8 pTM=0.413
-2025-07-29 16:58:08,505 Query 148/157: VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426180.t01___TM (length 1900)
-2025-07-29 16:58:08,875 Sleeping for 9s. Reason: PENDING
-2025-07-29 16:58:18,098 Sleeping for 7s. Reason: PENDING
-2025-07-29 16:58:25,330 Sleeping for 8s. Reason: PENDING
-2025-07-29 16:58:33,554 Sleeping for 10s. Reason: PENDING
-2025-07-29 16:58:43,818 Sleeping for 5s. Reason: PENDING
-2025-07-29 16:58:49,036 Sleeping for 10s. Reason: PENDING
-2025-07-29 16:58:59,266 Sleeping for 9s. Reason: PENDING
-2025-07-29 16:59:08,494 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:59:17,740 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:59:24,970 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:59:32,192 Sleeping for 9s. Reason: RUNNING
-2025-07-29 16:59:41,429 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:59:48,645 Sleeping for 7s. Reason: RUNNING
-2025-07-29 16:59:55,865 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:00:04,094 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:00:12,334 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:00:18,566 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:00:24,796 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:00:32,021 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:00:40,264 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:00:50,506 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:00:59,748 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:01:07,972 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:01:18,208 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:01:24,435 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:01:34,681 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:01:41,915 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:01:50,139 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:01:57,365 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:02:05,584 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:02:13,832 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:02:22,074 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:02:27,295 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:02:32,524 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:02:42,764 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:02:48,997 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:02:54,231 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:03:02,475 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:03:08,694 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:03:17,934 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:03:26,182 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:03:35,408 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:03:40,653 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:03:47,883 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:03:56,115 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:04:01,332 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:04:10,586 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:04:20,966 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:04:31,208 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:04:36,433 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:04:43,658 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:04:53,907 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:05:00,128 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:05:05,344 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:05:13,569 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:05:22,805 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:05:30,036 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:05:38,280 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:05:47,670 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:05:52,889 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:06:03,134 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:06:08,364 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:06:13,586 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:06:20,813 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:06:31,058 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:06:36,280 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:06:42,509 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:06:50,895 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:06:59,118 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:07:09,368 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:07:18,614 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:07:24,832 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:07:30,052 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:07:36,270 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:07:44,490 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:07:50,714 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:07:58,945 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:08:05,183 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:08:11,403 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:08:16,620 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:08:21,838 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:08:30,077 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:08:35,296 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:08:42,520 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:08:52,773 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:08:57,992 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:09:46,846 Padding length to 1910
-2025-07-29 17:14:09,351 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=72.9 pTM=0.421
-2025-07-29 17:17:11,525 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=79.1 pTM=0.462 tol=9.8
-2025-07-29 17:20:12,467 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=80.5 pTM=0.463 tol=7.04
-2025-07-29 17:23:12,841 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=81.2 pTM=0.457 tol=6.75
-2025-07-29 17:23:12,844 alphafold2_ptm_model_1_seed_000 took 806.0s (3 recycles)
-2025-07-29 17:23:15,579 reranking models by 'plddt' metric
-2025-07-29 17:23:15,580 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=81.2 pTM=0.457
-2025-07-29 17:23:18,453 Query 149/157: VITVvi_vCabSauv08_v1.1_Haplotig000018F_013.ver1.0.g096500.t01___TM (length 1904)
-2025-07-29 17:23:21,088 Sleeping for 5s. Reason: PENDING
-2025-07-29 17:23:26,336 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:23:36,572 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:23:43,793 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:23:54,025 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:24:02,246 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:24:10,468 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:24:19,713 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:24:28,951 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:24:39,176 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:24:44,402 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:24:50,627 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:24:58,864 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:25:05,084 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:25:14,316 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:25:20,541 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:25:25,759 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:25:32,981 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:25:40,204 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:25:45,432 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:25:54,678 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:26:04,918 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:26:14,168 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:26:20,381 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:26:27,605 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:26:33,819 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:26:40,044 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:26:47,269 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:26:55,507 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:27:01,725 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:27:10,970 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:27:21,229 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:27:29,454 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:27:36,677 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:27:43,902 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:27:53,138 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:28:01,362 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:28:07,594 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:28:14,818 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:28:22,036 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:28:28,271 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:28:36,508 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:28:42,726 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:28:49,950 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:28:56,171 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:29:03,399 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:29:08,627 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:29:17,858 Sleeping for 6s. Reason: RUNNING
-2025-07-29 17:29:24,084 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:29:33,324 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:29:43,560 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:29:48,775 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:29:57,009 Sleeping for 10s. Reason: RUNNING
-2025-07-29 17:30:07,254 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:30:16,489 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:30:21,710 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:30:29,940 Sleeping for 8s. Reason: RUNNING
-2025-07-29 17:30:38,175 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:30:43,492 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:30:48,720 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:30:55,959 Sleeping for 5s. Reason: RUNNING
-2025-07-29 17:31:01,185 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:31:10,420 Sleeping for 7s. Reason: RUNNING
-2025-07-29 17:31:17,643 Sleeping for 9s. Reason: RUNNING
-2025-07-29 17:32:19,195 Padding length to 1910
-2025-07-29 17:35:19,913 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=71.7 pTM=0.432
+2025-07-29 18:01:08,528 Running colabfold 1.5.5 (bfc0e83d3b87730f6903f6c385b08c426d1e791e)
+2025-07-29 18:01:31,855 Running on GPU
+2025-07-29 18:03:12,098 Found 5 citations for tools or databases
+2025-07-29 18:03:12,098 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_009.ver1.0.g160060.t01___SP_TM (already done)
+2025-07-29 18:03:12,099 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g427230.t01___SP_TM (already done)
+2025-07-29 18:03:12,099 Skipping VITVvi_vCabSauv08_v1.1_Primary000005F.ver1.0.g301520.t01___SP_TM (already done)
+2025-07-29 18:03:12,099 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_009.ver1.0.g160060.t02___SP_TM (already done)
+2025-07-29 18:03:12,099 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g427230.t02___SP_TM (already done)
+2025-07-29 18:03:12,099 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151550.t01___TM (already done)
+2025-07-29 18:03:12,100 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_016.ver1.0.g161440.t01___TM (already done)
+2025-07-29 18:03:12,100 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t05___SP_TM (already done)
+2025-07-29 18:03:12,100 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t05___SP_TM (already done)
+2025-07-29 18:03:12,100 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151670.t01___TM (already done)
+2025-07-29 18:03:12,100 Skipping VITVvi_vCabSauv08_v1.1_Primary000000F.ver1.0.g256070.t02___SP_TM (already done)
+2025-07-29 18:03:12,100 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000028F_013.ver1.0.g124480.t02___SP_TM (already done)
+2025-07-29 18:03:12,101 Skipping VITVvi_vCabSauv08_v1.1_Primary000028F.ver1.0.g386150.t01___SP_TM (already done)
+2025-07-29 18:03:12,101 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t06___SP_TM (already done)
+2025-07-29 18:03:12,101 Skipping VITVvi_vCabSauv08_v1.1_Primary000083F.ver1.0.g466110.t02___TM (already done)
+2025-07-29 18:03:12,101 Skipping VITVvi_vCabSauv08_v1.1_Primary000163F.ver1.0.g543490.t02___TM (already done)
+2025-07-29 18:03:12,101 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000002F_098.ver1.0.g030310.t03___SP_TM (already done)
+2025-07-29 18:03:12,102 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t06___SP_TM (already done)
+2025-07-29 18:03:12,102 Skipping VITVvi_vCabSauv08_v1.1_Primary000083F.ver1.0.g466110.t01___TM (already done)
+2025-07-29 18:03:12,102 Skipping VITVvi_vCabSauv08_v1.1_Primary000163F.ver1.0.g543490.t01___TM (already done)
+2025-07-29 18:03:12,102 Skipping VITVvi_vCabSauv08_v1.1_Primary000052F.ver1.0.g428420.t01___TM (already done)
+2025-07-29 18:03:12,102 Skipping VITVvi_vCabSauv08_v1.1_Primary000026F.ver1.0.g379190.t02___SP_TM (already done)
+2025-07-29 18:03:12,103 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t06___SP_TM (already done)
+2025-07-29 18:03:12,103 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t05___SP_TM (already done)
+2025-07-29 18:03:12,103 Skipping VITVvi_vCabSauv08_v1.1_Primary000014F.ver1.0.g339150.t02___SP_TM (already done)
+2025-07-29 18:03:12,103 Skipping VITVvi_vCabSauv08_v1.1_Primary000044F.ver1.0.g416580.t01___TM (already done)
+2025-07-29 18:03:12,103 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t01___TM (already done)
+2025-07-29 18:03:12,103 Skipping VITVvi_vCabSauv08_v1.1_Primary000014F.ver1.0.g339150.t01___TM (already done)
+2025-07-29 18:03:12,104 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t01___TM (already done)
+2025-07-29 18:03:12,104 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059880.t02___TM (already done)
+2025-07-29 18:03:12,104 Skipping VITVvi_vCabSauv08_v1.1_Primary000578F.ver1.0.g617750.t01___TM (already done)
+2025-07-29 18:03:12,104 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000085F_008.ver1.0.g190190.t06___SP_TM (already done)
+2025-07-29 18:03:12,104 Skipping VITVvi_vCabSauv08_v1.1_Primary000085F.ver1.0.g470860.t06___SP_TM (already done)
+2025-07-29 18:03:12,105 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151710.t01___SP_TM (already done)
+2025-07-29 18:03:12,105 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000002F_098.ver1.0.g030310.t01___SP_TM (already done)
+2025-07-29 18:03:12,105 Skipping VITVvi_vCabSauv08_v1.1_Primary000578F.ver1.0.g617750.t02___TM (already done)
+2025-07-29 18:03:12,105 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000242F_002.ver1.0.g244220.t03___SP_TM (already done)
+2025-07-29 18:03:12,105 Skipping VITVvi_vCabSauv08_v1.1_Primary000242F.ver1.0.g577020.t03___SP_TM (already done)
+2025-07-29 18:03:12,105 Skipping VITVvi_vCabSauv08_v1.1_Primary000085F.ver1.0.g470860.t07___SP_TM (already done)
+2025-07-29 18:03:12,106 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000084F_001.ver1.0.g188110.t02___SP_TM (already done)
+2025-07-29 18:03:12,106 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059220.t01___SP_TM (already done)
+2025-07-29 18:03:12,106 Skipping VITVvi_vCabSauv08_v1.1_Primary000019F.ver1.0.g352910.t01___SP_TM (already done)
+2025-07-29 18:03:12,106 Skipping VITVvi_vCabSauv08_v1.1_Primary000115F.ver1.0.g504970.t01___SP_TM (already done)
+2025-07-29 18:03:12,106 Skipping VITVvi_vCabSauv08_v1.1_Primary000115F.ver1.0.g505260.t01___SP_TM (already done)
+2025-07-29 18:03:12,107 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t04___TM (already done)
+2025-07-29 18:03:12,107 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t03___TM (already done)
+2025-07-29 18:03:12,107 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t09___SP_TM (already done)
+2025-07-29 18:03:12,107 Skipping VITVvi_vCabSauv08_v1.1_Primary000057F.ver1.0.g434250.t01___SP_TM (already done)
+2025-07-29 18:03:12,107 Skipping VITVvi_vCabSauv08_v1.1_Primary000075F.ver1.0.g457140.t01___SP_TM (already done)
+2025-07-29 18:03:12,107 Skipping VITVvi_vCabSauv08_v1.1_Primary000002F.ver1.0.g279760.t01___SP_TM (already done)
+2025-07-29 18:03:12,108 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000002F_049.ver1.0.g027160.t01___SP_TM (already done)
+2025-07-29 18:03:12,108 Skipping VITVvi_vCabSauv08_v1.1_Primary000084F.ver1.0.g468390.t01___SP_TM (already done)
+2025-07-29 18:03:12,108 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t03___SP_TM (already done)
+2025-07-29 18:03:12,108 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t02___SP_TM (already done)
+2025-07-29 18:03:12,108 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000153F_001.ver1.0.g232640.t02___SP_TM (already done)
+2025-07-29 18:03:12,109 Skipping VITVvi_vCabSauv08_v1.1_Primary000153F.ver1.0.g537100.t04___SP_TM (already done)
+2025-07-29 18:03:12,109 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_010.ver1.0.g161060.t01___TM (already done)
+2025-07-29 18:03:12,109 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000084F_001.ver1.0.g188110.t01___SP_TM (already done)
+2025-07-29 18:03:12,109 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000028F_013.ver1.0.g124480.t01___SP_TM (already done)
+2025-07-29 18:03:12,109 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000085F_008.ver1.0.g190190.t04___SP_TM (already done)
+2025-07-29 18:03:12,109 Skipping VITVvi_vCabSauv08_v1.1_Primary000028F.ver1.0.g386150.t02___SP_TM (already done)
+2025-07-29 18:03:12,110 Skipping VITVvi_vCabSauv08_v1.1_Primary000085F.ver1.0.g470860.t04___SP_TM (already done)
+2025-07-29 18:03:12,110 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000054F_003.ver1.0.g163900.t01___SP_TM (already done)
+2025-07-29 18:03:12,110 Skipping VITVvi_vCabSauv08_v1.1_Primary000000F.ver1.0.g256070.t01___SP_TM (already done)
+2025-07-29 18:03:12,110 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000024F_019.ver1.0.g114950.t01___SP_TM (already done)
+2025-07-29 18:03:12,110 Skipping VITVvi_vCabSauv08_v1.1_Primary000024F.ver1.0.g370700.t01___SP_TM (already done)
+2025-07-29 18:03:12,110 Skipping VITVvi_vCabSauv08_v1.1_Primary000001F.ver1.0.g268690.t01___SP_TM (already done)
+2025-07-29 18:03:12,111 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000085F_008.ver1.0.g190190.t01___SP_TM (already done)
+2025-07-29 18:03:12,111 Skipping VITVvi_vCabSauv08_v1.1_Primary000085F.ver1.0.g470860.t01___SP_TM (already done)
+2025-07-29 18:03:12,111 Skipping VITVvi_vCabSauv08_v1.1_Primary000026F.ver1.0.g379190.t01___SP_TM (already done)
+2025-07-29 18:03:12,111 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t07___SP_TM (already done)
+2025-07-29 18:03:12,111 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000014F_023.ver1.0.g086680.t01___SP_TM (already done)
+2025-07-29 18:03:12,112 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000242F_002.ver1.0.g244220.t01___SP_TM (already done)
+2025-07-29 18:03:12,112 Skipping VITVvi_vCabSauv08_v1.1_Primary000242F.ver1.0.g577020.t02___SP_TM (already done)
+2025-07-29 18:03:12,112 Skipping VITVvi_vCabSauv08_v1.1_Primary000014F.ver1.0.g339150.t03___SP_TM (already done)
+2025-07-29 18:03:12,112 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000046F_003.ver1.0.g153310.t01___SP_TM (already done)
+2025-07-29 18:03:12,112 Skipping VITVvi_vCabSauv08_v1.1_Primary000014F.ver1.0.g339150.t04___SP_TM (already done)
+2025-07-29 18:03:12,113 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_017.ver1.0.g161620.t01___SP_TM (already done)
+2025-07-29 18:03:12,113 Skipping VITVvi_vCabSauv08_v1.1_Primary000037F.ver1.0.g403360.t01___TM (already done)
+2025-07-29 18:03:12,113 Skipping VITVvi_vCabSauv08_v1.1_Primary000005F.ver1.0.g302190.t01___SP_TM (already done)
+2025-07-29 18:03:12,113 Skipping VITVvi_vCabSauv08_v1.1_Primary000103F.ver1.0.g492740.t01___TM (already done)
+2025-07-29 18:03:12,113 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000065F_003.ver1.0.g175540.t02___SP_TM (already done)
+2025-07-29 18:03:12,113 Skipping VITVvi_vCabSauv08_v1.1_Primary000065F.ver1.0.g446300.t02___SP_TM (already done)
+2025-07-29 18:03:12,114 Skipping VITVvi_vCabSauv08_v1.1_Primary000044F.ver1.0.g416570.t01___SP_TM (already done)
+2025-07-29 18:03:12,114 Skipping VITVvi_vCabSauv08_v1.1_Primary000067F.ver1.0.g450010.t01___SP_TM (already done)
+2025-07-29 18:03:12,114 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000001F_030.ver1.0.g014790.t01___SP_TM (already done)
+2025-07-29 18:03:12,114 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000018F_038.ver1.0.g099770.t02___SP_TM (already done)
+2025-07-29 18:03:12,114 Skipping VITVvi_vCabSauv08_v1.1_Primary000018F.ver1.0.g351410.t02___SP_TM (already done)
+2025-07-29 18:03:12,114 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151690.t01___TM (already done)
+2025-07-29 18:03:12,115 Skipping VITVvi_vCabSauv08_v1.1_Primary000044F.ver1.0.g416780.t01___TM (already done)
+2025-07-29 18:03:12,115 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000065F_003.ver1.0.g175540.t01___SP_TM (already done)
+2025-07-29 18:03:12,115 Skipping VITVvi_vCabSauv08_v1.1_Primary000065F.ver1.0.g446300.t01___SP_TM (already done)
+2025-07-29 18:03:12,115 Skipping VITVvi_vCabSauv08_v1.1_Primary000025F.ver1.0.g373870.t01___SP_TM (already done)
+2025-07-29 18:03:12,115 Skipping VITVvi_vCabSauv08_v1.1_Primary000078F.ver1.0.g459710.t01___SP_TM (already done)
+2025-07-29 18:03:12,116 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208720.t01___SP_TM (already done)
+2025-07-29 18:03:12,116 Skipping VITVvi_vCabSauv08_v1.1_Primary000009F.ver1.0.g320120.t01___SP_TM (already done)
+2025-07-29 18:03:12,116 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000067F_012.ver1.0.g178830.t01___SP_TM (already done)
+2025-07-29 18:03:12,116 Skipping VITVvi_vCabSauv08_v1.1_Primary000067F.ver1.0.g450030.t01___SP_TM (already done)
+2025-07-29 18:03:12,116 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000003F_039.ver1.0.g040450.t01___SP_TM (already done)
+2025-07-29 18:03:12,117 Skipping VITVvi_vCabSauv08_v1.1_Primary000003F.ver1.0.g287800.t02___SP_TM (already done)
+2025-07-29 18:03:12,117 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_017.ver1.0.g161640.t01___SP_TM (already done)
+2025-07-29 18:03:12,117 Skipping VITVvi_vCabSauv08_v1.1_Primary000052F.ver1.0.g428570.t01___SP_TM (already done)
+2025-07-29 18:03:12,117 Skipping VITVvi_vCabSauv08_v1.1_Primary000130F.ver1.0.g521070.t01___SP_TM (already done)
+2025-07-29 18:03:12,117 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000003F_039.ver1.0.g040450.t02___SP_TM (already done)
+2025-07-29 18:03:12,117 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059890.t01___TM (already done)
+2025-07-29 18:03:12,118 Skipping VITVvi_vCabSauv08_v1.1_Primary000003F.ver1.0.g287800.t01___SP_TM (already done)
+2025-07-29 18:03:12,118 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059920.t01___SP_TM (already done)
+2025-07-29 18:03:12,118 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000005F_054.ver1.0.g059880.t01___SP_TM (already done)
+2025-07-29 18:03:12,118 Skipping VITVvi_vCabSauv08_v1.1_Primary000009F.ver1.0.g319970.t01___SP_TM (already done)
+2025-07-29 18:03:12,118 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000001F_030.ver1.0.g014780.t01___SP_TM (already done)
+2025-07-29 18:03:12,119 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000018F_013.ver1.0.g096470.t01___SP_TM (already done)
+2025-07-29 18:03:12,119 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000018F_038.ver1.0.g099770.t01___SP_TM (already done)
+2025-07-29 18:03:12,119 Skipping VITVvi_vCabSauv08_v1.1_Primary000018F.ver1.0.g351410.t01___SP_TM (already done)
+2025-07-29 18:03:12,119 Skipping VITVvi_vCabSauv08_v1.1_Primary000018F.ver1.0.g351460.t02___SP_TM (already done)
+2025-07-29 18:03:12,119 Skipping VITVvi_vCabSauv08_v1.1_Primary000107F.ver1.0.g497860.t01___SP_TM (already done)
+2025-07-29 18:03:12,119 Skipping VITVvi_vCabSauv08_v1.1_Primary000133F.ver1.0.g522520.t01___SP_TM (already done)
+2025-07-29 18:03:12,120 Skipping VITVvi_vCabSauv08_v1.1_Primary000044F.ver1.0.g416790.t01___SP_TM (already done)
+2025-07-29 18:03:12,120 Skipping VITVvi_vCabSauv08_v1.1_Primary000018F.ver1.0.g351460.t01___TM (already done)
+2025-07-29 18:03:12,120 Skipping VITVvi_vCabSauv08_v1.1_Primary000037F.ver1.0.g403350.t01___TM (already done)
+2025-07-29 18:03:12,120 Skipping VITVvi_vCabSauv08_v1.1_Primary000144F.ver1.0.g530000.t01___SP_TM (already done)
+2025-07-29 18:03:12,120 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g425970.t01___TM (already done)
+2025-07-29 18:03:12,120 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_016.ver1.0.g160440.t01___TM (already done)
+2025-07-29 18:03:12,121 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426170.t01___TM (already done)
+2025-07-29 18:03:12,121 Skipping VITVvi_vCabSauv08_v1.1_Primary000002F.ver1.0.g281350.t01___SP_TM (already done)
+2025-07-29 18:03:12,121 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000052F_004.ver1.0.g160930.t01___TM (already done)
+2025-07-29 18:03:12,121 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_007.ver1.0.g159710.t01___TM (already done)
+2025-07-29 18:03:12,121 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_007.ver1.0.g159730.t01___TM (already done)
+2025-07-29 18:03:12,122 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208880.t01___SP_TM (already done)
+2025-07-29 18:03:12,122 Skipping VITVvi_vCabSauv08_v1.1_Primary000475F.ver1.0.g612460.t01___SP_TM (already done)
+2025-07-29 18:03:12,122 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_016.ver1.0.g160340.t01___SP_TM (already done)
+2025-07-29 18:03:12,122 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426040.t01___TM (already done)
+2025-07-29 18:03:12,122 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426070.t01___SP_TM (already done)
+2025-07-29 18:03:12,122 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426110.t01___SP_TM (already done)
+2025-07-29 18:03:12,123 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208870.t01___SP_TM (already done)
+2025-07-29 18:03:12,123 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g425980.t01___TM (already done)
+2025-07-29 18:03:12,123 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000051F_016.ver1.0.g160380.t01___SP_TM (already done)
+2025-07-29 18:03:12,123 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000001F_030.ver1.0.g014780.t02___SP_TM (already done)
+2025-07-29 18:03:12,123 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g425940.t01___SP_TM (already done)
+2025-07-29 18:03:12,124 Skipping VITVvi_vCabSauv08_v1.1_Primary000037F.ver1.0.g403320.t01___TM (already done)
+2025-07-29 18:03:12,124 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000028F_020.ver1.0.g125390.t01___SP_TM (already done)
+2025-07-29 18:03:12,124 Skipping VITVvi_vCabSauv08_v1.1_Primary000107F.ver1.0.g497870.t01___SP_TM (already done)
+2025-07-29 18:03:12,124 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208810.t01___TM (already done)
+2025-07-29 18:03:12,124 Skipping VITVvi_vCabSauv08_v1.1_Primary000107F.ver1.0.g497910.t01___TM (already done)
+2025-07-29 18:03:12,125 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000130F_007.ver1.0.g224180.t01___SP_TM (already done)
+2025-07-29 18:03:12,125 Skipping VITVvi_vCabSauv08_v1.1_Primary000009F.ver1.0.g319920.t01___SP_TM (already done)
+2025-07-29 18:03:12,125 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000107F_010.ver1.0.g208780.t01___TM (already done)
+2025-07-29 18:03:12,125 Skipping VITVvi_vCabSauv08_v1.1_Haplotig000044F_005.ver1.0.g151570.t01___TM (already done)
+2025-07-29 18:03:12,125 Skipping VITVvi_vCabSauv08_v1.1_Primary000051F.ver1.0.g426180.t01___TM (already done)
+2025-07-29 18:03:12,125 Query 149/157: VITVvi_vCabSauv08_v1.1_Haplotig000018F_013.ver1.0.g096500.t01___TM (length 1904)
+2025-07-29 18:05:13,069 Padding length to 1914
+2025-07-29 18:09:47,972 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=71.8 pTM=0.432
+2025-07-29 18:12:49,236 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=74.4 pTM=0.452 tol=11.4
+2025-07-29 18:15:49,480 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=75.1 pTM=0.452 tol=7.56
+2025-07-29 18:18:49,879 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=76.3 pTM=0.451 tol=8.01
+2025-07-29 18:18:49,924 alphafold2_ptm_model_1_seed_000 took 816.8s (3 recycles)
+2025-07-29 18:18:52,675 reranking models by 'plddt' metric
+2025-07-29 18:18:52,675 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=76.3 pTM=0.451
+2025-07-29 18:18:55,970 Query 150/157: VITVvi_vCabSauv08_v1.1_Primary000052F.ver1.0.g428390.t01___TM (length 1998)
+2025-07-29 18:18:59,699 Sleeping for 9s. Reason: PENDING
+2025-07-29 18:19:08,975 Sleeping for 7s. Reason: PENDING
+2025-07-29 18:19:16,208 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:19:25,452 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:19:34,703 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:19:39,925 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:19:50,171 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:19:58,396 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:20:07,659 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:20:15,878 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:20:23,102 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:20:29,325 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:20:39,559 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:20:48,789 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:20:56,010 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:21:01,248 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:21:10,487 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:21:20,725 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:21:26,977 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:21:33,215 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:21:41,444 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:21:49,693 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:21:58,931 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:22:04,171 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:22:14,415 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:22:21,632 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:22:30,862 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:22:38,087 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:22:48,318 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:22:54,534 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:23:03,772 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:23:14,021 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:23:21,250 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:23:29,476 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:23:41,364 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:23:48,597 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:23:56,814 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:24:07,059 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:24:14,286 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:24:22,510 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:24:34,688 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:24:43,962 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:24:52,193 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:25:01,445 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:25:11,687 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:25:20,923 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:25:27,153 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:25:35,369 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:25:43,613 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:25:51,999 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:26:01,231 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:26:11,468 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:26:18,684 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:26:27,916 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:26:37,144 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:26:47,371 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:26:54,630 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:27:04,874 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:27:19,953 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:27:29,233 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:27:35,483 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:27:40,701 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:27:49,940 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:27:57,176 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:28:07,411 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:28:12,624 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:28:20,870 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:28:26,093 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:28:36,319 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:28:41,551 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:28:47,772 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:28:53,160 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:28:59,381 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:29:09,630 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:30:32,764 Padding length to 2008
+2025-07-29 18:35:59,077 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=69.8 pTM=0.416
+2025-07-29 18:39:17,483 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=77 pTM=0.439 tol=11.1
+2025-07-29 18:42:34,368 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=78.8 pTM=0.44 tol=6.46
+2025-07-29 18:45:51,150 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=80.3 pTM=0.439 tol=4.57
+2025-07-29 18:45:51,614 alphafold2_ptm_model_1_seed_000 took 918.8s (3 recycles)
+2025-07-29 18:46:00,099 reranking models by 'plddt' metric
+2025-07-29 18:46:00,164 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=80.3 pTM=0.439
+2025-07-29 18:46:12,240 Query 151/157: VITVvi_vCabSauv08_v1.1_Haplotig000018F_013.ver1.0.g096360.t01___SP_TM (length 2163)
+2025-07-29 18:46:14,480 Sleeping for 6s. Reason: PENDING
+2025-07-29 18:46:20,723 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:46:25,944 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:46:36,183 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:46:42,405 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:46:52,634 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:46:57,873 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:47:08,740 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:47:16,007 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:47:26,240 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:47:31,474 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:47:41,716 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:47:46,940 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:47:56,181 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:48:05,428 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:48:12,659 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:48:19,888 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:48:25,108 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:48:32,337 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:48:40,576 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:48:46,800 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:48:55,033 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:49:05,269 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:49:13,492 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:49:22,741 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:49:31,983 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:49:38,201 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:49:44,423 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:49:52,657 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:50:01,891 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:50:10,116 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:50:17,339 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:50:25,567 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:50:32,782 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:50:48,945 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:50:55,296 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:51:04,545 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:51:11,780 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:51:17,996 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:51:25,220 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:51:32,440 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:51:37,682 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:51:46,898 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:51:56,133 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:52:02,355 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:52:10,590 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:52:20,813 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:52:29,030 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:52:39,275 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:52:46,496 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:52:56,729 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:53:04,955 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:53:10,182 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:53:16,407 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:53:24,629 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:53:32,871 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:53:43,108 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:53:53,340 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:54:01,590 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:54:11,836 Sleeping for 9s. Reason: RUNNING
+2025-07-29 18:54:21,075 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:54:29,297 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:54:35,534 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:54:40,778 Sleeping for 8s. Reason: RUNNING
+2025-07-29 18:54:49,012 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:54:54,242 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:55:04,483 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:56:27,330 Padding length to 2173
+2025-07-29 19:02:51,972 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=44.7 pTM=0.38
+2025-07-29 19:06:58,832 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=51.9 pTM=0.39 tol=22.3
+2025-07-29 19:11:03,932 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=57.4 pTM=0.409 tol=14.8
+2025-07-29 19:15:11,738 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=59.1 pTM=0.435 tol=8.72
+2025-07-29 19:15:13,488 alphafold2_ptm_model_1_seed_000 took 1125.5s (3 recycles)
+2025-07-29 19:15:23,524 reranking models by 'plddt' metric
+2025-07-29 19:15:23,700 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=59.1 pTM=0.435
+2025-07-29 19:15:34,024 Query 152/157: VITVvi_vCabSauv08_v1.1_Haplotig000044F_015.ver1.0.g152700.t01___SP_TM (length 2186)
+2025-07-29 19:15:35,197 Sleeping for 7s. Reason: PENDING
+2025-07-29 19:15:43,320 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:15:48,552 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:15:58,801 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:16:04,020 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:16:12,253 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:16:21,488 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:16:31,723 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:16:36,942 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:16:46,172 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:16:51,401 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:16:57,622 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:17:04,847 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:17:11,070 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:17:17,303 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:17:26,546 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:17:34,791 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:17:43,022 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:17:50,246 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:17:55,467 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:18:02,686 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:18:07,933 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:18:13,149 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:18:22,387 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:18:29,619 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:18:39,859 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:18:49,093 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:18:54,325 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:18:59,547 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:19:05,774 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:19:11,998 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:19:21,266 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:19:31,503 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:19:36,874 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:19:44,111 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:19:53,345 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:19:59,574 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:20:08,822 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:20:16,047 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:20:21,264 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:20:29,495 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:20:36,714 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:20:44,945 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:20:50,163 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:20:58,380 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:21:08,623 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:21:17,870 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:21:24,085 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:21:33,309 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:21:39,536 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:21:48,775 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:21:58,033 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:23:02,187 Padding length to 2196
+2025-07-29 19:28:34,230 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=56.8 pTM=0.403
+2025-07-29 19:32:44,311 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=62 pTM=0.42 tol=11.3
+2025-07-29 19:36:51,475 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=63.5 pTM=0.425 tol=6.11
+2025-07-29 19:40:58,440 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=64.7 pTM=0.424 tol=2.8
+2025-07-29 19:40:58,649 alphafold2_ptm_model_1_seed_000 took 1076.4s (3 recycles)
+2025-07-29 19:41:06,396 reranking models by 'plddt' metric
+2025-07-29 19:41:06,535 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=64.7 pTM=0.424
+2025-07-29 19:41:16,298 Query 153/157: VITVvi_vCabSauv08_v1.1_Primary000224F.ver1.0.g572420.t01___TM (length 2399)
+2025-07-29 19:41:19,843 Sleeping for 5s. Reason: PENDING
+2025-07-29 19:41:25,351 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:41:33,599 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:41:42,841 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:41:48,070 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:41:58,319 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:42:03,542 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:42:12,790 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:42:20,033 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:42:30,273 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:42:37,503 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:42:47,746 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:42:53,965 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:43:02,194 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:43:09,416 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:43:19,657 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:43:24,876 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:43:31,098 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:43:41,343 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:43:49,587 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:43:54,804 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:44:03,026 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:44:11,254 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:44:21,502 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:44:27,723 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:44:35,947 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:44:41,179 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:44:49,428 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:44:58,667 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:45:04,881 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:45:12,105 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:45:19,326 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:45:25,544 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:45:32,761 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:45:40,001 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:45:45,223 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:45:54,462 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:46:03,700 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:46:13,950 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:46:20,172 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:46:27,404 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:46:39,859 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:46:46,146 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:46:56,393 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:47:06,637 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:47:13,863 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:47:21,093 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:47:30,327 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:47:37,559 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:47:47,805 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:47:56,056 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:48:06,286 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:48:16,525 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:48:22,753 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:48:30,988 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:48:39,219 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:48:49,463 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:48:58,702 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:49:03,926 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:49:11,148 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:49:21,383 Sleeping for 7s. Reason: RUNNING
+2025-07-29 19:49:28,620 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:49:34,836 Sleeping for 5s. Reason: RUNNING
