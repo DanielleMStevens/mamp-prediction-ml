@@ -5541,4 +5541,65 @@
 2025-07-29 17:23:12,844 alphafold2_ptm_model_1_seed_000 took 806.0s (3 recycles)
 2025-07-29 17:23:15,579 reranking models by 'plddt' metric
 2025-07-29 17:23:15,580 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=81.2 pTM=0.457
-2025-07-29 17:23:18,453 Query 149/157: VITVvi_vCabSauv08_v1.1_Haplotig000018F_013.ver1.0.g096500.t01___TM (length 1904)
+2025-07-29 18:03:12,125 Query 149/157: VITVvi_vCabSauv08_v1.1_Haplotig000018F_013.ver1.0.g096500.t01___TM (length 1904)
+2025-07-29 18:05:13,069 Padding length to 1914
+2025-07-29 18:09:47,972 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=71.8 pTM=0.432
+2025-07-29 18:12:49,236 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=74.4 pTM=0.452 tol=11.4
+2025-07-29 18:15:49,480 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=75.1 pTM=0.452 tol=7.56
+2025-07-29 18:18:49,879 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=76.3 pTM=0.451 tol=8.01
+2025-07-29 18:18:49,924 alphafold2_ptm_model_1_seed_000 took 816.8s (3 recycles)
+2025-07-29 18:18:52,675 reranking models by 'plddt' metric
+2025-07-29 18:18:52,675 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=76.3 pTM=0.451
+2025-07-29 18:18:55,970 Query 150/157: VITVvi_vCabSauv08_v1.1_Primary000052F.ver1.0.g428390.t01___TM (length 1998)
+2025-07-29 18:18:59,699 Sleeping for 9s. Reason: PENDING
+2025-07-29 18:19:08,975 Sleeping for 7s. Reason: PENDING
+2025-07-29 18:28:53,160 Sleeping for 6s. Reason: RUNNING
+2025-07-29 18:28:59,381 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:29:09,630 Sleeping for 7s. Reason: RUNNING
+2025-07-29 18:30:32,764 Padding length to 2008
+2025-07-29 18:35:59,077 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=69.8 pTM=0.416
+2025-07-29 18:39:17,483 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=77 pTM=0.439 tol=11.1
+2025-07-29 18:42:34,368 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=78.8 pTM=0.44 tol=6.46
+2025-07-29 18:45:51,150 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=80.3 pTM=0.439 tol=4.57
+2025-07-29 18:45:51,614 alphafold2_ptm_model_1_seed_000 took 918.8s (3 recycles)
+2025-07-29 18:46:00,099 reranking models by 'plddt' metric
+2025-07-29 18:46:00,164 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=80.3 pTM=0.439
+2025-07-29 18:46:12,240 Query 151/157: VITVvi_vCabSauv08_v1.1_Haplotig000018F_013.ver1.0.g096360.t01___SP_TM (length 2163)
+2025-07-29 18:46:14,480 Sleeping for 6s. Reason: PENDING
+2025-07-29 18:54:54,242 Sleeping for 10s. Reason: RUNNING
+2025-07-29 18:55:04,483 Sleeping for 5s. Reason: RUNNING
+2025-07-29 18:56:27,330 Padding length to 2173
+2025-07-29 19:02:51,972 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=44.7 pTM=0.38
+2025-07-29 19:06:58,832 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=51.9 pTM=0.39 tol=22.3
+2025-07-29 19:11:03,932 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=57.4 pTM=0.409 tol=14.8
+2025-07-29 19:15:11,738 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=59.1 pTM=0.435 tol=8.72
+2025-07-29 19:15:13,488 alphafold2_ptm_model_1_seed_000 took 1125.5s (3 recycles)
+2025-07-29 19:15:23,524 reranking models by 'plddt' metric
+2025-07-29 19:15:23,700 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=59.1 pTM=0.435
+2025-07-29 19:15:34,024 Query 152/157: VITVvi_vCabSauv08_v1.1_Haplotig000044F_015.ver1.0.g152700.t01___SP_TM (length 2186)
+2025-07-29 19:15:35,197 Sleeping for 7s. Reason: PENDING
+2025-07-29 19:20:44,945 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:20:50,163 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:20:58,380 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:21:08,623 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:21:17,870 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:21:24,085 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:21:33,309 Sleeping for 6s. Reason: RUNNING
+2025-07-29 19:21:39,536 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:21:48,775 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:21:58,033 Sleeping for 10s. Reason: RUNNING
+2025-07-29 19:23:02,187 Padding length to 2196
+2025-07-29 19:28:34,230 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=56.8 pTM=0.403
+2025-07-29 19:32:44,311 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=62 pTM=0.42 tol=11.3
+2025-07-29 19:36:51,475 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=63.5 pTM=0.425 tol=6.11
+2025-07-29 19:40:58,440 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=64.7 pTM=0.424 tol=2.8
+2025-07-29 19:40:58,649 alphafold2_ptm_model_1_seed_000 took 1076.4s (3 recycles)
+2025-07-29 19:41:06,396 reranking models by 'plddt' metric
+2025-07-29 19:41:06,535 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=64.7 pTM=0.424
+2025-07-29 19:41:16,298 Query 153/157: VITVvi_vCabSauv08_v1.1_Primary000224F.ver1.0.g572420.t01___TM (length 2399)
+2025-07-29 19:41:19,843 Sleeping for 5s. Reason: PENDING
+2025-07-29 19:41:25,351 Sleeping for 8s. Reason: RUNNING
+2025-07-29 19:41:33,599 Sleeping for 9s. Reason: RUNNING
+2025-07-29 19:41:42,841 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:45:40,001 Sleeping for 5s. Reason: RUNNING
+2025-07-29 19:45:45,223 Sleeping for 9s. Reason: RUNNING
