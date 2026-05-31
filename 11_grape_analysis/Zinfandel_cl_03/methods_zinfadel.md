@@ -196,8 +196,14 @@ conda activate localfold
 module load gcc/10.5.0
 export PATH="/global/scratch/users/dmstev/localcolabfold/colabfold-conda/bin:$PATH"
 
-colabfold_batch --num-models 1 ./11_grape_analysis/vitus_RLK_defense_clade_sequences.fasta ./11_grape_analysis/07_receptor_only/
+# run colabfold on cluster (faster run time than locally)
+colabfold_batch --num-models 1 ./11_grape_analysis/Zinfandel_cl_03/vitus_RLK_defense_clade_sequences.fasta ./11_grape_analysis/Zinfandel_cl_03/07_receptor_only/
 
+```
+Once colabfold is updated and teh s
+
+```
+# 
 python 03_alphafold_to_lrr_annotation_grape.py structure_scores.txt
 
 python 01_LRR_Annotation/analyze_bfactor_peaks.py
