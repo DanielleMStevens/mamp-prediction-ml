@@ -1,0 +1,31 @@
+# STOCKHOLM 1.0
+#=GF ID LRR_2
+#=GF AC PF07723.19
+#=GF DE Leucine Rich Repeat
+#=GF AU hmmsearch (HMMER 3.4)
+
+#=GS VITVvi_vZin03_v1.1_P68.ver1.0.g485320.p01/177-199          DE [subseq from] | SP
+#=GS VITVvi_vZin03_v1.1_P68.ver1.0.g485320.p01/417-430          DE [subseq from] | SP
+#=GS VITVvi_vZin03_v1.1_H000079F_014.ver1.0.g113870.p01/189-208 DE [subseq from] | SP+TM
+#=GS VITVvi_vZin03_v1.1_P68.ver1.0.g484920.p01/189-208          DE [subseq from] | SP+TM
+#=GS VITVvi_vZin03_v1.1_H000013F_002.ver1.0.g040860.p01/145-158 DE [subseq from] | TM
+#=GS VITVvi_vZin03_v1.1_P240.ver1.0.g338730.p01/100-114         DE [subseq from] | TM
+#=GS VITVvi_vZin03_v1.1_P73.ver1.0.g495380.p01/566-579          DE [subseq from] | SP+TM
+
+VITVvi_vZin03_v1.1_P68.ver1.0.g485320.p01/177-199                  -LEVLDLSNNRISGENVVGWILSG--
+#=GR VITVvi_vZin03_v1.1_P68.ver1.0.g485320.p01/177-199          PP .789*******************8..
+VITVvi_vZin03_v1.1_P68.ver1.0.g485320.p01/417-430                  SLKELHLQNNLFTG------------
+#=GR VITVvi_vZin03_v1.1_P68.ver1.0.g485320.p01/417-430          PP 8*********9975............
+VITVvi_vZin03_v1.1_H000079F_014.ver1.0.g113870.p01/189-208         -LKTLDLHSNEISGD--FGTLLS---
+#=GR VITVvi_vZin03_v1.1_H000079F_014.ver1.0.g113870.p01/189-208 PP .9*************..*****9...
+VITVvi_vZin03_v1.1_P68.ver1.0.g484920.p01/189-208                  -LKTLDLHSNEISGD--FGTLLS---
+#=GR VITVvi_vZin03_v1.1_P68.ver1.0.g484920.p01/189-208          PP .9*************..*****9...
+VITVvi_vZin03_v1.1_H000013F_002.ver1.0.g040860.p01/145-158         SLKTLNLSWNNFTG------------
+#=GR VITVvi_vZin03_v1.1_H000013F_002.ver1.0.g040860.p01/145-158 PP 8***********87............
+VITVvi_vZin03_v1.1_P240.ver1.0.g338730.p01/100-114                 RLKSLHLNHNKLSGE-----------
+#=GR VITVvi_vZin03_v1.1_P240.ver1.0.g338730.p01/100-114         PP 59*********9998...........
+VITVvi_vZin03_v1.1_P73.ver1.0.g495380.p01/566-579                  -LKSLHLDENNFTGH-----------
+#=GR VITVvi_vZin03_v1.1_P73.ver1.0.g495380.p01/566-579          PP .9**********986...........
+#=GC PP_cons                                                       79**********989*******98..
+#=GC RF                                                            xxxxxxxxxxxxxxxxxxxxxxxxxx
+//
