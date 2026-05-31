@@ -1,0 +1,63 @@
+#                                                                                             --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                      accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                              ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+VITVvi_vZin03_v1.1_P68.ver1.0.g485320.p01          -          LRR_2                PF07723.19   6.6e-06   25.6   7.6       3.4    7.5   0.0   7.7   7   0   0   7   7   4   2 | SP
+VITVvi_vZin03_v1.1_H000079F_014.ver1.0.g113870.p01 -          LRR_2                PF07723.19   4.7e-05   22.9   1.8     0.048   13.4   0.1   6.0   7   0   0   7   7   1   1 | SP+TM
+VITVvi_vZin03_v1.1_P119.ver1.0.g232200.p01         -          LRR_2                PF07723.19     6e-05   22.6  20.6        11    6.0   0.0  12.0  14   0   0  14  14   5   0 | SP+TM
+VITVvi_vZin03_v1.1_P127.ver1.0.g241740.p01         -          LRR_2                PF07723.19   9.1e-05   22.0   5.0        34    4.4   0.0   9.5   8   0   0   8   8   3   0 | TM
+VITVvi_vZin03_v1.1_P68.ver1.0.g484920.p01          -          LRR_2                PF07723.19   0.00019   21.0   0.8     0.073   12.8   0.1   5.3   6   0   0   6   6   1   1 | SP+TM
+VITVvi_vZin03_v1.1_H000006F_023.ver1.0.g026650.p01 -          LRR_2                PF07723.19   0.00019   21.0   0.0        11    5.9   0.0   5.7   6   0   0   6   6   2   0 | SP
+VITVvi_vZin03_v1.1_P89.ver1.0.g519300.p01          -          LRR_2                PF07723.19   0.00051   19.6   1.7         9    6.2   0.1   5.8   5   0   0   5   5   2   0 | SP
+VITVvi_vZin03_v1.1_P339.ver1.0.g384140.p01         -          LRR_2                PF07723.19   0.00056   19.5   0.9        73    3.3   0.0   6.4   6   0   0   6   6   3   0 | TM
+VITVvi_vZin03_v1.1_P272.ver1.0.g353670.p01         -          LRR_2                PF07723.19    0.0018   17.9   4.9        80    3.2   0.0   8.3  10   0   0  10  10   3   0 | SP+TM
+VITVvi_vZin03_v1.1_P124.ver1.0.g240640.p01         -          LRR_2                PF07723.19    0.0018   17.9   0.4        47    3.9   0.0   6.6   7   0   0   7   7   2   0 | SP
+VITVvi_vZin03_v1.1_P135.ver1.0.g250040.p01         -          LRR_2                PF07723.19    0.0018   17.9   9.5       8.6    6.3   0.0   7.5   8   0   0   8   8   3   0 | SP+TM
+VITVvi_vZin03_v1.1_P272.ver1.0.g353490.p01         -          LRR_2                PF07723.19    0.0019   17.8   4.9        78    3.2   0.0   8.2  10   0   0  10  10   3   0 | SP+TM
+VITVvi_vZin03_v1.1_P124.ver1.0.g240660.p01         -          LRR_2                PF07723.19    0.0029   17.2   3.0        17    5.3   0.0   6.6   8   0   0   8   8   2   0 | SP+TM
+VITVvi_vZin03_v1.1_P110.ver1.0.g223860.p01         -          LRR_2                PF07723.19    0.0031   17.2   0.2        69    3.4   0.0   5.7   6   0   0   6   6   2   0 | TM
+VITVvi_vZin03_v1.1_P249.ver1.0.g341380.p01         -          LRR_2                PF07723.19    0.0034   17.0   0.1        33    4.4   0.0   5.5   5   0   0   5   5   2   0 | SP+TM
+VITVvi_vZin03_v1.1_P511.ver1.0.g449700.p01         -          LRR_2                PF07723.19    0.0043   16.7   1.2       9.2    6.2   0.0   5.0   5   0   0   5   5   2   0 | TM
+VITVvi_vZin03_v1.1_H000164F_003.ver1.0.g155770.p01 -          LRR_2                PF07723.19    0.0053   16.4   8.1        12    5.8   0.0   7.0   8   0   0   8   8   3   0 | SP+TM
+VITVvi_vZin03_v1.1_H000079F_014.ver1.0.g114300.p01 -          LRR_2                PF07723.19    0.0056   16.3   8.5        10    6.0   0.0   6.7   7   0   0   7   7   2   0 | SP+TM
+VITVvi_vZin03_v1.1_H000079F_010.ver1.0.g113650.p01 -          LRR_2                PF07723.19    0.0059   16.3   8.5        10    6.0   0.0   6.7   7   0   0   7   7   2   0 | SP+TM
+VITVvi_vZin03_v1.1_P138.ver1.0.g251720.p01         -          LRR_2                PF07723.19    0.0067   16.1   6.1        19    5.2   0.0   6.5   7   0   0   7   7   2   0 | TM
+VITVvi_vZin03_v1.1_H000013F_002.ver1.0.g040860.p01 -          LRR_2                PF07723.19    0.0069   16.0   0.3      0.49   10.2   0.0   3.5   3   0   0   3   3   1   1 | TM
+VITVvi_vZin03_v1.1_P240.ver1.0.g338730.p01         -          LRR_2                PF07723.19    0.0086   15.8   0.8       3.2    7.6   0.0   4.8   5   0   0   5   5   1   1 | TM
+VITVvi_vZin03_v1.1_P73.ver1.0.g495380.p01          -          LRR_2                PF07723.19     0.009   15.7  12.0         2    8.3   0.0   8.9   9   0   0   9   9   1   1 | SP+TM
+VITVvi_vZin03_v1.1_H000099F_005.ver1.0.g125720.p01 -          LRR_2                PF07723.19     0.011   15.5   5.5       9.2    6.2   0.0   6.4   7   0   0   7   7   2   0 | TM
+VITVvi_vZin03_v1.1_H000064F_013.ver1.0.g106080.p01 -          LRR_2                PF07723.19     0.011   15.4   0.2       8.1    6.3   0.0   4.6   4   0   0   4   4   2   0 | SP+TM
+VITVvi_vZin03_v1.1_P194.ver1.0.g307500.p01         -          LRR_2                PF07723.19     0.013   15.1   0.6       1.7    8.5   0.2   3.6   3   1   0   3   3   2   0 | SP+TM
+VITVvi_vZin03_v1.1_H000080F_006.ver1.0.g115470.p01 -          LRR_2                PF07723.19     0.015   15.0   2.5        40    4.2   0.0   5.3   5   0   0   5   5   2   0 | SP+TM
+VITVvi_vZin03_v1.1_P67.ver1.0.g483510.p01          -          LRR_2                PF07723.19     0.015   15.0   2.5        40    4.2   0.0   5.3   5   0   0   5   5   2   0 | SP+TM
+VITVvi_vZin03_v1.1_H000084F_006.ver1.0.g118420.p01 -          LRR_2                PF07723.19     0.015   14.9   3.1       7.4    6.5   0.1   6.6   7   0   0   7   7   1   0 | SP+TM
+VITVvi_vZin03_v1.1_P157.ver1.0.g276780.p01         -          LRR_2                PF07723.19      0.02   14.6   0.7         2    8.3   0.2   3.5   3   1   0   3   3   2   0 | TM
+VITVvi_vZin03_v1.1_P171.ver1.0.g289350.p01         -          LRR_2                PF07723.19     0.023   14.4   6.8       2.6    7.9   0.0   6.3   8   0   0   8   8   2   0 | SP
+VITVvi_vZin03_v1.1_P507.ver1.0.g448150.p01         -          LRR_2                PF07723.19     0.025   14.3   3.3        36    4.3   0.1   6.5   7   0   0   7   7   1   0 | SP+TM
+VITVvi_vZin03_v1.1_P28.ver1.0.g357250.p01          -          LRR_2                PF07723.19     0.046   13.4   1.6        38    4.2   0.1   5.2   6   0   0   6   6   1   0 | SP+TM
+VITVvi_vZin03_v1.1_P272.ver1.0.g353600.p01         -          LRR_2                PF07723.19     0.046   13.4   1.6         6    6.8   0.0   4.2   4   0   0   4   4   2   0 | SP
+VITVvi_vZin03_v1.1_H000040F_001.ver1.0.g075530.p01 -          LRR_2                PF07723.19     0.046   13.4   2.5        28    4.7   0.0   5.2   6   0   0   6   6   2   0 | SP+TM
+VITVvi_vZin03_v1.1_P34.ver1.0.g385100.p01          -          LRR_2                PF07723.19     0.046   13.4   2.5        28    4.7   0.0   5.2   6   0   0   6   6   2   0 | SP+TM
+VITVvi_vZin03_v1.1_H000057F_001.ver1.0.g098100.p01 -          LRR_2                PF07723.19     0.048   13.4   0.2        22    5.0   0.0   3.4   3   0   0   3   3   2   0 | SP+TM
+VITVvi_vZin03_v1.1_P75.ver1.0.g496630.p01          -          LRR_2                PF07723.19      0.05   13.3   3.5       9.3    6.2   0.0   5.5   7   0   0   7   7   1   0 | TM
+VITVvi_vZin03_v1.1_P266.ver1.0.g350340.p01         -          LRR_2                PF07723.19     0.055   13.2   5.5        36    4.3   0.1   7.0   8   0   0   8   8   1   0 | SP+TM
+VITVvi_vZin03_v1.1_P14.ver1.0.g254180.p01          -          LRR_2                PF07723.19     0.069   12.9   0.2        19    5.2   0.0   3.9   4   0   0   4   4   1   0 | SP+TM
+VITVvi_vZin03_v1.1_P135.ver1.0.g250390.p01         -          LRR_2                PF07723.19     0.077   12.7  15.9       6.9    6.6   0.0   8.2   9   0   0   9   9   2   0 | TM
+VITVvi_vZin03_v1.1_P127.ver1.0.g241780.p01         -          LRR_2                PF07723.19     0.083   12.6   9.9       9.3    6.2   0.3   6.1   6   0   0   6   6   3   0 | TM
+VITVvi_vZin03_v1.1_H000028F_008.ver1.0.g065970.p01 -          LRR_2                PF07723.19      0.14   11.9   1.6        50    3.8   0.1   4.9   6   0   0   6   6   1   0 | SP+TM
+VITVvi_vZin03_v1.1_P71.ver1.0.g491600.p01          -          LRR_2                PF07723.19      0.19   11.5   5.7        37    4.3   0.0   5.8   7   0   0   7   7   2   0 | SP
+VITVvi_vZin03_v1.1_H000110F_013.ver1.0.g133630.p01 -          LRR_2                PF07723.19      0.24   11.2  11.4         9    6.2   0.1   6.4   7   0   0   7   7   2   0 | SP
+VITVvi_vZin03_v1.1_P110.ver1.0.g224780.p01         -          LRR_2                PF07723.19      0.25   11.1  11.0       6.7    6.6   0.0   7.6   9   0   0   9   9   1   0 | SP+TM
+VITVvi_vZin03_v1.1_H000057F_001.ver1.0.g098140.p01 -          LRR_2                PF07723.19      0.38   10.5   5.3        12    5.8   0.0   3.8   4   0   0   4   4   2   0 | SP
+VITVvi_vZin03_v1.1_P14.ver1.0.g256020.p01          -          LRR_2                PF07723.19      0.41   10.5   3.0       8.8    6.2   0.3   3.3   3   0   0   3   3   2   0 | SP+TM
+VITVvi_vZin03_v1.1_H000125F_002.ver1.0.g138310.p01 -          LRR_2                PF07723.19      0.42   10.4  12.0       6.7    6.6   0.0   7.7   9   0   0   9   9   1   0 | SP+TM
+VITVvi_vZin03_v1.1_P89.ver1.0.g519140.p01          -          LRR_2                PF07723.19      0.86    9.4  12.7        41    4.1   0.0   7.9   9   0   0   9   9   2   0 | SP+TM
+#
+# Program:         hmmsearch
+# Version:         3.4 (Aug 2023)
+# Pipeline mode:   SEARCH
+# Query file:      pfam_models/PF07723.hmm
+# Target file:     filtered_tm_sp_proteins.fasta
+# Option settings: hmmsearch -A LRR6_alignment.stk --tblout LRR6_domains.txt -E 1 --domE 1 --incE 0.01 --incdomE 0.04 --cpu 8 pfam_models/PF07723.hmm filtered_tm_sp_proteins.fasta 
+# Current dir:     /Users/briansu/workspace/mamp_prediction_ml/11_grape_analysis/Zinfandel_cl_03
+# Date:            Tue May 26 16:44:04 2026
+# [ok]
