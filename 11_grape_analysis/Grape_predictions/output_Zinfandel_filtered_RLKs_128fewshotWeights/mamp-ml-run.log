@@ -1,0 +1,153 @@
+==============================================================
+mamp-ml run log
+==============================================================
+date      : 2026-06-23 07:52:40
+version   : mamp-ml 0.2.17
+command   : mamp-ml predict Zinfandel_filtered_RLKs.xlsx --device cuda --structures output_Zinfandel_filtered_RLKs_job35155813_99f5/structures --weights mamp_prediction_ml/07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/checkpoint-24.pth
+python    : 3.10.16
+platform  : Linux-4.18.0-553.126.1.el8_10.x86_64-x86_64-with-glibc2.28
+input     : Zinfandel_filtered_RLKs.xlsx
+device    : cuda
+gpu       : Tesla V100-SXM2-32GB, CC 7.0, driver CUDA 13.0
+pytorch   : 2.12.0
+structure : colabfold
+out_dir   : intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4
+--------------------------------------------------------------
+▶ Receptor FASTA  (est. <5s)
+  ✓ Receptor FASTA · 62 unique receptor record(s) · 1.4s
+     → intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/receptor_full_length.fasta
+▶ Fold receptors
+  ✓ Fold receptors · reusing existing structures · 0.0s
+     → output_Zinfandel_filtered_RLKs_job35155813_99f5/structures
+▶ Structure analysis · LRR annotation  (est. ~15–90s)
+  ✓ Structure analysis · LRR annotation · 62 LRR region row(s) · 6m 44s
+     → intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/lrr_annotation_results.txt
+▶ LRR-domain FASTA  (est. <5s)
+  ✓ LRR-domain FASTA · 62 sequence(s) · 0.0s
+     → intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/lrr_domain_sequences.fasta
+▶ B-factor winding analysis  (est. ~10–60s)
+  ✓ B-factor winding analysis · 28673 row(s) · 18.9s
+     → intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/bfactor_winding_lrr_segments.csv
+▶ Test-data assembly  (est. <10s)
+  ✓ Test-data assembly · 62 row(s) · 0.1s
+     → intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/test_data.csv
+▶ Chemical-feature annotation  (est. <10s)
+  ✓ Chemical-feature annotation · 62 row(s) · 0.2s
+     → intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/ready_test_data.csv
+/global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/torch/cuda/__init__.py:384: UserWarning: Found GPU0 Tesla V100-SXM2-32GB which is of compute capability (CC) 7.0.
+The following list shows the CCs this version of PyTorch was built for and the hardware CCs it supports:
+- 7.5 which supports hardware CC >=7.5,<8.0
+- 8.0 which supports hardware CC >=8.0,<9.0 except {8.7}
+- 8.6 which supports hardware CC >=8.6,<9.0 except {8.7}
+- 9.0 which supports hardware CC >=9.0,<10.0
+- 10.0 which supports hardware CC >=10.0,<11.0 except {10.1}
+- 12.0 which supports hardware CC >=12.0,<13.0
+Please follow the instructions at https://pytorch.org/get-started/locally/ to install a PyTorch release that supports one of these CUDA versions: 12.6
+  _warn_unsupported_code(d, device_cc, code_ccs)
+  ⚠ requested --device cuda, but it is unusable: GPU 'Tesla V100-SXM2-32GB' is compute capability 7.0 (sm_70), but this PyTorch was built only for [sm_75, sm_80, sm_86, sm_90, sm_100, sm_120]. Install a torch build that includes this GPU's architecture. Falling back to --device cpu. Run `mamp-ml install-check` to diagnose, and the README's install section for a GPU-compatible PyTorch.
+▶ Predict · ESM-2 inference  (est. ~30s–3 min on GPU, longer on CPU)
+    ↳ weights: mamp_prediction_ml/07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/checkpoint-24.pth
+Not using distributed mode
+[08:02:11.422106] Namespace(seed=0, debug='', repeat_thresh=0.001, n_fed_cats=-1, detic_path=PosixPath('/path/to/file'), pos_thresh=0.5, aa_expand='scratch', single_dec='naive', head_dim=128, backbone='esm2_t33_650M_UR50D', finetune_backbone='/scratch/cluster/jozhang/models/openfold_params/finetuning_ptm_2.pt', freeze_at=14, model='esm2_bfactor_weighted', data_dir=None, eval_only_data_path='/global/scratch/users/dmstev/intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/ready_test_data.csv', n_msa_seqs=128, n_extra_msa_seqs=1024, af_extract_feat='both', max_context_length=2000, num_workers=10, epochs=50, batch_size=8, lr=0.0003, min_lr=1e-09, weight_decay=0.5, warmup_epochs=10, cross_eval_kfold=None, lambda_single=0.1, loss_single_aug='none', lambda_double=1.0, double_subsample_destabilizing_ratio=8, lambda_pos=4, eval=False, dist_eval=False, eval_reverse=False, test=False, finetune='', resume='', start_epoch=0, save_pred_dict=False, eval_period=5, save_period=1000, disable_wandb=True, model_checkpoint_path='/global/scratch/users/dmstev/mamp_prediction_ml/07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/checkpoint-24.pth', device='cpu', world_size=1, name_to_x='../out_data/colabfold_name_to_x.pt', local_rank=-1, dist_on_itp=False, dist_url='env://', contrastive_output=True, bfactor_csv_path='/global/scratch/users/dmstev/intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/bfactor_winding_lrr_segments.csv', output_dir=PosixPath('/global/scratch/users/dmstev/intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4'), distributed=False)
+Loading weights:   0%|          | 0/102 [00:00<?, ?it/s]Loading weights:   5%|4         | 5/102 [00:00<00:02, 39.48it/s]Loading weights:  16%|#5        | 16/102 [00:00<00:03, 23.08it/s]Loading weights: 100%|##########| 102/102 [00:00<00:00, 152.16it/s]
+[08:02:19.586942] DEBUG Tokenizer Info:
+[08:02:19.587007]   - eos_token: <eos>, eos_token_id: 2
+[08:02:19.587030]   - cls_token: <cls>, cls_token_id: 0
+[08:02:19.587049]   - pad_token: <pad>, pad_token_id: 1
+[08:02:19.587067]   - unk_token: <unk>, unk_token_id: 3
+[08:02:20.316153] State dict keys: odict_keys(['esm.embeddings.word_embeddings.weight', 'esm.embeddings.position_embeddings.weight', 'esm.encoder.layer.0.attention.self.query.weight', 'esm.encoder.layer.0.attention.self.query.bias', 'esm.encoder.layer.0.attention.self.key.weight', 'esm.encoder.layer.0.attention.self.key.bias', 'esm.encoder.layer.0.attention.self.value.weight', 'esm.encoder.layer.0.attention.self.value.bias', 'esm.encoder.layer.0.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.0.attention.output.dense.weight', 'esm.encoder.layer.0.attention.output.dense.bias', 'esm.encoder.layer.0.attention.LayerNorm.weight', 'esm.encoder.layer.0.attention.LayerNorm.bias', 'esm.encoder.layer.0.intermediate.dense.weight', 'esm.encoder.layer.0.intermediate.dense.bias', 'esm.encoder.layer.0.output.dense.weight', 'esm.encoder.layer.0.output.dense.bias', 'esm.encoder.layer.0.LayerNorm.weight', 'esm.encoder.layer.0.LayerNorm.bias', 'esm.encoder.layer.1.attention.self.query.weight', 'esm.encoder.layer.1.attention.self.query.bias', 'esm.encoder.layer.1.attention.self.key.weight', 'esm.encoder.layer.1.attention.self.key.bias', 'esm.encoder.layer.1.attention.self.value.weight', 'esm.encoder.layer.1.attention.self.value.bias', 'esm.encoder.layer.1.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.1.attention.output.dense.weight', 'esm.encoder.layer.1.attention.output.dense.bias', 'esm.encoder.layer.1.attention.LayerNorm.weight', 'esm.encoder.layer.1.attention.LayerNorm.bias', 'esm.encoder.layer.1.intermediate.dense.weight', 'esm.encoder.layer.1.intermediate.dense.bias', 'esm.encoder.layer.1.output.dense.weight', 'esm.encoder.layer.1.output.dense.bias', 'esm.encoder.layer.1.LayerNorm.weight', 'esm.encoder.layer.1.LayerNorm.bias', 'esm.encoder.layer.2.attention.self.query.weight', 'esm.encoder.layer.2.attention.self.query.bias', 'esm.encoder.layer.2.attention.self.key.weight', 'esm.encoder.layer.2.attention.self.key.bias', 'esm.encoder.layer.2.attention.self.value.weight', 'esm.encoder.layer.2.attention.self.value.bias', 'esm.encoder.layer.2.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.2.attention.output.dense.weight', 'esm.encoder.layer.2.attention.output.dense.bias', 'esm.encoder.layer.2.attention.LayerNorm.weight', 'esm.encoder.layer.2.attention.LayerNorm.bias', 'esm.encoder.layer.2.intermediate.dense.weight', 'esm.encoder.layer.2.intermediate.dense.bias', 'esm.encoder.layer.2.output.dense.weight', 'esm.encoder.layer.2.output.dense.bias', 'esm.encoder.layer.2.LayerNorm.weight', 'esm.encoder.layer.2.LayerNorm.bias', 'esm.encoder.layer.3.attention.self.query.weight', 'esm.encoder.layer.3.attention.self.query.bias', 'esm.encoder.layer.3.attention.self.key.weight', 'esm.encoder.layer.3.attention.self.key.bias', 'esm.encoder.layer.3.attention.self.value.weight', 'esm.encoder.layer.3.attention.self.value.bias', 'esm.encoder.layer.3.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.3.attention.output.dense.weight', 'esm.encoder.layer.3.attention.output.dense.bias', 'esm.encoder.layer.3.attention.LayerNorm.weight', 'esm.encoder.layer.3.attention.LayerNorm.bias', 'esm.encoder.layer.3.intermediate.dense.weight', 'esm.encoder.layer.3.intermediate.dense.bias', 'esm.encoder.layer.3.output.dense.weight', 'esm.encoder.layer.3.output.dense.bias', 'esm.encoder.layer.3.LayerNorm.weight', 'esm.encoder.layer.3.LayerNorm.bias', 'esm.encoder.layer.4.attention.self.query.weight', 'esm.encoder.layer.4.attention.self.query.bias', 'esm.encoder.layer.4.attention.self.key.weight', 'esm.encoder.layer.4.attention.self.key.bias', 'esm.encoder.layer.4.attention.self.value.weight', 'esm.encoder.layer.4.attention.self.value.bias', 'esm.encoder.layer.4.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.4.attention.output.dense.weight', 'esm.encoder.layer.4.attention.output.dense.bias', 'esm.encoder.layer.4.attention.LayerNorm.weight', 'esm.encoder.layer.4.attention.LayerNorm.bias', 'esm.encoder.layer.4.intermediate.dense.weight', 'esm.encoder.layer.4.intermediate.dense.bias', 'esm.encoder.layer.4.output.dense.weight', 'esm.encoder.layer.4.output.dense.bias', 'esm.encoder.layer.4.LayerNorm.weight', 'esm.encoder.layer.4.LayerNorm.bias', 'esm.encoder.layer.5.attention.self.query.weight', 'esm.encoder.layer.5.attention.self.query.bias', 'esm.encoder.layer.5.attention.self.key.weight', 'esm.encoder.layer.5.attention.self.key.bias', 'esm.encoder.layer.5.attention.self.value.weight', 'esm.encoder.layer.5.attention.self.value.bias', 'esm.encoder.layer.5.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.5.attention.output.dense.weight', 'esm.encoder.layer.5.attention.output.dense.bias', 'esm.encoder.layer.5.attention.LayerNorm.weight', 'esm.encoder.layer.5.attention.LayerNorm.bias', 'esm.encoder.layer.5.intermediate.dense.weight', 'esm.encoder.layer.5.intermediate.dense.bias', 'esm.encoder.layer.5.output.dense.weight', 'esm.encoder.layer.5.output.dense.bias', 'esm.encoder.layer.5.LayerNorm.weight', 'esm.encoder.layer.5.LayerNorm.bias', 'esm.encoder.emb_layer_norm_after.weight', 'esm.encoder.emb_layer_norm_after.bias', 'esm.pooler.dense.weight', 'esm.pooler.dense.bias', 'esm.contact_head.regression.weight', 'esm.contact_head.regression.bias', 'film.chemical_proj.0.weight', 'film.chemical_proj.0.bias', 'film.chemical_proj.2.weight', 'film.chemical_proj.2.bias', 'film.chemical_proj.3.weight', 'film.chemical_proj.3.bias', 'film.film_layer.weight', 'film.film_layer.bias', 'film.layer_norm.weight', 'film.layer_norm.bias', 'classifier.0.weight', 'classifier.0.bias', 'classifier.1.weight', 'classifier.1.bias', 'classifier.4.weight', 'classifier.4.bias'])
+[08:02:21.509640] ESMBfactorWeightedFeatures(
+  (esm): EsmModel(
+    (embeddings): EsmEmbeddings(
+      (word_embeddings): Embedding(33, 320, padding_idx=1)
+      (dropout): Dropout(p=0.0, inplace=False)
+    )
+    (rotary_embeddings): EsmRotaryEmbedding()
+    (encoder): EsmEncoder(
+      (layer): ModuleList(
+        (0-5): 6 x EsmLayer(
+          (attention): EsmAttention(
+            (self): EsmSelfAttention(
+              (query): Linear(in_features=320, out_features=320, bias=True)
+              (key): Linear(in_features=320, out_features=320, bias=True)
+              (value): Linear(in_features=320, out_features=320, bias=True)
+            )
+            (output): EsmSelfOutput(
+              (dense): Linear(in_features=320, out_features=320, bias=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+            )
+            (LayerNorm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+          )
+          (intermediate): EsmIntermediate(
+            (dense): Linear(in_features=320, out_features=1280, bias=True)
+          )
+          (output): EsmOutput(
+            (dense): Linear(in_features=1280, out_features=320, bias=True)
+            (dropout): Dropout(p=0.0, inplace=False)
+          )
+          (LayerNorm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+        )
+      )
+      (emb_layer_norm_after): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    )
+    (pooler): EsmPooler(
+      (dense): Linear(in_features=320, out_features=320, bias=True)
+      (activation): Tanh()
+    )
+    (contact_head): EsmContactPredictionHead(
+      (regression): Linear(in_features=120, out_features=1, bias=True)
+      (activation): Sigmoid()
+    )
+  )
+  (film): FiLMWithConcatenation(
+    (chemical_proj): Sequential(
+      (0): Linear(in_features=3, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=64, out_features=320, bias=True)
+      (3): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    )
+    (film_layer): Linear(in_features=640, out_features=640, bias=True)
+    (layer_norm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=320, out_features=160, bias=True)
+    (1): LayerNorm((160,), eps=1e-05, elementwise_affine=True, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.2, inplace=False)
+    (4): Linear(in_features=160, out_features=3, bias=True)
+  )
+  (criterion): CrossEntropyLoss()
+)
+[08:02:21.510502] Evaluating a model with 1,821,180 trainable parameters out of 7,996,540 parameters
+[08:02:21.551316] len(ds_test)=62
+[08:02:26.227783] Test:  [0/8]  eta: 0:00:36    time: 4.5638  data: 0.2612  max mem: 0
+[08:02:35.664764] Test:  [7/8]  eta: 0:00:01    time: 1.7479  data: 0.0488  max mem: 0
+[08:02:35.665083] Test: Total time: 0:00:14 (1.7641 s / it)
+[08:02:35.665139] No ground truth labels found. Saving predictions only.
+[08:02:35.829495] Successfully added metadata for 62 predictions
+[08:02:35.835048] Saved predictions to predictions.csv with 62 rows
+[08:02:35.836224] {'predictions_saved': True, 'num_predictions': 62}
+  ✓ Predict · ESM-2 inference · 62 prediction(s) · 24.5s
+     → intermediate_files/Zinfandel_filtered_RLKs_job35157160_2ac4/predictions.csv
+
+──────────────────────────────────────────────────────────────
+✓ Prediction complete  · total 10m 14s
+  Output folder                     /global/scratch/users/dmstev/output_Zinfandel_filtered_RLKs_job35157160_2ac4/
+    predictions                     predictions.csv
+    LRR annotation plots            lrr_annotation_plots/
+    run log                         mamp-ml-run.log
+  (remaining intermediates removed  rerun with `--keep all` to retain them)
+
+Step timings
+  Receptor FASTA                       1.4s
+  Fold receptors                       0.0s
+  Structure analysis · LRR annotation  6m 44s
+  LRR-domain FASTA                     0.0s
+  B-factor winding analysis            18.9s
+  Test-data assembly                   0.1s
+  Chemical-feature annotation          0.2s
+  Predict · ESM-2 inference            24.5s
+  total                                10m 14s
+  reuse these structures with different weights (skips folding):
+    mamp-ml predict Zinfandel_filtered_RLKs.xlsx --structures output_Zinfandel_filtered_RLKs_job35155813_99f5/structures --weights <other.pth>
