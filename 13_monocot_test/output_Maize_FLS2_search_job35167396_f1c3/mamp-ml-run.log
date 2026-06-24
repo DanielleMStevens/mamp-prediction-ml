@@ -1,0 +1,260 @@
+==============================================================
+mamp-ml run log
+==============================================================
+date      : 2026-06-24 10:26:24
+version   : mamp-ml 0.2.17
+command   : mamp-ml predict Maize_FLS2_search.xlsx --device cuda
+python    : 3.10.16
+platform  : Linux-4.18.0-553.126.1.el8_10.x86_64-x86_64-with-glibc2.28
+input     : Maize_FLS2_search.xlsx
+device    : cuda
+gpu       : Tesla V100-SXM2-32GB, CC 7.0, driver CUDA 13.0
+pytorch   : 2.12.0
+structure : colabfold
+out_dir   : intermediate_files/Maize_FLS2_search_job35167396_f1c3
+--------------------------------------------------------------
+▶ Receptor FASTA  (est. <5s)
+  ✓ Receptor FASTA · 6 unique receptor record(s) · 11.8s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/receptor_full_length.fasta
+▶ Fold receptors · ColabFold (auto-detected)  (est. ~2–10 min/receptor on GPU × 6)
+  running the discovered colabfold_batch automatically:
+    ↳ /global/scratch/users/dmstev/localcolabfold/colabfold-conda/bin/colabfold_batch  (on $PATH)
+  full ColabFold output is being written to intermediate_files/Maize_FLS2_search_job35167396_f1c3/mamp-ml-run.log
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1782322073.497878  321413 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1782322074.006293  321413 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1782322076.566218  321413 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782322076.566261  321413 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782322076.566264  321413 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782322076.566266  321413 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+
+WARNING: You are welcome to use the default MSA server, however keep in mind that it's a
+limited shared resource only capable of processing a few thousand MSAs per day. Please
+submit jobs only from a single IP address. We reserve the right to limit access to the
+server case-by-case when usage exceeds fair use. If you require more MSAs: You can 
+precompute all MSAs with `colabfold_search` or host your own API and pass it to `--host-url`
+
+2026-06-24 10:33:24,420 Running colabfold 1.5.5 (bfc0e83d3b87730f6903f6c385b08c426d1e791e)
+2026-06-24 10:33:41,185 Running on GPU
+2026-06-24 10:34:36,301 Found 5 citations for tools or databases
+2026-06-24 10:34:36,304 Query 1/6: Zea_mays_ZEAMMB73_Zm00001d003101_FLS2 (length 1097)
+    folding 1/6 · Zea_mays_ZEAMMB73_Zm00001d003101_FLS2 (1097 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1782322531.714987  321413 mlir_graph_optimization_pass.cc:425] MLIR V1 optimization pass is not enabled
+2026-06-24 10:35:48,430 Padding length to 1107
+2026-06-24 10:38:02,409 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.8 pTM=0.587
+2026-06-24 10:39:38,706 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.5 pTM=0.618 tol=8.69
+2026-06-24 10:39:38,739 alphafold2_ptm_model_1_seed_000 took 230.3s (1 recycles)
+2026-06-24 10:39:39,944 reranking models by 'plddt' metric
+2026-06-24 10:39:39,944 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.5 pTM=0.618
+2026-06-24 10:39:42,207 Query 2/6: Zea_mays_ZEAMMB73_Zm00001d018807_FLS2 (length 1105)
+    folding 2/6 · Zea_mays_ZEAMMB73_Zm00001d018807_FLS2 (1105 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-24 10:40:18,575 Padding length to 1107
+2026-06-24 10:41:54,783 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.8 pTM=0.588
+2026-06-24 10:43:33,167 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.2 pTM=0.619 tol=7.02
+2026-06-24 10:43:33,477 alphafold2_ptm_model_1_seed_000 took 194.9s (1 recycles)
+2026-06-24 10:43:35,397 reranking models by 'plddt' metric
+2026-06-24 10:43:35,399 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.2 pTM=0.619
+2026-06-24 10:43:39,118 Query 3/6: Zea_mays_ZEAMMB73_Zm00001d036947_FLS2 (length 1125)
+    folding 3/6 · Zea_mays_ZEAMMB73_Zm00001d036947_FLS2 (1125 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-24 10:44:14,394 Padding length to 1135
+2026-06-24 10:46:58,242 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.3 pTM=0.598
+2026-06-24 10:48:39,329 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.2 pTM=0.624 tol=9.05
+2026-06-24 10:48:39,384 alphafold2_ptm_model_1_seed_000 took 265.0s (1 recycles)
+2026-06-24 10:48:40,669 reranking models by 'plddt' metric
+2026-06-24 10:48:40,669 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.2 pTM=0.624
+2026-06-24 10:48:43,227 Query 4/6: Zea_mays_ZEAMMB73_Zm00001d048357_FLS2 (length 1171)
+    folding 4/6 · Zea_mays_ZEAMMB73_Zm00001d048357_FLS2 (1171 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-24 10:49:16,432 Padding length to 1181
+2026-06-24 10:51:37,431 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.4 pTM=0.568
+2026-06-24 10:53:29,103 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.6 pTM=0.595 tol=8.64
+2026-06-24 10:53:29,105 alphafold2_ptm_model_1_seed_000 took 252.7s (1 recycles)
+2026-06-24 10:53:30,591 reranking models by 'plddt' metric
+2026-06-24 10:53:30,591 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.6 pTM=0.595
+2026-06-24 10:53:32,210 Query 5/6: Zea_mays_ZEAMMB73_Zm00001d002287_FLS2 (length 1190)
+    folding 5/6 · Zea_mays_ZEAMMB73_Zm00001d002287_FLS2 (1190 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-24 10:54:15,239 Padding length to 1200
+2026-06-24 10:56:53,310 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.2 pTM=0.57
+2026-06-24 10:58:42,265 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.3 pTM=0.613 tol=6.12
+2026-06-24 10:58:42,334 alphafold2_ptm_model_1_seed_000 took 267.1s (1 recycles)
+2026-06-24 10:58:44,031 reranking models by 'plddt' metric
+2026-06-24 10:58:44,031 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.3 pTM=0.613
+2026-06-24 10:58:47,068 Query 6/6: Zea_mays_ZEAMMB73_Zm00001d021535_FLS2 (length 1260)
+    folding 6/6 · Zea_mays_ZEAMMB73_Zm00001d021535_FLS2 (1260 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-24 11:02:02,466 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.1 pTM=0.577
+2026-06-24 11:04:05,540 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.1 pTM=0.615 tol=5.47
+2026-06-24 11:04:05,570 alphafold2_ptm_model_1_seed_000 took 282.3s (1 recycles)
+2026-06-24 11:04:07,155 reranking models by 'plddt' metric
+2026-06-24 11:04:07,155 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.1 pTM=0.615
+2026-06-24 11:04:09,326 Done
+  ✓ Fold receptors · ColabFold (auto-detected) · ColabFold finished -> · 38m 08s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/receptor_only
+▶ Structure analysis · LRR annotation  (est. ~15–90s)
+  ✓ Structure analysis · LRR annotation · 6 LRR region row(s) · 1m 01s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/lrr_annotation_results.txt
+▶ LRR-domain FASTA  (est. <5s)
+  ✓ LRR-domain FASTA · 6 sequence(s) · 0.0s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/lrr_domain_sequences.fasta
+▶ B-factor winding analysis  (est. ~10–60s)
+  ✓ B-factor winding analysis · 4081 row(s) · 11.9s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/bfactor_winding_lrr_segments.csv
+▶ Test-data assembly  (est. <10s)
+  ✓ Test-data assembly · 24 row(s) · 0.2s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/test_data.csv
+▶ Chemical-feature annotation  (est. <10s)
+  ✓ Chemical-feature annotation · 24 row(s) · 0.1s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/ready_test_data.csv
+/global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/torch/cuda/__init__.py:384: UserWarning: Found GPU0 Tesla V100-SXM2-32GB which is of compute capability (CC) 7.0.
+The following list shows the CCs this version of PyTorch was built for and the hardware CCs it supports:
+- 7.5 which supports hardware CC >=7.5,<8.0
+- 8.0 which supports hardware CC >=8.0,<9.0 except {8.7}
+- 8.6 which supports hardware CC >=8.6,<9.0 except {8.7}
+- 9.0 which supports hardware CC >=9.0,<10.0
+- 10.0 which supports hardware CC >=10.0,<11.0 except {10.1}
+- 12.0 which supports hardware CC >=12.0,<13.0
+Please follow the instructions at https://pytorch.org/get-started/locally/ to install a PyTorch release that supports one of these CUDA versions: 12.6
+  _warn_unsupported_code(d, device_cc, code_ccs)
+  ⚠ requested --device cuda, but it is unusable: GPU 'Tesla V100-SXM2-32GB' is compute capability 7.0 (sm_70), but this PyTorch was built only for [sm_75, sm_80, sm_86, sm_90, sm_100, sm_120]. Install a torch build that includes this GPU's architecture. Falling back to --device cpu. Run `mamp-ml install-check` to diagnose, and the README's install section for a GPU-compatible PyTorch.
+▶ Predict · ESM-2 inference  (est. ~30s–3 min on GPU, longer on CPU)
+    ↳ weights: /global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/mamp_ml/weights/mamp_ml_weights.pth
+Not using distributed mode
+[11:08:55.570138] Namespace(seed=0, debug='', repeat_thresh=0.001, n_fed_cats=-1, detic_path=PosixPath('/path/to/file'), pos_thresh=0.5, aa_expand='scratch', single_dec='naive', head_dim=128, backbone='esm2_t33_650M_UR50D', finetune_backbone='/scratch/cluster/jozhang/models/openfold_params/finetuning_ptm_2.pt', freeze_at=14, model='esm2_bfactor_weighted', data_dir=None, eval_only_data_path='/global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/intermediate_files/Maize_FLS2_search_job35167396_f1c3/ready_test_data.csv', n_msa_seqs=128, n_extra_msa_seqs=1024, af_extract_feat='both', max_context_length=2000, num_workers=10, epochs=50, batch_size=8, lr=0.0003, min_lr=1e-09, weight_decay=0.5, warmup_epochs=10, cross_eval_kfold=None, lambda_single=0.1, loss_single_aug='none', lambda_double=1.0, double_subsample_destabilizing_ratio=8, lambda_pos=4, eval=False, dist_eval=False, eval_reverse=False, test=False, finetune='', resume='', start_epoch=0, save_pred_dict=False, eval_period=5, save_period=1000, disable_wandb=True, model_checkpoint_path='/global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/mamp_ml/weights/mamp_ml_weights.pth', device='cpu', world_size=1, name_to_x='../out_data/colabfold_name_to_x.pt', local_rank=-1, dist_on_itp=False, dist_url='env://', contrastive_output=True, bfactor_csv_path='/global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/intermediate_files/Maize_FLS2_search_job35167396_f1c3/bfactor_winding_lrr_segments.csv', output_dir=PosixPath('/global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/intermediate_files/Maize_FLS2_search_job35167396_f1c3'), distributed=False)
+Loading weights:   0%|          | 0/102 [00:00<?, ?it/s]Loading weights:   1%|          | 1/102 [00:00<00:22,  4.46it/s]Loading weights:   8%|7         | 8/102 [00:00<00:04, 22.15it/s]Loading weights:  16%|#5        | 16/102 [00:00<00:04, 18.02it/s]Loading weights: 100%|##########| 102/102 [00:00<00:00, 111.04it/s]
+[11:09:03.780963] DEBUG Tokenizer Info:
+[11:09:03.781029]   - eos_token: <eos>, eos_token_id: 2
+[11:09:03.781052]   - cls_token: <cls>, cls_token_id: 0
+[11:09:03.781071]   - pad_token: <pad>, pad_token_id: 1
+[11:09:03.781088]   - unk_token: <unk>, unk_token_id: 3
+[11:09:04.509975] State dict keys: odict_keys(['esm.embeddings.word_embeddings.weight', 'esm.embeddings.position_embeddings.weight', 'esm.encoder.layer.0.attention.self.query.weight', 'esm.encoder.layer.0.attention.self.query.bias', 'esm.encoder.layer.0.attention.self.key.weight', 'esm.encoder.layer.0.attention.self.key.bias', 'esm.encoder.layer.0.attention.self.value.weight', 'esm.encoder.layer.0.attention.self.value.bias', 'esm.encoder.layer.0.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.0.attention.output.dense.weight', 'esm.encoder.layer.0.attention.output.dense.bias', 'esm.encoder.layer.0.attention.LayerNorm.weight', 'esm.encoder.layer.0.attention.LayerNorm.bias', 'esm.encoder.layer.0.intermediate.dense.weight', 'esm.encoder.layer.0.intermediate.dense.bias', 'esm.encoder.layer.0.output.dense.weight', 'esm.encoder.layer.0.output.dense.bias', 'esm.encoder.layer.0.LayerNorm.weight', 'esm.encoder.layer.0.LayerNorm.bias', 'esm.encoder.layer.1.attention.self.query.weight', 'esm.encoder.layer.1.attention.self.query.bias', 'esm.encoder.layer.1.attention.self.key.weight', 'esm.encoder.layer.1.attention.self.key.bias', 'esm.encoder.layer.1.attention.self.value.weight', 'esm.encoder.layer.1.attention.self.value.bias', 'esm.encoder.layer.1.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.1.attention.output.dense.weight', 'esm.encoder.layer.1.attention.output.dense.bias', 'esm.encoder.layer.1.attention.LayerNorm.weight', 'esm.encoder.layer.1.attention.LayerNorm.bias', 'esm.encoder.layer.1.intermediate.dense.weight', 'esm.encoder.layer.1.intermediate.dense.bias', 'esm.encoder.layer.1.output.dense.weight', 'esm.encoder.layer.1.output.dense.bias', 'esm.encoder.layer.1.LayerNorm.weight', 'esm.encoder.layer.1.LayerNorm.bias', 'esm.encoder.layer.2.attention.self.query.weight', 'esm.encoder.layer.2.attention.self.query.bias', 'esm.encoder.layer.2.attention.self.key.weight', 'esm.encoder.layer.2.attention.self.key.bias', 'esm.encoder.layer.2.attention.self.value.weight', 'esm.encoder.layer.2.attention.self.value.bias', 'esm.encoder.layer.2.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.2.attention.output.dense.weight', 'esm.encoder.layer.2.attention.output.dense.bias', 'esm.encoder.layer.2.attention.LayerNorm.weight', 'esm.encoder.layer.2.attention.LayerNorm.bias', 'esm.encoder.layer.2.intermediate.dense.weight', 'esm.encoder.layer.2.intermediate.dense.bias', 'esm.encoder.layer.2.output.dense.weight', 'esm.encoder.layer.2.output.dense.bias', 'esm.encoder.layer.2.LayerNorm.weight', 'esm.encoder.layer.2.LayerNorm.bias', 'esm.encoder.layer.3.attention.self.query.weight', 'esm.encoder.layer.3.attention.self.query.bias', 'esm.encoder.layer.3.attention.self.key.weight', 'esm.encoder.layer.3.attention.self.key.bias', 'esm.encoder.layer.3.attention.self.value.weight', 'esm.encoder.layer.3.attention.self.value.bias', 'esm.encoder.layer.3.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.3.attention.output.dense.weight', 'esm.encoder.layer.3.attention.output.dense.bias', 'esm.encoder.layer.3.attention.LayerNorm.weight', 'esm.encoder.layer.3.attention.LayerNorm.bias', 'esm.encoder.layer.3.intermediate.dense.weight', 'esm.encoder.layer.3.intermediate.dense.bias', 'esm.encoder.layer.3.output.dense.weight', 'esm.encoder.layer.3.output.dense.bias', 'esm.encoder.layer.3.LayerNorm.weight', 'esm.encoder.layer.3.LayerNorm.bias', 'esm.encoder.layer.4.attention.self.query.weight', 'esm.encoder.layer.4.attention.self.query.bias', 'esm.encoder.layer.4.attention.self.key.weight', 'esm.encoder.layer.4.attention.self.key.bias', 'esm.encoder.layer.4.attention.self.value.weight', 'esm.encoder.layer.4.attention.self.value.bias', 'esm.encoder.layer.4.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.4.attention.output.dense.weight', 'esm.encoder.layer.4.attention.output.dense.bias', 'esm.encoder.layer.4.attention.LayerNorm.weight', 'esm.encoder.layer.4.attention.LayerNorm.bias', 'esm.encoder.layer.4.intermediate.dense.weight', 'esm.encoder.layer.4.intermediate.dense.bias', 'esm.encoder.layer.4.output.dense.weight', 'esm.encoder.layer.4.output.dense.bias', 'esm.encoder.layer.4.LayerNorm.weight', 'esm.encoder.layer.4.LayerNorm.bias', 'esm.encoder.layer.5.attention.self.query.weight', 'esm.encoder.layer.5.attention.self.query.bias', 'esm.encoder.layer.5.attention.self.key.weight', 'esm.encoder.layer.5.attention.self.key.bias', 'esm.encoder.layer.5.attention.self.value.weight', 'esm.encoder.layer.5.attention.self.value.bias', 'esm.encoder.layer.5.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.5.attention.output.dense.weight', 'esm.encoder.layer.5.attention.output.dense.bias', 'esm.encoder.layer.5.attention.LayerNorm.weight', 'esm.encoder.layer.5.attention.LayerNorm.bias', 'esm.encoder.layer.5.intermediate.dense.weight', 'esm.encoder.layer.5.intermediate.dense.bias', 'esm.encoder.layer.5.output.dense.weight', 'esm.encoder.layer.5.output.dense.bias', 'esm.encoder.layer.5.LayerNorm.weight', 'esm.encoder.layer.5.LayerNorm.bias', 'esm.encoder.emb_layer_norm_after.weight', 'esm.encoder.emb_layer_norm_after.bias', 'esm.pooler.dense.weight', 'esm.pooler.dense.bias', 'esm.contact_head.regression.weight', 'esm.contact_head.regression.bias', 'film.chemical_proj.0.weight', 'film.chemical_proj.0.bias', 'film.chemical_proj.2.weight', 'film.chemical_proj.2.bias', 'film.chemical_proj.3.weight', 'film.chemical_proj.3.bias', 'film.film_layer.weight', 'film.film_layer.bias', 'film.layer_norm.weight', 'film.layer_norm.bias', 'classifier.0.weight', 'classifier.0.bias', 'classifier.1.weight', 'classifier.1.bias', 'classifier.4.weight', 'classifier.4.bias'])
+[11:09:05.401900] ESMBfactorWeightedFeatures(
+  (esm): EsmModel(
+    (embeddings): EsmEmbeddings(
+      (word_embeddings): Embedding(33, 320, padding_idx=1)
+      (dropout): Dropout(p=0.0, inplace=False)
+    )
+    (rotary_embeddings): EsmRotaryEmbedding()
+    (encoder): EsmEncoder(
+      (layer): ModuleList(
+        (0-5): 6 x EsmLayer(
+          (attention): EsmAttention(
+            (self): EsmSelfAttention(
+              (query): Linear(in_features=320, out_features=320, bias=True)
+              (key): Linear(in_features=320, out_features=320, bias=True)
+              (value): Linear(in_features=320, out_features=320, bias=True)
+            )
+            (output): EsmSelfOutput(
+              (dense): Linear(in_features=320, out_features=320, bias=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+            )
+            (LayerNorm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+          )
+          (intermediate): EsmIntermediate(
+            (dense): Linear(in_features=320, out_features=1280, bias=True)
+          )
+          (output): EsmOutput(
+            (dense): Linear(in_features=1280, out_features=320, bias=True)
+            (dropout): Dropout(p=0.0, inplace=False)
+          )
+          (LayerNorm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+        )
+      )
+      (emb_layer_norm_after): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    )
+    (pooler): EsmPooler(
+      (dense): Linear(in_features=320, out_features=320, bias=True)
+      (activation): Tanh()
+    )
+    (contact_head): EsmContactPredictionHead(
+      (regression): Linear(in_features=120, out_features=1, bias=True)
+      (activation): Sigmoid()
+    )
+  )
+  (film): FiLMWithConcatenation(
+    (chemical_proj): Sequential(
+      (0): Linear(in_features=3, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=64, out_features=320, bias=True)
+      (3): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    )
+    (film_layer): Linear(in_features=640, out_features=640, bias=True)
+    (layer_norm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=320, out_features=160, bias=True)
+    (1): LayerNorm((160,), eps=1e-05, elementwise_affine=True, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.2, inplace=False)
+    (4): Linear(in_features=160, out_features=3, bias=True)
+  )
+  (criterion): CrossEntropyLoss()
+)
+[11:09:05.402769] Evaluating a model with 1,821,180 trainable parameters out of 7,996,540 parameters
+[11:09:05.488441] len(ds_test)=24
+[11:09:11.352220] Test:  [0/3]  eta: 0:00:17    time: 5.7480  data: 0.2573  max mem: 0
+[11:09:13.991109] Test:  [2/3]  eta: 0:00:02    time: 2.7954  data: 0.1012  max mem: 0
+[11:09:13.991398] Test: Total time: 0:00:08 (2.8340 s / it)
+[11:09:13.991451] No ground truth labels found. Saving predictions only.
+[11:09:14.103456] Successfully added metadata for 24 predictions
+[11:09:14.136349] Saved predictions to predictions.csv with 24 rows
+[11:09:14.136484] {'predictions_saved': True, 'num_predictions': 24}
+  ✓ Predict · ESM-2 inference · 24 prediction(s) · 18.6s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/predictions.csv
+
+──────────────────────────────────────────────────────────────
+✓ Prediction complete  · total 43m 22s
+  Output folder                     /global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/output_Maize_FLS2_search_job35167396_f1c3/
+    predictions                     predictions.csv
+    LRR annotation plots            lrr_annotation_plots/
+    structures                      structures/
+    run log                         mamp-ml-run.log
+  (remaining intermediates removed  rerun with `--keep all` to retain them)
+
+Step timings
+  Receptor FASTA                              11.8s
+  Fold receptors · ColabFold (auto-detected)  38m 08s
+  Structure analysis · LRR annotation         1m 01s
+  LRR-domain FASTA                            0.0s
+  B-factor winding analysis                   11.9s
+  Test-data assembly                          0.2s
+  Chemical-feature annotation                 0.1s
+  Predict · ESM-2 inference                   18.6s
+  total                                       43m 22s
+  reuse these structures with different weights (skips folding):
+    mamp-ml predict Maize_FLS2_search.xlsx --structures /global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/output_Maize_FLS2_search_job35167396_f1c3/structures --weights <other.pth>

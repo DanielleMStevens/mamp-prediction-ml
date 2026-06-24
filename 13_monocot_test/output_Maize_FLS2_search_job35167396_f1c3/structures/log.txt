@@ -1,0 +1,45 @@
+2026-06-24 10:33:24,420 Running colabfold 1.5.5 (bfc0e83d3b87730f6903f6c385b08c426d1e791e)
+2026-06-24 10:33:41,185 Running on GPU
+2026-06-24 10:34:36,301 Found 5 citations for tools or databases
+2026-06-24 10:34:36,304 Query 1/6: Zea_mays_ZEAMMB73_Zm00001d003101_FLS2 (length 1097)
+2026-06-24 10:35:48,430 Padding length to 1107
+2026-06-24 10:38:02,409 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.8 pTM=0.587
+2026-06-24 10:39:38,706 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.5 pTM=0.618 tol=8.69
+2026-06-24 10:39:38,739 alphafold2_ptm_model_1_seed_000 took 230.3s (1 recycles)
+2026-06-24 10:39:39,944 reranking models by 'plddt' metric
+2026-06-24 10:39:39,944 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.5 pTM=0.618
+2026-06-24 10:39:42,207 Query 2/6: Zea_mays_ZEAMMB73_Zm00001d018807_FLS2 (length 1105)
+2026-06-24 10:40:18,575 Padding length to 1107
+2026-06-24 10:41:54,783 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.8 pTM=0.588
+2026-06-24 10:43:33,167 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.2 pTM=0.619 tol=7.02
+2026-06-24 10:43:33,477 alphafold2_ptm_model_1_seed_000 took 194.9s (1 recycles)
+2026-06-24 10:43:35,397 reranking models by 'plddt' metric
+2026-06-24 10:43:35,399 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.2 pTM=0.619
+2026-06-24 10:43:39,118 Query 3/6: Zea_mays_ZEAMMB73_Zm00001d036947_FLS2 (length 1125)
+2026-06-24 10:44:14,394 Padding length to 1135
+2026-06-24 10:46:58,242 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.3 pTM=0.598
+2026-06-24 10:48:39,329 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.2 pTM=0.624 tol=9.05
+2026-06-24 10:48:39,384 alphafold2_ptm_model_1_seed_000 took 265.0s (1 recycles)
+2026-06-24 10:48:40,669 reranking models by 'plddt' metric
+2026-06-24 10:48:40,669 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.2 pTM=0.624
+2026-06-24 10:48:43,227 Query 4/6: Zea_mays_ZEAMMB73_Zm00001d048357_FLS2 (length 1171)
+2026-06-24 10:49:16,432 Padding length to 1181
+2026-06-24 10:51:37,431 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.4 pTM=0.568
+2026-06-24 10:53:29,103 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.6 pTM=0.595 tol=8.64
+2026-06-24 10:53:29,105 alphafold2_ptm_model_1_seed_000 took 252.7s (1 recycles)
+2026-06-24 10:53:30,591 reranking models by 'plddt' metric
+2026-06-24 10:53:30,591 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.6 pTM=0.595
+2026-06-24 10:53:32,210 Query 5/6: Zea_mays_ZEAMMB73_Zm00001d002287_FLS2 (length 1190)
+2026-06-24 10:54:15,239 Padding length to 1200
+2026-06-24 10:56:53,310 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.2 pTM=0.57
+2026-06-24 10:58:42,265 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.3 pTM=0.613 tol=6.12
+2026-06-24 10:58:42,334 alphafold2_ptm_model_1_seed_000 took 267.1s (1 recycles)
+2026-06-24 10:58:44,031 reranking models by 'plddt' metric
+2026-06-24 10:58:44,031 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.3 pTM=0.613
+2026-06-24 10:58:47,068 Query 6/6: Zea_mays_ZEAMMB73_Zm00001d021535_FLS2 (length 1260)
+2026-06-24 11:02:02,466 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.1 pTM=0.577
+2026-06-24 11:04:05,540 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.1 pTM=0.615 tol=5.47
+2026-06-24 11:04:05,570 alphafold2_ptm_model_1_seed_000 took 282.3s (1 recycles)
+2026-06-24 11:04:07,155 reranking models by 'plddt' metric
+2026-06-24 11:04:07,155 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.1 pTM=0.615
+2026-06-24 11:04:09,326 Done

@@ -1,0 +1,72 @@
+
+CondaError: Run 'conda init' before 'conda activate'
+
+
+mamp-ml predict
+input: Maize_FLS2_search.xlsx  ·  device: cuda  ·  structure: colabfold
+──────────────────────────────────────────────────────────────
+▶ Receptor FASTA
+  ✓ Receptor FASTA · 6 unique receptor record(s) · 11.8s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/receptor_full_length.fasta
+▶ Fold receptors · ColabFold (auto-detected)
+  running the discovered colabfold_batch automatically:
+    ↳ /global/scratch/users/dmstev/localcolabfold/colabfold-conda/bin/colabfold_batch  (on $PATH)
+  full ColabFold output is being written to intermediate_files/Maize_FLS2_search_job35167396_f1c3/mamp-ml-run.log
+    folding 1/6 · Zea_mays_ZEAMMB73_Zm00001d003101_FLS2 (1097 aa)
+    folding 2/6 · Zea_mays_ZEAMMB73_Zm00001d018807_FLS2 (1105 aa)
+    folding 3/6 · Zea_mays_ZEAMMB73_Zm00001d036947_FLS2 (1125 aa)
+    folding 4/6 · Zea_mays_ZEAMMB73_Zm00001d048357_FLS2 (1171 aa)
+    folding 5/6 · Zea_mays_ZEAMMB73_Zm00001d002287_FLS2 (1190 aa)
+    folding 6/6 · Zea_mays_ZEAMMB73_Zm00001d021535_FLS2 (1260 aa)
+  ✓ Fold receptors · ColabFold (auto-detected) · ColabFold finished -> · 38m 08s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/receptor_only
+▶ Structure analysis · LRR annotation
+Loading PDBs:   0%|          | 0/6 [00:00<?, ?it/s]Loading PDBs:  17%|█▋        | 1/6 [00:00<00:00,  9.70it/s]Loading PDBs:  33%|███▎      | 2/6 [00:00<00:00,  7.66it/s]Loading PDBs:  50%|█████     | 3/6 [00:00<00:00,  7.10it/s]Loading PDBs:  83%|████████▎ | 5/6 [00:00<00:00,  7.43it/s]Loading PDBs: 100%|██████████| 6/6 [00:00<00:00,  7.90it/s]
+Computing windings:   0%|          | 0/6 [00:00<?, ?it/s]Computing windings:  17%|█▋        | 1/6 [00:06<00:34,  6.89s/it]Computing windings:  67%|██████▋   | 4/6 [00:07<00:02,  1.34s/it]Computing windings: 100%|██████████| 6/6 [00:07<00:00,  1.19s/it]
+Computing regressions:   0%|          | 0/6 [00:00<?, ?it/s]Computing regressions:  17%|█▋        | 1/6 [00:05<00:27,  5.47s/it]Computing regressions:  33%|███▎      | 2/6 [00:11<00:23,  5.80s/it]Computing regressions:  50%|█████     | 3/6 [00:17<00:17,  5.85s/it]Computing regressions:  67%|██████▋   | 4/6 [00:22<00:11,  5.64s/it]Computing regressions:  83%|████████▎ | 5/6 [00:28<00:05,  5.57s/it]Computing regressions: 100%|██████████| 6/6 [00:33<00:00,  5.58s/it]Computing regressions: 100%|██████████| 6/6 [00:33<00:00,  5.63s/it]
+Making plots:   0%|          | 0/6 [00:00<?, ?it/s]Making plots:  17%|█▋        | 1/6 [00:07<00:38,  7.79s/it]Making plots:  33%|███▎      | 2/6 [00:07<00:13,  3.29s/it]Making plots:  50%|█████     | 3/6 [00:08<00:05,  1.85s/it]Making plots:  67%|██████▋   | 4/6 [00:08<00:02,  1.17s/it]Making plots:  83%|████████▎ | 5/6 [00:08<00:00,  1.26it/s]Making plots: 100%|██████████| 6/6 [00:08<00:00,  1.76it/s]Making plots: 100%|██████████| 6/6 [00:08<00:00,  1.41s/it]
+[transformers] [1mEsmModel LOAD REPORT[0m from: facebook/esm2_t6_8M_UR50D
+Key                       | Status     | 
+--------------------------+------------+-
+lm_head.dense.bias        | UNEXPECTED | 
+lm_head.dense.weight      | UNEXPECTED | 
+lm_head.layer_norm.bias   | UNEXPECTED | 
+lm_head.bias              | UNEXPECTED | 
+lm_head.layer_norm.weight | UNEXPECTED | 
+pooler.dense.bias         | MISSING    | 
+pooler.dense.weight       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  ✓ Structure analysis · LRR annotation · 6 LRR region row(s) · 1m 01s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/lrr_annotation_results.txt
+▶ LRR-domain FASTA
+  ✓ LRR-domain FASTA · 6 sequence(s) · 0.0s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/lrr_domain_sequences.fasta
+▶ B-factor winding analysis
+  ✓ B-factor winding analysis · 4081 row(s) · 11.9s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/bfactor_winding_lrr_segments.csv
+▶ Test-data assembly
+  ✓ Test-data assembly · 24 row(s) · 0.2s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/test_data.csv
+▶ Chemical-feature annotation
+  ✓ Chemical-feature annotation · 24 row(s) · 0.1s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/ready_test_data.csv
+  ⚠ requested --device cuda, but it is unusable: GPU 'Tesla V100-SXM2-32GB' is compute capability 7.0 (sm_70), but this PyTorch was built only for [sm_75, sm_80, sm_86, sm_90, sm_100, sm_120]. Install a torch build that includes this GPU's architecture. Falling back to --device cpu. Run `mamp-ml install-check` to diagnose, and the README's install section for a GPU-compatible PyTorch.
+▶ Predict · ESM-2 inference
+    ↳ weights: /global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/mamp_ml/weights/mamp_ml_weights.pth
+  ✓ Predict · ESM-2 inference · 24 prediction(s) · 18.6s
+     → intermediate_files/Maize_FLS2_search_job35167396_f1c3/predictions.csv
+
+──────────────────────────────────────────────────────────────
+✓ Prediction complete  · total 43m 22s
+  Output folder                     /global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/output_Maize_FLS2_search_job35167396_f1c3/
+    predictions                     predictions.csv
+    LRR annotation plots            lrr_annotation_plots/
+    structures                      structures/
+    run log                         mamp-ml-run.log
+  (remaining intermediates removed  rerun with `--keep all` to retain them)
+  reuse these structures with different weights (skips folding):
+    mamp-ml predict Maize_FLS2_search.xlsx --structures /global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/output_Maize_FLS2_search_job35167396_f1c3/structures --weights <other.pth>
