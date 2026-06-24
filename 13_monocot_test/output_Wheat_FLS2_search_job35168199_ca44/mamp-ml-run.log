@@ -1,0 +1,2025 @@
+==============================================================
+mamp-ml run log
+==============================================================
+date      : 2026-06-24 12:26:17
+version   : mamp-ml 0.2.17
+command   : mamp-ml predict Wheat_FLS2_search.xlsx --device cuda
+python    : 3.10.16
+platform  : Linux-4.18.0-553.126.1.el8_10.x86_64-x86_64-with-glibc2.28
+input     : Wheat_FLS2_search.xlsx
+device    : cuda
+gpu       : Tesla V100-SXM2-32GB, CC 7.0, driver CUDA 13.0
+pytorch   : 2.12.0
+structure : colabfold
+out_dir   : intermediate_files/Wheat_FLS2_search_job35168199_ca44
+--------------------------------------------------------------
+▶ Receptor FASTA  (est. <5s)
+  ✓ Receptor FASTA · 8 unique receptor record(s) · 8.5s
+     → intermediate_files/Wheat_FLS2_search_job35168199_ca44/receptor_full_length.fasta
+▶ Fold receptors · ColabFold (auto-detected)  (est. ~2–10 min/receptor on GPU × 8)
+  running the discovered colabfold_batch automatically:
+    ↳ /global/scratch/users/dmstev/localcolabfold/colabfold-conda/bin/colabfold_batch  (on $PATH)
+  full ColabFold output is being written to intermediate_files/Wheat_FLS2_search_job35168199_ca44/mamp-ml-run.log
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1782329237.271188  706367 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1782329237.579975  706367 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1782329239.208202  706367 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782329239.208246  706367 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782329239.208248  706367 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782329239.208251  706367 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+
+WARNING: You are welcome to use the default MSA server, however keep in mind that it's a
+limited shared resource only capable of processing a few thousand MSAs per day. Please
+submit jobs only from a single IP address. We reserve the right to limit access to the
+server case-by-case when usage exceeds fair use. If you require more MSAs: You can 
+precompute all MSAs with `colabfold_search` or host your own API and pass it to `--host-url`
+
+2026-06-24 12:30:01,190 Running colabfold 1.5.5 (bfc0e83d3b87730f6903f6c385b08c426d1e791e)
+2026-06-24 12:30:08,557 Running on GPU
+2026-06-24 12:30:42,839 Found 5 citations for tools or databases
+2026-06-24 12:30:42,839 Query 1/8: Triticum_turgidum_TrturKRN2B02G075960.2_FLS2 (length 913)
+    folding 1/8 · Triticum_turgidum_TrturKRN2B02G075960.2_FLS2 (913 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:07 remaining: ?]
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:07 remaining: 02:54]
+                                                                 
+
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:07 remaining: 02:54]
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:16 remaining: 02:54]
+RUNNING:  10%|█         | 15/150 [elapsed: 00:16 remaining: 02:29]
+                                                                  
+
+RUNNING:  10%|█         | 15/150 [elapsed: 00:16 remaining: 02:29]
+RUNNING:  10%|█         | 15/150 [elapsed: 00:25 remaining: 02:29]
+RUNNING:  15%|█▌        | 23/150 [elapsed: 00:25 remaining: 02:17]
+                                                                  
+
+RUNNING:  15%|█▌        | 23/150 [elapsed: 00:25 remaining: 02:17]
+RUNNING:  15%|█▌        | 23/150 [elapsed: 00:32 remaining: 02:17]
+RUNNING:  20%|██        | 30/150 [elapsed: 00:32 remaining: 02:09]
+                                                                  
+
+RUNNING:  20%|██        | 30/150 [elapsed: 00:32 remaining: 02:09]
+RUNNING:  20%|██        | 30/150 [elapsed: 00:41 remaining: 02:09]
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:41 remaining: 02:00]
+                                                                  
+
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:41 remaining: 02:00]
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:47 remaining: 02:00]
+RUNNING:  29%|██▉       | 44/150 [elapsed: 00:47 remaining: 01:54]
+                                                                  
+
+RUNNING:  29%|██▉       | 44/150 [elapsed: 00:47 remaining: 01:54]
+RUNNING:  29%|██▉       | 44/150 [elapsed: 00:56 remaining: 01:54]
+RUNNING:  35%|███▍      | 52/150 [elapsed: 00:56 remaining: 01:44]
+                                                                  
+
+RUNNING:  35%|███▍      | 52/150 [elapsed: 00:56 remaining: 01:44]
+RUNNING:  35%|███▍      | 52/150 [elapsed: 01:02 remaining: 01:44]
+RUNNING:  39%|███▊      | 58/150 [elapsed: 01:02 remaining: 01:38]
+                                                                  
+
+RUNNING:  39%|███▊      | 58/150 [elapsed: 01:02 remaining: 01:38]
+RUNNING:  39%|███▊      | 58/150 [elapsed: 01:12 remaining: 01:38]
+RUNNING:  45%|████▍     | 67/150 [elapsed: 01:12 remaining: 01:28]
+                                                                  
+
+RUNNING:  45%|████▍     | 67/150 [elapsed: 01:12 remaining: 01:28]
+RUNNING:  45%|████▍     | 67/150 [elapsed: 01:19 remaining: 01:28]
+RUNNING:  49%|████▉     | 74/150 [elapsed: 01:19 remaining: 01:21]
+                                                                  
+
+RUNNING:  49%|████▉     | 74/150 [elapsed: 01:19 remaining: 01:21]
+RUNNING:  49%|████▉     | 74/150 [elapsed: 01:27 remaining: 01:21]
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:27 remaining: 01:13]
+                                                                  
+
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:27 remaining: 01:13]
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:33 remaining: 01:13]
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:33 remaining: 01:07]
+                                                                  
+
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:33 remaining: 01:07]
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:43 remaining: 01:07]
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:43 remaining: 00:57]
+                                                                  
+
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:43 remaining: 00:57]
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:51 remaining: 00:57]
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 01:51 remaining: 00:49]
+                                                                   
+
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 01:51 remaining: 00:49]
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 01:57 remaining: 00:49]
+RUNNING:  73%|███████▎  | 109/150 [elapsed: 01:57 remaining: 00:44]
+                                                                   
+
+RUNNING:  73%|███████▎  | 109/150 [elapsed: 01:57 remaining: 00:44]
+RUNNING:  73%|███████▎  | 109/150 [elapsed: 02:02 remaining: 00:44]
+RUNNING:  76%|███████▌  | 114/150 [elapsed: 02:02 remaining: 00:38]
+                                                                   
+
+RUNNING:  76%|███████▌  | 114/150 [elapsed: 02:02 remaining: 00:38]
+RUNNING:  76%|███████▌  | 114/150 [elapsed: 02:11 remaining: 00:38]
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:11 remaining: 00:30]
+                                                                   
+
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:11 remaining: 00:30]
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:19 remaining: 00:30]
+RUNNING:  87%|████████▋ | 130/150 [elapsed: 02:19 remaining: 00:21]
+                                                                   
+
+RUNNING:  87%|████████▋ | 130/150 [elapsed: 02:19 remaining: 00:21]
+RUNNING:  87%|████████▋ | 130/150 [elapsed: 02:28 remaining: 00:21]
+RUNNING:  92%|█████████▏| 138/150 [elapsed: 02:28 remaining: 00:12]
+                                                                   
+
+RUNNING:  92%|█████████▏| 138/150 [elapsed: 02:28 remaining: 00:12]
+COMPLETE:  92%|█████████▏| 138/150 [elapsed: 02:34 remaining: 00:12]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 02:34 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 02:36 remaining: 00:00]
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1782329645.668588  706367 mlir_graph_optimization_pass.cc:425] MLIR V1 optimization pass is not enabled
+2026-06-24 12:30:43,663 Sleeping for 6s. Reason: PENDING
+2026-06-24 12:30:50,135 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:30:59,653 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:31:08,160 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:31:15,679 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:31:24,195 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:31:30,671 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:31:39,142 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:31:45,637 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:31:55,141 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:32:02,630 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:32:10,134 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:32:16,663 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:32:26,149 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:32:34,665 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:32:40,162 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:32:45,653 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:32:54,148 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:33:02,660 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:33:11,164 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:34:15,214 Padding length to 923
+2026-06-24 12:35:58,013 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=88.8 pTM=0.679
+2026-06-24 12:37:05,816 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=89.9 pTM=0.727 tol=3.97
+2026-06-24 12:37:05,849 alphafold2_ptm_model_1_seed_000 took 170.6s (1 recycles)
+2026-06-24 12:37:06,739 reranking models by 'plddt' metric
+2026-06-24 12:37:06,739 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=89.9 pTM=0.727
+2026-06-24 12:37:09,032 Query 2/8: Triticum_turgidum_TrturKRN2A02G065640.1_FLS2 (length 1112)
+    folding 2/8 · Triticum_turgidum_TrturKRN2A02G065640.1_FLS2 (1112 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:11 remaining: ?]
+RUNNING:   7%|▋         | 10/150 [elapsed: 00:11 remaining: 02:38]
+                                                                  
+
+RUNNING:   7%|▋         | 10/150 [elapsed: 00:11 remaining: 02:38]
+RUNNING:   7%|▋         | 10/150 [elapsed: 00:16 remaining: 02:38]
+RUNNING:  10%|█         | 15/150 [elapsed: 00:16 remaining: 02:30]
+                                                                  
+
+RUNNING:  10%|█         | 15/150 [elapsed: 00:16 remaining: 02:30]
+RUNNING:  10%|█         | 15/150 [elapsed: 00:22 remaining: 02:30]
+RUNNING:  13%|█▎        | 20/150 [elapsed: 00:22 remaining: 02:23]
+                                                                  
+
+RUNNING:  13%|█▎        | 20/150 [elapsed: 00:22 remaining: 02:23]
+RUNNING:  13%|█▎        | 20/150 [elapsed: 00:31 remaining: 02:23]
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:31 remaining: 02:11]
+                                                                  
+
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:31 remaining: 02:11]
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:41 remaining: 02:11]
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:41 remaining: 01:59]
+                                                                  
+
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:41 remaining: 01:59]
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:49 remaining: 01:59]
+RUNNING:  31%|███       | 46/150 [elapsed: 00:49 remaining: 01:51]
+                                                                  
+
+RUNNING:  31%|███       | 46/150 [elapsed: 00:49 remaining: 01:51]
+RUNNING:  31%|███       | 46/150 [elapsed: 00:59 remaining: 01:51]
+RUNNING:  37%|███▋      | 55/150 [elapsed: 00:59 remaining: 01:41]
+                                                                  
+
+RUNNING:  37%|███▋      | 55/150 [elapsed: 00:59 remaining: 01:41]
+RUNNING:  37%|███▋      | 55/150 [elapsed: 01:05 remaining: 01:41]
+RUNNING:  41%|████      | 61/150 [elapsed: 01:05 remaining: 01:35]
+                                                                  
+
+RUNNING:  41%|████      | 61/150 [elapsed: 01:05 remaining: 01:35]
+RUNNING:  41%|████      | 61/150 [elapsed: 01:14 remaining: 01:35]
+RUNNING:  46%|████▌     | 69/150 [elapsed: 01:14 remaining: 01:26]
+                                                                  
+
+RUNNING:  46%|████▌     | 69/150 [elapsed: 01:14 remaining: 01:26]
+RUNNING:  46%|████▌     | 69/150 [elapsed: 01:21 remaining: 01:26]
+RUNNING:  51%|█████     | 76/150 [elapsed: 01:21 remaining: 01:18]
+                                                                  
+
+RUNNING:  51%|█████     | 76/150 [elapsed: 01:21 remaining: 01:18]
+RUNNING:  51%|█████     | 76/150 [elapsed: 01:29 remaining: 01:18]
+RUNNING:  55%|█████▌    | 83/150 [elapsed: 01:29 remaining: 01:11]
+                                                                  
+
+RUNNING:  55%|█████▌    | 83/150 [elapsed: 01:29 remaining: 01:11]
+RUNNING:  55%|█████▌    | 83/150 [elapsed: 01:36 remaining: 01:11]
+RUNNING:  60%|██████    | 90/150 [elapsed: 01:36 remaining: 01:04]
+                                                                  
+
+RUNNING:  60%|██████    | 90/150 [elapsed: 01:36 remaining: 01:04]
+RUNNING:  60%|██████    | 90/150 [elapsed: 01:43 remaining: 01:04]
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:43 remaining: 00:57]
+                                                                  
+
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:43 remaining: 00:57]
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:50 remaining: 00:57]
+RUNNING:  69%|██████▊   | 103/150 [elapsed: 01:50 remaining: 00:50]
+                                                                   
+
+RUNNING:  69%|██████▊   | 103/150 [elapsed: 01:50 remaining: 00:50]
+RUNNING:  69%|██████▊   | 103/150 [elapsed: 02:01 remaining: 00:50]
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:01 remaining: 00:39]
+                                                                   
+
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:01 remaining: 00:39]
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:10 remaining: 00:39]
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:10 remaining: 00:29]
+                                                                   
+
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:10 remaining: 00:29]
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:21 remaining: 00:29]
+RUNNING:  88%|████████▊ | 132/150 [elapsed: 02:21 remaining: 00:19]
+                                                                   
+
+RUNNING:  88%|████████▊ | 132/150 [elapsed: 02:21 remaining: 00:19]
+RUNNING:  88%|████████▊ | 132/150 [elapsed: 02:29 remaining: 00:19]
+RUNNING:  93%|█████████▎| 140/150 [elapsed: 02:29 remaining: 00:10]
+                                                                   
+
+RUNNING:  93%|█████████▎| 140/150 [elapsed: 02:29 remaining: 00:10]
+RUNNING:  93%|█████████▎| 140/150 [elapsed: 02:39 remaining: 00:10]
+RUNNING:  99%|█████████▉| 149/150 [elapsed: 02:39 remaining: 00:01]
+                                                                   
+
+RUNNING:  99%|█████████▉| 149/150 [elapsed: 02:39 remaining: 00:01]
+RUNNING:  99%|█████████▉| 149/150 [elapsed: 02:49 remaining: 00:01]
+RUNNING: |          | 159/? [elapsed: 02:49 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 159/? [elapsed: 02:49 remaining: 00:00]
+RUNNING: |          | 159/? [elapsed: 02:59 remaining: 00:00]
+RUNNING: |          | 168/? [elapsed: 02:59 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 168/? [elapsed: 02:59 remaining: 00:00]
+RUNNING: |          | 168/? [elapsed: 03:09 remaining: 00:00]
+RUNNING: |          | 178/? [elapsed: 03:09 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 178/? [elapsed: 03:09 remaining: 00:00]
+RUNNING: |          | 178/? [elapsed: 03:17 remaining: 00:00]
+RUNNING: |          | 185/? [elapsed: 03:17 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 185/? [elapsed: 03:17 remaining: 00:00]
+RUNNING: |          | 185/? [elapsed: 03:23 remaining: 00:00]
+RUNNING: |          | 191/? [elapsed: 03:23 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 191/? [elapsed: 03:23 remaining: 00:00]
+RUNNING: |          | 191/? [elapsed: 03:30 remaining: 00:00]
+RUNNING: |          | 197/? [elapsed: 03:30 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 197/? [elapsed: 03:30 remaining: 00:00]
+RUNNING: |          | 197/? [elapsed: 03:37 remaining: 00:00]
+RUNNING: |          | 204/? [elapsed: 03:37 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 204/? [elapsed: 03:37 remaining: 00:00]
+RUNNING: |          | 204/? [elapsed: 03:44 remaining: 00:00]
+RUNNING: |          | 210/? [elapsed: 03:44 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 210/? [elapsed: 03:44 remaining: 00:00]
+RUNNING: |          | 210/? [elapsed: 03:51 remaining: 00:00]
+RUNNING: |          | 217/? [elapsed: 03:51 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 217/? [elapsed: 03:51 remaining: 00:00]
+RUNNING: |          | 217/? [elapsed: 04:02 remaining: 00:00]
+RUNNING: |          | 227/? [elapsed: 04:02 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 227/? [elapsed: 04:02 remaining: 00:00]
+RUNNING: |          | 227/? [elapsed: 04:10 remaining: 00:00]
+RUNNING: |          | 235/? [elapsed: 04:10 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 235/? [elapsed: 04:10 remaining: 00:00]
+RUNNING: |          | 235/? [elapsed: 04:16 remaining: 00:00]
+RUNNING: |          | 240/? [elapsed: 04:16 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 240/? [elapsed: 04:16 remaining: 00:00]
+RUNNING: |          | 240/? [elapsed: 04:24 remaining: 00:00]
+RUNNING: |          | 248/? [elapsed: 04:24 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 248/? [elapsed: 04:24 remaining: 00:00]
+RUNNING: |          | 248/? [elapsed: 04:34 remaining: 00:00]
+RUNNING: |          | 257/? [elapsed: 04:34 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 257/? [elapsed: 04:34 remaining: 00:00]
+RUNNING: |          | 257/? [elapsed: 04:40 remaining: 00:00]
+RUNNING: |          | 263/? [elapsed: 04:40 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 263/? [elapsed: 04:40 remaining: 00:00]
+COMPLETE: |          | 263/? [elapsed: 04:51 remaining: 00:00]
+COMPLETE: |          | 263/? [elapsed: 04:52 remaining: 00:00]
+2026-06-24 12:37:09,877 Sleeping for 10s. Reason: PENDING
+2026-06-24 12:37:20,354 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:37:25,840 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:37:31,307 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:37:40,818 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:37:50,292 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:37:58,801 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:38:08,311 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:38:14,811 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:38:23,280 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:38:30,786 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:38:38,257 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:38:45,778 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:38:52,274 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:38:59,766 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:39:10,237 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:39:19,733 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:39:30,232 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:39:38,731 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:39:48,196 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:39:58,692 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:40:08,301 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:40:18,797 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:40:26,317 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:40:32,812 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:40:39,290 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:40:46,782 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:40:53,340 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:41:00,854 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:41:11,343 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:41:19,831 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:41:25,330 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:41:33,833 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:41:43,331 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:41:49,822 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:42:36,887 Padding length to 1122
+2026-06-24 12:45:18,850 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.9 pTM=0.585
+2026-06-24 12:46:59,574 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.6 pTM=0.621 tol=2.25
+2026-06-24 12:46:59,576 alphafold2_ptm_model_1_seed_000 took 262.7s (1 recycles)
+2026-06-24 12:47:01,059 reranking models by 'plddt' metric
+2026-06-24 12:47:01,059 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.6 pTM=0.621
+2026-06-24 12:47:02,934 Query 3/8: Triticum_turgidum_TrturKRN2B02G075960.1_FLS2 (length 1124)
+    folding 3/8 · Triticum_turgidum_TrturKRN2B02G075960.1_FLS2 (1124 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:10 remaining: ?]
+RUNNING:   6%|▌         | 9/150 [elapsed: 00:10 remaining: 02:47]
+                                                                 
+
+RUNNING:   6%|▌         | 9/150 [elapsed: 00:10 remaining: 02:47]
+RUNNING:   6%|▌         | 9/150 [elapsed: 00:20 remaining: 02:47]
+RUNNING:  12%|█▏        | 18/150 [elapsed: 00:20 remaining: 02:26]
+                                                                  
+
+RUNNING:  12%|█▏        | 18/150 [elapsed: 00:20 remaining: 02:26]
+RUNNING:  12%|█▏        | 18/150 [elapsed: 00:30 remaining: 02:26]
+RUNNING:  19%|█▊        | 28/150 [elapsed: 00:30 remaining: 02:12]
+                                                                  
+
+RUNNING:  19%|█▊        | 28/150 [elapsed: 00:30 remaining: 02:12]
+RUNNING:  19%|█▊        | 28/150 [elapsed: 00:40 remaining: 02:12]
+RUNNING:  25%|██▍       | 37/150 [elapsed: 00:40 remaining: 02:01]
+                                                                  
+
+RUNNING:  25%|██▍       | 37/150 [elapsed: 00:40 remaining: 02:01]
+RUNNING:  25%|██▍       | 37/150 [elapsed: 00:46 remaining: 02:01]
+RUNNING:  29%|██▊       | 43/150 [elapsed: 00:46 remaining: 01:55]
+                                                                  
+
+RUNNING:  29%|██▊       | 43/150 [elapsed: 00:46 remaining: 01:55]
+RUNNING:  29%|██▊       | 43/150 [elapsed: 00:53 remaining: 01:55]
+RUNNING:  33%|███▎      | 49/150 [elapsed: 00:53 remaining: 01:48]
+                                                                  
+
+RUNNING:  33%|███▎      | 49/150 [elapsed: 00:53 remaining: 01:48]
+RUNNING:  33%|███▎      | 49/150 [elapsed: 01:03 remaining: 01:48]
+RUNNING:  39%|███▉      | 59/150 [elapsed: 01:03 remaining: 01:37]
+                                                                  
+
+RUNNING:  39%|███▉      | 59/150 [elapsed: 01:03 remaining: 01:37]
+RUNNING:  39%|███▉      | 59/150 [elapsed: 01:10 remaining: 01:37]
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:10 remaining: 01:30]
+                                                                  
+
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:10 remaining: 01:30]
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:20 remaining: 01:30]
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:20 remaining: 01:19]
+                                                                  
+
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:20 remaining: 01:19]
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:27 remaining: 01:19]
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:27 remaining: 01:13]
+                                                                  
+
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:27 remaining: 01:13]
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:32 remaining: 01:13]
+RUNNING:  57%|█████▋    | 86/150 [elapsed: 01:32 remaining: 01:08]
+                                                                  
+
+RUNNING:  57%|█████▋    | 86/150 [elapsed: 01:32 remaining: 01:08]
+RUNNING:  57%|█████▋    | 86/150 [elapsed: 01:39 remaining: 01:08]
+RUNNING:  61%|██████▏   | 92/150 [elapsed: 01:39 remaining: 01:02]
+                                                                  
+
+RUNNING:  61%|██████▏   | 92/150 [elapsed: 01:39 remaining: 01:02]
+RUNNING:  61%|██████▏   | 92/150 [elapsed: 01:45 remaining: 01:02]
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:45 remaining: 00:56]
+                                                                  
+
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:45 remaining: 00:56]
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:52 remaining: 00:56]
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 01:52 remaining: 00:49]
+                                                                   
+
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 01:52 remaining: 00:49]
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 02:00 remaining: 00:49]
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:00 remaining: 00:40]
+                                                                   
+
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:00 remaining: 00:40]
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:09 remaining: 00:40]
+RUNNING:  80%|████████  | 120/150 [elapsed: 02:09 remaining: 00:32]
+                                                                   
+
+RUNNING:  80%|████████  | 120/150 [elapsed: 02:09 remaining: 00:32]
+RUNNING:  80%|████████  | 120/150 [elapsed: 02:15 remaining: 00:32]
+RUNNING:  84%|████████▍ | 126/150 [elapsed: 02:15 remaining: 00:25]
+                                                                   
+
+RUNNING:  84%|████████▍ | 126/150 [elapsed: 02:15 remaining: 00:25]
+RUNNING:  84%|████████▍ | 126/150 [elapsed: 02:22 remaining: 00:25]
+RUNNING:  88%|████████▊ | 132/150 [elapsed: 02:22 remaining: 00:19]
+                                                                   
+
+RUNNING:  88%|████████▊ | 132/150 [elapsed: 02:22 remaining: 00:19]
+RUNNING:  88%|████████▊ | 132/150 [elapsed: 02:31 remaining: 00:19]
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:31 remaining: 00:09]
+                                                                   
+
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:31 remaining: 00:09]
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:42 remaining: 00:09]
+RUNNING: |          | 151/? [elapsed: 02:42 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 151/? [elapsed: 02:42 remaining: 00:00]
+RUNNING: |          | 151/? [elapsed: 02:52 remaining: 00:00]
+RUNNING: |          | 161/? [elapsed: 02:52 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 161/? [elapsed: 02:52 remaining: 00:00]
+RUNNING: |          | 161/? [elapsed: 03:03 remaining: 00:00]
+RUNNING: |          | 171/? [elapsed: 03:03 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 171/? [elapsed: 03:03 remaining: 00:00]
+RUNNING: |          | 171/? [elapsed: 03:11 remaining: 00:00]
+RUNNING: |          | 179/? [elapsed: 03:11 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 179/? [elapsed: 03:11 remaining: 00:00]
+RUNNING: |          | 179/? [elapsed: 03:18 remaining: 00:00]
+RUNNING: |          | 185/? [elapsed: 03:18 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 185/? [elapsed: 03:18 remaining: 00:00]
+RUNNING: |          | 185/? [elapsed: 03:25 remaining: 00:00]
+RUNNING: |          | 192/? [elapsed: 03:25 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 192/? [elapsed: 03:25 remaining: 00:00]
+RUNNING: |          | 192/? [elapsed: 03:34 remaining: 00:00]
+RUNNING: |          | 200/? [elapsed: 03:34 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 200/? [elapsed: 03:34 remaining: 00:00]
+RUNNING: |          | 200/? [elapsed: 03:43 remaining: 00:00]
+RUNNING: |          | 209/? [elapsed: 03:43 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 209/? [elapsed: 03:43 remaining: 00:00]
+RUNNING: |          | 209/? [elapsed: 03:53 remaining: 00:00]
+RUNNING: |          | 218/? [elapsed: 03:53 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 218/? [elapsed: 03:53 remaining: 00:00]
+RUNNING: |          | 218/? [elapsed: 04:00 remaining: 00:00]
+RUNNING: |          | 225/? [elapsed: 04:00 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 225/? [elapsed: 04:00 remaining: 00:00]
+RUNNING: |          | 225/? [elapsed: 04:11 remaining: 00:00]
+RUNNING: |          | 235/? [elapsed: 04:11 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 235/? [elapsed: 04:11 remaining: 00:00]
+RUNNING: |          | 235/? [elapsed: 04:16 remaining: 00:00]
+RUNNING: |          | 240/? [elapsed: 04:16 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 240/? [elapsed: 04:16 remaining: 00:00]
+RUNNING: |          | 240/? [elapsed: 04:25 remaining: 00:00]
+RUNNING: |          | 248/? [elapsed: 04:25 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 248/? [elapsed: 04:25 remaining: 00:00]
+RUNNING: |          | 248/? [elapsed: 04:34 remaining: 00:00]
+RUNNING: |          | 257/? [elapsed: 04:34 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 257/? [elapsed: 04:34 remaining: 00:00]
+RUNNING: |          | 257/? [elapsed: 04:40 remaining: 00:00]
+RUNNING: |          | 262/? [elapsed: 04:40 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 262/? [elapsed: 04:40 remaining: 00:00]
+RUNNING: |          | 262/? [elapsed: 04:50 remaining: 00:00]
+RUNNING: |          | 272/? [elapsed: 04:50 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 272/? [elapsed: 04:50 remaining: 00:00]
+RUNNING: |          | 272/? [elapsed: 04:58 remaining: 00:00]
+RUNNING: |          | 279/? [elapsed: 04:58 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 279/? [elapsed: 04:58 remaining: 00:00]
+RUNNING: |          | 279/? [elapsed: 05:05 remaining: 00:00]
+RUNNING: |          | 286/? [elapsed: 05:05 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 286/? [elapsed: 05:05 remaining: 00:00]
+RUNNING: |          | 286/? [elapsed: 05:15 remaining: 00:00]
+RUNNING: |          | 295/? [elapsed: 05:15 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 295/? [elapsed: 05:15 remaining: 00:00]
+RUNNING: |          | 295/? [elapsed: 05:20 remaining: 00:00]
+RUNNING: |          | 300/? [elapsed: 05:20 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 300/? [elapsed: 05:20 remaining: 00:00]
+RUNNING: |          | 300/? [elapsed: 05:27 remaining: 00:00]
+RUNNING: |          | 306/? [elapsed: 05:27 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 306/? [elapsed: 05:27 remaining: 00:00]
+RUNNING: |          | 306/? [elapsed: 05:37 remaining: 00:00]
+RUNNING: |          | 316/? [elapsed: 05:37 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 316/? [elapsed: 05:37 remaining: 00:00]
+RUNNING: |          | 316/? [elapsed: 05:45 remaining: 00:00]
+RUNNING: |          | 323/? [elapsed: 05:45 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 323/? [elapsed: 05:45 remaining: 00:00]
+RUNNING: |          | 323/? [elapsed: 05:50 remaining: 00:00]
+RUNNING: |          | 328/? [elapsed: 05:50 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 328/? [elapsed: 05:50 remaining: 00:00]
+RUNNING: |          | 328/? [elapsed: 05:59 remaining: 00:00]
+RUNNING: |          | 336/? [elapsed: 05:59 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 336/? [elapsed: 05:59 remaining: 00:00]
+COMPLETE: |          | 336/? [elapsed: 06:08 remaining: 00:00]
+COMPLETE: |          | 336/? [elapsed: 06:10 remaining: 00:00]
+2026-06-24 12:47:04,118 Sleeping for 9s. Reason: PENDING
+2026-06-24 12:47:13,601 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:47:23,132 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:47:33,646 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:47:43,157 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:47:49,654 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:47:56,147 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:48:06,678 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:48:13,145 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:48:23,655 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:48:30,122 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:48:35,622 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:48:42,121 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:48:48,609 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:48:55,114 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:49:03,624 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:49:12,111 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:49:18,583 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:49:25,083 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:49:34,607 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:49:45,110 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:49:55,605 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:50:06,129 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:50:14,690 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:50:21,175 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:50:28,679 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:50:37,144 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:50:46,648 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:50:56,199 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:51:03,703 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:51:14,181 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:51:19,688 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:51:28,170 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:51:37,651 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:51:43,146 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:51:53,668 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:52:01,133 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:52:08,595 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:52:18,089 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:52:23,641 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:52:30,139 Sleeping for 10s. Reason: RUNNING
+2026-06-24 12:52:40,625 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:52:48,141 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:52:53,646 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:53:02,403 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:53:51,278 Padding length to 1134
+2026-06-24 12:56:36,708 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.1 pTM=0.601
+2026-06-24 12:58:20,012 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.7 pTM=0.644 tol=6.7
+2026-06-24 12:58:20,162 alphafold2_ptm_model_1_seed_000 took 268.9s (1 recycles)
+2026-06-24 12:58:21,547 reranking models by 'plddt' metric
+2026-06-24 12:58:21,547 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.7 pTM=0.644
+2026-06-24 12:58:23,734 Query 4/8: Triticum_turgidum_TrturKRN7A02G054460.1_FLS2 (length 1124)
+    folding 4/8 · Triticum_turgidum_TrturKRN7A02G054460.1_FLS2 (1124 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:08 remaining: ?]
+RUNNING:   5%|▍         | 7/150 [elapsed: 00:08 remaining: 02:53]
+                                                                 
+
+RUNNING:   5%|▍         | 7/150 [elapsed: 00:08 remaining: 02:53]
+RUNNING:   5%|▍         | 7/150 [elapsed: 00:14 remaining: 02:53]
+RUNNING:   9%|▊         | 13/150 [elapsed: 00:14 remaining: 02:36]
+                                                                  
+
+RUNNING:   9%|▊         | 13/150 [elapsed: 00:14 remaining: 02:36]
+RUNNING:   9%|▊         | 13/150 [elapsed: 00:24 remaining: 02:36]
+RUNNING:  15%|█▍        | 22/150 [elapsed: 00:24 remaining: 02:20]
+                                                                  
+
+RUNNING:  15%|█▍        | 22/150 [elapsed: 00:24 remaining: 02:20]
+RUNNING:  15%|█▍        | 22/150 [elapsed: 00:31 remaining: 02:20]
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:31 remaining: 02:11]
+                                                                  
+
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:31 remaining: 02:11]
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:38 remaining: 02:11]
+RUNNING:  23%|██▎       | 35/150 [elapsed: 00:38 remaining: 02:04]
+                                                                  
+
+RUNNING:  23%|██▎       | 35/150 [elapsed: 00:38 remaining: 02:04]
+RUNNING:  23%|██▎       | 35/150 [elapsed: 00:43 remaining: 02:04]
+RUNNING:  27%|██▋       | 40/150 [elapsed: 00:43 remaining: 01:59]
+                                                                  
+
+RUNNING:  27%|██▋       | 40/150 [elapsed: 00:43 remaining: 01:59]
+RUNNING:  27%|██▋       | 40/150 [elapsed: 00:50 remaining: 01:59]
+RUNNING:  31%|███       | 46/150 [elapsed: 00:50 remaining: 01:52]
+                                                                  
+
+RUNNING:  31%|███       | 46/150 [elapsed: 00:50 remaining: 01:52]
+RUNNING:  31%|███       | 46/150 [elapsed: 00:57 remaining: 01:52]
+RUNNING:  35%|███▌      | 53/150 [elapsed: 00:57 remaining: 01:44]
+                                                                  
+
+RUNNING:  35%|███▌      | 53/150 [elapsed: 00:57 remaining: 01:44]
+RUNNING:  35%|███▌      | 53/150 [elapsed: 01:06 remaining: 01:44]
+RUNNING:  41%|████      | 61/150 [elapsed: 01:06 remaining: 01:35]
+                                                                  
+
+RUNNING:  41%|████      | 61/150 [elapsed: 01:06 remaining: 01:35]
+RUNNING:  41%|████      | 61/150 [elapsed: 01:12 remaining: 01:35]
+RUNNING:  45%|████▍     | 67/150 [elapsed: 01:12 remaining: 01:29]
+                                                                  
+
+RUNNING:  45%|████▍     | 67/150 [elapsed: 01:12 remaining: 01:29]
+RUNNING:  45%|████▍     | 67/150 [elapsed: 01:18 remaining: 01:29]
+RUNNING:  48%|████▊     | 72/150 [elapsed: 01:18 remaining: 01:24]
+                                                                  
+
+RUNNING:  48%|████▊     | 72/150 [elapsed: 01:18 remaining: 01:24]
+RUNNING:  48%|████▊     | 72/150 [elapsed: 01:25 remaining: 01:24]
+RUNNING:  53%|█████▎    | 79/150 [elapsed: 01:25 remaining: 01:16]
+                                                                  
+
+RUNNING:  53%|█████▎    | 79/150 [elapsed: 01:25 remaining: 01:16]
+RUNNING:  53%|█████▎    | 79/150 [elapsed: 01:32 remaining: 01:16]
+RUNNING:  57%|█████▋    | 85/150 [elapsed: 01:32 remaining: 01:10]
+                                                                  
+
+RUNNING:  57%|█████▋    | 85/150 [elapsed: 01:32 remaining: 01:10]
+RUNNING:  57%|█████▋    | 85/150 [elapsed: 01:38 remaining: 01:10]
+RUNNING:  61%|██████    | 91/150 [elapsed: 01:38 remaining: 01:03]
+                                                                  
+
+RUNNING:  61%|██████    | 91/150 [elapsed: 01:38 remaining: 01:03]
+RUNNING:  61%|██████    | 91/150 [elapsed: 01:46 remaining: 01:03]
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:46 remaining: 00:56]
+                                                                  
+
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:46 remaining: 00:56]
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:52 remaining: 00:56]
+RUNNING:  69%|██████▊   | 103/150 [elapsed: 01:52 remaining: 00:51]
+                                                                   
+
+RUNNING:  69%|██████▊   | 103/150 [elapsed: 01:52 remaining: 00:51]
+RUNNING:  69%|██████▊   | 103/150 [elapsed: 02:02 remaining: 00:51]
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:02 remaining: 00:39]
+                                                                   
+
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:02 remaining: 00:39]
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:08 remaining: 00:39]
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:08 remaining: 00:34]
+                                                                   
+
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:08 remaining: 00:34]
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:17 remaining: 00:34]
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:17 remaining: 00:24]
+                                                                   
+
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:17 remaining: 00:24]
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:24 remaining: 00:24]
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:24 remaining: 00:18]
+                                                                   
+
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:24 remaining: 00:18]
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:30 remaining: 00:18]
+RUNNING:  93%|█████████▎| 139/150 [elapsed: 02:30 remaining: 00:11]
+                                                                   
+
+RUNNING:  93%|█████████▎| 139/150 [elapsed: 02:30 remaining: 00:11]
+RUNNING:  93%|█████████▎| 139/150 [elapsed: 02:36 remaining: 00:11]
+RUNNING:  96%|█████████▌| 144/150 [elapsed: 02:36 remaining: 00:06]
+                                                                   
+
+RUNNING:  96%|█████████▌| 144/150 [elapsed: 02:36 remaining: 00:06]
+RUNNING:  96%|█████████▌| 144/150 [elapsed: 02:43 remaining: 00:06]
+RUNNING: |          | 151/? [elapsed: 02:43 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 151/? [elapsed: 02:43 remaining: 00:00]
+RUNNING: |          | 151/? [elapsed: 02:49 remaining: 00:00]
+RUNNING: |          | 156/? [elapsed: 02:49 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 156/? [elapsed: 02:49 remaining: 00:00]
+RUNNING: |          | 156/? [elapsed: 02:59 remaining: 00:00]
+RUNNING: |          | 166/? [elapsed: 02:59 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 166/? [elapsed: 02:59 remaining: 00:00]
+RUNNING: |          | 166/? [elapsed: 03:05 remaining: 00:00]
+RUNNING: |          | 171/? [elapsed: 03:05 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 171/? [elapsed: 03:05 remaining: 00:00]
+RUNNING: |          | 171/? [elapsed: 03:15 remaining: 00:00]
+RUNNING: |          | 180/? [elapsed: 03:15 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 180/? [elapsed: 03:15 remaining: 00:00]
+RUNNING: |          | 180/? [elapsed: 03:25 remaining: 00:00]
+RUNNING: |          | 190/? [elapsed: 03:25 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 190/? [elapsed: 03:25 remaining: 00:00]
+RUNNING: |          | 190/? [elapsed: 03:33 remaining: 00:00]
+RUNNING: |          | 197/? [elapsed: 03:33 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 197/? [elapsed: 03:33 remaining: 00:00]
+RUNNING: |          | 197/? [elapsed: 03:39 remaining: 00:00]
+RUNNING: |          | 203/? [elapsed: 03:39 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 203/? [elapsed: 03:39 remaining: 00:00]
+RUNNING: |          | 203/? [elapsed: 03:47 remaining: 00:00]
+RUNNING: |          | 210/? [elapsed: 03:47 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 210/? [elapsed: 03:47 remaining: 00:00]
+RUNNING: |          | 210/? [elapsed: 03:52 remaining: 00:00]
+RUNNING: |          | 215/? [elapsed: 03:52 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 215/? [elapsed: 03:52 remaining: 00:00]
+RUNNING: |          | 215/? [elapsed: 04:03 remaining: 00:00]
+RUNNING: |          | 225/? [elapsed: 04:03 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 225/? [elapsed: 04:03 remaining: 00:00]
+RUNNING: |          | 225/? [elapsed: 04:10 remaining: 00:00]
+RUNNING: |          | 232/? [elapsed: 04:10 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 232/? [elapsed: 04:10 remaining: 00:00]
+COMPLETE: |          | 232/? [elapsed: 04:21 remaining: 00:00]
+COMPLETE: |          | 232/? [elapsed: 04:22 remaining: 00:00]
+2026-06-24 12:58:24,740 Sleeping for 7s. Reason: PENDING
+2026-06-24 12:58:32,236 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:58:38,737 Sleeping for 9s. Reason: RUNNING
+2026-06-24 12:58:48,229 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:58:55,734 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:59:02,235 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:59:07,699 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:59:14,203 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:59:21,708 Sleeping for 8s. Reason: RUNNING
+2026-06-24 12:59:30,211 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:59:36,684 Sleeping for 5s. Reason: RUNNING
+2026-06-24 12:59:42,206 Sleeping for 7s. Reason: RUNNING
+2026-06-24 12:59:49,691 Sleeping for 6s. Reason: RUNNING
+2026-06-24 12:59:56,211 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:00:02,701 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:00:10,189 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:00:15,868 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:00:26,482 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:00:32,006 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:00:41,476 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:00:47,977 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:00:54,478 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:00:59,974 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:01:07,453 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:01:12,977 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:01:23,464 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:01:29,406 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:01:38,907 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:01:49,396 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:01:56,891 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:02:03,396 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:02:10,856 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:02:16,343 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:02:26,843 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:02:34,316 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:03:22,426 Padding length to 1134
+2026-06-24 13:05:07,708 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.3 pTM=0.588
+2026-06-24 13:06:51,534 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.9 pTM=0.612 tol=4.89
+2026-06-24 13:06:51,712 alphafold2_ptm_model_1_seed_000 took 209.3s (1 recycles)
+2026-06-24 13:06:53,971 reranking models by 'plddt' metric
+2026-06-24 13:06:53,985 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.9 pTM=0.612
+2026-06-24 13:06:56,884 Query 5/8: Triticum_turgidum_TrturKRN4B02G053415.1_FLS2 (length 1145)
+    folding 5/8 · Triticum_turgidum_TrturKRN4B02G053415.1_FLS2 (1145 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:09 remaining: ?]
+RUNNING:   5%|▌         | 8/150 [elapsed: 00:09 remaining: 02:40]
+                                                                 
+
+RUNNING:   5%|▌         | 8/150 [elapsed: 00:09 remaining: 02:40]
+RUNNING:   5%|▌         | 8/150 [elapsed: 00:15 remaining: 02:40]
+RUNNING:   9%|▉         | 14/150 [elapsed: 00:15 remaining: 02:30]
+                                                                  
+
+RUNNING:   9%|▉         | 14/150 [elapsed: 00:15 remaining: 02:30]
+RUNNING:   9%|▉         | 14/150 [elapsed: 00:26 remaining: 02:30]
+RUNNING:  16%|█▌        | 24/150 [elapsed: 00:26 remaining: 02:15]
+                                                                  
+
+RUNNING:  16%|█▌        | 24/150 [elapsed: 00:26 remaining: 02:15]
+RUNNING:  16%|█▌        | 24/150 [elapsed: 00:36 remaining: 02:15]
+RUNNING:  23%|██▎       | 34/150 [elapsed: 00:36 remaining: 02:03]
+                                                                  
+
+RUNNING:  23%|██▎       | 34/150 [elapsed: 00:36 remaining: 02:03]
+RUNNING:  23%|██▎       | 34/150 [elapsed: 00:44 remaining: 02:03]
+RUNNING:  27%|██▋       | 41/150 [elapsed: 00:44 remaining: 01:56]
+                                                                  
+
+RUNNING:  27%|██▋       | 41/150 [elapsed: 00:44 remaining: 01:56]
+RUNNING:  27%|██▋       | 41/150 [elapsed: 00:51 remaining: 01:56]
+RUNNING:  32%|███▏      | 48/150 [elapsed: 00:51 remaining: 01:48]
+                                                                  
+
+RUNNING:  32%|███▏      | 48/150 [elapsed: 00:51 remaining: 01:48]
+RUNNING:  32%|███▏      | 48/150 [elapsed: 01:01 remaining: 01:48]
+RUNNING:  38%|███▊      | 57/150 [elapsed: 01:01 remaining: 01:38]
+                                                                  
+
+RUNNING:  38%|███▊      | 57/150 [elapsed: 01:01 remaining: 01:38]
+RUNNING:  38%|███▊      | 57/150 [elapsed: 01:09 remaining: 01:38]
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:09 remaining: 01:30]
+                                                                  
+
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:09 remaining: 01:30]
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:19 remaining: 01:30]
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:19 remaining: 01:19]
+                                                                  
+
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:19 remaining: 01:19]
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:27 remaining: 01:19]
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:27 remaining: 01:12]
+                                                                  
+
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:27 remaining: 01:12]
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:33 remaining: 01:12]
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:33 remaining: 01:09]
+                                                                  
+
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:33 remaining: 01:09]
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:41 remaining: 01:09]
+RUNNING:  63%|██████▎   | 94/150 [elapsed: 01:41 remaining: 01:01]
+                                                                  
+
+RUNNING:  63%|██████▎   | 94/150 [elapsed: 01:41 remaining: 01:01]
+RUNNING:  63%|██████▎   | 94/150 [elapsed: 01:48 remaining: 01:01]
+RUNNING:  67%|██████▋   | 101/150 [elapsed: 01:48 remaining: 00:53]
+                                                                   
+
+RUNNING:  67%|██████▋   | 101/150 [elapsed: 01:48 remaining: 00:53]
+RUNNING:  67%|██████▋   | 101/150 [elapsed: 01:56 remaining: 00:53]
+RUNNING:  72%|███████▏  | 108/150 [elapsed: 01:56 remaining: 00:45]
+                                                                   
+
+RUNNING:  72%|███████▏  | 108/150 [elapsed: 01:56 remaining: 00:45]
+RUNNING:  72%|███████▏  | 108/150 [elapsed: 02:06 remaining: 00:45]
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:06 remaining: 00:34]
+                                                                   
+
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:06 remaining: 00:34]
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:16 remaining: 00:34]
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:16 remaining: 00:24]
+                                                                   
+
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:16 remaining: 00:24]
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:22 remaining: 00:24]
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:22 remaining: 00:18]
+                                                                   
+
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:22 remaining: 00:18]
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:32 remaining: 00:18]
+RUNNING:  95%|█████████▍| 142/150 [elapsed: 02:32 remaining: 00:08]
+                                                                   
+
+RUNNING:  95%|█████████▍| 142/150 [elapsed: 02:32 remaining: 00:08]
+RUNNING:  95%|█████████▍| 142/150 [elapsed: 02:41 remaining: 00:08]
+RUNNING: |          | 151/? [elapsed: 02:41 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 151/? [elapsed: 02:41 remaining: 00:00]
+RUNNING: |          | 151/? [elapsed: 02:51 remaining: 00:00]
+RUNNING: |          | 160/? [elapsed: 02:51 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 160/? [elapsed: 02:51 remaining: 00:00]
+RUNNING: |          | 160/? [elapsed: 03:00 remaining: 00:00]
+RUNNING: |          | 169/? [elapsed: 03:00 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 169/? [elapsed: 03:00 remaining: 00:00]
+RUNNING: |          | 169/? [elapsed: 03:08 remaining: 00:00]
+RUNNING: |          | 176/? [elapsed: 03:08 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 176/? [elapsed: 03:08 remaining: 00:00]
+RUNNING: |          | 176/? [elapsed: 03:16 remaining: 00:00]
+RUNNING: |          | 184/? [elapsed: 03:16 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 184/? [elapsed: 03:16 remaining: 00:00]
+RUNNING: |          | 184/? [elapsed: 03:25 remaining: 00:00]
+RUNNING: |          | 192/? [elapsed: 03:25 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 192/? [elapsed: 03:25 remaining: 00:00]
+RUNNING: |          | 192/? [elapsed: 03:34 remaining: 00:00]
+RUNNING: |          | 201/? [elapsed: 03:34 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 201/? [elapsed: 03:34 remaining: 00:00]
+RUNNING: |          | 201/? [elapsed: 03:40 remaining: 00:00]
+RUNNING: |          | 206/? [elapsed: 03:40 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 206/? [elapsed: 03:40 remaining: 00:00]
+RUNNING: |          | 206/? [elapsed: 03:46 remaining: 00:00]
+RUNNING: |          | 212/? [elapsed: 03:46 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 212/? [elapsed: 03:46 remaining: 00:00]
+RUNNING: |          | 212/? [elapsed: 03:56 remaining: 00:00]
+RUNNING: |          | 221/? [elapsed: 03:56 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 221/? [elapsed: 03:56 remaining: 00:00]
+COMPLETE: |          | 221/? [elapsed: 04:06 remaining: 00:00]
+COMPLETE: |          | 221/? [elapsed: 04:08 remaining: 00:00]
+2026-06-24 13:06:57,450 Sleeping for 8s. Reason: PENDING
+2026-06-24 13:07:05,947 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:07:12,439 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:07:22,943 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:07:33,469 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:07:40,968 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:07:48,466 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:07:57,937 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:08:06,434 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:08:16,928 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:08:24,432 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:08:30,676 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:08:38,152 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:08:45,659 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:08:53,158 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:09:03,661 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:09:13,161 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:09:19,651 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:09:29,159 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:09:38,642 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:09:48,122 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:09:57,632 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:10:05,150 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:10:13,639 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:10:22,187 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:10:31,860 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:10:37,352 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:10:43,837 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:10:53,336 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:11:44,827 Padding length to 1155
+2026-06-24 13:14:28,282 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.6 pTM=0.588
+2026-06-24 13:16:12,986 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86 pTM=0.61 tol=7.62
+2026-06-24 13:16:13,018 alphafold2_ptm_model_1_seed_000 took 268.2s (1 recycles)
+2026-06-24 13:16:14,296 reranking models by 'plddt' metric
+2026-06-24 13:16:14,296 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86 pTM=0.61
+2026-06-24 13:16:16,149 Query 6/8: Triticum_turgidum_TrturKRN7A02G006780.1_FLS2 (length 1157)
+    folding 6/8 · Triticum_turgidum_TrturKRN7A02G006780.1_FLS2 (1157 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:07 remaining: ?]
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:07 remaining: 02:48]
+                                                                 
+
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:07 remaining: 02:48]
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:16 remaining: 02:48]
+RUNNING:  10%|█         | 15/150 [elapsed: 00:16 remaining: 02:27]
+                                                                  
+
+RUNNING:  10%|█         | 15/150 [elapsed: 00:16 remaining: 02:27]
+RUNNING:  10%|█         | 15/150 [elapsed: 00:26 remaining: 02:27]
+RUNNING:  16%|█▌        | 24/150 [elapsed: 00:26 remaining: 02:15]
+                                                                  
+
+RUNNING:  16%|█▌        | 24/150 [elapsed: 00:26 remaining: 02:15]
+RUNNING:  16%|█▌        | 24/150 [elapsed: 00:31 remaining: 02:15]
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:31 remaining: 02:11]
+                                                                  
+
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:31 remaining: 02:11]
+RUNNING:  19%|█▉        | 29/150 [elapsed: 00:41 remaining: 02:11]
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:41 remaining: 01:59]
+                                                                  
+
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:41 remaining: 01:59]
+RUNNING:  25%|██▌       | 38/150 [elapsed: 00:51 remaining: 01:59]
+RUNNING:  32%|███▏      | 48/150 [elapsed: 00:51 remaining: 01:48]
+                                                                  
+
+RUNNING:  32%|███▏      | 48/150 [elapsed: 00:51 remaining: 01:48]
+RUNNING:  32%|███▏      | 48/150 [elapsed: 00:58 remaining: 01:48]
+RUNNING:  36%|███▌      | 54/150 [elapsed: 00:58 remaining: 01:42]
+                                                                  
+
+RUNNING:  36%|███▌      | 54/150 [elapsed: 00:58 remaining: 01:42]
+RUNNING:  36%|███▌      | 54/150 [elapsed: 01:05 remaining: 01:42]
+RUNNING:  41%|████      | 61/150 [elapsed: 01:05 remaining: 01:35]
+                                                                  
+
+RUNNING:  41%|████      | 61/150 [elapsed: 01:05 remaining: 01:35]
+RUNNING:  41%|████      | 61/150 [elapsed: 01:11 remaining: 01:35]
+RUNNING:  44%|████▍     | 66/150 [elapsed: 01:11 remaining: 01:30]
+                                                                  
+
+RUNNING:  44%|████▍     | 66/150 [elapsed: 01:11 remaining: 01:30]
+RUNNING:  44%|████▍     | 66/150 [elapsed: 01:18 remaining: 01:30]
+RUNNING:  49%|████▊     | 73/150 [elapsed: 01:18 remaining: 01:22]
+                                                                  
+
+RUNNING:  49%|████▊     | 73/150 [elapsed: 01:18 remaining: 01:22]
+RUNNING:  49%|████▊     | 73/150 [elapsed: 01:25 remaining: 01:22]
+RUNNING:  53%|█████▎    | 79/150 [elapsed: 01:25 remaining: 01:16]
+                                                                  
+
+RUNNING:  53%|█████▎    | 79/150 [elapsed: 01:25 remaining: 01:16]
+RUNNING:  53%|█████▎    | 79/150 [elapsed: 01:35 remaining: 01:16]
+RUNNING:  59%|█████▉    | 89/150 [elapsed: 01:35 remaining: 01:05]
+                                                                  
+
+RUNNING:  59%|█████▉    | 89/150 [elapsed: 01:35 remaining: 01:05]
+RUNNING:  59%|█████▉    | 89/150 [elapsed: 01:45 remaining: 01:05]
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:45 remaining: 00:55]
+                                                                  
+
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:45 remaining: 00:55]
+RUNNING:  65%|██████▌   | 98/150 [elapsed: 01:54 remaining: 00:55]
+RUNNING:  71%|███████▏  | 107/150 [elapsed: 01:54 remaining: 00:45]
+                                                                   
+
+RUNNING:  71%|███████▏  | 107/150 [elapsed: 01:54 remaining: 00:45]
+RUNNING:  71%|███████▏  | 107/150 [elapsed: 02:05 remaining: 00:45]
+RUNNING:  78%|███████▊  | 117/150 [elapsed: 02:05 remaining: 00:34]
+                                                                   
+
+RUNNING:  78%|███████▊  | 117/150 [elapsed: 02:05 remaining: 00:34]
+RUNNING:  78%|███████▊  | 117/150 [elapsed: 02:13 remaining: 00:34]
+RUNNING:  83%|████████▎ | 125/150 [elapsed: 02:13 remaining: 00:26]
+                                                                   
+
+RUNNING:  83%|████████▎ | 125/150 [elapsed: 02:13 remaining: 00:26]
+RUNNING:  83%|████████▎ | 125/150 [elapsed: 02:20 remaining: 00:26]
+RUNNING:  87%|████████▋ | 131/150 [elapsed: 02:20 remaining: 00:20]
+                                                                   
+
+RUNNING:  87%|████████▋ | 131/150 [elapsed: 02:20 remaining: 00:20]
+RUNNING:  87%|████████▋ | 131/150 [elapsed: 02:30 remaining: 00:20]
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:30 remaining: 00:09]
+                                                                   
+
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:30 remaining: 00:09]
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:38 remaining: 00:09]
+RUNNING:  99%|█████████▊| 148/150 [elapsed: 02:38 remaining: 00:02]
+                                                                   
+
+RUNNING:  99%|█████████▊| 148/150 [elapsed: 02:38 remaining: 00:02]
+RUNNING:  99%|█████████▊| 148/150 [elapsed: 02:44 remaining: 00:02]
+RUNNING: |          | 154/? [elapsed: 02:44 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 154/? [elapsed: 02:44 remaining: 00:00]
+RUNNING: |          | 154/? [elapsed: 02:52 remaining: 00:00]
+RUNNING: |          | 161/? [elapsed: 02:52 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 161/? [elapsed: 02:52 remaining: 00:00]
+RUNNING: |          | 161/? [elapsed: 03:02 remaining: 00:00]
+RUNNING: |          | 171/? [elapsed: 03:02 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 171/? [elapsed: 03:02 remaining: 00:00]
+RUNNING: |          | 171/? [elapsed: 03:13 remaining: 00:00]
+RUNNING: |          | 181/? [elapsed: 03:13 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 181/? [elapsed: 03:13 remaining: 00:00]
+RUNNING: |          | 181/? [elapsed: 03:23 remaining: 00:00]
+RUNNING: |          | 191/? [elapsed: 03:23 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 191/? [elapsed: 03:23 remaining: 00:00]
+RUNNING: |          | 191/? [elapsed: 03:30 remaining: 00:00]
+RUNNING: |          | 197/? [elapsed: 03:30 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 197/? [elapsed: 03:30 remaining: 00:00]
+RUNNING: |          | 197/? [elapsed: 03:40 remaining: 00:00]
+RUNNING: |          | 207/? [elapsed: 03:40 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 207/? [elapsed: 03:40 remaining: 00:00]
+RUNNING: |          | 207/? [elapsed: 03:50 remaining: 00:00]
+RUNNING: |          | 216/? [elapsed: 03:50 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 216/? [elapsed: 03:50 remaining: 00:00]
+RUNNING: |          | 216/? [elapsed: 03:55 remaining: 00:00]
+RUNNING: |          | 221/? [elapsed: 03:55 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 221/? [elapsed: 03:55 remaining: 00:00]
+RUNNING: |          | 221/? [elapsed: 04:03 remaining: 00:00]
+RUNNING: |          | 228/? [elapsed: 04:03 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 228/? [elapsed: 04:03 remaining: 00:00]
+RUNNING: |          | 228/? [elapsed: 04:08 remaining: 00:00]
+RUNNING: |          | 233/? [elapsed: 04:08 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 233/? [elapsed: 04:08 remaining: 00:00]
+RUNNING: |          | 233/? [elapsed: 04:17 remaining: 00:00]
+RUNNING: |          | 241/? [elapsed: 04:17 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 241/? [elapsed: 04:17 remaining: 00:00]
+RUNNING: |          | 241/? [elapsed: 04:24 remaining: 00:00]
+RUNNING: |          | 248/? [elapsed: 04:24 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 248/? [elapsed: 04:24 remaining: 00:00]
+RUNNING: |          | 248/? [elapsed: 04:31 remaining: 00:00]
+RUNNING: |          | 254/? [elapsed: 04:31 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 254/? [elapsed: 04:31 remaining: 00:00]
+RUNNING: |          | 254/? [elapsed: 04:39 remaining: 00:00]
+RUNNING: |          | 262/? [elapsed: 04:39 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 262/? [elapsed: 04:39 remaining: 00:00]
+RUNNING: |          | 262/? [elapsed: 04:47 remaining: 00:00]
+RUNNING: |          | 269/? [elapsed: 04:47 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 269/? [elapsed: 04:47 remaining: 00:00]
+RUNNING: |          | 269/? [elapsed: 04:53 remaining: 00:00]
+RUNNING: |          | 275/? [elapsed: 04:53 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 275/? [elapsed: 04:53 remaining: 00:00]
+RUNNING: |          | 275/? [elapsed: 05:00 remaining: 00:00]
+RUNNING: |          | 281/? [elapsed: 05:00 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 281/? [elapsed: 05:00 remaining: 00:00]
+RUNNING: |          | 281/? [elapsed: 05:11 remaining: 00:00]
+RUNNING: |          | 291/? [elapsed: 05:11 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 291/? [elapsed: 05:11 remaining: 00:00]
+RUNNING: |          | 291/? [elapsed: 05:19 remaining: 00:00]
+RUNNING: |          | 299/? [elapsed: 05:19 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 299/? [elapsed: 05:19 remaining: 00:00]
+RUNNING: |          | 299/? [elapsed: 05:29 remaining: 00:00]
+RUNNING: |          | 308/? [elapsed: 05:29 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 308/? [elapsed: 05:29 remaining: 00:00]
+RUNNING: |          | 308/? [elapsed: 05:39 remaining: 00:00]
+RUNNING: |          | 318/? [elapsed: 05:39 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 318/? [elapsed: 05:39 remaining: 00:00]
+RUNNING: |          | 318/? [elapsed: 05:46 remaining: 00:00]
+RUNNING: |          | 323/? [elapsed: 05:46 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 323/? [elapsed: 05:46 remaining: 00:00]
+RUNNING: |          | 323/? [elapsed: 05:55 remaining: 00:00]
+RUNNING: |          | 332/? [elapsed: 05:55 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 332/? [elapsed: 05:55 remaining: 00:00]
+RUNNING: |          | 332/? [elapsed: 06:02 remaining: 00:00]
+RUNNING: |          | 338/? [elapsed: 06:02 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 338/? [elapsed: 06:02 remaining: 00:00]
+RUNNING: |          | 338/? [elapsed: 06:11 remaining: 00:00]
+RUNNING: |          | 347/? [elapsed: 06:11 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 347/? [elapsed: 06:11 remaining: 00:00]
+RUNNING: |          | 347/? [elapsed: 06:19 remaining: 00:00]
+RUNNING: |          | 354/? [elapsed: 06:19 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 354/? [elapsed: 06:19 remaining: 00:00]
+COMPLETE: |          | 354/? [elapsed: 06:28 remaining: 00:00]
+COMPLETE: |          | 354/? [elapsed: 06:30 remaining: 00:00]
+2026-06-24 13:16:16,677 Sleeping for 6s. Reason: PENDING
+2026-06-24 13:16:23,180 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:16:32,687 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:16:42,215 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:16:47,726 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:16:57,218 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:17:07,701 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:17:14,194 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:17:21,698 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:17:27,197 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:17:34,703 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:17:41,210 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:17:51,700 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:18:01,204 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:18:10,703 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:18:21,200 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:18:29,676 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:18:36,182 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:18:46,715 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:18:54,212 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:19:00,712 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:19:08,202 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:19:18,689 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:19:29,417 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:19:39,912 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:19:46,397 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:19:56,908 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:20:06,400 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:20:11,871 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:20:19,348 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:20:24,833 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:20:33,490 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:20:41,019 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:20:47,531 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:20:56,043 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:21:03,565 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:21:10,070 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:21:16,584 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:21:27,485 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:21:36,005 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:21:45,578 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:21:56,058 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:22:02,308 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:22:11,807 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:22:18,277 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:22:27,785 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:22:35,299 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:23:27,348 Padding length to 1167
+2026-06-24 13:26:11,706 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.5 pTM=0.58
+2026-06-24 13:27:58,701 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.9 pTM=0.616 tol=5.55
+2026-06-24 13:27:58,746 alphafold2_ptm_model_1_seed_000 took 271.4s (1 recycles)
+2026-06-24 13:28:00,191 reranking models by 'plddt' metric
+2026-06-24 13:28:00,191 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.9 pTM=0.616
+2026-06-24 13:28:02,124 Query 7/8: Triticum_turgidum_TrturKRN2A02G065640.2_FLS2 (length 1181)
+    folding 7/8 · Triticum_turgidum_TrturKRN2A02G065640.2_FLS2 (1181 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:10 remaining: ?]
+RUNNING:   7%|▋         | 10/150 [elapsed: 00:10 remaining: 02:33]
+                                                                  
+
+RUNNING:   7%|▋         | 10/150 [elapsed: 00:10 remaining: 02:33]
+RUNNING:   7%|▋         | 10/150 [elapsed: 00:16 remaining: 02:33]
+RUNNING:  10%|█         | 15/150 [elapsed: 00:16 remaining: 02:28]
+                                                                  
+
+RUNNING:  10%|█         | 15/150 [elapsed: 00:16 remaining: 02:28]
+RUNNING:  10%|█         | 15/150 [elapsed: 00:27 remaining: 02:28]
+RUNNING:  17%|█▋        | 25/150 [elapsed: 00:27 remaining: 02:14]
+                                                                  
+
+RUNNING:  17%|█▋        | 25/150 [elapsed: 00:27 remaining: 02:14]
+RUNNING:  17%|█▋        | 25/150 [elapsed: 00:36 remaining: 02:14]
+RUNNING:  23%|██▎       | 34/150 [elapsed: 00:36 remaining: 02:03]
+                                                                  
+
+RUNNING:  23%|██▎       | 34/150 [elapsed: 00:36 remaining: 02:03]
+RUNNING:  23%|██▎       | 34/150 [elapsed: 00:42 remaining: 02:03]
+RUNNING:  26%|██▌       | 39/150 [elapsed: 00:42 remaining: 01:59]
+                                                                  
+
+RUNNING:  26%|██▌       | 39/150 [elapsed: 00:42 remaining: 01:59]
+RUNNING:  26%|██▌       | 39/150 [elapsed: 00:51 remaining: 01:59]
+RUNNING:  32%|███▏      | 48/150 [elapsed: 00:51 remaining: 01:48]
+                                                                  
+
+RUNNING:  32%|███▏      | 48/150 [elapsed: 00:51 remaining: 01:48]
+RUNNING:  32%|███▏      | 48/150 [elapsed: 00:58 remaining: 01:48]
+RUNNING:  37%|███▋      | 55/150 [elapsed: 00:58 remaining: 01:41]
+                                                                  
+
+RUNNING:  37%|███▋      | 55/150 [elapsed: 00:58 remaining: 01:41]
+RUNNING:  37%|███▋      | 55/150 [elapsed: 01:09 remaining: 01:41]
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:09 remaining: 01:30]
+                                                                  
+
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:09 remaining: 01:30]
+RUNNING:  43%|████▎     | 65/150 [elapsed: 01:20 remaining: 01:30]
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:20 remaining: 01:19]
+                                                                  
+
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:20 remaining: 01:19]
+RUNNING:  50%|█████     | 75/150 [elapsed: 01:27 remaining: 01:19]
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:27 remaining: 01:12]
+                                                                  
+
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:27 remaining: 01:12]
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:32 remaining: 01:12]
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:32 remaining: 01:07]
+                                                                  
+
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:32 remaining: 01:07]
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:38 remaining: 01:07]
+RUNNING:  61%|██████▏   | 92/150 [elapsed: 01:38 remaining: 01:03]
+                                                                  
+
+RUNNING:  61%|██████▏   | 92/150 [elapsed: 01:38 remaining: 01:03]
+RUNNING:  61%|██████▏   | 92/150 [elapsed: 01:47 remaining: 01:03]
+RUNNING:  67%|██████▋   | 100/150 [elapsed: 01:47 remaining: 00:53]
+                                                                   
+
+RUNNING:  67%|██████▋   | 100/150 [elapsed: 01:47 remaining: 00:53]
+RUNNING:  67%|██████▋   | 100/150 [elapsed: 01:53 remaining: 00:53]
+RUNNING:  71%|███████   | 106/150 [elapsed: 01:53 remaining: 00:47]
+                                                                   
+
+RUNNING:  71%|███████   | 106/150 [elapsed: 01:53 remaining: 00:47]
+RUNNING:  71%|███████   | 106/150 [elapsed: 02:00 remaining: 00:47]
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:00 remaining: 00:41]
+                                                                   
+
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:00 remaining: 00:41]
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:05 remaining: 00:41]
+RUNNING:  78%|███████▊  | 117/150 [elapsed: 02:05 remaining: 00:35]
+                                                                   
+
+RUNNING:  78%|███████▊  | 117/150 [elapsed: 02:05 remaining: 00:35]
+RUNNING:  78%|███████▊  | 117/150 [elapsed: 02:16 remaining: 00:35]
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:16 remaining: 00:24]
+                                                                   
+
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:16 remaining: 00:24]
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:26 remaining: 00:24]
+RUNNING:  91%|█████████▏| 137/150 [elapsed: 02:26 remaining: 00:13]
+                                                                   
+
+RUNNING:  91%|█████████▏| 137/150 [elapsed: 02:26 remaining: 00:13]
+RUNNING:  91%|█████████▏| 137/150 [elapsed: 02:36 remaining: 00:13]
+RUNNING:  97%|█████████▋| 146/150 [elapsed: 02:36 remaining: 00:04]
+                                                                   
+
+RUNNING:  97%|█████████▋| 146/150 [elapsed: 02:36 remaining: 00:04]
+RUNNING:  97%|█████████▋| 146/150 [elapsed: 02:45 remaining: 00:04]
+RUNNING: |          | 155/? [elapsed: 02:45 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 155/? [elapsed: 02:46 remaining: 00:00]
+RUNNING: |          | 155/? [elapsed: 02:54 remaining: 00:00]
+RUNNING: |          | 163/? [elapsed: 02:54 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 163/? [elapsed: 02:54 remaining: 00:00]
+RUNNING: |          | 163/? [elapsed: 03:01 remaining: 00:00]
+RUNNING: |          | 170/? [elapsed: 03:01 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 170/? [elapsed: 03:01 remaining: 00:00]
+RUNNING: |          | 170/? [elapsed: 03:09 remaining: 00:00]
+RUNNING: |          | 177/? [elapsed: 03:09 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 177/? [elapsed: 03:09 remaining: 00:00]
+RUNNING: |          | 177/? [elapsed: 03:14 remaining: 00:00]
+RUNNING: |          | 182/? [elapsed: 03:14 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 182/? [elapsed: 03:14 remaining: 00:00]
+RUNNING: |          | 182/? [elapsed: 03:23 remaining: 00:00]
+RUNNING: |          | 190/? [elapsed: 03:23 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 190/? [elapsed: 03:23 remaining: 00:00]
+RUNNING: |          | 190/? [elapsed: 03:31 remaining: 00:00]
+RUNNING: |          | 198/? [elapsed: 03:31 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 198/? [elapsed: 03:31 remaining: 00:00]
+RUNNING: |          | 198/? [elapsed: 03:40 remaining: 00:00]
+RUNNING: |          | 206/? [elapsed: 03:40 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 206/? [elapsed: 03:40 remaining: 00:00]
+RUNNING: |          | 206/? [elapsed: 03:49 remaining: 00:00]
+RUNNING: |          | 215/? [elapsed: 03:49 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 215/? [elapsed: 03:49 remaining: 00:00]
+RUNNING: |          | 215/? [elapsed: 03:58 remaining: 00:00]
+RUNNING: |          | 223/? [elapsed: 03:58 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 223/? [elapsed: 03:58 remaining: 00:00]
+RUNNING: |          | 223/? [elapsed: 04:08 remaining: 00:00]
+RUNNING: |          | 232/? [elapsed: 04:08 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 232/? [elapsed: 04:08 remaining: 00:00]
+RUNNING: |          | 232/? [elapsed: 04:13 remaining: 00:00]
+RUNNING: |          | 237/? [elapsed: 04:13 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 237/? [elapsed: 04:13 remaining: 00:00]
+RUNNING: |          | 237/? [elapsed: 04:22 remaining: 00:00]
+RUNNING: |          | 245/? [elapsed: 04:22 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 245/? [elapsed: 04:22 remaining: 00:00]
+RUNNING: |          | 245/? [elapsed: 04:32 remaining: 00:00]
+RUNNING: |          | 255/? [elapsed: 04:32 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 255/? [elapsed: 04:32 remaining: 00:00]
+RUNNING: |          | 255/? [elapsed: 04:41 remaining: 00:00]
+RUNNING: |          | 263/? [elapsed: 04:41 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 263/? [elapsed: 04:41 remaining: 00:00]
+RUNNING: |          | 263/? [elapsed: 04:46 remaining: 00:00]
+RUNNING: |          | 268/? [elapsed: 04:46 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 268/? [elapsed: 04:46 remaining: 00:00]
+RUNNING: |          | 268/? [elapsed: 04:53 remaining: 00:00]
+RUNNING: |          | 273/? [elapsed: 04:53 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 273/? [elapsed: 04:53 remaining: 00:00]
+RUNNING: |          | 273/? [elapsed: 05:01 remaining: 00:00]
+RUNNING: |          | 281/? [elapsed: 05:01 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 281/? [elapsed: 05:01 remaining: 00:00]
+RUNNING: |          | 281/? [elapsed: 05:11 remaining: 00:00]
+RUNNING: |          | 290/? [elapsed: 05:11 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 290/? [elapsed: 05:11 remaining: 00:00]
+RUNNING: |          | 290/? [elapsed: 05:20 remaining: 00:00]
+RUNNING: |          | 298/? [elapsed: 05:20 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 298/? [elapsed: 05:20 remaining: 00:00]
+RUNNING: |          | 298/? [elapsed: 05:25 remaining: 00:00]
+RUNNING: |          | 303/? [elapsed: 05:25 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 303/? [elapsed: 05:25 remaining: 00:00]
+RUNNING: |          | 303/? [elapsed: 05:34 remaining: 00:00]
+RUNNING: |          | 311/? [elapsed: 05:34 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 311/? [elapsed: 05:34 remaining: 00:00]
+RUNNING: |          | 311/? [elapsed: 05:43 remaining: 00:00]
+RUNNING: |          | 319/? [elapsed: 05:43 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 319/? [elapsed: 05:43 remaining: 00:00]
+COMPLETE: |          | 319/? [elapsed: 05:51 remaining: 00:00]
+COMPLETE: |          | 319/? [elapsed: 05:53 remaining: 00:00]
+2026-06-24 13:28:02,660 Sleeping for 10s. Reason: PENDING
+2026-06-24 13:28:13,147 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:28:18,680 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:28:29,173 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:28:38,669 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:28:44,161 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:28:53,657 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:29:01,146 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:29:11,675 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:29:22,177 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:29:29,647 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:29:35,152 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:29:40,911 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:29:49,420 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:29:55,918 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:30:02,398 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:30:07,931 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:30:18,435 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:30:28,941 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:30:38,637 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:30:48,156 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:30:56,649 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:31:04,150 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:31:11,617 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:31:17,082 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:31:25,590 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:31:34,122 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:31:42,616 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:31:52,125 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:32:01,085 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:32:10,600 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:32:16,088 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:32:24,593 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:32:35,133 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:32:43,612 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:32:49,123 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:32:55,353 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:33:03,847 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:33:13,370 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:33:22,254 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:33:27,764 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:33:36,229 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:33:45,645 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:34:34,137 Padding length to 1191
+2026-06-24 13:37:23,020 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.2 pTM=0.59
+2026-06-24 13:39:14,481 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.1 pTM=0.629 tol=2.72
+2026-06-24 13:39:14,485 alphafold2_ptm_model_1_seed_000 took 280.3s (1 recycles)
+2026-06-24 13:39:16,096 reranking models by 'plddt' metric
+2026-06-24 13:39:16,096 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.1 pTM=0.629
+2026-06-24 13:39:18,139 Query 8/8: Triticum_turgidum_TrturKRN2B02G075960.3_FLS2 (length 1211)
+    folding 8/8 · Triticum_turgidum_TrturKRN2B02G075960.3_FLS2 (1211 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:06 remaining: ?]
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:06 remaining: 02:47]
+                                                                 
+
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:06 remaining: 02:47]
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:12 remaining: 02:47]
+RUNNING:   7%|▋         | 11/150 [elapsed: 00:12 remaining: 02:37]
+                                                                  
+
+RUNNING:   7%|▋         | 11/150 [elapsed: 00:12 remaining: 02:37]
+RUNNING:   7%|▋         | 11/150 [elapsed: 00:22 remaining: 02:37]
+RUNNING:  14%|█▍        | 21/150 [elapsed: 00:22 remaining: 02:19]
+                                                                  
+
+RUNNING:  14%|█▍        | 21/150 [elapsed: 00:22 remaining: 02:19]
+RUNNING:  14%|█▍        | 21/150 [elapsed: 00:29 remaining: 02:19]
+RUNNING:  18%|█▊        | 27/150 [elapsed: 00:29 remaining: 02:12]
+                                                                  
+
+RUNNING:  18%|█▊        | 27/150 [elapsed: 00:29 remaining: 02:12]
+RUNNING:  18%|█▊        | 27/150 [elapsed: 00:38 remaining: 02:12]
+RUNNING:  24%|██▍       | 36/150 [elapsed: 00:38 remaining: 02:01]
+                                                                  
+
+RUNNING:  24%|██▍       | 36/150 [elapsed: 00:38 remaining: 02:01]
+RUNNING:  24%|██▍       | 36/150 [elapsed: 00:46 remaining: 02:01]
+RUNNING:  29%|██▊       | 43/150 [elapsed: 00:46 remaining: 01:54]
+                                                                  
+
+RUNNING:  29%|██▊       | 43/150 [elapsed: 00:46 remaining: 01:54]
+RUNNING:  29%|██▊       | 43/150 [elapsed: 00:55 remaining: 01:54]
+RUNNING:  35%|███▍      | 52/150 [elapsed: 00:55 remaining: 01:44]
+                                                                  
+
+RUNNING:  35%|███▍      | 52/150 [elapsed: 00:55 remaining: 01:44]
+RUNNING:  35%|███▍      | 52/150 [elapsed: 01:06 remaining: 01:44]
+RUNNING:  41%|████▏     | 62/150 [elapsed: 01:06 remaining: 01:33]
+                                                                  
+
+RUNNING:  41%|████▏     | 62/150 [elapsed: 01:06 remaining: 01:33]
+RUNNING:  41%|████▏     | 62/150 [elapsed: 01:12 remaining: 01:33]
+RUNNING:  45%|████▌     | 68/150 [elapsed: 01:12 remaining: 01:27]
+                                                                  
+
+RUNNING:  45%|████▌     | 68/150 [elapsed: 01:12 remaining: 01:27]
+RUNNING:  45%|████▌     | 68/150 [elapsed: 01:21 remaining: 01:27]
+RUNNING:  51%|█████     | 76/150 [elapsed: 01:21 remaining: 01:19]
+                                                                  
+
+RUNNING:  51%|█████     | 76/150 [elapsed: 01:21 remaining: 01:19]
+RUNNING:  51%|█████     | 76/150 [elapsed: 01:27 remaining: 01:19]
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:27 remaining: 01:14]
+                                                                  
+
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:27 remaining: 01:14]
+RUNNING:  54%|█████▍    | 81/150 [elapsed: 01:37 remaining: 01:14]
+RUNNING:  61%|██████    | 91/150 [elapsed: 01:37 remaining: 01:03]
+                                                                  
+
+RUNNING:  61%|██████    | 91/150 [elapsed: 01:37 remaining: 01:03]
+RUNNING:  61%|██████    | 91/150 [elapsed: 01:47 remaining: 01:03]
+RUNNING:  67%|██████▋   | 100/150 [elapsed: 01:47 remaining: 00:53]
+                                                                   
+
+RUNNING:  67%|██████▋   | 100/150 [elapsed: 01:47 remaining: 00:53]
+RUNNING:  67%|██████▋   | 100/150 [elapsed: 01:55 remaining: 00:53]
+RUNNING:  72%|███████▏  | 108/150 [elapsed: 01:55 remaining: 00:44]
+                                                                   
+
+RUNNING:  72%|███████▏  | 108/150 [elapsed: 01:55 remaining: 00:44]
+RUNNING:  72%|███████▏  | 108/150 [elapsed: 02:02 remaining: 00:44]
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:02 remaining: 00:41]
+                                                                   
+
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:02 remaining: 00:41]
+RUNNING:  75%|███████▌  | 113/150 [elapsed: 02:10 remaining: 00:41]
+RUNNING:  81%|████████  | 121/150 [elapsed: 02:10 remaining: 00:31]
+                                                                   
+
+RUNNING:  81%|████████  | 121/150 [elapsed: 02:10 remaining: 00:31]
+RUNNING:  81%|████████  | 121/150 [elapsed: 02:17 remaining: 00:31]
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:17 remaining: 00:25]
+                                                                   
+
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:17 remaining: 00:25]
+RUNNING:  85%|████████▍ | 127/150 [elapsed: 02:25 remaining: 00:25]
+RUNNING:  90%|█████████ | 135/150 [elapsed: 02:25 remaining: 00:16]
+                                                                   
+
+RUNNING:  90%|█████████ | 135/150 [elapsed: 02:25 remaining: 00:16]
+RUNNING:  90%|█████████ | 135/150 [elapsed: 02:35 remaining: 00:16]
+RUNNING:  96%|█████████▌| 144/150 [elapsed: 02:35 remaining: 00:06]
+                                                                   
+
+RUNNING:  96%|█████████▌| 144/150 [elapsed: 02:35 remaining: 00:06]
+RUNNING:  96%|█████████▌| 144/150 [elapsed: 02:43 remaining: 00:06]
+RUNNING: |          | 152/? [elapsed: 02:43 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 152/? [elapsed: 02:43 remaining: 00:00]
+RUNNING: |          | 152/? [elapsed: 02:50 remaining: 00:00]
+RUNNING: |          | 158/? [elapsed: 02:50 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 158/? [elapsed: 02:50 remaining: 00:00]
+RUNNING: |          | 158/? [elapsed: 02:58 remaining: 00:00]
+RUNNING: |          | 166/? [elapsed: 02:58 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 166/? [elapsed: 02:58 remaining: 00:00]
+RUNNING: |          | 166/? [elapsed: 03:07 remaining: 00:00]
+RUNNING: |          | 174/? [elapsed: 03:07 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 174/? [elapsed: 03:07 remaining: 00:00]
+RUNNING: |          | 174/? [elapsed: 03:17 remaining: 00:00]
+RUNNING: |          | 184/? [elapsed: 03:17 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 184/? [elapsed: 03:17 remaining: 00:00]
+RUNNING: |          | 184/? [elapsed: 03:26 remaining: 00:00]
+RUNNING: |          | 192/? [elapsed: 03:26 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 192/? [elapsed: 03:26 remaining: 00:00]
+RUNNING: |          | 192/? [elapsed: 03:36 remaining: 00:00]
+RUNNING: |          | 202/? [elapsed: 03:36 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 202/? [elapsed: 03:36 remaining: 00:00]
+RUNNING: |          | 202/? [elapsed: 03:46 remaining: 00:00]
+RUNNING: |          | 211/? [elapsed: 03:46 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 211/? [elapsed: 03:46 remaining: 00:00]
+RUNNING: |          | 211/? [elapsed: 03:56 remaining: 00:00]
+RUNNING: |          | 221/? [elapsed: 03:56 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 221/? [elapsed: 03:56 remaining: 00:00]
+RUNNING: |          | 221/? [elapsed: 04:07 remaining: 00:00]
+RUNNING: |          | 231/? [elapsed: 04:07 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 231/? [elapsed: 04:07 remaining: 00:00]
+RUNNING: |          | 231/? [elapsed: 04:14 remaining: 00:00]
+RUNNING: |          | 238/? [elapsed: 04:14 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 238/? [elapsed: 04:14 remaining: 00:00]
+RUNNING: |          | 238/? [elapsed: 04:23 remaining: 00:00]
+RUNNING: |          | 246/? [elapsed: 04:23 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 246/? [elapsed: 04:23 remaining: 00:00]
+RUNNING: |          | 246/? [elapsed: 04:33 remaining: 00:00]
+RUNNING: |          | 256/? [elapsed: 04:33 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 256/? [elapsed: 04:33 remaining: 00:00]
+RUNNING: |          | 256/? [elapsed: 04:43 remaining: 00:00]
+RUNNING: |          | 265/? [elapsed: 04:43 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 265/? [elapsed: 04:43 remaining: 00:00]
+RUNNING: |          | 265/? [elapsed: 04:50 remaining: 00:00]
+RUNNING: |          | 272/? [elapsed: 04:50 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 272/? [elapsed: 04:50 remaining: 00:00]
+RUNNING: |          | 272/? [elapsed: 04:56 remaining: 00:00]
+RUNNING: |          | 277/? [elapsed: 04:56 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 277/? [elapsed: 04:56 remaining: 00:00]
+RUNNING: |          | 277/? [elapsed: 05:05 remaining: 00:00]
+RUNNING: |          | 284/? [elapsed: 05:05 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 284/? [elapsed: 05:05 remaining: 00:00]
+RUNNING: |          | 284/? [elapsed: 05:11 remaining: 00:00]
+RUNNING: |          | 290/? [elapsed: 05:11 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 290/? [elapsed: 05:11 remaining: 00:00]
+COMPLETE: |          | 290/? [elapsed: 05:22 remaining: 00:00]
+COMPLETE: |          | 290/? [elapsed: 05:23 remaining: 00:00]
+2026-06-24 13:39:18,680 Sleeping for 6s. Reason: PENDING
+2026-06-24 13:39:25,160 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:39:30,671 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:39:41,174 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:39:47,644 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:39:57,121 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:40:04,615 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:40:14,097 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:40:24,620 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:40:31,154 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:40:39,827 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:40:45,339 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:40:55,889 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:41:05,406 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:41:13,921 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:41:20,431 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:41:28,949 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:41:35,524 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:41:44,033 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:41:53,571 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:42:02,048 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:42:08,546 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:42:17,047 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:42:25,544 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:42:36,044 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:42:44,537 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:42:55,005 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:43:04,575 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:43:15,054 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:43:25,563 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:43:33,076 Sleeping for 8s. Reason: RUNNING
+2026-06-24 13:43:41,623 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:43:52,142 Sleeping for 9s. Reason: RUNNING
+2026-06-24 13:44:01,619 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:44:09,139 Sleeping for 5s. Reason: RUNNING
+2026-06-24 13:44:14,613 Sleeping for 7s. Reason: RUNNING
+2026-06-24 13:44:23,217 Sleeping for 6s. Reason: RUNNING
+2026-06-24 13:44:29,764 Sleeping for 10s. Reason: RUNNING
+2026-06-24 13:48:12,161 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.1 pTM=0.579
+2026-06-24 13:50:07,158 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.8 pTM=0.613 tol=9.17
+2026-06-24 13:50:07,333 alphafold2_ptm_model_1_seed_000 took 284.9s (1 recycles)
+2026-06-24 13:50:08,958 reranking models by 'plddt' metric
+2026-06-24 13:50:08,961 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.8 pTM=0.613
+2026-06-24 13:50:11,004 Done
+  ✓ Fold receptors · ColabFold (auto-detected) · ColabFold finished -> · 1h 24m
+     → intermediate_files/Wheat_FLS2_search_job35168199_ca44/receptor_only
+▶ Structure analysis · LRR annotation  (est. ~15–90s)
+  ✓ Structure analysis · LRR annotation · 8 LRR region row(s) · 1m 24s
+     → intermediate_files/Wheat_FLS2_search_job35168199_ca44/lrr_annotation_results.txt
+▶ LRR-domain FASTA  (est. <5s)
+  ✓ LRR-domain FASTA · 8 sequence(s) · 0.0s
+     → intermediate_files/Wheat_FLS2_search_job35168199_ca44/lrr_domain_sequences.fasta
+▶ B-factor winding analysis  (est. ~10–60s)
+  ✓ B-factor winding analysis · 5414 row(s) · 17.7s
+     → intermediate_files/Wheat_FLS2_search_job35168199_ca44/bfactor_winding_lrr_segments.csv
+▶ Test-data assembly  (est. <10s)
+  ✓ Test-data assembly · 32 row(s) · 0.3s
+     → intermediate_files/Wheat_FLS2_search_job35168199_ca44/test_data.csv
+▶ Chemical-feature annotation  (est. <10s)
+  ✓ Chemical-feature annotation · 32 row(s) · 0.1s
+     → intermediate_files/Wheat_FLS2_search_job35168199_ca44/ready_test_data.csv
+/global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/torch/cuda/__init__.py:384: UserWarning: Found GPU0 Tesla V100-SXM2-32GB which is of compute capability (CC) 7.0.
+The following list shows the CCs this version of PyTorch was built for and the hardware CCs it supports:
+- 7.5 which supports hardware CC >=7.5,<8.0
+- 8.0 which supports hardware CC >=8.0,<9.0 except {8.7}
+- 8.6 which supports hardware CC >=8.6,<9.0 except {8.7}
+- 9.0 which supports hardware CC >=9.0,<10.0
+- 10.0 which supports hardware CC >=10.0,<11.0 except {10.1}
+- 12.0 which supports hardware CC >=12.0,<13.0
+Please follow the instructions at https://pytorch.org/get-started/locally/ to install a PyTorch release that supports one of these CUDA versions: 12.6
+  _warn_unsupported_code(d, device_cc, code_ccs)
+  ⚠ requested --device cuda, but it is unusable: GPU 'Tesla V100-SXM2-32GB' is compute capability 7.0 (sm_70), but this PyTorch was built only for [sm_75, sm_80, sm_86, sm_90, sm_100, sm_120]. Install a torch build that includes this GPU's architecture. Falling back to --device cpu. Run `mamp-ml install-check` to diagnose, and the README's install section for a GPU-compatible PyTorch.
+▶ Predict · ESM-2 inference  (est. ~30s–3 min on GPU, longer on CPU)
+    ↳ weights: /global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/mamp_ml/weights/mamp_ml_weights.pth
+Not using distributed mode
+[13:55:35.101022] Namespace(seed=0, debug='', repeat_thresh=0.001, n_fed_cats=-1, detic_path=PosixPath('/path/to/file'), pos_thresh=0.5, aa_expand='scratch', single_dec='naive', head_dim=128, backbone='esm2_t33_650M_UR50D', finetune_backbone='/scratch/cluster/jozhang/models/openfold_params/finetuning_ptm_2.pt', freeze_at=14, model='esm2_bfactor_weighted', data_dir=None, eval_only_data_path='/global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/intermediate_files/Wheat_FLS2_search_job35168199_ca44/ready_test_data.csv', n_msa_seqs=128, n_extra_msa_seqs=1024, af_extract_feat='both', max_context_length=2000, num_workers=10, epochs=50, batch_size=8, lr=0.0003, min_lr=1e-09, weight_decay=0.5, warmup_epochs=10, cross_eval_kfold=None, lambda_single=0.1, loss_single_aug='none', lambda_double=1.0, double_subsample_destabilizing_ratio=8, lambda_pos=4, eval=False, dist_eval=False, eval_reverse=False, test=False, finetune='', resume='', start_epoch=0, save_pred_dict=False, eval_period=5, save_period=1000, disable_wandb=True, model_checkpoint_path='/global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/mamp_ml/weights/mamp_ml_weights.pth', device='cpu', world_size=1, name_to_x='../out_data/colabfold_name_to_x.pt', local_rank=-1, dist_on_itp=False, dist_url='env://', contrastive_output=True, bfactor_csv_path='/global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/intermediate_files/Wheat_FLS2_search_job35168199_ca44/bfactor_winding_lrr_segments.csv', output_dir=PosixPath('/global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/intermediate_files/Wheat_FLS2_search_job35168199_ca44'), distributed=False)
+Loading weights:   0%|          | 0/102 [00:00<?, ?it/s]Loading weights:   2%|1         | 2/102 [00:00<00:05, 17.20it/s]Loading weights:   8%|7         | 8/102 [00:00<00:02, 36.38it/s]Loading weights:  16%|#5        | 16/102 [00:00<00:04, 18.36it/s]Loading weights: 100%|##########| 102/102 [00:00<00:00, 124.69it/s]
+[13:55:42.807699] DEBUG Tokenizer Info:
+[13:55:42.807764]   - eos_token: <eos>, eos_token_id: 2
+[13:55:42.807788]   - cls_token: <cls>, cls_token_id: 0
+[13:55:42.807806]   - pad_token: <pad>, pad_token_id: 1
+[13:55:42.807823]   - unk_token: <unk>, unk_token_id: 3
+[13:55:43.475714] State dict keys: odict_keys(['esm.embeddings.word_embeddings.weight', 'esm.embeddings.position_embeddings.weight', 'esm.encoder.layer.0.attention.self.query.weight', 'esm.encoder.layer.0.attention.self.query.bias', 'esm.encoder.layer.0.attention.self.key.weight', 'esm.encoder.layer.0.attention.self.key.bias', 'esm.encoder.layer.0.attention.self.value.weight', 'esm.encoder.layer.0.attention.self.value.bias', 'esm.encoder.layer.0.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.0.attention.output.dense.weight', 'esm.encoder.layer.0.attention.output.dense.bias', 'esm.encoder.layer.0.attention.LayerNorm.weight', 'esm.encoder.layer.0.attention.LayerNorm.bias', 'esm.encoder.layer.0.intermediate.dense.weight', 'esm.encoder.layer.0.intermediate.dense.bias', 'esm.encoder.layer.0.output.dense.weight', 'esm.encoder.layer.0.output.dense.bias', 'esm.encoder.layer.0.LayerNorm.weight', 'esm.encoder.layer.0.LayerNorm.bias', 'esm.encoder.layer.1.attention.self.query.weight', 'esm.encoder.layer.1.attention.self.query.bias', 'esm.encoder.layer.1.attention.self.key.weight', 'esm.encoder.layer.1.attention.self.key.bias', 'esm.encoder.layer.1.attention.self.value.weight', 'esm.encoder.layer.1.attention.self.value.bias', 'esm.encoder.layer.1.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.1.attention.output.dense.weight', 'esm.encoder.layer.1.attention.output.dense.bias', 'esm.encoder.layer.1.attention.LayerNorm.weight', 'esm.encoder.layer.1.attention.LayerNorm.bias', 'esm.encoder.layer.1.intermediate.dense.weight', 'esm.encoder.layer.1.intermediate.dense.bias', 'esm.encoder.layer.1.output.dense.weight', 'esm.encoder.layer.1.output.dense.bias', 'esm.encoder.layer.1.LayerNorm.weight', 'esm.encoder.layer.1.LayerNorm.bias', 'esm.encoder.layer.2.attention.self.query.weight', 'esm.encoder.layer.2.attention.self.query.bias', 'esm.encoder.layer.2.attention.self.key.weight', 'esm.encoder.layer.2.attention.self.key.bias', 'esm.encoder.layer.2.attention.self.value.weight', 'esm.encoder.layer.2.attention.self.value.bias', 'esm.encoder.layer.2.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.2.attention.output.dense.weight', 'esm.encoder.layer.2.attention.output.dense.bias', 'esm.encoder.layer.2.attention.LayerNorm.weight', 'esm.encoder.layer.2.attention.LayerNorm.bias', 'esm.encoder.layer.2.intermediate.dense.weight', 'esm.encoder.layer.2.intermediate.dense.bias', 'esm.encoder.layer.2.output.dense.weight', 'esm.encoder.layer.2.output.dense.bias', 'esm.encoder.layer.2.LayerNorm.weight', 'esm.encoder.layer.2.LayerNorm.bias', 'esm.encoder.layer.3.attention.self.query.weight', 'esm.encoder.layer.3.attention.self.query.bias', 'esm.encoder.layer.3.attention.self.key.weight', 'esm.encoder.layer.3.attention.self.key.bias', 'esm.encoder.layer.3.attention.self.value.weight', 'esm.encoder.layer.3.attention.self.value.bias', 'esm.encoder.layer.3.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.3.attention.output.dense.weight', 'esm.encoder.layer.3.attention.output.dense.bias', 'esm.encoder.layer.3.attention.LayerNorm.weight', 'esm.encoder.layer.3.attention.LayerNorm.bias', 'esm.encoder.layer.3.intermediate.dense.weight', 'esm.encoder.layer.3.intermediate.dense.bias', 'esm.encoder.layer.3.output.dense.weight', 'esm.encoder.layer.3.output.dense.bias', 'esm.encoder.layer.3.LayerNorm.weight', 'esm.encoder.layer.3.LayerNorm.bias', 'esm.encoder.layer.4.attention.self.query.weight', 'esm.encoder.layer.4.attention.self.query.bias', 'esm.encoder.layer.4.attention.self.key.weight', 'esm.encoder.layer.4.attention.self.key.bias', 'esm.encoder.layer.4.attention.self.value.weight', 'esm.encoder.layer.4.attention.self.value.bias', 'esm.encoder.layer.4.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.4.attention.output.dense.weight', 'esm.encoder.layer.4.attention.output.dense.bias', 'esm.encoder.layer.4.attention.LayerNorm.weight', 'esm.encoder.layer.4.attention.LayerNorm.bias', 'esm.encoder.layer.4.intermediate.dense.weight', 'esm.encoder.layer.4.intermediate.dense.bias', 'esm.encoder.layer.4.output.dense.weight', 'esm.encoder.layer.4.output.dense.bias', 'esm.encoder.layer.4.LayerNorm.weight', 'esm.encoder.layer.4.LayerNorm.bias', 'esm.encoder.layer.5.attention.self.query.weight', 'esm.encoder.layer.5.attention.self.query.bias', 'esm.encoder.layer.5.attention.self.key.weight', 'esm.encoder.layer.5.attention.self.key.bias', 'esm.encoder.layer.5.attention.self.value.weight', 'esm.encoder.layer.5.attention.self.value.bias', 'esm.encoder.layer.5.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.5.attention.output.dense.weight', 'esm.encoder.layer.5.attention.output.dense.bias', 'esm.encoder.layer.5.attention.LayerNorm.weight', 'esm.encoder.layer.5.attention.LayerNorm.bias', 'esm.encoder.layer.5.intermediate.dense.weight', 'esm.encoder.layer.5.intermediate.dense.bias', 'esm.encoder.layer.5.output.dense.weight', 'esm.encoder.layer.5.output.dense.bias', 'esm.encoder.layer.5.LayerNorm.weight', 'esm.encoder.layer.5.LayerNorm.bias', 'esm.encoder.emb_layer_norm_after.weight', 'esm.encoder.emb_layer_norm_after.bias', 'esm.pooler.dense.weight', 'esm.pooler.dense.bias', 'esm.contact_head.regression.weight', 'esm.contact_head.regression.bias', 'film.chemical_proj.0.weight', 'film.chemical_proj.0.bias', 'film.chemical_proj.2.weight', 'film.chemical_proj.2.bias', 'film.chemical_proj.3.weight', 'film.chemical_proj.3.bias', 'film.film_layer.weight', 'film.film_layer.bias', 'film.layer_norm.weight', 'film.layer_norm.bias', 'classifier.0.weight', 'classifier.0.bias', 'classifier.1.weight', 'classifier.1.bias', 'classifier.4.weight', 'classifier.4.bias'])
+[13:55:44.214328] ESMBfactorWeightedFeatures(
+  (esm): EsmModel(
+    (embeddings): EsmEmbeddings(
+      (word_embeddings): Embedding(33, 320, padding_idx=1)
+      (dropout): Dropout(p=0.0, inplace=False)
+    )
+    (rotary_embeddings): EsmRotaryEmbedding()
+    (encoder): EsmEncoder(
+      (layer): ModuleList(
+        (0-5): 6 x EsmLayer(
+          (attention): EsmAttention(
+            (self): EsmSelfAttention(
+              (query): Linear(in_features=320, out_features=320, bias=True)
+              (key): Linear(in_features=320, out_features=320, bias=True)
+              (value): Linear(in_features=320, out_features=320, bias=True)
+            )
+            (output): EsmSelfOutput(
+              (dense): Linear(in_features=320, out_features=320, bias=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+            )
+            (LayerNorm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+          )
+          (intermediate): EsmIntermediate(
+            (dense): Linear(in_features=320, out_features=1280, bias=True)
+          )
+          (output): EsmOutput(
+            (dense): Linear(in_features=1280, out_features=320, bias=True)
+            (dropout): Dropout(p=0.0, inplace=False)
+          )
+          (LayerNorm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+        )
+      )
+      (emb_layer_norm_after): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    )
+    (pooler): EsmPooler(
+      (dense): Linear(in_features=320, out_features=320, bias=True)
+      (activation): Tanh()
+    )
+    (contact_head): EsmContactPredictionHead(
+      (regression): Linear(in_features=120, out_features=1, bias=True)
+      (activation): Sigmoid()
+    )
+  )
+  (film): FiLMWithConcatenation(
+    (chemical_proj): Sequential(
+      (0): Linear(in_features=3, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=64, out_features=320, bias=True)
+      (3): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    )
+    (film_layer): Linear(in_features=640, out_features=640, bias=True)
+    (layer_norm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=320, out_features=160, bias=True)
+    (1): LayerNorm((160,), eps=1e-05, elementwise_affine=True, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.2, inplace=False)
+    (4): Linear(in_features=160, out_features=3, bias=True)
+  )
+  (criterion): CrossEntropyLoss()
+)
+[13:55:44.215211] Evaluating a model with 1,821,180 trainable parameters out of 7,996,540 parameters
+[13:55:44.281076] len(ds_test)=32
+[13:55:49.692258] Test:  [0/4]  eta: 0:00:21    time: 5.3268  data: 0.2264  max mem: 0
+[13:55:53.640027] Test:  [3/4]  eta: 0:00:02    time: 2.3184  data: 0.0733  max mem: 0
+[13:55:53.640333] Test: Total time: 0:00:09 (2.3396 s / it)
+[13:55:53.640384] No ground truth labels found. Saving predictions only.
+[13:55:53.761145] Successfully added metadata for 32 predictions
+[13:55:53.790679] Saved predictions to predictions.csv with 32 rows
+[13:55:53.790820] {'predictions_saved': True, 'num_predictions': 32}
+  ✓ Predict · ESM-2 inference · 32 prediction(s) · 18.8s
+     → intermediate_files/Wheat_FLS2_search_job35168199_ca44/predictions.csv
+
+──────────────────────────────────────────────────────────────
+✓ Prediction complete  · total 1h 30m
+  Output folder                     /global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/output_Wheat_FLS2_search_job35168199_ca44/
+    predictions                     predictions.csv
+    LRR annotation plots            lrr_annotation_plots/
+    structures                      structures/
+    run log                         mamp-ml-run.log
+  (remaining intermediates removed  rerun with `--keep all` to retain them)
+
+Step timings
+  Receptor FASTA                              8.5s
+  Fold receptors · ColabFold (auto-detected)  1h 24m
+  Structure analysis · LRR annotation         1m 24s
+  LRR-domain FASTA                            0.0s
+  B-factor winding analysis                   17.7s
+  Test-data assembly                          0.3s
+  Chemical-feature annotation                 0.1s
+  Predict · ESM-2 inference                   18.8s
+  total                                       1h 30m
+  reuse these structures with different weights (skips folding):
+    mamp-ml predict Wheat_FLS2_search.xlsx --structures /global/scratch/users/dmstev/mamp_prediction_ml/13_monocot_test/output_Wheat_FLS2_search_job35168199_ca44/structures --weights <other.pth>
