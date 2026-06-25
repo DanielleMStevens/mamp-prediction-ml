@@ -1,0 +1,1576 @@
+==============================================================
+mamp-ml run log
+==============================================================
+date      : 2026-06-22 19:35:50
+version   : mamp-ml 0.2.17
+command   : mamp-ml predict Cabernet_filtered_RLKs.xlsx --device cuda
+python    : 3.10.16
+platform  : Linux-4.18.0-553.126.1.el8_10.x86_64-x86_64-with-glibc2.28
+input     : Cabernet_filtered_RLKs.xlsx
+device    : cuda
+gpu       : Tesla V100-SXM2-32GB, CC 7.0, driver CUDA 13.0
+pytorch   : 2.12.0
+structure : colabfold
+out_dir   : intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21
+--------------------------------------------------------------
+▶ Receptor FASTA  (est. <5s)
+  ✓ Receptor FASTA · 58 unique receptor record(s) · 1.4s
+     → intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/receptor_full_length.fasta
+  truncating 2/58 receptor(s) longer than 1300 aa to their N-terminal 1300 residues for folding (LRR ectodomain is N-terminal); full-length FASTA preserved at intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/receptor_full_length.fasta
+▶ Fold receptors · ColabFold (auto-detected)  (est. ~2–10 min/receptor on GPU × 58)
+  running the discovered colabfold_batch automatically:
+    ↳ /global/scratch/users/dmstev/localcolabfold/colabfold-conda/bin/colabfold_batch  (on $PATH)
+  full ColabFold output is being written to intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/mamp-ml-run.log
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1782182190.423903  272202 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1782182190.817834  272202 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1782182192.404662  272202 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782182192.404697  272202 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782182192.404700  272202 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782182192.404702  272202 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+
+WARNING: You are welcome to use the default MSA server, however keep in mind that it's a
+limited shared resource only capable of processing a few thousand MSAs per day. Please
+submit jobs only from a single IP address. We reserve the right to limit access to the
+server case-by-case when usage exceeds fair use. If you require more MSAs: You can 
+precompute all MSAs with `colabfold_search` or host your own API and pass it to `--host-url`
+
+2026-06-22 19:38:16,268 Running colabfold 1.5.5 (bfc0e83d3b87730f6903f6c385b08c426d1e791e)
+2026-06-22 19:38:21,880 Running on GPU
+2026-06-22 19:38:45,193 Found 5 citations for tools or databases
+2026-06-22 19:38:45,194 Query 1/58: Vitis_vinifera_g301520.t01_VCORE (length 455)
+    folding 1/58 · Vitis_vinifera_g301520.t01_VCORE (455 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1782182357.416690  272202 mlir_graph_optimization_pass.cc:425] MLIR V1 optimization pass is not enabled
+2026-06-22 19:39:23,612 Padding length to 465
+2026-06-22 19:40:10,139 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=66.9 pTM=0.403
+2026-06-22 19:40:30,807 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=66.1 pTM=0.425 tol=6.93
+2026-06-22 19:40:30,809 alphafold2_ptm_model_1_seed_000 took 67.2s (1 recycles)
+2026-06-22 19:40:31,052 reranking models by 'plddt' metric
+2026-06-22 19:40:31,053 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=66.1 pTM=0.425
+2026-06-22 19:40:31,702 Query 2/58: Vitis_vinifera_g151670.t01_VCORE (length 538)
+    folding 2/58 · Vitis_vinifera_g151670.t01_VCORE (538 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 19:40:49,137 Padding length to 548
+2026-06-22 19:41:29,301 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=76.8 pTM=0.61
+2026-06-22 19:41:55,926 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=78.1 pTM=0.617 tol=3.43
+2026-06-22 19:41:55,927 alphafold2_ptm_model_1_seed_000 took 66.8s (1 recycles)
+2026-06-22 19:41:56,244 reranking models by 'plddt' metric
+2026-06-22 19:41:56,245 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=78.1 pTM=0.617
+2026-06-22 19:41:57,293 Query 3/58: Vitis_vinifera_g543490.t02_VCORE (length 588)
+    folding 3/58 · Vitis_vinifera_g543490.t02_VCORE (588 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 19:42:13,733 Padding length to 598
+2026-06-22 19:43:01,440 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=75.5 pTM=0.551
+2026-06-22 19:43:32,187 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=76.1 pTM=0.555 tol=4.8
+2026-06-22 19:43:32,189 alphafold2_ptm_model_1_seed_000 took 78.5s (1 recycles)
+2026-06-22 19:43:32,557 reranking models by 'plddt' metric
+2026-06-22 19:43:32,557 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=76.1 pTM=0.555
+2026-06-22 19:43:33,310 Query 4/58: Vitis_vinifera_g543490.t01_VCORE (length 603)
+    folding 4/58 · Vitis_vinifera_g543490.t01_VCORE (603 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 19:43:48,873 Padding length to 613
+2026-06-22 19:44:38,642 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=76.5 pTM=0.543
+2026-06-22 19:45:10,762 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=75.8 pTM=0.54 tol=3.82
+2026-06-22 19:45:10,763 alphafold2_ptm_model_1_seed_000 took 81.9s (1 recycles)
+2026-06-22 19:45:11,199 reranking models by 'plddt' metric
+2026-06-22 19:45:11,199 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=75.8 pTM=0.54
+2026-06-22 19:45:12,065 Query 5/58: Vitis_vinifera_g188110.t02_VCORE (length 671)
+    folding 5/58 · Vitis_vinifera_g188110.t02_VCORE (671 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 19:45:25,652 Padding length to 681
+2026-06-22 19:46:21,402 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=66.6 pTM=0.551
+2026-06-22 19:46:59,962 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=66.6 pTM=0.553 tol=6.38
+2026-06-22 19:46:59,993 alphafold2_ptm_model_1_seed_000 took 94.3s (1 recycles)
+2026-06-22 19:47:00,502 reranking models by 'plddt' metric
+2026-06-22 19:47:00,502 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=66.6 pTM=0.553
+2026-06-22 19:47:02,269 Query 6/58: Vitis_vinifera_g468390.t01_VCORE (length 696)
+    folding 6/58 · Vitis_vinifera_g468390.t01_VCORE (696 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 19:47:17,410 Padding length to 706
+2026-06-22 19:48:19,913 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=65.2 pTM=0.508
+2026-06-22 19:49:01,552 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=65.1 pTM=0.54 tol=5.92
+2026-06-22 19:49:01,657 alphafold2_ptm_model_1_seed_000 took 104.2s (1 recycles)
+2026-06-22 19:49:02,396 reranking models by 'plddt' metric
+2026-06-22 19:49:02,398 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=65.1 pTM=0.54
+2026-06-22 19:49:04,133 Query 7/58: Vitis_vinifera_g161060.t01_VCORE (length 715)
+    folding 7/58 · Vitis_vinifera_g161060.t01_VCORE (715 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 19:49:30,039 Padding length to 725
+2026-06-22 19:50:43,214 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.4 pTM=0.582
+2026-06-22 19:51:26,813 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.2 pTM=0.59 tol=4.74
+2026-06-22 19:51:26,814 alphafold2_ptm_model_1_seed_000 took 116.8s (1 recycles)
+2026-06-22 19:51:27,345 reranking models by 'plddt' metric
+2026-06-22 19:51:27,345 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.2 pTM=0.59
+2026-06-22 19:51:28,426 Query 8/58: Vitis_vinifera_g188110.t01_VCORE (length 720)
+    folding 8/58 · Vitis_vinifera_g188110.t01_VCORE (720 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 19:51:42,655 Padding length to 725
+2026-06-22 19:52:26,108 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=64.4 pTM=0.538
+2026-06-22 19:53:09,560 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=65.3 pTM=0.537 tol=10.5
+2026-06-22 19:53:09,562 alphafold2_ptm_model_1_seed_000 took 86.9s (1 recycles)
+2026-06-22 19:53:10,100 reranking models by 'plddt' metric
+2026-06-22 19:53:10,101 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=65.3 pTM=0.537
+2026-06-22 19:53:10,990 Query 9/58: Vitis_vinifera_g161620.t01_VCORE (length 789)
+    folding 9/58 · Vitis_vinifera_g161620.t01_VCORE (789 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 19:53:26,367 Padding length to 799
+2026-06-22 19:54:37,479 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.3 pTM=0.675
+2026-06-22 19:55:29,027 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.2 pTM=0.698 tol=7
+2026-06-22 19:55:29,029 alphafold2_ptm_model_1_seed_000 took 122.7s (1 recycles)
+2026-06-22 19:55:29,671 reranking models by 'plddt' metric
+2026-06-22 19:55:29,671 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.2 pTM=0.698
+2026-06-22 19:55:30,813 Query 10/58: Vitis_vinifera_g403360.t01_VCORE (length 844)
+    folding 10/58 · Vitis_vinifera_g403360.t01_VCORE (844 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 19:55:59,889 Padding length to 854
+2026-06-22 19:57:36,648 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=87.4 pTM=0.604
+2026-06-22 19:58:35,324 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=88.5 pTM=0.617 tol=13.8
+2026-06-22 19:58:35,422 alphafold2_ptm_model_1_seed_000 took 155.5s (1 recycles)
+2026-06-22 19:58:37,102 reranking models by 'plddt' metric
+2026-06-22 19:58:37,113 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=88.5 pTM=0.617
+2026-06-22 19:58:39,544 Query 11/58: Vitis_vinifera_g302190.t01_VCORE (length 872)
+    folding 11/58 · Vitis_vinifera_g302190.t01_VCORE (872 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 19:59:08,414 Padding length to 882
+2026-06-22 20:00:50,893 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.5 pTM=0.64
+2026-06-22 20:01:53,360 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.5 pTM=0.655 tol=2.91
+2026-06-22 20:01:53,363 alphafold2_ptm_model_1_seed_000 took 164.9s (1 recycles)
+2026-06-22 20:01:54,196 reranking models by 'plddt' metric
+2026-06-22 20:01:54,196 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.5 pTM=0.655
+2026-06-22 20:01:56,297 Query 12/58: Vitis_vinifera_g492740.t01_VCORE (length 892)
+    folding 12/58 · Vitis_vinifera_g492740.t01_VCORE (892 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 20:02:20,635 Padding length to 902
+2026-06-22 20:03:44,694 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=86.9 pTM=0.6
+2026-06-22 20:04:50,210 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.6 pTM=0.613 tol=4.98
+2026-06-22 20:04:50,212 alphafold2_ptm_model_1_seed_000 took 149.6s (1 recycles)
+2026-06-22 20:04:51,017 reranking models by 'plddt' metric
+2026-06-22 20:04:51,017 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.6 pTM=0.613
+2026-06-22 20:04:52,054 Query 13/58: Vitis_vinifera_g175540.t02_VCORE (length 899)
+    folding 13/58 · Vitis_vinifera_g175540.t02_VCORE (899 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:05:02,648 Padding length to 902
+2026-06-22 20:06:08,757 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.6 pTM=0.634
+2026-06-22 20:07:14,613 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.2 pTM=0.663 tol=4.21
+2026-06-22 20:07:14,615 alphafold2_ptm_model_1_seed_000 took 132.0s (1 recycles)
+2026-06-22 20:07:15,471 reranking models by 'plddt' metric
+2026-06-22 20:07:15,472 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.2 pTM=0.663
+2026-06-22 20:07:16,640 Query 14/58: Vitis_vinifera_g446300.t02_VCORE (length 899)
+    folding 14/58 · Vitis_vinifera_g446300.t02_VCORE (899 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+2026-06-22 20:07:32,050 Padding length to 902
+2026-06-22 20:08:37,527 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.8 pTM=0.639
+2026-06-22 20:09:43,181 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.4 pTM=0.664 tol=5.52
+2026-06-22 20:09:43,279 alphafold2_ptm_model_1_seed_000 took 131.2s (1 recycles)
+2026-06-22 20:09:44,257 reranking models by 'plddt' metric
+2026-06-22 20:09:44,258 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.4 pTM=0.664
+2026-06-22 20:09:45,936 Query 15/58: Vitis_vinifera_g416570.t01_VCORE (length 917)
+    folding 15/58 · Vitis_vinifera_g416570.t01_VCORE (917 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:10:12,643 Padding length to 927
+2026-06-22 20:12:04,766 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=76.4 pTM=0.583
+2026-06-22 20:13:13,610 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=77.7 pTM=0.588 tol=4.35
+2026-06-22 20:13:13,612 alphafold2_ptm_model_1_seed_000 took 181.0s (1 recycles)
+2026-06-22 20:13:14,455 reranking models by 'plddt' metric
+2026-06-22 20:13:14,455 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=77.7 pTM=0.588
+2026-06-22 20:13:16,021 Query 16/58: Vitis_vinifera_g450010.t01_VCORE (length 928)
+    folding 16/58 · Vitis_vinifera_g450010.t01_VCORE (928 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:13:40,758 Padding length to 938
+2026-06-22 20:15:15,983 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=86.6 pTM=0.595
+2026-06-22 20:16:26,486 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=88.4 pTM=0.61 tol=5.27
+2026-06-22 20:16:26,489 alphafold2_ptm_model_1_seed_000 took 165.7s (1 recycles)
+2026-06-22 20:16:27,337 reranking models by 'plddt' metric
+2026-06-22 20:16:27,337 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=88.4 pTM=0.61
+2026-06-22 20:16:28,420 Query 17/58: Vitis_vinifera_g014790.t01_VCORE (length 929)
+    folding 17/58 · Vitis_vinifera_g014790.t01_VCORE (929 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:16:54,288 Padding length to 938
+2026-06-22 20:18:05,377 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.4 pTM=0.636
+2026-06-22 20:19:16,341 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.4 pTM=0.653 tol=4.53
+2026-06-22 20:19:16,343 alphafold2_ptm_model_1_seed_000 took 142.1s (1 recycles)
+2026-06-22 20:19:17,211 reranking models by 'plddt' metric
+2026-06-22 20:19:17,211 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.4 pTM=0.653
+2026-06-22 20:19:18,348 Query 18/58: Vitis_vinifera_g099770.t02_VCORE (length 951)
+    folding 18/58 · Vitis_vinifera_g099770.t02_VCORE (951 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:19:40,240 Padding length to 961
+2026-06-22 20:21:34,026 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.2 pTM=0.645
+2026-06-22 20:22:49,434 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83 pTM=0.668 tol=3.34
+2026-06-22 20:22:49,530 alphafold2_ptm_model_1_seed_000 took 189.2s (1 recycles)
+2026-06-22 20:22:50,949 reranking models by 'plddt' metric
+2026-06-22 20:22:50,951 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83 pTM=0.668
+2026-06-22 20:22:53,791 Query 19/58: Vitis_vinifera_g351410.t02_VCORE (length 951)
+    folding 19/58 · Vitis_vinifera_g351410.t02_VCORE (951 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:04 remaining: 00:00]
+2026-06-22 20:23:23,814 Padding length to 961
+2026-06-22 20:24:39,759 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.1 pTM=0.64
+2026-06-22 20:25:55,099 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.4 pTM=0.668 tol=2.84
+2026-06-22 20:25:55,102 alphafold2_ptm_model_1_seed_000 took 151.3s (1 recycles)
+2026-06-22 20:25:56,008 reranking models by 'plddt' metric
+2026-06-22 20:25:56,008 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.4 pTM=0.668
+2026-06-22 20:25:57,375 Query 20/58: Vitis_vinifera_g151690.t01_VCORE (length 966)
+    folding 20/58 · Vitis_vinifera_g151690.t01_VCORE (966 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:05 remaining: 00:00]
+2026-06-22 20:26:27,290 Padding length to 976
+2026-06-22 20:28:16,602 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.3 pTM=0.582
+2026-06-22 20:29:28,017 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.6 pTM=0.597 tol=6.41
+2026-06-22 20:29:28,039 alphafold2_ptm_model_1_seed_000 took 180.7s (1 recycles)
+2026-06-22 20:29:29,010 reranking models by 'plddt' metric
+2026-06-22 20:29:29,010 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.6 pTM=0.597
+2026-06-22 20:29:30,630 Query 21/58: Vitis_vinifera_g416780.t01_VCORE (length 966)
+    folding 21/58 · Vitis_vinifera_g416780.t01_VCORE (966 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 20:29:58,934 Padding length to 976
+2026-06-22 20:31:11,155 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.9 pTM=0.585
+2026-06-22 20:32:22,543 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.7 pTM=0.594 tol=7.34
+2026-06-22 20:32:22,545 alphafold2_ptm_model_1_seed_000 took 143.6s (1 recycles)
+2026-06-22 20:32:23,490 reranking models by 'plddt' metric
+2026-06-22 20:32:23,490 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.7 pTM=0.594
+2026-06-22 20:32:24,763 Query 22/58: Vitis_vinifera_g175540.t01_VCORE (length 968)
+    folding 22/58 · Vitis_vinifera_g175540.t01_VCORE (968 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:32:39,308 Padding length to 976
+2026-06-22 20:33:51,037 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.8 pTM=0.602
+2026-06-22 20:35:02,741 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.8 pTM=0.624 tol=7.38
+2026-06-22 20:35:02,820 alphafold2_ptm_model_1_seed_000 took 143.5s (1 recycles)
+2026-06-22 20:35:04,229 reranking models by 'plddt' metric
+2026-06-22 20:35:04,230 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.8 pTM=0.624
+2026-06-22 20:35:05,806 Query 23/58: Vitis_vinifera_g446300.t01_VCORE (length 968)
+    folding 23/58 · Vitis_vinifera_g446300.t01_VCORE (968 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 20:35:27,594 Padding length to 976
+2026-06-22 20:36:38,942 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.4 pTM=0.601
+2026-06-22 20:37:51,010 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.9 pTM=0.625 tol=5.8
+2026-06-22 20:37:51,012 alphafold2_ptm_model_1_seed_000 took 143.4s (1 recycles)
+2026-06-22 20:37:52,114 reranking models by 'plddt' metric
+2026-06-22 20:37:52,114 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.9 pTM=0.625
+2026-06-22 20:37:53,371 Query 24/58: Vitis_vinifera_g373870.t01_VCORE (length 975)
+    folding 24/58 · Vitis_vinifera_g373870.t01_VCORE (975 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:04 remaining: 00:00]
+2026-06-22 20:38:16,324 Padding length to 976
+2026-06-22 20:39:27,935 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.7 pTM=0.596
+2026-06-22 20:40:40,022 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.5 pTM=0.606 tol=3.95
+2026-06-22 20:40:40,047 alphafold2_ptm_model_1_seed_000 took 143.7s (1 recycles)
+2026-06-22 20:40:41,001 reranking models by 'plddt' metric
+2026-06-22 20:40:41,001 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.5 pTM=0.606
+2026-06-22 20:40:42,686 Query 25/58: Vitis_vinifera_g459710.t01_VCORE (length 975)
+    folding 25/58 · Vitis_vinifera_g459710.t01_VCORE (975 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:41:03,641 Padding length to 976
+2026-06-22 20:42:15,306 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.3 pTM=0.591
+2026-06-22 20:43:27,108 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.2 pTM=0.609 tol=2.32
+2026-06-22 20:43:27,400 alphafold2_ptm_model_1_seed_000 took 143.7s (1 recycles)
+2026-06-22 20:43:29,071 reranking models by 'plddt' metric
+2026-06-22 20:43:29,085 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.2 pTM=0.609
+2026-06-22 20:43:30,901 Query 26/58: Vitis_vinifera_g208720.t01_VCORE (length 982)
+    folding 26/58 · Vitis_vinifera_g208720.t01_VCORE (982 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:43:56,000 Padding length to 992
+2026-06-22 20:46:05,183 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.2 pTM=0.589
+2026-06-22 20:47:17,859 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.4 pTM=0.602 tol=4.91
+2026-06-22 20:47:17,861 alphafold2_ptm_model_1_seed_000 took 201.9s (1 recycles)
+2026-06-22 20:47:18,818 reranking models by 'plddt' metric
+2026-06-22 20:47:18,819 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.4 pTM=0.602
+2026-06-22 20:47:20,858 Query 27/58: Vitis_vinifera_g320120.t01_VCORE (length 985)
+    folding 27/58 · Vitis_vinifera_g320120.t01_VCORE (985 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:04 remaining: 00:00]
+2026-06-22 20:47:48,733 Padding length to 992
+2026-06-22 20:49:01,463 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.6 pTM=0.647
+2026-06-22 20:50:14,373 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.1 pTM=0.672 tol=5.54
+2026-06-22 20:50:14,376 alphafold2_ptm_model_1_seed_000 took 145.6s (1 recycles)
+2026-06-22 20:50:15,374 reranking models by 'plddt' metric
+2026-06-22 20:50:15,374 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.1 pTM=0.672
+2026-06-22 20:50:16,743 Query 28/58: Vitis_vinifera_g178830.t01_VCORE (length 987)
+    folding 28/58 · Vitis_vinifera_g178830.t01_VCORE (987 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 20:50:43,563 Padding length to 992
+2026-06-22 20:51:56,348 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82 pTM=0.574
+2026-06-22 20:53:09,055 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.9 pTM=0.59 tol=13.7
+2026-06-22 20:53:09,057 alphafold2_ptm_model_1_seed_000 took 145.5s (1 recycles)
+2026-06-22 20:53:10,043 reranking models by 'plddt' metric
+2026-06-22 20:53:10,043 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.9 pTM=0.59
+2026-06-22 20:53:11,512 Query 29/58: Vitis_vinifera_g450030.t01_VCORE (length 993)
+    folding 29/58 · Vitis_vinifera_g450030.t01_VCORE (993 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 20:53:41,525 Padding length to 1003
+2026-06-22 20:55:45,951 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.7 pTM=0.609
+2026-06-22 20:57:04,818 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.5 pTM=0.624 tol=4.68
+2026-06-22 20:57:04,837 alphafold2_ptm_model_1_seed_000 took 203.3s (1 recycles)
+2026-06-22 20:57:06,062 reranking models by 'plddt' metric
+2026-06-22 20:57:06,063 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.5 pTM=0.624
+2026-06-22 20:57:08,367 Query 30/58: Vitis_vinifera_g040450.t01_VCORE (length 997)
+    folding 30/58 · Vitis_vinifera_g040450.t01_VCORE (997 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 20:57:38,560 Padding length to 1003
+2026-06-22 20:58:57,478 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.6 pTM=0.587
+2026-06-22 21:00:16,451 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.9 pTM=0.608 tol=4.68
+2026-06-22 21:00:16,488 alphafold2_ptm_model_1_seed_000 took 157.9s (1 recycles)
+2026-06-22 21:00:17,821 reranking models by 'plddt' metric
+2026-06-22 21:00:17,822 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.9 pTM=0.608
+2026-06-22 21:00:19,573 Query 31/58: Vitis_vinifera_g287800.t02_VCORE (length 997)
+    folding 31/58 · Vitis_vinifera_g287800.t02_VCORE (997 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:00:48,061 Padding length to 1003
+2026-06-22 21:02:06,845 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.4 pTM=0.588
+2026-06-22 21:03:25,681 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.7 pTM=0.606 tol=15.5
+2026-06-22 21:03:25,683 alphafold2_ptm_model_1_seed_000 took 157.6s (1 recycles)
+2026-06-22 21:03:26,678 reranking models by 'plddt' metric
+2026-06-22 21:03:26,678 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.7 pTM=0.606
+2026-06-22 21:03:27,982 Query 32/58: Vitis_vinifera_g161640.t01_VCORE (length 998)
+    folding 32/58 · Vitis_vinifera_g161640.t01_VCORE (998 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:03:53,568 Padding length to 1003
+2026-06-22 21:05:13,162 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82 pTM=0.58
+2026-06-22 21:06:32,811 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.1 pTM=0.609 tol=7.48
+2026-06-22 21:06:32,813 alphafold2_ptm_model_1_seed_000 took 159.2s (1 recycles)
+2026-06-22 21:06:33,912 reranking models by 'plddt' metric
+2026-06-22 21:06:33,913 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.1 pTM=0.609
+2026-06-22 21:06:35,759 Query 33/58: Vitis_vinifera_g428570.t01_VCORE (length 998)
+    folding 33/58 · Vitis_vinifera_g428570.t01_VCORE (998 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:06:56,758 Padding length to 1003
+2026-06-22 21:08:16,109 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.2 pTM=0.58
+2026-06-22 21:09:35,209 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.4 pTM=0.606 tol=4.64
+2026-06-22 21:09:35,292 alphafold2_ptm_model_1_seed_000 took 158.5s (1 recycles)
+2026-06-22 21:09:36,917 reranking models by 'plddt' metric
+2026-06-22 21:09:36,931 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.4 pTM=0.606
+2026-06-22 21:09:39,063 Query 34/58: Vitis_vinifera_g521070.t01_VCORE (length 1010)
+    folding 34/58 · Vitis_vinifera_g521070.t01_VCORE (1010 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:10:05,408 Padding length to 1020
+2026-06-22 21:12:13,765 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.1 pTM=0.589
+2026-06-22 21:13:33,101 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.7 pTM=0.609 tol=5.16
+2026-06-22 21:13:33,103 alphafold2_ptm_model_1_seed_000 took 207.7s (1 recycles)
+2026-06-22 21:13:34,099 reranking models by 'plddt' metric
+2026-06-22 21:13:34,100 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.7 pTM=0.609
+2026-06-22 21:13:35,474 Query 35/58: Vitis_vinifera_g040450.t02_VCORE (length 1026)
+    folding 35/58 · Vitis_vinifera_g040450.t02_VCORE (1026 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:14:01,636 Padding length to 1036
+2026-06-22 21:15:45,971 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.8 pTM=0.598
+2026-06-22 21:17:08,277 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.2 pTM=0.617 tol=15.1
+2026-06-22 21:17:08,279 alphafold2_ptm_model_1_seed_000 took 186.6s (1 recycles)
+2026-06-22 21:17:09,368 reranking models by 'plddt' metric
+2026-06-22 21:17:09,368 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.2 pTM=0.617
+2026-06-22 21:17:14,124 Query 36/58: Vitis_vinifera_g059890.t01_VCORE (length 1026)
+    folding 36/58 · Vitis_vinifera_g059890.t01_VCORE (1026 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:17:42,838 Padding length to 1036
+2026-06-22 21:19:04,993 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.4 pTM=0.571
+2026-06-22 21:20:29,433 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.4 pTM=0.593 tol=5.06
+2026-06-22 21:20:29,682 alphafold2_ptm_model_1_seed_000 took 166.8s (1 recycles)
+2026-06-22 21:20:31,530 reranking models by 'plddt' metric
+2026-06-22 21:20:31,544 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.4 pTM=0.593
+2026-06-22 21:20:34,172 Query 37/58: Vitis_vinifera_g287800.t01_VCORE (length 1026)
+    folding 37/58 · Vitis_vinifera_g287800.t01_VCORE (1026 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:21:02,024 Padding length to 1036
+2026-06-22 21:22:24,693 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.8 pTM=0.593
+2026-06-22 21:23:47,034 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.1 pTM=0.615 tol=6.79
+2026-06-22 21:23:47,060 alphafold2_ptm_model_1_seed_000 took 165.0s (1 recycles)
+2026-06-22 21:23:48,085 reranking models by 'plddt' metric
+2026-06-22 21:23:48,086 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.1 pTM=0.615
+2026-06-22 21:23:49,559 Query 38/58: Vitis_vinifera_g059920.t01_VCORE (length 1028)
+    folding 38/58 · Vitis_vinifera_g059920.t01_VCORE (1028 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 21:24:18,296 Padding length to 1036
+2026-06-22 21:25:40,463 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84 pTM=0.58
+2026-06-22 21:27:02,673 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.6 pTM=0.592 tol=4.36
+2026-06-22 21:27:02,675 alphafold2_ptm_model_1_seed_000 took 164.4s (1 recycles)
+2026-06-22 21:27:03,707 reranking models by 'plddt' metric
+2026-06-22 21:27:03,707 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.6 pTM=0.592
+2026-06-22 21:27:04,973 Query 39/58: Vitis_vinifera_g059880.t01_VCORE (length 1032)
+    folding 39/58 · Vitis_vinifera_g059880.t01_VCORE (1032 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:27:39,994 Padding length to 1036
+2026-06-22 21:29:03,105 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.7 pTM=0.597
+2026-06-22 21:30:25,538 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.4 pTM=0.611 tol=9.38
+2026-06-22 21:30:25,540 alphafold2_ptm_model_1_seed_000 took 165.5s (1 recycles)
+2026-06-22 21:30:26,695 reranking models by 'plddt' metric
+2026-06-22 21:30:26,695 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.4 pTM=0.611
+2026-06-22 21:30:28,395 Query 40/58: Vitis_vinifera_g319970.t01_VCORE (length 1032)
+    folding 40/58 · Vitis_vinifera_g319970.t01_VCORE (1032 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:30:54,673 Padding length to 1036
+2026-06-22 21:32:17,460 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.6 pTM=0.587
+2026-06-22 21:33:39,924 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.6 pTM=0.603 tol=3.79
+2026-06-22 21:33:39,926 alphafold2_ptm_model_1_seed_000 took 165.3s (1 recycles)
+2026-06-22 21:33:40,949 reranking models by 'plddt' metric
+2026-06-22 21:33:40,949 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.6 pTM=0.603
+2026-06-22 21:33:42,195 Query 41/58: Vitis_vinifera_g014780.t01_VCORE (length 1048)
+    folding 41/58 · Vitis_vinifera_g014780.t01_VCORE (1048 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:34:11,089 Padding length to 1058
+2026-06-22 21:36:37,077 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.8 pTM=0.587
+2026-06-22 21:38:06,038 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.9 pTM=0.599 tol=7.14
+2026-06-22 21:38:06,451 alphafold2_ptm_model_1_seed_000 took 235.3s (1 recycles)
+2026-06-22 21:38:08,129 reranking models by 'plddt' metric
+2026-06-22 21:38:08,131 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.9 pTM=0.599
+2026-06-22 21:38:10,840 Query 42/58: Vitis_vinifera_g096470.t01_VCORE (length 1052)
+    folding 42/58 · Vitis_vinifera_g096470.t01_VCORE (1052 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:38:36,698 Padding length to 1058
+2026-06-22 21:40:05,176 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.9 pTM=0.593
+2026-06-22 21:41:33,696 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.3 pTM=0.618 tol=9.53
+2026-06-22 21:41:33,698 alphafold2_ptm_model_1_seed_000 took 177.0s (1 recycles)
+2026-06-22 21:41:34,776 reranking models by 'plddt' metric
+2026-06-22 21:41:34,776 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.3 pTM=0.618
+2026-06-22 21:41:36,348 Query 43/58: Vitis_vinifera_g099770.t01_VCORE (length 1052)
+    folding 43/58 · Vitis_vinifera_g099770.t01_VCORE (1052 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 21:42:04,706 Padding length to 1058
+2026-06-22 21:43:33,168 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.5 pTM=0.591
+2026-06-22 21:45:03,518 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.4 pTM=0.617 tol=10.6
+2026-06-22 21:45:03,520 alphafold2_ptm_model_1_seed_000 took 178.8s (1 recycles)
+2026-06-22 21:45:04,587 reranking models by 'plddt' metric
+2026-06-22 21:45:04,587 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.4 pTM=0.617
+2026-06-22 21:45:06,181 Query 44/58: Vitis_vinifera_g351410.t01_VCORE (length 1052)
+    folding 44/58 · Vitis_vinifera_g351410.t01_VCORE (1052 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:45:37,732 Padding length to 1058
+2026-06-22 21:47:06,670 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.3 pTM=0.594
+2026-06-22 21:48:35,627 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.4 pTM=0.618 tol=9.08
+2026-06-22 21:48:35,816 alphafold2_ptm_model_1_seed_000 took 178.1s (1 recycles)
+2026-06-22 21:48:37,518 reranking models by 'plddt' metric
+2026-06-22 21:48:37,532 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.4 pTM=0.618
+2026-06-22 21:48:39,632 Query 45/58: Vitis_vinifera_g351460.t02_VCORE (length 1052)
+    folding 45/58 · Vitis_vinifera_g351460.t02_VCORE (1052 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:49:05,123 Padding length to 1058
+2026-06-22 21:50:33,561 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.7 pTM=0.593
+2026-06-22 21:52:02,154 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.4 pTM=0.618 tol=9.68
+2026-06-22 21:52:02,170 alphafold2_ptm_model_1_seed_000 took 177.0s (1 recycles)
+2026-06-22 21:52:03,612 reranking models by 'plddt' metric
+2026-06-22 21:52:03,613 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.4 pTM=0.618
+2026-06-22 21:52:05,308 Query 46/58: Vitis_vinifera_g497860.t01_VCORE (length 1066)
+    folding 46/58 · Vitis_vinifera_g497860.t01_VCORE (1066 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:52:30,079 Padding length to 1076
+2026-06-22 21:54:47,090 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=80.2 pTM=0.483
+2026-06-22 21:56:15,314 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.1 pTM=0.52 tol=13.9
+2026-06-22 21:56:15,316 alphafold2_ptm_model_1_seed_000 took 225.2s (1 recycles)
+2026-06-22 21:56:16,681 reranking models by 'plddt' metric
+2026-06-22 21:56:16,681 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.1 pTM=0.52
+2026-06-22 21:56:18,327 Query 47/58: Vitis_vinifera_g522520.t01_VCORE (length 1074)
+    folding 47/58 · Vitis_vinifera_g522520.t01_VCORE (1074 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 21:56:50,950 Padding length to 1076
+2026-06-22 21:58:19,211 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.4 pTM=0.61
+2026-06-22 21:59:47,799 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.1 pTM=0.65 tol=5.75
+2026-06-22 21:59:47,923 alphafold2_ptm_model_1_seed_000 took 176.9s (1 recycles)
+2026-06-22 21:59:49,259 reranking models by 'plddt' metric
+2026-06-22 21:59:49,261 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.1 pTM=0.65
+2026-06-22 21:59:51,266 Query 48/58: Vitis_vinifera_g351460.t01_VCORE (length 1092)
+    folding 48/58 · Vitis_vinifera_g351460.t01_VCORE (1092 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 22:00:23,161 Padding length to 1102
+2026-06-22 22:02:29,371 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.9 pTM=0.581
+2026-06-22 22:04:06,562 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.7 pTM=0.602 tol=12.1
+2026-06-22 22:04:06,564 alphafold2_ptm_model_1_seed_000 took 223.4s (1 recycles)
+2026-06-22 22:04:07,696 reranking models by 'plddt' metric
+2026-06-22 22:04:07,696 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.7 pTM=0.602
+2026-06-22 22:04:10,387 Query 49/58: Vitis_vinifera_g403350.t01_VCORE (length 1103)
+    folding 49/58 · Vitis_vinifera_g403350.t01_VCORE (1103 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 22:04:39,527 Padding length to 1113
+2026-06-22 22:07:06,152 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=86.2 pTM=0.589
+2026-06-22 22:08:45,257 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=88.5 pTM=0.625 tol=6.21
+2026-06-22 22:08:45,259 alphafold2_ptm_model_1_seed_000 took 245.7s (1 recycles)
+2026-06-22 22:08:46,413 reranking models by 'plddt' metric
+2026-06-22 22:08:46,413 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=88.5 pTM=0.625
+2026-06-22 22:08:47,841 Query 50/58: Vitis_vinifera_g530000.t01_VCORE (length 1118)
+    folding 50/58 · Vitis_vinifera_g530000.t01_VCORE (1118 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 22:09:17,123 Padding length to 1128
+2026-06-22 22:11:16,630 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.4 pTM=0.588
+2026-06-22 22:12:52,817 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=87.2 pTM=0.616 tol=7.24
+2026-06-22 22:12:52,916 alphafold2_ptm_model_1_seed_000 took 215.8s (1 recycles)
+2026-06-22 22:12:55,123 reranking models by 'plddt' metric
+2026-06-22 22:12:55,136 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.2 pTM=0.616
+2026-06-22 22:12:58,098 Query 51/58: Vitis_vinifera_g160440.t01_VCORE (length 1129)
+    folding 51/58 · Vitis_vinifera_g160440.t01_VCORE (1129 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 22:13:30,811 Padding length to 1139
+2026-06-22 22:15:49,542 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=87.2 pTM=0.582
+2026-06-22 22:17:31,760 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=88.1 pTM=0.612 tol=4.5
+2026-06-22 22:17:31,762 alphafold2_ptm_model_1_seed_000 took 241.0s (1 recycles)
+2026-06-22 22:17:32,972 reranking models by 'plddt' metric
+2026-06-22 22:17:32,972 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=88.1 pTM=0.612
+2026-06-22 22:17:35,276 Query 52/58: Vitis_vinifera_g426170.t01_VCORE (length 1129)
+    folding 52/58 · Vitis_vinifera_g426170.t01_VCORE (1129 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 22:18:03,180 Padding length to 1139
+2026-06-22 22:19:45,009 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=87.4 pTM=0.585
+2026-06-22 22:21:26,909 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=88.3 pTM=0.617 tol=3.84
+2026-06-22 22:21:26,912 alphafold2_ptm_model_1_seed_000 took 203.7s (1 recycles)
+2026-06-22 22:21:28,121 reranking models by 'plddt' metric
+2026-06-22 22:21:28,121 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=88.3 pTM=0.617
+2026-06-22 22:21:29,704 Query 53/58: Vitis_vinifera_g281350.t01_VCORE (length 1136)
+    folding 53/58 · Vitis_vinifera_g281350.t01_VCORE (1136 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:03 remaining: 00:00]
+2026-06-22 22:21:52,785 Padding length to 1139
+2026-06-22 22:23:34,673 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=66.6 pTM=0.396
+2026-06-22 22:25:17,231 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=69.1 pTM=0.386 tol=14.4
+2026-06-22 22:25:17,356 alphafold2_ptm_model_1_seed_000 took 204.6s (1 recycles)
+2026-06-22 22:25:19,524 reranking models by 'plddt' metric
+2026-06-22 22:25:19,542 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=69.1 pTM=0.386
+2026-06-22 22:25:21,978 Query 54/58: Vitis_vinifera_g160930.t01_VCORE (length 1137)
+    folding 54/58 · Vitis_vinifera_g160930.t01_VCORE (1137 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 22:25:55,417 Padding length to 1139
+2026-06-22 22:27:37,818 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=80.6 pTM=0.534
+2026-06-22 22:29:19,950 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.8 pTM=0.573 tol=13.2
+2026-06-22 22:29:19,976 alphafold2_ptm_model_1_seed_000 took 204.6s (1 recycles)
+2026-06-22 22:29:21,206 reranking models by 'plddt' metric
+2026-06-22 22:29:21,206 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.8 pTM=0.573
+2026-06-22 22:29:22,936 Query 55/58: Vitis_vinifera_g612460.t01_VCORE (length 1160)
+    folding 55/58 · Vitis_vinifera_g612460.t01_VCORE (1160 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:01 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 22:29:52,941 Padding length to 1170
+2026-06-22 22:32:31,802 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=86.4 pTM=0.599
+2026-06-22 22:34:19,005 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=88.1 pTM=0.637 tol=7.11
+2026-06-22 22:34:19,007 alphafold2_ptm_model_1_seed_000 took 266.1s (1 recycles)
+2026-06-22 22:34:20,273 reranking models by 'plddt' metric
+2026-06-22 22:34:20,273 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=88.1 pTM=0.637
+2026-06-22 22:34:21,723 Query 56/58: Vitis_vinifera_g425980.t01_VCORE (length 1268)
+    folding 56/58 · Vitis_vinifera_g425980.t01_VCORE (1268 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:00 remaining: 00:00]
+COMPLETE: 100%|██████████| 150/150 [elapsed: 00:02 remaining: 00:00]
+2026-06-22 22:34:56,451 Padding length to 1278
+2026-06-22 22:37:30,523 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.6 pTM=0.536
+2026-06-22 22:39:37,448 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.2 pTM=0.562 tol=8.4
+2026-06-22 22:39:37,531 alphafold2_ptm_model_1_seed_000 took 281.1s (1 recycles)
+2026-06-22 22:39:39,701 reranking models by 'plddt' metric
+2026-06-22 22:39:39,715 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.2 pTM=0.562
+2026-06-22 22:39:42,486 Query 57/58: Vitis_vinifera_g014780.t02_VCORE (length 1300)
+    folding 57/58 · Vitis_vinifera_g014780.t02_VCORE (1300 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:06 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:06 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:12 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:12 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:22 remaining: ?]
+RUNNING:   6%|▌         | 9/150 [elapsed: 00:22 remaining: 05:58]
+                                                                 
+
+RUNNING:   6%|▌         | 9/150 [elapsed: 00:22 remaining: 05:58]
+RUNNING:   6%|▌         | 9/150 [elapsed: 00:32 remaining: 05:58]
+RUNNING:  12%|█▏        | 18/150 [elapsed: 00:32 remaining: 03:42]
+                                                                  
+
+RUNNING:  12%|█▏        | 18/150 [elapsed: 00:32 remaining: 03:42]
+RUNNING:  12%|█▏        | 18/150 [elapsed: 00:41 remaining: 03:42]
+RUNNING:  17%|█▋        | 26/150 [elapsed: 00:41 remaining: 02:55]
+                                                                  
+
+RUNNING:  17%|█▋        | 26/150 [elapsed: 00:41 remaining: 02:55]
+RUNNING:  17%|█▋        | 26/150 [elapsed: 00:48 remaining: 02:55]
+RUNNING:  22%|██▏       | 33/150 [elapsed: 00:48 remaining: 02:31]
+                                                                  
+
+RUNNING:  22%|██▏       | 33/150 [elapsed: 00:48 remaining: 02:31]
+RUNNING:  22%|██▏       | 33/150 [elapsed: 00:55 remaining: 02:31]
+RUNNING:  26%|██▌       | 39/150 [elapsed: 00:55 remaining: 02:16]
+                                                                  
+
+RUNNING:  26%|██▌       | 39/150 [elapsed: 00:55 remaining: 02:16]
+RUNNING:  26%|██▌       | 39/150 [elapsed: 01:04 remaining: 02:16]
+RUNNING:  32%|███▏      | 48/150 [elapsed: 01:04 remaining: 01:58]
+                                                                  
+
+RUNNING:  32%|███▏      | 48/150 [elapsed: 01:04 remaining: 01:58]
+RUNNING:  32%|███▏      | 48/150 [elapsed: 01:12 remaining: 01:58]
+RUNNING:  37%|███▋      | 55/150 [elapsed: 01:12 remaining: 01:47]
+                                                                  
+
+RUNNING:  37%|███▋      | 55/150 [elapsed: 01:12 remaining: 01:47]
+RUNNING:  37%|███▋      | 55/150 [elapsed: 01:20 remaining: 01:47]
+RUNNING:  42%|████▏     | 63/150 [elapsed: 01:20 remaining: 01:36]
+                                                                  
+
+RUNNING:  42%|████▏     | 63/150 [elapsed: 01:20 remaining: 01:36]
+RUNNING:  42%|████▏     | 63/150 [elapsed: 01:26 remaining: 01:36]
+RUNNING:  46%|████▌     | 69/150 [elapsed: 01:26 remaining: 01:29]
+                                                                  
+
+RUNNING:  46%|████▌     | 69/150 [elapsed: 01:26 remaining: 01:29]
+RUNNING:  46%|████▌     | 69/150 [elapsed: 01:36 remaining: 01:29]
+RUNNING:  52%|█████▏    | 78/150 [elapsed: 01:36 remaining: 01:18]
+                                                                  
+
+RUNNING:  52%|█████▏    | 78/150 [elapsed: 01:36 remaining: 01:18]
+RUNNING:  52%|█████▏    | 78/150 [elapsed: 01:45 remaining: 01:18]
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:45 remaining: 01:07]
+                                                                  
+
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:45 remaining: 01:07]
+RUNNING:  58%|█████▊    | 87/150 [elapsed: 01:53 remaining: 01:07]
+RUNNING:  63%|██████▎   | 94/150 [elapsed: 01:53 remaining: 01:00]
+                                                                  
+
+RUNNING:  63%|██████▎   | 94/150 [elapsed: 01:53 remaining: 01:00]
+RUNNING:  63%|██████▎   | 94/150 [elapsed: 02:03 remaining: 01:00]
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 02:03 remaining: 00:48]
+                                                                   
+
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 02:03 remaining: 00:48]
+RUNNING:  69%|██████▉   | 104/150 [elapsed: 02:12 remaining: 00:48]
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:12 remaining: 00:40]
+                                                                   
+
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:12 remaining: 00:40]
+RUNNING:  75%|███████▍  | 112/150 [elapsed: 02:18 remaining: 00:40]
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:18 remaining: 00:34]
+                                                                   
+
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:18 remaining: 00:34]
+RUNNING:  79%|███████▊  | 118/150 [elapsed: 02:25 remaining: 00:34]
+RUNNING:  83%|████████▎ | 124/150 [elapsed: 02:25 remaining: 00:27]
+                                                                   
+
+RUNNING:  83%|████████▎ | 124/150 [elapsed: 02:25 remaining: 00:27]
+RUNNING:  83%|████████▎ | 124/150 [elapsed: 02:34 remaining: 00:27]
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:34 remaining: 00:18]
+                                                                   
+
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:34 remaining: 00:18]
+RUNNING:  89%|████████▊ | 133/150 [elapsed: 02:43 remaining: 00:18]
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:43 remaining: 00:09]
+                                                                   
+
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:43 remaining: 00:09]
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:50 remaining: 00:09]
+RUNNING:  99%|█████████▊| 148/150 [elapsed: 02:50 remaining: 00:02]
+                                                                   
+
+RUNNING:  99%|█████████▊| 148/150 [elapsed: 02:50 remaining: 00:02]
+RUNNING:  99%|█████████▊| 148/150 [elapsed: 02:58 remaining: 00:02]
+RUNNING: |          | 155/? [elapsed: 02:58 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 155/? [elapsed: 02:58 remaining: 00:00]
+RUNNING: |          | 155/? [elapsed: 03:03 remaining: 00:00]
+RUNNING: |          | 160/? [elapsed: 03:03 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 160/? [elapsed: 03:03 remaining: 00:00]
+RUNNING: |          | 160/? [elapsed: 03:14 remaining: 00:00]
+RUNNING: |          | 170/? [elapsed: 03:14 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 170/? [elapsed: 03:14 remaining: 00:00]
+RUNNING: |          | 170/? [elapsed: 03:20 remaining: 00:00]
+RUNNING: |          | 176/? [elapsed: 03:20 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 176/? [elapsed: 03:20 remaining: 00:00]
+RUNNING: |          | 176/? [elapsed: 03:29 remaining: 00:00]
+RUNNING: |          | 184/? [elapsed: 03:29 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 184/? [elapsed: 03:29 remaining: 00:00]
+RUNNING: |          | 184/? [elapsed: 03:36 remaining: 00:00]
+RUNNING: |          | 191/? [elapsed: 03:36 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 191/? [elapsed: 03:36 remaining: 00:00]
+RUNNING: |          | 191/? [elapsed: 03:42 remaining: 00:00]
+RUNNING: |          | 196/? [elapsed: 03:42 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 196/? [elapsed: 03:42 remaining: 00:00]
+RUNNING: |          | 196/? [elapsed: 03:50 remaining: 00:00]
+RUNNING: |          | 204/? [elapsed: 03:50 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 204/? [elapsed: 03:50 remaining: 00:00]
+RUNNING: |          | 204/? [elapsed: 03:59 remaining: 00:00]
+RUNNING: |          | 212/? [elapsed: 03:59 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 212/? [elapsed: 03:59 remaining: 00:00]
+RUNNING: |          | 212/? [elapsed: 04:05 remaining: 00:00]
+RUNNING: |          | 218/? [elapsed: 04:05 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 218/? [elapsed: 04:05 remaining: 00:00]
+RUNNING: |          | 218/? [elapsed: 04:15 remaining: 00:00]
+RUNNING: |          | 227/? [elapsed: 04:15 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 227/? [elapsed: 04:15 remaining: 00:00]
+RUNNING: |          | 227/? [elapsed: 04:24 remaining: 00:00]
+RUNNING: |          | 236/? [elapsed: 04:24 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 236/? [elapsed: 04:24 remaining: 00:00]
+RUNNING: |          | 236/? [elapsed: 04:34 remaining: 00:00]
+RUNNING: |          | 245/? [elapsed: 04:34 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 245/? [elapsed: 04:34 remaining: 00:00]
+RUNNING: |          | 245/? [elapsed: 04:44 remaining: 00:00]
+RUNNING: |          | 254/? [elapsed: 04:44 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 254/? [elapsed: 04:44 remaining: 00:00]
+RUNNING: |          | 254/? [elapsed: 04:53 remaining: 00:00]
+RUNNING: |          | 263/? [elapsed: 04:53 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 263/? [elapsed: 04:53 remaining: 00:00]
+RUNNING: |          | 263/? [elapsed: 05:03 remaining: 00:00]
+RUNNING: |          | 272/? [elapsed: 05:03 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 272/? [elapsed: 05:03 remaining: 00:00]
+RUNNING: |          | 272/? [elapsed: 05:09 remaining: 00:00]
+RUNNING: |          | 278/? [elapsed: 05:09 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 278/? [elapsed: 05:09 remaining: 00:00]
+RUNNING: |          | 278/? [elapsed: 05:19 remaining: 00:00]
+RUNNING: |          | 287/? [elapsed: 05:19 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 287/? [elapsed: 05:19 remaining: 00:00]
+RUNNING: |          | 287/? [elapsed: 05:29 remaining: 00:00]
+RUNNING: |          | 297/? [elapsed: 05:29 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 297/? [elapsed: 05:29 remaining: 00:00]
+RUNNING: |          | 297/? [elapsed: 05:36 remaining: 00:00]
+RUNNING: |          | 304/? [elapsed: 05:36 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 304/? [elapsed: 05:36 remaining: 00:00]
+RUNNING: |          | 304/? [elapsed: 05:44 remaining: 00:00]
+RUNNING: |          | 311/? [elapsed: 05:44 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 311/? [elapsed: 05:44 remaining: 00:00]
+RUNNING: |          | 311/? [elapsed: 05:53 remaining: 00:00]
+RUNNING: |          | 320/? [elapsed: 05:54 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 320/? [elapsed: 05:54 remaining: 00:00]
+RUNNING: |          | 320/? [elapsed: 06:01 remaining: 00:00]
+RUNNING: |          | 327/? [elapsed: 06:01 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 327/? [elapsed: 06:01 remaining: 00:00]
+RUNNING: |          | 327/? [elapsed: 06:10 remaining: 00:00]
+RUNNING: |          | 336/? [elapsed: 06:10 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 336/? [elapsed: 06:10 remaining: 00:00]
+RUNNING: |          | 336/? [elapsed: 06:20 remaining: 00:00]
+RUNNING: |          | 345/? [elapsed: 06:20 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 345/? [elapsed: 06:20 remaining: 00:00]
+RUNNING: |          | 345/? [elapsed: 06:25 remaining: 00:00]
+RUNNING: |          | 350/? [elapsed: 06:25 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 350/? [elapsed: 06:25 remaining: 00:00]
+RUNNING: |          | 350/? [elapsed: 06:32 remaining: 00:00]
+RUNNING: |          | 356/? [elapsed: 06:32 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 356/? [elapsed: 06:32 remaining: 00:00]
+COMPLETE: |          | 356/? [elapsed: 06:38 remaining: 00:00]
+COMPLETE: |          | 356/? [elapsed: 06:40 remaining: 00:00]
+2026-06-22 22:39:43,516 Sleeping for 5s. Reason: PENDING
+2026-06-22 22:39:49,003 Sleeping for 6s. Reason: PENDING
+2026-06-22 22:39:55,487 Sleeping for 9s. Reason: PENDING
+2026-06-22 22:40:05,395 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:40:15,108 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:40:23,603 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:40:31,108 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:40:37,577 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:40:47,068 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:40:54,559 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:41:03,025 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:41:09,503 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:41:18,983 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:41:28,448 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:41:35,943 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:41:46,451 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:41:54,999 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:42:01,479 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:42:07,934 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:42:17,438 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:42:25,895 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:42:33,392 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:42:40,861 Sleeping for 5s. Reason: RUNNING
+2026-06-22 22:42:46,359 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:42:56,837 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:43:03,333 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:43:11,831 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:43:19,349 Sleeping for 5s. Reason: RUNNING
+2026-06-22 22:43:24,810 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:43:33,290 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:43:41,756 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:43:48,231 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:43:57,721 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:44:07,345 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:44:16,981 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:44:26,603 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:44:36,093 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:44:45,575 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:44:52,057 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:45:01,541 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:45:12,002 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:45:19,474 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:45:26,933 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:45:36,535 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:45:43,993 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:45:53,495 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:46:02,990 Sleeping for 5s. Reason: RUNNING
+2026-06-22 22:46:08,482 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:46:14,943 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:50:12,723 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=79.1 pTM=0.526
+2026-06-22 22:52:23,290 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.7 pTM=0.537 tol=8
+2026-06-22 22:52:23,293 alphafold2_ptm_model_1_seed_000 took 314.0s (1 recycles)
+2026-06-22 22:52:24,999 reranking models by 'plddt' metric
+2026-06-22 22:52:24,999 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.7 pTM=0.537
+2026-06-22 22:52:27,350 Query 58/58: Vitis_vinifera_g224180.t01_VCORE (length 1300)
+    folding 58/58 · Vitis_vinifera_g224180.t01_VCORE (1300 aa)
+
+  0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+SUBMIT:   0%|          | 0/150 [elapsed: 00:00 remaining: ?]
+PENDING:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+                                                             
+
+PENDING:   0%|          | 0/150 [elapsed: 00:01 remaining: ?]
+RUNNING:   0%|          | 0/150 [elapsed: 00:07 remaining: ?]
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:07 remaining: 03:00]
+                                                                 
+
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:07 remaining: 03:00]
+RUNNING:   4%|▍         | 6/150 [elapsed: 00:15 remaining: 03:00]
+RUNNING:   9%|▉         | 14/150 [elapsed: 00:15 remaining: 02:33]
+                                                                  
+
+RUNNING:   9%|▉         | 14/150 [elapsed: 00:15 remaining: 02:33]
+RUNNING:   9%|▉         | 14/150 [elapsed: 00:24 remaining: 02:33]
+RUNNING:  15%|█▍        | 22/150 [elapsed: 00:24 remaining: 02:20]
+                                                                  
+
+RUNNING:  15%|█▍        | 22/150 [elapsed: 00:24 remaining: 02:20]
+RUNNING:  15%|█▍        | 22/150 [elapsed: 00:32 remaining: 02:20]
+RUNNING:  20%|██        | 30/150 [elapsed: 00:32 remaining: 02:09]
+                                                                  
+
+RUNNING:  20%|██        | 30/150 [elapsed: 00:32 remaining: 02:09]
+RUNNING:  20%|██        | 30/150 [elapsed: 00:43 remaining: 02:09]
+RUNNING:  27%|██▋       | 40/150 [elapsed: 00:43 remaining: 01:57]
+                                                                  
+
+RUNNING:  27%|██▋       | 40/150 [elapsed: 00:43 remaining: 01:57]
+RUNNING:  27%|██▋       | 40/150 [elapsed: 00:49 remaining: 01:57]
+RUNNING:  31%|███       | 46/150 [elapsed: 00:49 remaining: 01:51]
+                                                                  
+
+RUNNING:  31%|███       | 46/150 [elapsed: 00:49 remaining: 01:51]
+RUNNING:  31%|███       | 46/150 [elapsed: 00:59 remaining: 01:51]
+RUNNING:  37%|███▋      | 55/150 [elapsed: 00:59 remaining: 01:41]
+                                                                  
+
+RUNNING:  37%|███▋      | 55/150 [elapsed: 00:59 remaining: 01:41]
+RUNNING:  37%|███▋      | 55/150 [elapsed: 01:08 remaining: 01:41]
+RUNNING:  43%|████▎     | 64/150 [elapsed: 01:08 remaining: 01:31]
+                                                                  
+
+RUNNING:  43%|████▎     | 64/150 [elapsed: 01:08 remaining: 01:31]
+RUNNING:  43%|████▎     | 64/150 [elapsed: 01:17 remaining: 01:31]
+RUNNING:  48%|████▊     | 72/150 [elapsed: 01:17 remaining: 01:22]
+                                                                  
+
+RUNNING:  48%|████▊     | 72/150 [elapsed: 01:17 remaining: 01:22]
+RUNNING:  48%|████▊     | 72/150 [elapsed: 01:27 remaining: 01:22]
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:27 remaining: 01:11]
+                                                                  
+
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:27 remaining: 01:11]
+RUNNING:  55%|█████▍    | 82/150 [elapsed: 01:36 remaining: 01:11]
+RUNNING:  60%|██████    | 90/150 [elapsed: 01:36 remaining: 01:03]
+                                                                  
+
+RUNNING:  60%|██████    | 90/150 [elapsed: 01:36 remaining: 01:03]
+RUNNING:  60%|██████    | 90/150 [elapsed: 01:42 remaining: 01:03]
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:42 remaining: 00:57]
+                                                                  
+
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:42 remaining: 00:57]
+RUNNING:  64%|██████▍   | 96/150 [elapsed: 01:52 remaining: 00:57]
+RUNNING:  70%|███████   | 105/150 [elapsed: 01:52 remaining: 00:47]
+                                                                   
+
+RUNNING:  70%|███████   | 105/150 [elapsed: 01:52 remaining: 00:47]
+RUNNING:  70%|███████   | 105/150 [elapsed: 01:57 remaining: 00:47]
+RUNNING:  73%|███████▎  | 110/150 [elapsed: 01:57 remaining: 00:42]
+                                                                   
+
+RUNNING:  73%|███████▎  | 110/150 [elapsed: 01:57 remaining: 00:42]
+RUNNING:  73%|███████▎  | 110/150 [elapsed: 02:03 remaining: 00:42]
+RUNNING:  77%|███████▋  | 115/150 [elapsed: 02:03 remaining: 00:37]
+                                                                   
+
+RUNNING:  77%|███████▋  | 115/150 [elapsed: 02:03 remaining: 00:37]
+RUNNING:  77%|███████▋  | 115/150 [elapsed: 02:10 remaining: 00:37]
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:10 remaining: 00:30]
+                                                                   
+
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:10 remaining: 00:30]
+RUNNING:  81%|████████▏ | 122/150 [elapsed: 02:20 remaining: 00:30]
+RUNNING:  87%|████████▋ | 131/150 [elapsed: 02:20 remaining: 00:20]
+                                                                   
+
+RUNNING:  87%|████████▋ | 131/150 [elapsed: 02:20 remaining: 00:20]
+RUNNING:  87%|████████▋ | 131/150 [elapsed: 02:30 remaining: 00:20]
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:30 remaining: 00:09]
+                                                                   
+
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:30 remaining: 00:09]
+RUNNING:  94%|█████████▍| 141/150 [elapsed: 02:39 remaining: 00:09]
+RUNNING:  99%|█████████▉| 149/150 [elapsed: 02:39 remaining: 00:01]
+                                                                   
+
+RUNNING:  99%|█████████▉| 149/150 [elapsed: 02:39 remaining: 00:01]
+RUNNING:  99%|█████████▉| 149/150 [elapsed: 02:47 remaining: 00:01]
+RUNNING: |          | 157/? [elapsed: 02:47 remaining: 00:00]      
+                                                             
+
+RUNNING: |          | 157/? [elapsed: 02:47 remaining: 00:00]
+RUNNING: |          | 157/? [elapsed: 02:58 remaining: 00:00]
+RUNNING: |          | 167/? [elapsed: 02:58 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 167/? [elapsed: 02:58 remaining: 00:00]
+RUNNING: |          | 167/? [elapsed: 03:06 remaining: 00:00]
+RUNNING: |          | 175/? [elapsed: 03:06 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 175/? [elapsed: 03:06 remaining: 00:00]
+RUNNING: |          | 175/? [elapsed: 03:14 remaining: 00:00]
+RUNNING: |          | 182/? [elapsed: 03:14 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 182/? [elapsed: 03:14 remaining: 00:00]
+RUNNING: |          | 182/? [elapsed: 03:23 remaining: 00:00]
+RUNNING: |          | 191/? [elapsed: 03:23 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 191/? [elapsed: 03:23 remaining: 00:00]
+RUNNING: |          | 191/? [elapsed: 03:30 remaining: 00:00]
+RUNNING: |          | 197/? [elapsed: 03:30 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 197/? [elapsed: 03:30 remaining: 00:00]
+RUNNING: |          | 197/? [elapsed: 03:38 remaining: 00:00]
+RUNNING: |          | 205/? [elapsed: 03:38 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 205/? [elapsed: 03:38 remaining: 00:00]
+RUNNING: |          | 205/? [elapsed: 03:45 remaining: 00:00]
+RUNNING: |          | 211/? [elapsed: 03:45 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 211/? [elapsed: 03:45 remaining: 00:00]
+RUNNING: |          | 211/? [elapsed: 03:54 remaining: 00:00]
+RUNNING: |          | 220/? [elapsed: 03:54 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 220/? [elapsed: 03:54 remaining: 00:00]
+RUNNING: |          | 220/? [elapsed: 04:01 remaining: 00:00]
+RUNNING: |          | 226/? [elapsed: 04:01 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 226/? [elapsed: 04:01 remaining: 00:00]
+RUNNING: |          | 226/? [elapsed: 04:07 remaining: 00:00]
+RUNNING: |          | 232/? [elapsed: 04:07 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 232/? [elapsed: 04:07 remaining: 00:00]
+RUNNING: |          | 232/? [elapsed: 04:15 remaining: 00:00]
+RUNNING: |          | 239/? [elapsed: 04:15 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 239/? [elapsed: 04:15 remaining: 00:00]
+RUNNING: |          | 239/? [elapsed: 04:26 remaining: 00:00]
+RUNNING: |          | 249/? [elapsed: 04:26 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 249/? [elapsed: 04:26 remaining: 00:00]
+RUNNING: |          | 249/? [elapsed: 04:33 remaining: 00:00]
+RUNNING: |          | 256/? [elapsed: 04:33 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 256/? [elapsed: 04:33 remaining: 00:00]
+RUNNING: |          | 256/? [elapsed: 04:41 remaining: 00:00]
+RUNNING: |          | 263/? [elapsed: 04:41 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 263/? [elapsed: 04:41 remaining: 00:00]
+RUNNING: |          | 263/? [elapsed: 04:49 remaining: 00:00]
+RUNNING: |          | 271/? [elapsed: 04:49 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 271/? [elapsed: 04:49 remaining: 00:00]
+RUNNING: |          | 271/? [elapsed: 04:55 remaining: 00:00]
+RUNNING: |          | 276/? [elapsed: 04:55 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 276/? [elapsed: 04:55 remaining: 00:00]
+RUNNING: |          | 276/? [elapsed: 05:04 remaining: 00:00]
+RUNNING: |          | 284/? [elapsed: 05:04 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 284/? [elapsed: 05:04 remaining: 00:00]
+RUNNING: |          | 284/? [elapsed: 05:10 remaining: 00:00]
+RUNNING: |          | 290/? [elapsed: 05:10 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 290/? [elapsed: 05:10 remaining: 00:00]
+RUNNING: |          | 290/? [elapsed: 05:21 remaining: 00:00]
+RUNNING: |          | 300/? [elapsed: 05:21 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 300/? [elapsed: 05:21 remaining: 00:00]
+RUNNING: |          | 300/? [elapsed: 05:31 remaining: 00:00]
+RUNNING: |          | 310/? [elapsed: 05:31 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 310/? [elapsed: 05:31 remaining: 00:00]
+RUNNING: |          | 310/? [elapsed: 05:38 remaining: 00:00]
+RUNNING: |          | 316/? [elapsed: 05:38 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 316/? [elapsed: 05:38 remaining: 00:00]
+RUNNING: |          | 316/? [elapsed: 05:47 remaining: 00:00]
+RUNNING: |          | 325/? [elapsed: 05:47 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 325/? [elapsed: 05:47 remaining: 00:00]
+RUNNING: |          | 325/? [elapsed: 05:55 remaining: 00:00]
+RUNNING: |          | 332/? [elapsed: 05:55 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 332/? [elapsed: 05:55 remaining: 00:00]
+RUNNING: |          | 332/? [elapsed: 06:03 remaining: 00:00]
+RUNNING: |          | 340/? [elapsed: 06:03 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 340/? [elapsed: 06:03 remaining: 00:00]
+RUNNING: |          | 340/? [elapsed: 06:08 remaining: 00:00]
+RUNNING: |          | 345/? [elapsed: 06:08 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 345/? [elapsed: 06:08 remaining: 00:00]
+RUNNING: |          | 345/? [elapsed: 06:16 remaining: 00:00]
+RUNNING: |          | 352/? [elapsed: 06:16 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 352/? [elapsed: 06:16 remaining: 00:00]
+RUNNING: |          | 352/? [elapsed: 06:26 remaining: 00:00]
+RUNNING: |          | 362/? [elapsed: 06:26 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 362/? [elapsed: 06:26 remaining: 00:00]
+RUNNING: |          | 362/? [elapsed: 06:32 remaining: 00:00]
+RUNNING: |          | 367/? [elapsed: 06:32 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 367/? [elapsed: 06:32 remaining: 00:00]
+RUNNING: |          | 367/? [elapsed: 06:38 remaining: 00:00]
+RUNNING: |          | 373/? [elapsed: 06:38 remaining: 00:00]
+                                                             
+
+RUNNING: |          | 373/? [elapsed: 06:38 remaining: 00:00]
+COMPLETE: |          | 373/? [elapsed: 06:44 remaining: 00:00]
+COMPLETE: |          | 373/? [elapsed: 06:46 remaining: 00:00]
+2026-06-22 22:52:28,382 Sleeping for 6s. Reason: PENDING
+2026-06-22 22:52:34,890 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:52:43,351 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:52:51,844 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:53:00,320 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:53:10,797 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:53:17,277 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:53:26,770 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:53:36,264 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:53:44,744 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:53:55,249 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:54:03,737 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:54:10,226 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:54:19,674 Sleeping for 5s. Reason: RUNNING
+2026-06-22 22:54:25,169 Sleeping for 5s. Reason: RUNNING
+2026-06-22 22:54:30,634 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:54:38,106 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:54:47,575 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:54:58,082 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:55:06,556 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:55:15,049 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:55:25,536 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:55:33,990 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:55:41,467 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:55:50,927 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:55:57,440 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:56:05,913 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:56:12,414 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:56:21,899 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:56:28,399 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:56:35,039 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:56:42,538 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:56:53,482 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:57:00,942 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:57:08,418 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:57:16,918 Sleeping for 5s. Reason: RUNNING
+2026-06-22 22:57:22,378 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:57:31,421 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:57:37,936 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:57:48,419 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:57:58,885 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:58:05,385 Sleeping for 9s. Reason: RUNNING
+2026-06-22 22:58:14,878 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:58:22,367 Sleeping for 8s. Reason: RUNNING
+2026-06-22 22:58:30,855 Sleeping for 5s. Reason: RUNNING
+2026-06-22 22:58:36,351 Sleeping for 7s. Reason: RUNNING
+2026-06-22 22:58:43,803 Sleeping for 10s. Reason: RUNNING
+2026-06-22 22:58:54,254 Sleeping for 5s. Reason: RUNNING
+2026-06-22 22:58:59,736 Sleeping for 6s. Reason: RUNNING
+2026-06-22 22:59:06,229 Sleeping for 5s. Reason: RUNNING
+2026-06-22 23:02:23,380 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=73.1 pTM=0.498
+2026-06-22 23:04:33,833 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=74.4 pTM=0.52 tol=6.35
+2026-06-22 23:04:33,836 alphafold2_ptm_model_1_seed_000 took 262.8s (1 recycles)
+2026-06-22 23:04:35,544 reranking models by 'plddt' metric
+2026-06-22 23:04:35,544 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=74.4 pTM=0.52
+2026-06-22 23:04:37,494 Done
+  ✓ Fold receptors · ColabFold (auto-detected) · ColabFold finished -> · 3h 29m
+     → intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/receptor_only
+▶ Structure analysis · LRR annotation  (est. ~15–90s)
+  ✓ Structure analysis · LRR annotation · 58 LRR region row(s) · 5m 44s
+     → intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/lrr_annotation_results.txt
+▶ LRR-domain FASTA  (est. <5s)
+  ✓ LRR-domain FASTA · 58 sequence(s) · 0.0s
+     → intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/lrr_domain_sequences.fasta
+▶ B-factor winding analysis  (est. ~10–60s)
+  ✓ B-factor winding analysis · 29901 row(s) · 23.8s
+     → intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/bfactor_winding_lrr_segments.csv
+▶ Test-data assembly  (est. <10s)
+  ✓ Test-data assembly · 58 row(s) · 0.2s
+     → intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/test_data.csv
+▶ Chemical-feature annotation  (est. <10s)
+  ✓ Chemical-feature annotation · 58 row(s) · 0.1s
+     → intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/ready_test_data.csv
+/global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/torch/cuda/__init__.py:384: UserWarning: Found GPU0 Tesla V100-SXM2-32GB which is of compute capability (CC) 7.0.
+The following list shows the CCs this version of PyTorch was built for and the hardware CCs it supports:
+- 7.5 which supports hardware CC >=7.5,<8.0
+- 8.0 which supports hardware CC >=8.0,<9.0 except {8.7}
+- 8.6 which supports hardware CC >=8.6,<9.0 except {8.7}
+- 9.0 which supports hardware CC >=9.0,<10.0
+- 10.0 which supports hardware CC >=10.0,<11.0 except {10.1}
+- 12.0 which supports hardware CC >=12.0,<13.0
+Please follow the instructions at https://pytorch.org/get-started/locally/ to install a PyTorch release that supports one of these CUDA versions: 12.6
+  _warn_unsupported_code(d, device_cc, code_ccs)
+  ⚠ requested --device cuda, but it is unusable: GPU 'Tesla V100-SXM2-32GB' is compute capability 7.0 (sm_70), but this PyTorch was built only for [sm_75, sm_80, sm_86, sm_90, sm_100, sm_120]. Install a torch build that includes this GPU's architecture. Falling back to --device cpu. Run `mamp-ml install-check` to diagnose, and the README's install section for a GPU-compatible PyTorch.
+▶ Predict · ESM-2 inference  (est. ~30s–3 min on GPU, longer on CPU)
+    ↳ weights: /global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/mamp_ml/weights/mamp_ml_weights.pth
+Not using distributed mode
+[23:14:10.971916] Namespace(seed=0, debug='', repeat_thresh=0.001, n_fed_cats=-1, detic_path=PosixPath('/path/to/file'), pos_thresh=0.5, aa_expand='scratch', single_dec='naive', head_dim=128, backbone='esm2_t33_650M_UR50D', finetune_backbone='/scratch/cluster/jozhang/models/openfold_params/finetuning_ptm_2.pt', freeze_at=14, model='esm2_bfactor_weighted', data_dir=None, eval_only_data_path='/global/scratch/users/dmstev/intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/ready_test_data.csv', n_msa_seqs=128, n_extra_msa_seqs=1024, af_extract_feat='both', max_context_length=2000, num_workers=10, epochs=50, batch_size=8, lr=0.0003, min_lr=1e-09, weight_decay=0.5, warmup_epochs=10, cross_eval_kfold=None, lambda_single=0.1, loss_single_aug='none', lambda_double=1.0, double_subsample_destabilizing_ratio=8, lambda_pos=4, eval=False, dist_eval=False, eval_reverse=False, test=False, finetune='', resume='', start_epoch=0, save_pred_dict=False, eval_period=5, save_period=1000, disable_wandb=True, model_checkpoint_path='/global/scratch/users/dmstev/localcolabfold/colabfold-conda/lib/python3.10/site-packages/mamp_ml/weights/mamp_ml_weights.pth', device='cpu', world_size=1, name_to_x='../out_data/colabfold_name_to_x.pt', local_rank=-1, dist_on_itp=False, dist_url='env://', contrastive_output=True, bfactor_csv_path='/global/scratch/users/dmstev/intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/bfactor_winding_lrr_segments.csv', output_dir=PosixPath('/global/scratch/users/dmstev/intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21'), distributed=False)
+Loading weights:   0%|          | 0/102 [00:00<?, ?it/s]Loading weights:   1%|          | 1/102 [00:00<00:16,  6.21it/s]Loading weights:  16%|#5        | 16/102 [00:00<00:03, 26.35it/s]Loading weights: 100%|##########| 102/102 [00:00<00:00, 157.37it/s]
+[23:14:19.069325] DEBUG Tokenizer Info:
+[23:14:19.069380]   - eos_token: <eos>, eos_token_id: 2
+[23:14:19.069403]   - cls_token: <cls>, cls_token_id: 0
+[23:14:19.069423]   - pad_token: <pad>, pad_token_id: 1
+[23:14:19.069441]   - unk_token: <unk>, unk_token_id: 3
+[23:14:19.860750] State dict keys: odict_keys(['esm.embeddings.word_embeddings.weight', 'esm.embeddings.position_embeddings.weight', 'esm.encoder.layer.0.attention.self.query.weight', 'esm.encoder.layer.0.attention.self.query.bias', 'esm.encoder.layer.0.attention.self.key.weight', 'esm.encoder.layer.0.attention.self.key.bias', 'esm.encoder.layer.0.attention.self.value.weight', 'esm.encoder.layer.0.attention.self.value.bias', 'esm.encoder.layer.0.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.0.attention.output.dense.weight', 'esm.encoder.layer.0.attention.output.dense.bias', 'esm.encoder.layer.0.attention.LayerNorm.weight', 'esm.encoder.layer.0.attention.LayerNorm.bias', 'esm.encoder.layer.0.intermediate.dense.weight', 'esm.encoder.layer.0.intermediate.dense.bias', 'esm.encoder.layer.0.output.dense.weight', 'esm.encoder.layer.0.output.dense.bias', 'esm.encoder.layer.0.LayerNorm.weight', 'esm.encoder.layer.0.LayerNorm.bias', 'esm.encoder.layer.1.attention.self.query.weight', 'esm.encoder.layer.1.attention.self.query.bias', 'esm.encoder.layer.1.attention.self.key.weight', 'esm.encoder.layer.1.attention.self.key.bias', 'esm.encoder.layer.1.attention.self.value.weight', 'esm.encoder.layer.1.attention.self.value.bias', 'esm.encoder.layer.1.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.1.attention.output.dense.weight', 'esm.encoder.layer.1.attention.output.dense.bias', 'esm.encoder.layer.1.attention.LayerNorm.weight', 'esm.encoder.layer.1.attention.LayerNorm.bias', 'esm.encoder.layer.1.intermediate.dense.weight', 'esm.encoder.layer.1.intermediate.dense.bias', 'esm.encoder.layer.1.output.dense.weight', 'esm.encoder.layer.1.output.dense.bias', 'esm.encoder.layer.1.LayerNorm.weight', 'esm.encoder.layer.1.LayerNorm.bias', 'esm.encoder.layer.2.attention.self.query.weight', 'esm.encoder.layer.2.attention.self.query.bias', 'esm.encoder.layer.2.attention.self.key.weight', 'esm.encoder.layer.2.attention.self.key.bias', 'esm.encoder.layer.2.attention.self.value.weight', 'esm.encoder.layer.2.attention.self.value.bias', 'esm.encoder.layer.2.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.2.attention.output.dense.weight', 'esm.encoder.layer.2.attention.output.dense.bias', 'esm.encoder.layer.2.attention.LayerNorm.weight', 'esm.encoder.layer.2.attention.LayerNorm.bias', 'esm.encoder.layer.2.intermediate.dense.weight', 'esm.encoder.layer.2.intermediate.dense.bias', 'esm.encoder.layer.2.output.dense.weight', 'esm.encoder.layer.2.output.dense.bias', 'esm.encoder.layer.2.LayerNorm.weight', 'esm.encoder.layer.2.LayerNorm.bias', 'esm.encoder.layer.3.attention.self.query.weight', 'esm.encoder.layer.3.attention.self.query.bias', 'esm.encoder.layer.3.attention.self.key.weight', 'esm.encoder.layer.3.attention.self.key.bias', 'esm.encoder.layer.3.attention.self.value.weight', 'esm.encoder.layer.3.attention.self.value.bias', 'esm.encoder.layer.3.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.3.attention.output.dense.weight', 'esm.encoder.layer.3.attention.output.dense.bias', 'esm.encoder.layer.3.attention.LayerNorm.weight', 'esm.encoder.layer.3.attention.LayerNorm.bias', 'esm.encoder.layer.3.intermediate.dense.weight', 'esm.encoder.layer.3.intermediate.dense.bias', 'esm.encoder.layer.3.output.dense.weight', 'esm.encoder.layer.3.output.dense.bias', 'esm.encoder.layer.3.LayerNorm.weight', 'esm.encoder.layer.3.LayerNorm.bias', 'esm.encoder.layer.4.attention.self.query.weight', 'esm.encoder.layer.4.attention.self.query.bias', 'esm.encoder.layer.4.attention.self.key.weight', 'esm.encoder.layer.4.attention.self.key.bias', 'esm.encoder.layer.4.attention.self.value.weight', 'esm.encoder.layer.4.attention.self.value.bias', 'esm.encoder.layer.4.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.4.attention.output.dense.weight', 'esm.encoder.layer.4.attention.output.dense.bias', 'esm.encoder.layer.4.attention.LayerNorm.weight', 'esm.encoder.layer.4.attention.LayerNorm.bias', 'esm.encoder.layer.4.intermediate.dense.weight', 'esm.encoder.layer.4.intermediate.dense.bias', 'esm.encoder.layer.4.output.dense.weight', 'esm.encoder.layer.4.output.dense.bias', 'esm.encoder.layer.4.LayerNorm.weight', 'esm.encoder.layer.4.LayerNorm.bias', 'esm.encoder.layer.5.attention.self.query.weight', 'esm.encoder.layer.5.attention.self.query.bias', 'esm.encoder.layer.5.attention.self.key.weight', 'esm.encoder.layer.5.attention.self.key.bias', 'esm.encoder.layer.5.attention.self.value.weight', 'esm.encoder.layer.5.attention.self.value.bias', 'esm.encoder.layer.5.attention.self.rotary_embeddings.inv_freq', 'esm.encoder.layer.5.attention.output.dense.weight', 'esm.encoder.layer.5.attention.output.dense.bias', 'esm.encoder.layer.5.attention.LayerNorm.weight', 'esm.encoder.layer.5.attention.LayerNorm.bias', 'esm.encoder.layer.5.intermediate.dense.weight', 'esm.encoder.layer.5.intermediate.dense.bias', 'esm.encoder.layer.5.output.dense.weight', 'esm.encoder.layer.5.output.dense.bias', 'esm.encoder.layer.5.LayerNorm.weight', 'esm.encoder.layer.5.LayerNorm.bias', 'esm.encoder.emb_layer_norm_after.weight', 'esm.encoder.emb_layer_norm_after.bias', 'esm.pooler.dense.weight', 'esm.pooler.dense.bias', 'esm.contact_head.regression.weight', 'esm.contact_head.regression.bias', 'film.chemical_proj.0.weight', 'film.chemical_proj.0.bias', 'film.chemical_proj.2.weight', 'film.chemical_proj.2.bias', 'film.chemical_proj.3.weight', 'film.chemical_proj.3.bias', 'film.film_layer.weight', 'film.film_layer.bias', 'film.layer_norm.weight', 'film.layer_norm.bias', 'classifier.0.weight', 'classifier.0.bias', 'classifier.1.weight', 'classifier.1.bias', 'classifier.4.weight', 'classifier.4.bias'])
+[23:14:21.122062] ESMBfactorWeightedFeatures(
+  (esm): EsmModel(
+    (embeddings): EsmEmbeddings(
+      (word_embeddings): Embedding(33, 320, padding_idx=1)
+      (dropout): Dropout(p=0.0, inplace=False)
+    )
+    (rotary_embeddings): EsmRotaryEmbedding()
+    (encoder): EsmEncoder(
+      (layer): ModuleList(
+        (0-5): 6 x EsmLayer(
+          (attention): EsmAttention(
+            (self): EsmSelfAttention(
+              (query): Linear(in_features=320, out_features=320, bias=True)
+              (key): Linear(in_features=320, out_features=320, bias=True)
+              (value): Linear(in_features=320, out_features=320, bias=True)
+            )
+            (output): EsmSelfOutput(
+              (dense): Linear(in_features=320, out_features=320, bias=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+            )
+            (LayerNorm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+          )
+          (intermediate): EsmIntermediate(
+            (dense): Linear(in_features=320, out_features=1280, bias=True)
+          )
+          (output): EsmOutput(
+            (dense): Linear(in_features=1280, out_features=320, bias=True)
+            (dropout): Dropout(p=0.0, inplace=False)
+          )
+          (LayerNorm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+        )
+      )
+      (emb_layer_norm_after): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    )
+    (pooler): EsmPooler(
+      (dense): Linear(in_features=320, out_features=320, bias=True)
+      (activation): Tanh()
+    )
+    (contact_head): EsmContactPredictionHead(
+      (regression): Linear(in_features=120, out_features=1, bias=True)
+      (activation): Sigmoid()
+    )
+  )
+  (film): FiLMWithConcatenation(
+    (chemical_proj): Sequential(
+      (0): Linear(in_features=3, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=64, out_features=320, bias=True)
+      (3): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    )
+    (film_layer): Linear(in_features=640, out_features=640, bias=True)
+    (layer_norm): LayerNorm((320,), eps=1e-05, elementwise_affine=True, bias=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=320, out_features=160, bias=True)
+    (1): LayerNorm((160,), eps=1e-05, elementwise_affine=True, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.2, inplace=False)
+    (4): Linear(in_features=160, out_features=3, bias=True)
+  )
+  (criterion): CrossEntropyLoss()
+)
+[23:14:21.122931] Evaluating a model with 1,821,180 trainable parameters out of 7,996,540 parameters
+[23:14:21.165853] len(ds_test)=58
+[23:14:26.167601] Test:  [0/8]  eta: 0:00:39    time: 4.9334  data: 0.1782  max mem: 0
+[23:14:33.277006] Test:  [7/8]  eta: 0:00:01    time: 1.5036  data: 0.0358  max mem: 0
+[23:14:33.277284] Test: Total time: 0:00:12 (1.5138 s / it)
+[23:14:33.277337] No ground truth labels found. Saving predictions only.
+[23:14:33.339675] Successfully added metadata for 58 predictions
+[23:14:33.366294] Saved predictions to predictions.csv with 58 rows
+[23:14:33.368434] {'predictions_saved': True, 'num_predictions': 58}
+  ✓ Predict · ESM-2 inference · 58 prediction(s) · 22.5s
+     → intermediate_files/Cabernet_filtered_RLKs_job35155569_fe21/predictions.csv
+
+──────────────────────────────────────────────────────────────
+✓ Prediction complete  · total 3h 38m
+  Output folder                     /global/scratch/users/dmstev/output_Cabernet_filtered_RLKs_job35155569_fe21/
+    predictions                     predictions.csv
+    LRR annotation plots            lrr_annotation_plots/
+    structures                      structures/
+    run log                         mamp-ml-run.log
+  (remaining intermediates removed  rerun with `--keep all` to retain them)
+
+Step timings
+  Receptor FASTA                              1.4s
+  Fold receptors · ColabFold (auto-detected)  3h 29m
+  Structure analysis · LRR annotation         5m 44s
+  LRR-domain FASTA                            0.0s
+  B-factor winding analysis                   23.8s
+  Test-data assembly                          0.2s
+  Chemical-feature annotation                 0.1s
+  Predict · ESM-2 inference                   22.5s
+  total                                       3h 38m
+  reuse these structures with different weights (skips folding):
+    mamp-ml predict Cabernet_filtered_RLKs.xlsx --structures /global/scratch/users/dmstev/output_Cabernet_filtered_RLKs_job35155569_fe21/structures --weights <other.pth>
