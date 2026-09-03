@@ -2586,3 +2586,588 @@
 2025-05-04 23:39:38,710 alphafold2_ptm_model_1_seed_000 took 366.9s (3 recycles)
 2025-05-04 23:39:41,455 reranking models by 'plddt' metric
 2025-05-04 23:39:41,561 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.8 pTM=0.601
+2026-09-02 11:47:55,052 Query 3/358: Lactuca_sativa_XP_078953501_LNR-like (length 626)
+2026-09-02 11:58:00,420 Padding length to 636
+2026-09-02 11:59:23,835 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.8 pTM=0.498
+2026-09-02 11:59:57,338 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.5 pTM=0.51 tol=8.09
+2026-09-02 12:00:30,898 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84 pTM=0.513 tol=3.08
+2026-09-02 12:01:04,422 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84.2 pTM=0.516 tol=1.58
+2026-09-02 12:01:04,424 alphafold2_ptm_model_1_seed_000 took 183.9s (3 recycles)
+2026-09-02 12:01:05,225 reranking models by 'plddt' metric
+2026-09-02 12:01:05,225 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.2 pTM=0.516
+2026-09-02 12:01:07,542 Query 6/358: Solanum_lycopersicum_Solyc04g074050_MIK2-A_MIK2 (length 815)
+2026-09-02 12:12:15,677 Padding length to 825
+2026-09-02 12:14:12,675 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.8 pTM=0.552
+2026-09-02 12:15:07,774 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.4 pTM=0.565 tol=5.4
+2026-09-02 12:16:02,858 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=82.9 pTM=0.565 tol=2.26
+2026-09-02 12:16:57,936 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=82.9 pTM=0.564 tol=1.16
+2026-09-02 12:16:57,939 alphafold2_ptm_model_1_seed_000 took 282.2s (3 recycles)
+2026-09-02 12:16:58,774 reranking models by 'plddt' metric
+2026-09-02 12:16:58,774 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.9 pTM=0.564
+2026-09-02 13:03:15,007 Query 60/358: Solanum_lycopersicum_Solyc04g074030_MIK2-D_MIK2 (length 911)
+2026-09-02 13:04:37,123 Padding length to 921
+2026-09-02 13:06:29,433 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82 pTM=0.579
+2026-09-02 13:07:38,232 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.1 pTM=0.595 tol=2.69
+2026-09-02 13:08:47,455 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.4 pTM=0.597 tol=3.4
+2026-09-02 13:09:56,339 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.4 pTM=0.603 tol=3.6
+2026-09-02 13:09:56,434 alphafold2_ptm_model_1_seed_000 took 319.3s (3 recycles)
+2026-09-02 13:09:57,470 reranking models by 'plddt' metric
+2026-09-02 13:09:57,470 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.4 pTM=0.603
+2026-09-02 13:09:59,877 Query 61/358: Solanum_lycopersicum_Solyc04g071680_MIK2-E_MIK2 (length 919)
+2026-09-02 13:18:39,213 Padding length to 921
+2026-09-02 13:19:49,957 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.1 pTM=0.569
+2026-09-02 13:20:58,552 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.4 pTM=0.591 tol=2.43
+2026-09-02 13:22:07,156 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.6 pTM=0.589 tol=2.8
+2026-09-02 13:23:15,692 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84.6 pTM=0.591 tol=1.83
+2026-09-02 13:23:15,720 alphafold2_ptm_model_1_seed_000 took 276.5s (3 recycles)
+2026-09-02 13:23:16,772 reranking models by 'plddt' metric
+2026-09-02 13:23:16,772 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.6 pTM=0.591
+2026-09-02 13:23:18,596 Query 62/358: Solanum_lycopersicum_Solyc04g074020_MIK2-C_MIK2 (length 933)
+2026-09-02 13:32:54,571 Padding length to 943
+2026-09-02 13:35:12,390 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.8 pTM=0.576
+2026-09-02 13:36:22,844 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.8 pTM=0.589 tol=4.51
+2026-09-02 13:37:33,289 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.5 pTM=0.586 tol=6.61
+2026-09-02 13:38:43,742 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.8 pTM=0.588 tol=3.14
+2026-09-02 13:38:43,752 alphafold2_ptm_model_1_seed_000 took 349.2s (3 recycles)
+2026-09-02 13:38:44,809 reranking models by 'plddt' metric
+2026-09-02 13:38:44,810 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.8 pTM=0.588
+2026-09-02 13:38:46,279 Query 63/358: Glycine_max_Glyma.12G007300_unknown (length 944)
+2026-09-02 13:51:30,900 Padding length to 954
+2026-09-02 13:53:49,333 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.8 pTM=0.588
+2026-09-02 13:55:02,165 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.6 pTM=0.606 tol=4.19
+2026-09-02 13:56:14,989 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.4 pTM=0.607 tol=6.14
+2026-09-02 13:57:27,826 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.1 pTM=0.607 tol=1.43
+2026-09-02 13:57:28,475 alphafold2_ptm_model_1_seed_000 took 357.6s (3 recycles)
+2026-09-02 13:57:30,243 reranking models by 'plddt' metric
+2026-09-02 13:57:30,244 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.1 pTM=0.607
+2026-09-02 13:57:31,583 Query 64/358: Glycine_max_Glyma.12G007000_unknown (length 945)
+2026-09-02 14:10:54,453 Padding length to 954
+2026-09-02 14:12:10,367 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.5 pTM=0.598
+2026-09-02 14:13:23,193 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.8 pTM=0.609 tol=7.13
+2026-09-02 14:14:36,023 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.6 pTM=0.61 tol=5.46
+2026-09-02 14:15:48,867 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.1 pTM=0.609 tol=2.3
+2026-09-02 14:15:48,951 alphafold2_ptm_model_1_seed_000 took 294.5s (3 recycles)
+2026-09-02 14:15:50,076 reranking models by 'plddt' metric
+2026-09-02 14:15:50,076 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.1 pTM=0.609
+2026-09-02 14:15:51,860 Query 65/358: Glycine_max_Glyma.13G127100_unknown (length 974)
+2026-09-02 14:28:55,572 Padding length to 984
+2026-09-02 14:31:15,635 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=79.8 pTM=0.551
+2026-09-02 14:32:28,486 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=80.2 pTM=0.558 tol=3
+2026-09-02 14:33:41,330 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=80.1 pTM=0.563 tol=1.69
+2026-09-02 14:34:54,211 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=80.4 pTM=0.563 tol=1.41
+2026-09-02 14:34:54,228 alphafold2_ptm_model_1_seed_000 took 358.7s (3 recycles)
+2026-09-02 14:34:55,520 reranking models by 'plddt' metric
+2026-09-02 14:34:55,520 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=80.4 pTM=0.563
+2026-09-02 14:34:56,967 Query 66/358: Glycine_max_Glyma.14G048100_unknown (length 977)
+2026-09-02 14:44:29,370 Padding length to 984
+2026-09-02 14:45:45,192 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.8 pTM=0.588
+2026-09-02 14:46:58,135 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.6 pTM=0.605 tol=6.1
+2026-09-02 14:48:11,103 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.7 pTM=0.61 tol=3.66
+2026-09-02 14:49:24,050 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87.1 pTM=0.612 tol=3.12
+2026-09-02 14:49:24,112 alphafold2_ptm_model_1_seed_000 took 294.7s (3 recycles)
+2026-09-02 14:49:25,303 reranking models by 'plddt' metric
+2026-09-02 14:49:25,303 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.1 pTM=0.612
+2026-09-02 14:49:26,932 Query 67/358: Glycine_max_Glyma.11G114100_unknown (length 981)
+2026-09-02 15:01:02,668 Padding length to 984
+2026-09-02 15:02:18,400 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.3 pTM=0.592
+2026-09-02 15:03:31,326 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.2 pTM=0.612 tol=5.85
+2026-09-02 15:04:44,233 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.5 pTM=0.617 tol=1.1
+2026-09-02 15:05:57,185 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.8 pTM=0.619 tol=1.22
+2026-09-02 15:05:57,189 alphafold2_ptm_model_1_seed_000 took 294.5s (3 recycles)
+2026-09-02 15:05:58,348 reranking models by 'plddt' metric
+2026-09-02 15:05:58,349 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.8 pTM=0.619
+2026-09-02 15:05:59,974 Skipping Petunia_axillaris_Peaxi162Scf00320g00619_FLS2 (already done)
+2026-09-02 15:05:59,980 Query 69/358: Glycine_max_Glyma.14G033500_unknown (length 986)
+2026-09-02 15:21:29,419 Padding length to 996
+2026-09-02 15:24:01,944 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84 pTM=0.604
+2026-09-02 15:25:18,357 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.3 pTM=0.626 tol=2.98
+2026-09-02 15:26:34,642 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.6 pTM=0.629 tol=3.12
+2026-09-02 15:27:50,944 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.9 pTM=0.631 tol=0.904
+2026-09-02 15:27:50,947 alphafold2_ptm_model_1_seed_000 took 381.5s (3 recycles)
+2026-09-02 15:27:52,096 reranking models by 'plddt' metric
+2026-09-02 15:27:52,096 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.9 pTM=0.631
+2026-09-02 15:27:53,445 Query 70/358: Glycine_max_Glyma.12G040000_unknown (length 987)
+2026-09-02 15:28:28,714 Padding length to 996
+2026-09-02 15:29:44,924 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.8 pTM=0.591
+2026-09-02 15:31:02,012 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.6 pTM=0.613 tol=7.73
+2026-09-02 15:32:21,168 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=87.4 pTM=0.612 tol=11.6
+2026-09-02 15:33:38,075 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87.2 pTM=0.614 tol=1.99
+2026-09-02 15:33:38,156 alphafold2_ptm_model_1_seed_000 took 309.4s (3 recycles)
+2026-09-02 15:33:40,122 reranking models by 'plddt' metric
+2026-09-02 15:33:40,123 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.2 pTM=0.614
+2026-09-02 15:33:43,008 Query 71/358: Glycine_max_Glyma.18G116800_unknown (length 987)
+2026-09-02 15:44:17,069 Padding length to 996
+2026-09-02 15:45:36,732 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.1 pTM=0.609
+2026-09-02 15:46:53,029 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.2 pTM=0.624 tol=5.1
+2026-09-02 15:48:09,325 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.5 pTM=0.627 tol=2.65
+2026-09-02 15:49:25,660 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.4 pTM=0.628 tol=2.38
+2026-09-02 15:49:25,664 alphafold2_ptm_model_1_seed_000 took 308.6s (3 recycles)
+2026-09-02 15:49:26,841 reranking models by 'plddt' metric
+2026-09-02 15:49:26,842 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.4 pTM=0.628
+2026-09-02 15:49:28,190 Query 72/358: Glycine_max_Glyma.08G302900_unknown (length 994)
+2026-09-02 15:50:07,774 Padding length to 996
+2026-09-02 15:51:23,970 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.6 pTM=0.606
+2026-09-02 15:52:40,263 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.9 pTM=0.625 tol=5.84
+2026-09-02 15:53:59,635 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.3 pTM=0.625 tol=3.89
+2026-09-02 15:55:17,034 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.3 pTM=0.629 tol=1.7
+2026-09-02 15:55:17,350 alphafold2_ptm_model_1_seed_000 took 309.5s (3 recycles)
+2026-09-02 15:55:18,792 reranking models by 'plddt' metric
+2026-09-02 15:55:18,794 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.3 pTM=0.629
+2026-09-02 15:55:22,034 Query 73/358: Glycine_max_Glyma.02G281100_unknown (length 999)
+2026-09-02 15:56:06,310 Padding length to 1009
+2026-09-02 15:58:41,948 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.8 pTM=0.601
+2026-09-02 16:00:02,915 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.2 pTM=0.625 tol=9.73
+2026-09-02 16:01:23,852 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.1 pTM=0.633 tol=5.69
+2026-09-02 16:02:44,780 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.3 pTM=0.633 tol=1.4
+2026-09-02 16:02:44,783 alphafold2_ptm_model_1_seed_000 took 398.5s (3 recycles)
+2026-09-02 16:02:45,873 reranking models by 'plddt' metric
+2026-09-02 16:02:45,873 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.3 pTM=0.633
+2026-09-02 16:02:47,273 Skipping Arabidopsis_thaliana_AT5G25930_NUT (already done)
+2026-09-02 16:02:47,281 Query 75/358: Arabidopsis_thaliana_AT5G25930_HSL3_TPM_NUT (length 1005)
+2026-09-02 16:13:50,553 Padding length to 1009
+2026-09-02 16:15:14,362 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.5 pTM=0.59
+2026-09-02 16:16:35,532 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.4 pTM=0.611 tol=6.5
+2026-09-02 16:17:56,447 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.6 pTM=0.611 tol=2.89
+2026-09-02 16:19:17,406 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.8 pTM=0.616 tol=2.87
+2026-09-02 16:19:17,456 alphafold2_ptm_model_1_seed_000 took 326.9s (3 recycles)
+2026-09-02 16:19:18,723 reranking models by 'plddt' metric
+2026-09-02 16:19:18,724 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.8 pTM=0.616
+2026-09-02 16:19:25,178 Query 76/358: Glycine_max_Glyma.05G110400_unknown (length 1008)
+2026-09-02 16:20:06,490 Padding length to 1009
+2026-09-02 16:21:27,246 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.7 pTM=0.59
+2026-09-02 16:22:48,116 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.8 pTM=0.614 tol=9.34
+2026-09-02 16:24:12,155 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.4 pTM=0.616 tol=2.67
+2026-09-02 16:25:33,799 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.2 pTM=0.621 tol=2.26
+2026-09-02 16:25:33,807 alphafold2_ptm_model_1_seed_000 took 327.3s (3 recycles)
+2026-09-02 16:25:34,860 reranking models by 'plddt' metric
+2026-09-02 16:25:34,860 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.2 pTM=0.621
+2026-09-02 16:25:36,731 Query 77/358: Glycine_max_Glyma.09G161100_unknown (length 1008)
+2026-09-02 16:26:12,343 Padding length to 1009
+2026-09-02 16:27:33,125 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.4 pTM=0.581
+2026-09-02 16:28:53,973 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.3 pTM=0.605 tol=13.4
+2026-09-02 16:30:15,685 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85 pTM=0.611 tol=5.06
+2026-09-02 16:31:36,768 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.1 pTM=0.612 tol=2.15
+2026-09-02 16:31:36,827 alphafold2_ptm_model_1_seed_000 took 324.4s (3 recycles)
+2026-09-02 16:31:39,094 reranking models by 'plddt' metric
+2026-09-02 16:31:39,116 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.1 pTM=0.612
+2026-09-02 16:31:41,436 Query 78/358: Glycine_max_Glyma.16G210500_unknown (length 1009)
+2026-09-02 16:43:15,105 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.2 pTM=0.581
+2026-09-02 16:44:35,996 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.1 pTM=0.605 tol=4.78
+2026-09-02 16:45:57,028 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.2 pTM=0.608 tol=3.08
+2026-09-02 16:47:17,909 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.4 pTM=0.608 tol=1.17
+2026-09-02 16:47:17,946 alphafold2_ptm_model_1_seed_000 took 327.4s (3 recycles)
+2026-09-02 16:47:19,045 reranking models by 'plddt' metric
+2026-09-02 16:47:19,045 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.4 pTM=0.608
+2026-09-02 16:47:20,993 Query 79/358: Glycine_max_Glyma.09G243600_unknown (length 1009)
+2026-09-02 16:49:58,238 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.6 pTM=0.588
+2026-09-02 16:51:19,108 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85 pTM=0.61 tol=5.64
+2026-09-02 16:52:41,531 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.5 pTM=0.614 tol=1.71
+2026-09-02 16:54:03,783 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.6 pTM=0.615 tol=3
+2026-09-02 16:54:03,821 alphafold2_ptm_model_1_seed_000 took 326.4s (3 recycles)
+2026-09-02 16:54:06,022 reranking models by 'plddt' metric
+2026-09-02 16:54:06,024 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.6 pTM=0.615
+2026-09-02 16:54:08,161 Query 80/358: Glycine_max_Glyma.17G156300_unknown (length 1010)
+2026-09-02 16:55:36,797 Padding length to 1020
+2026-09-02 16:58:02,020 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.2 pTM=0.59
+2026-09-02 16:59:21,242 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.6 pTM=0.614 tol=4
+2026-09-02 17:00:40,654 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.9 pTM=0.624 tol=2.24
+2026-09-02 17:01:59,913 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.2 pTM=0.619 tol=2.56
+2026-09-02 17:01:59,947 alphafold2_ptm_model_1_seed_000 took 383.1s (3 recycles)
+2026-09-02 17:02:01,097 reranking models by 'plddt' metric
+2026-09-02 17:02:01,097 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.2 pTM=0.619
+2026-09-02 17:02:03,053 Query 81/358: Glycine_max_Glyma.16G078800_unknown (length 1011)
+2026-09-02 17:16:33,583 Padding length to 1020
+2026-09-02 17:17:56,410 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.2 pTM=0.585
+2026-09-02 17:19:15,639 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.1 pTM=0.609 tol=5.35
+2026-09-02 17:20:35,096 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.9 pTM=0.61 tol=3.63
+2026-09-02 17:21:54,525 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.2 pTM=0.612 tol=1.82
+2026-09-02 17:21:54,567 alphafold2_ptm_model_1_seed_000 took 321.0s (3 recycles)
+2026-09-02 17:21:55,743 reranking models by 'plddt' metric
+2026-09-02 17:21:55,744 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.2 pTM=0.612
+2026-09-02 17:21:57,026 Query 82/358: Glycine_max_Glyma.04G086700_unknown (length 1011)
+2026-09-02 17:23:49,767 Padding length to 1020
+2026-09-02 17:25:11,771 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.1 pTM=0.581
+2026-09-02 17:26:31,906 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.2 pTM=0.599 tol=9.83
+2026-09-02 17:27:51,125 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.9 pTM=0.603 tol=5.11
+2026-09-02 17:29:10,399 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84.1 pTM=0.602 tol=3.23
+2026-09-02 17:29:10,572 alphafold2_ptm_model_1_seed_000 took 320.8s (3 recycles)
+2026-09-02 17:29:12,773 reranking models by 'plddt' metric
+2026-09-02 17:29:12,792 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.1 pTM=0.602
+2026-09-02 17:29:15,946 Query 83/358: Glycine_max_Glyma.01G197800_unknown (length 1012)
+2026-09-02 17:30:04,179 Padding length to 1020
+2026-09-02 17:31:23,820 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.9 pTM=0.592
+2026-09-02 17:32:43,510 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.4 pTM=0.617 tol=4.52
+2026-09-02 17:34:02,734 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.6 pTM=0.623 tol=1.68
+2026-09-02 17:35:23,768 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.2 pTM=0.619 tol=2.26
+2026-09-02 17:35:23,900 alphafold2_ptm_model_1_seed_000 took 319.7s (3 recycles)
+2026-09-02 17:35:25,163 reranking models by 'plddt' metric
+2026-09-02 17:35:25,165 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.2 pTM=0.619
+2026-09-02 17:35:27,368 Query 84/358: Glycine_max_Glyma.01G007400_NUT (length 1013)
+2026-09-02 17:37:02,673 Padding length to 1020
+2026-09-02 17:38:22,733 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.8 pTM=0.586
+2026-09-02 17:39:42,341 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.3 pTM=0.61 tol=6.49
+2026-09-02 17:41:01,597 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.5 pTM=0.61 tol=1.57
+2026-09-02 17:42:20,917 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.6 pTM=0.611 tol=1.87
+2026-09-02 17:42:20,920 alphafold2_ptm_model_1_seed_000 took 318.2s (3 recycles)
+2026-09-02 17:42:21,985 reranking models by 'plddt' metric
+2026-09-02 17:42:21,985 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.6 pTM=0.611
+2026-09-02 17:42:24,222 Query 85/358: Glycine_max_Glyma.10G040500_unknown (length 1015)
+2026-09-02 17:55:51,148 Padding length to 1020
+2026-09-02 17:57:13,729 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.8 pTM=0.596
+2026-09-02 17:58:32,939 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.6 pTM=0.613 tol=11.4
+2026-09-02 17:59:52,226 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.9 pTM=0.613 tol=3.14
+2026-09-02 18:01:11,483 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84 pTM=0.614 tol=1.36
+2026-09-02 18:01:11,536 alphafold2_ptm_model_1_seed_000 took 320.4s (3 recycles)
+2026-09-02 18:01:12,758 reranking models by 'plddt' metric
+2026-09-02 18:01:12,758 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84 pTM=0.614
+2026-09-02 18:01:14,294 Query 86/358: Glycine_max_Glyma.19G168600_unknown (length 1022)
+2026-09-02 18:13:07,457 Padding length to 1032
+2026-09-02 18:15:51,054 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.9 pTM=0.594
+2026-09-02 18:17:10,563 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.1 pTM=0.608 tol=7.14
+2026-09-02 18:18:30,096 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.1 pTM=0.611 tol=4.48
+2026-09-02 18:19:49,586 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.4 pTM=0.612 tol=1.76
+2026-09-02 18:19:49,597 alphafold2_ptm_model_1_seed_000 took 402.1s (3 recycles)
+2026-09-02 18:19:50,807 reranking models by 'plddt' metric
+2026-09-02 18:19:50,807 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.4 pTM=0.612
+2026-09-02 18:19:52,325 Query 87/358: Glycine_max_Glyma.12G006300_unknown (length 1022)
+2026-09-02 18:37:05,471 Padding length to 1032
+2026-09-02 18:38:27,532 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.1 pTM=0.583
+2026-09-02 18:39:46,967 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.5 pTM=0.611 tol=3.56
+2026-09-02 18:41:06,414 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.1 pTM=0.614 tol=1.82
+2026-09-02 18:42:25,893 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84.1 pTM=0.612 tol=0.586
+2026-09-02 18:42:25,896 alphafold2_ptm_model_1_seed_000 took 320.4s (3 recycles)
+2026-09-02 18:42:27,116 reranking models by 'plddt' metric
+2026-09-02 18:42:27,116 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.1 pTM=0.612
+2026-09-02 18:42:28,364 Skipping Dendrocalamus_strictus_Distr0011s35800_MIK2 (already done)
+2026-09-02 18:42:28,376 Query 89/358: Glycine_max_Glyma.03G167500_unknown (length 1026)
+2026-09-02 18:43:12,624 Padding length to 1032
+2026-09-02 18:44:32,882 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.1 pTM=0.588
+2026-09-02 18:45:52,506 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.9 pTM=0.609 tol=7.11
+2026-09-02 18:47:12,720 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=82.8 pTM=0.612 tol=4.09
+2026-09-02 18:48:32,332 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83 pTM=0.612 tol=1.02
+2026-09-02 18:48:32,340 alphafold2_ptm_model_1_seed_000 took 319.7s (3 recycles)
+2026-09-02 18:48:33,443 reranking models by 'plddt' metric
+2026-09-02 18:48:33,443 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83 pTM=0.612
+2026-09-02 18:48:35,554 Skipping Brasica_rapa_BraraC02577_MIK2 (already done)
+2026-09-02 18:48:35,556 Query 91/358: Glycine_max_Glyma.14G047900_unknown (length 1028)
+2026-09-02 19:19:22,447 Padding length to 1032
+2026-09-02 19:20:45,385 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.4 pTM=0.582
+2026-09-02 19:22:05,538 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.4 pTM=0.611 tol=3.92
+2026-09-02 19:23:25,001 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=82.7 pTM=0.614 tol=2.59
+2026-09-02 19:24:44,475 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.1 pTM=0.616 tol=1.1
+2026-09-02 19:24:44,505 alphafold2_ptm_model_1_seed_000 took 322.1s (3 recycles)
+2026-09-02 19:24:45,938 reranking models by 'plddt' metric
+2026-09-02 19:24:45,939 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.1 pTM=0.616
+2026-09-02 19:24:48,573 Query 121/358: Glycine_max_Glyma.20G226900_unknown (length 1032)
+2026-09-02 19:42:18,571 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.2 pTM=0.592
+2026-09-02 19:43:38,086 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83 pTM=0.606 tol=3.82
+2026-09-02 19:44:57,739 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.6 pTM=0.607 tol=5.68
+2026-09-02 19:46:17,231 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.4 pTM=0.609 tol=3.24
+2026-09-02 19:46:17,276 alphafold2_ptm_model_1_seed_000 took 320.9s (3 recycles)
+2026-09-02 19:46:18,580 reranking models by 'plddt' metric
+2026-09-02 19:46:18,580 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.4 pTM=0.609
+2026-09-02 19:46:20,746 Skipping Medicago_truncatula_Medtr3g110450_NUT (already done)
+2026-09-02 19:46:20,747 Query 123/358: Glycine_max_Glyma.10G164700_unknown (length 1034)
+2026-09-02 20:00:37,071 Padding length to 1044
+2026-09-02 20:03:10,514 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.9 pTM=0.586
+2026-09-02 20:04:33,658 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83 pTM=0.599 tol=7.51
+2026-09-02 20:05:56,761 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.3 pTM=0.6 tol=3.78
+2026-09-02 20:07:20,021 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.3 pTM=0.601 tol=1.6
+2026-09-02 20:07:20,024 alphafold2_ptm_model_1_seed_000 took 402.9s (3 recycles)
+2026-09-02 20:07:21,304 reranking models by 'plddt' metric
+2026-09-02 20:07:21,304 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.3 pTM=0.601
+2026-09-02 20:07:22,676 Skipping Euclidium_syriacum_Eusyr0135s0078_MIK2 (already done)
+2026-09-02 20:07:22,678 Query 125/358: Solanum_lycopersicum_Solyc04g074000_MIK2-B_MIK2 (length 1037)
+2026-09-02 20:08:12,843 Padding length to 1044
+2026-09-02 20:09:35,923 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.8 pTM=0.598
+2026-09-02 20:11:01,334 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.5 pTM=0.621 tol=5.46
+2026-09-02 20:12:25,694 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.1 pTM=0.624 tol=1.51
+2026-09-02 20:13:49,277 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.5 pTM=0.622 tol=3
+2026-09-02 20:13:49,518 alphafold2_ptm_model_1_seed_000 took 336.6s (3 recycles)
+2026-09-02 20:13:51,568 reranking models by 'plddt' metric
+2026-09-02 20:13:51,570 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.5 pTM=0.622
+2026-09-02 20:13:55,865 Query 126/358: Glycine_max_Glyma.02G269200_unknown (length 1040)
+2026-09-02 20:25:13,457 Padding length to 1044
+2026-09-02 20:26:39,042 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.2 pTM=0.576
+2026-09-02 20:28:02,227 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.1 pTM=0.593 tol=10.9
+2026-09-02 20:29:25,414 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.9 pTM=0.593 tol=5.17
+2026-09-02 20:30:48,626 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84.1 pTM=0.594 tol=3.27
+2026-09-02 20:30:48,701 alphafold2_ptm_model_1_seed_000 took 335.2s (3 recycles)
+2026-09-02 20:30:50,045 reranking models by 'plddt' metric
+2026-09-02 20:30:50,060 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.1 pTM=0.594
+2026-09-02 20:30:51,915 Query 132/358: Arabidopsis_thaliana_AT4G08850_D246G_N268A_MIK2 (length 1045)
+2026-09-02 20:46:12,816 Padding length to 1055
+2026-09-02 20:48:43,495 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.6 pTM=0.605
+2026-09-02 20:50:09,873 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.3 pTM=0.626 tol=5.14
+2026-09-02 20:51:36,090 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85 pTM=0.626 tol=3.61
+2026-09-02 20:53:02,333 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.2 pTM=0.627 tol=1.27
+2026-09-02 20:53:02,336 alphafold2_ptm_model_1_seed_000 took 409.5s (3 recycles)
+2026-09-02 20:53:03,600 reranking models by 'plddt' metric
+2026-09-02 20:53:03,601 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.2 pTM=0.627
+2026-09-02 20:53:04,998 Query 133/358: Arabidopsis_thaliana_AT4G08850_S292A_H316A_MIK2 (length 1045)
+2026-09-02 21:11:04,766 Padding length to 1055
+2026-09-02 21:12:34,682 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82.6 pTM=0.6
+2026-09-02 21:14:00,935 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.1 pTM=0.618 tol=10.6
+2026-09-02 21:15:27,134 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.9 pTM=0.621 tol=2.16
+2026-09-02 21:16:53,511 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.1 pTM=0.622 tol=1.42
+2026-09-02 21:16:53,611 alphafold2_ptm_model_1_seed_000 took 348.8s (3 recycles)
+2026-09-02 21:16:55,096 reranking models by 'plddt' metric
+2026-09-02 21:16:55,096 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.1 pTM=0.622
+2026-09-02 21:16:56,866 Query 134/358: Arabidopsis_thaliana_AT4G08850_D246G_N268A_S292A_H316A_MIK2 (length 1045)
+2026-09-02 21:34:14,816 Padding length to 1055
+2026-09-02 21:35:44,934 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.1 pTM=0.601
+2026-09-02 21:37:11,379 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.4 pTM=0.624 tol=6.46
+2026-09-02 21:38:37,595 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.7 pTM=0.622 tol=4.32
+2026-09-02 21:40:03,793 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84.9 pTM=0.623 tol=3.37
+2026-09-02 21:40:03,848 alphafold2_ptm_model_1_seed_000 took 349.0s (3 recycles)
+2026-09-02 21:40:05,160 reranking models by 'plddt' metric
+2026-09-02 21:40:05,160 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.9 pTM=0.623
+2026-09-02 21:40:06,880 Query 135/358: Arabidopsis_thaliana_AT4G08850_N410D_MIK2 (length 1045)
+2026-09-02 21:55:21,822 Padding length to 1055
+2026-09-02 21:56:50,912 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.7 pTM=0.605
+2026-09-02 21:58:17,135 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.4 pTM=0.626 tol=4.71
+2026-09-02 21:59:43,324 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.7 pTM=0.628 tol=3.03
+2026-09-02 22:01:09,527 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=84.8 pTM=0.629 tol=1.43
+2026-09-02 22:01:09,593 alphafold2_ptm_model_1_seed_000 took 347.8s (3 recycles)
+2026-09-02 22:01:10,895 reranking models by 'plddt' metric
+2026-09-02 22:01:10,895 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=84.8 pTM=0.629
+2026-09-02 22:01:12,851 Query 143/358: Glycine_max_Glyma.18G249900_unknown (length 1070)
+2026-09-02 22:13:50,896 Padding length to 1080
+2026-09-02 22:16:16,029 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.8 pTM=0.602
+2026-09-02 22:17:43,313 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.7 pTM=0.62 tol=12.5
+2026-09-02 22:19:10,509 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=87.2 pTM=0.62 tol=7.9
+2026-09-02 22:20:37,790 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87.4 pTM=0.622 tol=3.68
+2026-09-02 22:20:37,793 alphafold2_ptm_model_1_seed_000 took 406.9s (3 recycles)
+2026-09-02 22:20:39,222 reranking models by 'plddt' metric
+2026-09-02 22:20:39,223 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.4 pTM=0.622
+2026-09-02 22:20:40,772 Query 144/358: Glycine_max_Glyma.18G250500_unknown (length 1072)
+2026-09-02 22:33:32,515 Padding length to 1080
+2026-09-02 22:35:02,305 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.6 pTM=0.587
+2026-09-02 22:36:29,525 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.9 pTM=0.615 tol=8.44
+2026-09-02 22:37:56,867 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=87.2 pTM=0.616 tol=5.2
+2026-09-02 22:39:24,090 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87.2 pTM=0.62 tol=2.72
+2026-09-02 22:39:24,141 alphafold2_ptm_model_1_seed_000 took 351.6s (3 recycles)
+2026-09-02 22:39:25,439 reranking models by 'plddt' metric
+2026-09-02 22:39:25,439 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.2 pTM=0.62
+2026-09-02 22:39:27,107 Query 146/358: Glycine_max_Glyma.02G302600_unknown (length 1080)
+2026-09-02 23:04:24,407 Padding length to 1092
+2026-09-02 23:07:09,154 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.9 pTM=0.597
+2026-09-02 23:08:41,092 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.1 pTM=0.621 tol=3.8
+2026-09-02 23:10:13,050 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.1 pTM=0.619 tol=2.5
+2026-09-02 23:11:44,990 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.2 pTM=0.62 tol=2.26
+2026-09-02 23:11:44,994 alphafold2_ptm_model_1_seed_000 took 440.6s (3 recycles)
+2026-09-02 23:11:46,265 reranking models by 'plddt' metric
+2026-09-02 23:11:46,265 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.2 pTM=0.62
+2026-09-02 23:11:47,906 Query 148/358: Glycine_max_Glyma.18G249700_unknown (length 1082)
+2026-09-02 23:13:10,246 Padding length to 1092
+2026-09-02 23:14:43,566 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.3 pTM=0.581
+2026-09-02 23:16:17,730 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.6 pTM=0.606 tol=4.12
+2026-09-02 23:17:49,975 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.9 pTM=0.613 tol=4.28
+2026-09-02 23:19:21,884 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.1 pTM=0.614 tol=3.18
+2026-09-02 23:19:22,126 alphafold2_ptm_model_1_seed_000 took 371.8s (3 recycles)
+2026-09-02 23:19:24,441 reranking models by 'plddt' metric
+2026-09-02 23:19:24,444 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.1 pTM=0.614
+2026-09-02 23:19:27,625 Query 149/358: Glycine_max_Glyma.14G124700_unknown (length 1087)
+2026-09-02 23:36:13,562 Padding length to 1092
+2026-09-02 23:37:48,469 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.2 pTM=0.599
+2026-09-02 23:39:20,426 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.4 pTM=0.629 tol=2.01
+2026-09-02 23:40:52,387 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.5 pTM=0.631 tol=3.04
+2026-09-02 23:42:24,184 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.7 pTM=0.628 tol=2.28
+2026-09-02 23:42:24,187 alphafold2_ptm_model_1_seed_000 took 370.6s (3 recycles)
+2026-09-02 23:42:25,578 reranking models by 'plddt' metric
+2026-09-02 23:42:25,578 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.7 pTM=0.628
+2026-09-02 23:42:27,286 Query 150/358: Glycine_max_Glyma.13G039700_unknown (length 1088)
+2026-09-02 23:57:12,322 Padding length to 1092
+2026-09-02 23:58:46,738 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.4 pTM=0.6
+2026-09-03 00:00:18,627 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.1 pTM=0.628 tol=5.44
+2026-09-03 00:01:50,578 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.5 pTM=0.631 tol=1.81
+2026-09-03 00:03:22,602 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86 pTM=0.633 tol=1.2
+2026-09-03 00:03:22,609 alphafold2_ptm_model_1_seed_000 took 370.3s (3 recycles)
+2026-09-03 00:03:23,975 reranking models by 'plddt' metric
+2026-09-03 00:03:23,975 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86 pTM=0.633
+2026-09-03 00:03:25,621 Query 151/358: Glycine_max_Glyma.04G239700_unknown (length 1089)
+2026-09-03 00:05:01,741 Padding length to 1092
+2026-09-03 00:06:33,507 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.3 pTM=0.595
+2026-09-03 00:08:06,981 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.8 pTM=0.623 tol=4.18
+2026-09-03 00:09:39,233 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85 pTM=0.626 tol=1.66
+2026-09-03 00:11:11,128 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.4 pTM=0.626 tol=0.888
+2026-09-03 00:11:11,217 alphafold2_ptm_model_1_seed_000 took 369.5s (3 recycles)
+2026-09-03 00:11:12,422 reranking models by 'plddt' metric
+2026-09-03 00:11:12,422 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.4 pTM=0.626
+2026-09-03 00:11:14,879 Query 152/358: Glycine_max_Glyma.06G124200_unknown (length 1089)
+2026-09-03 00:12:51,598 Padding length to 1092
+2026-09-03 00:14:23,884 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.6 pTM=0.598
+2026-09-03 00:15:55,878 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.5 pTM=0.623 tol=5.46
+2026-09-03 00:17:27,798 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84.8 pTM=0.627 tol=2.45
+2026-09-03 00:19:01,535 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85 pTM=0.627 tol=1.77
+2026-09-03 00:19:01,621 alphafold2_ptm_model_1_seed_000 took 370.0s (3 recycles)
+2026-09-03 00:19:03,455 reranking models by 'plddt' metric
+2026-09-03 00:19:03,457 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85 pTM=0.627
+2026-09-03 00:19:05,815 Query 153/358: Glycine_max_Glyma.18G073600_unknown (length 1090)
+2026-09-03 00:30:52,893 Padding length to 1092
+2026-09-03 00:32:27,162 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.4 pTM=0.599
+2026-09-03 00:33:59,074 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.3 pTM=0.624 tol=8.92
+2026-09-03 00:35:31,056 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.5 pTM=0.625 tol=3.56
+2026-09-03 00:37:02,997 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.6 pTM=0.625 tol=1.96
+2026-09-03 00:37:03,038 alphafold2_ptm_model_1_seed_000 took 370.1s (3 recycles)
+2026-09-03 00:37:04,509 reranking models by 'plddt' metric
+2026-09-03 00:37:04,509 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.6 pTM=0.625
+2026-09-03 00:37:06,200 Query 154/358: Glycine_max_Glyma.08G333200_unknown (length 1092)
+2026-09-03 00:39:45,432 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.1 pTM=0.602
+2026-09-03 00:41:19,961 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.9 pTM=0.624 tol=8.88
+2026-09-03 00:42:52,466 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.5 pTM=0.624 tol=5.77
+2026-09-03 00:44:24,399 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.7 pTM=0.622 tol=3.66
+2026-09-03 00:44:24,508 alphafold2_ptm_model_1_seed_000 took 370.9s (3 recycles)
+2026-09-03 00:44:26,684 reranking models by 'plddt' metric
+2026-09-03 00:44:26,704 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.7 pTM=0.622
+2026-09-03 00:44:29,236 Query 155/358: Glycine_max_Glyma.14G011500_unknown (length 1093)
+2026-09-03 00:56:31,198 Padding length to 1103
+2026-09-03 00:59:05,249 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.2 pTM=0.603
+2026-09-03 01:00:40,939 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85 pTM=0.625 tol=10.1
+2026-09-03 01:02:16,553 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.4 pTM=0.627 tol=3.86
+2026-09-03 01:03:52,099 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.5 pTM=0.625 tol=2.36
+2026-09-03 01:03:52,104 alphafold2_ptm_model_1_seed_000 took 440.9s (3 recycles)
+2026-09-03 01:03:53,422 reranking models by 'plddt' metric
+2026-09-03 01:03:53,422 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.5 pTM=0.625
+2026-09-03 01:03:55,064 Query 156/358: Lactuca_sativa_LSAT002_V1C300114880_LNR (length 1099)
+2026-09-03 01:16:05,668 Padding length to 1103
+2026-09-03 01:17:43,542 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=85.2 pTM=0.598
+2026-09-03 01:19:18,982 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.6 pTM=0.62 tol=6.43
+2026-09-03 01:20:54,530 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=87.1 pTM=0.62 tol=3.35
+2026-09-03 01:22:30,026 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87.2 pTM=0.623 tol=2.42
+2026-09-03 01:22:30,071 alphafold2_ptm_model_1_seed_000 took 384.4s (3 recycles)
+2026-09-03 01:22:31,431 reranking models by 'plddt' metric
+2026-09-03 01:22:31,431 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.2 pTM=0.623
+2026-09-03 01:22:33,186 Query 157/358: Lactuca_sativa_LSAT002_V1C300114880_Y522E_LNR (length 1099)
+2026-09-03 01:34:31,583 Padding length to 1103
+2026-09-03 01:36:09,658 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.6 pTM=0.595
+2026-09-03 01:37:45,123 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.2 pTM=0.616 tol=4.56
+2026-09-03 01:39:20,621 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.9 pTM=0.619 tol=2.25
+2026-09-03 01:40:56,106 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87 pTM=0.622 tol=1.67
+2026-09-03 01:40:56,174 alphafold2_ptm_model_1_seed_000 took 384.6s (3 recycles)
+2026-09-03 01:40:57,582 reranking models by 'plddt' metric
+2026-09-03 01:40:57,583 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87 pTM=0.622
+2026-09-03 01:40:59,682 Query 162/358: Ginkgo_biloba_PZ262359_FLS2 (length 1108)
+2026-09-03 02:01:15,528 Padding length to 1118
+2026-09-03 02:03:54,980 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.2 pTM=0.568
+2026-09-03 02:05:34,502 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.6 pTM=0.607 tol=5.05
+2026-09-03 02:07:14,043 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.8 pTM=0.609 tol=2.5
+2026-09-03 02:08:53,490 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.9 pTM=0.608 tol=1.75
+2026-09-03 02:08:53,494 alphafold2_ptm_model_1_seed_000 took 458.0s (3 recycles)
+2026-09-03 02:08:54,887 reranking models by 'plddt' metric
+2026-09-03 02:08:54,887 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.9 pTM=0.608
+2026-09-03 02:08:56,415 Query 163/358: Glycine_max_Glyma.01G062900_unknown (length 1112)
+2026-09-03 02:23:48,693 Padding length to 1118
+2026-09-03 02:25:30,932 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.6 pTM=0.591
+2026-09-03 02:27:10,384 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.9 pTM=0.624 tol=6.09
+2026-09-03 02:28:49,863 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=83.1 pTM=0.624 tol=2.64
+2026-09-03 02:30:29,398 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.1 pTM=0.623 tol=2.8
+2026-09-03 02:30:29,402 alphafold2_ptm_model_1_seed_000 took 400.7s (3 recycles)
+2026-09-03 02:30:30,893 reranking models by 'plddt' metric
+2026-09-03 02:30:30,893 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.1 pTM=0.623
+2026-09-03 02:30:32,354 Query 167/358: Pinus_tabuliformis_PZ262360_FLS2 (length 1119)
+2026-09-03 02:40:55,944 Padding length to 1129
+2026-09-03 02:43:49,924 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=82 pTM=0.578
+2026-09-03 02:45:32,219 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=83.9 pTM=0.598 tol=13.4
+2026-09-03 02:47:14,527 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=84 pTM=0.605 tol=2.47
+2026-09-03 02:48:56,735 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=83.9 pTM=0.604 tol=1.3
+2026-09-03 02:48:56,738 alphafold2_ptm_model_1_seed_000 took 480.8s (3 recycles)
+2026-09-03 02:48:58,186 reranking models by 'plddt' metric
+2026-09-03 02:48:58,186 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.9 pTM=0.604
+2026-09-03 02:49:00,442 Query 185/358: Glycine_max_Glyma.02G120800_unknown (length 1139)
+2026-09-03 03:02:58,757 Padding length to 1149
+2026-09-03 03:05:54,594 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=80.4 pTM=0.59
+2026-09-03 03:07:40,598 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=81.7 pTM=0.622 tol=6.62
+2026-09-03 03:09:26,609 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=81.7 pTM=0.624 tol=4.56
+2026-09-03 03:11:12,631 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=81.9 pTM=0.623 tol=2.31
+2026-09-03 03:11:12,635 alphafold2_ptm_model_1_seed_000 took 493.9s (3 recycles)
+2026-09-03 03:11:14,076 reranking models by 'plddt' metric
+2026-09-03 03:11:14,076 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=81.9 pTM=0.623
+2026-09-03 03:11:15,904 Query 194/358: Glycine_max_Glyma.08G357400_unknown (length 1153)
+2026-09-03 03:26:46,761 Padding length to 1163
+2026-09-03 03:29:44,188 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=81.4 pTM=0.586
+2026-09-03 03:31:30,912 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=82.2 pTM=0.617 tol=5.48
+2026-09-03 03:33:17,703 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=82.7 pTM=0.617 tol=2.89
+2026-09-03 03:35:04,479 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=82.7 pTM=0.617 tol=2.57
+2026-09-03 03:35:04,482 alphafold2_ptm_model_1_seed_000 took 497.7s (3 recycles)
+2026-09-03 03:35:06,015 reranking models by 'plddt' metric
+2026-09-03 03:35:06,015 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.7 pTM=0.617
+2026-09-03 03:35:11,907 Query 348/358: Solanum_lycopersicum_Solyc09g072810_MIK2-SISTER_MIK2 (length 1219)
+2026-09-03 03:49:18,240 Padding length to 1229
+2026-09-03 03:52:27,024 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.2 pTM=0.585
+2026-09-03 03:54:27,887 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.9 pTM=0.623 tol=5.4
+2026-09-03 03:56:28,690 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=87.1 pTM=0.623 tol=7.41
+2026-09-03 03:58:29,517 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=87.3 pTM=0.625 tol=3.52
+2026-09-03 03:58:29,520 alphafold2_ptm_model_1_seed_000 took 551.3s (3 recycles)
+2026-09-03 03:58:31,099 reranking models by 'plddt' metric
+2026-09-03 03:58:31,099 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=87.3 pTM=0.625
+2026-09-03 03:58:33,210 Query 351/358: Glycine_max_Glyma.03G165800_unknown (length 1229)
+2026-09-03 04:15:20,376 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.8 pTM=0.574
+2026-09-03 04:17:21,109 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86 pTM=0.616 tol=10.2
+2026-09-03 04:19:21,970 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.9 pTM=0.616 tol=3.21
+2026-09-03 04:21:22,708 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.9 pTM=0.618 tol=1.52
+2026-09-03 04:21:22,737 alphafold2_ptm_model_1_seed_000 took 486.0s (3 recycles)
+2026-09-03 04:21:24,396 reranking models by 'plddt' metric
+2026-09-03 04:21:24,396 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.9 pTM=0.618
+2026-09-03 04:21:26,466 Query 352/358: Glycine_max_Glyma.19G167400_unknown (length 1230)
+2026-09-03 04:41:11,615 Padding length to 1240
+2026-09-03 04:44:17,373 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.1 pTM=0.579
+2026-09-03 04:46:12,991 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=86.2 pTM=0.621 tol=4.73
+2026-09-03 04:48:08,588 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.4 pTM=0.62 tol=2.91
+2026-09-03 04:50:04,169 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.8 pTM=0.624 tol=2.7
+2026-09-03 04:50:04,173 alphafold2_ptm_model_1_seed_000 took 532.6s (3 recycles)
+2026-09-03 04:50:05,824 reranking models by 'plddt' metric
+2026-09-03 04:50:05,824 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.8 pTM=0.624
+2026-09-03 04:50:07,429 Query 353/358: Glycine_max_Glyma.03G166300_unknown (length 1230)
+2026-09-03 05:08:22,850 Padding length to 1240
+2026-09-03 05:10:20,527 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.8 pTM=0.574
+2026-09-03 05:12:16,092 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.7 pTM=0.614 tol=5.93
+2026-09-03 05:14:11,640 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.9 pTM=0.619 tol=1.03
+2026-09-03 05:16:07,199 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.9 pTM=0.622 tol=0.988
+2026-09-03 05:16:07,230 alphafold2_ptm_model_1_seed_000 took 464.4s (3 recycles)
+2026-09-03 05:16:08,821 reranking models by 'plddt' metric
+2026-09-03 05:16:08,822 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.9 pTM=0.622
+2026-09-03 05:16:10,634 Query 354/358: Glycine_max_Glyma.19G167300_unknown (length 1234)
+2026-09-03 05:31:24,410 Padding length to 1240
+2026-09-03 05:33:22,880 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.1 pTM=0.569
+2026-09-03 05:35:18,420 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.7 pTM=0.611 tol=7.12
+2026-09-03 05:37:13,963 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.1 pTM=0.614 tol=2.33
+2026-09-03 05:39:09,514 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.1 pTM=0.616 tol=1.86
+2026-09-03 05:39:09,518 alphafold2_ptm_model_1_seed_000 took 465.1s (3 recycles)
+2026-09-03 05:39:11,165 reranking models by 'plddt' metric
+2026-09-03 05:39:11,166 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.1 pTM=0.616
+2026-09-03 05:39:13,274 Query 355/358: Glycine_max_Glyma.15G155600_unknown (length 1257)
+2026-09-03 05:52:52,914 Padding length to 1267
+2026-09-03 05:56:00,633 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.6 pTM=0.583
+2026-09-03 05:58:05,734 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.8 pTM=0.617 tol=3.15
+2026-09-03 06:00:10,839 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=86.1 pTM=0.618 tol=2.64
+2026-09-03 06:02:16,300 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=86.1 pTM=0.617 tol=1.3
+2026-09-03 06:02:16,304 alphafold2_ptm_model_1_seed_000 took 563.4s (3 recycles)
+2026-09-03 06:02:18,054 reranking models by 'plddt' metric
+2026-09-03 06:02:18,054 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.1 pTM=0.617
+2026-09-03 06:02:20,538 Query 356/358: Glycine_max_Glyma.09G048300_unknown (length 1257)
+2026-09-03 06:03:27,809 Padding length to 1267
+2026-09-03 06:05:34,121 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.5 pTM=0.58
+2026-09-03 06:07:39,408 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.3 pTM=0.607 tol=4.2
+2026-09-03 06:09:44,400 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.8 pTM=0.615 tol=2.46
+2026-09-03 06:11:49,464 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.8 pTM=0.613 tol=1.57
+2026-09-03 06:11:49,475 alphafold2_ptm_model_1_seed_000 took 501.6s (3 recycles)
+2026-09-03 06:11:51,311 reranking models by 'plddt' metric
+2026-09-03 06:11:51,313 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.8 pTM=0.613
+2026-09-03 06:11:58,406 Query 357/358: Glycine_max_Glyma.05G134800_unknown (length 1271)
+2026-09-03 06:13:00,617 Padding length to 1275
+2026-09-03 06:16:11,377 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=84.2 pTM=0.582
+2026-09-03 06:18:18,376 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=85.4 pTM=0.616 tol=3.91
+2026-09-03 06:20:25,387 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.6 pTM=0.616 tol=2.52
+2026-09-03 06:22:32,786 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85.8 pTM=0.62 tol=0.943
+2026-09-03 06:22:33,103 alphafold2_ptm_model_1_seed_000 took 572.5s (3 recycles)
+2026-09-03 06:22:35,019 reranking models by 'plddt' metric
+2026-09-03 06:22:35,021 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85.8 pTM=0.62
+2026-09-03 06:22:38,489 Query 358/358: Glycine_max_Glyma.08G090000_unknown (length 1275)
+2026-09-03 06:25:54,009 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=83.6 pTM=0.579
+2026-09-03 06:28:02,010 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=84.8 pTM=0.612 tol=5.25
+2026-09-03 06:30:09,152 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=85.2 pTM=0.616 tol=1.47
+2026-09-03 06:32:16,058 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=85 pTM=0.612 tol=1.28
+2026-09-03 06:32:16,062 alphafold2_ptm_model_1_seed_000 took 509.8s (3 recycles)
+2026-09-03 06:32:17,719 reranking models by 'plddt' metric
+2026-09-03 06:32:17,719 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85 pTM=0.612
