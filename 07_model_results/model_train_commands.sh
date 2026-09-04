@@ -4,9 +4,10 @@
 python 06_scripts_ml/06_main_train.py \
     --model esm2_with_receptor \
     --data_dir 05_datasets \
-    --device cpu \
-    --epochs 20 \
-    --save_period 10 
+    --device mps \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 
 
 python 07_model_results/02_make_confusion_matrix.py \
     --predictions_path 07_model_results/01_random_esm2_with_receptor/test_preds.pth \
@@ -23,9 +24,10 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 python 06_scripts_ml/06_main_train.py \
     --model esm2_with_receptor \
     --data_dir 05_datasets \
-    --device cpu \
-    --epochs 20 \
-    --save_period 10 
+    --device mps \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 
 
 python 07_model_results/02_make_confusion_matrix.py \
     --predictions_path 07_model_results/02_immuno_stratify_esm2_with_receptor/test_preds.pth \
@@ -65,9 +67,10 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 python 06_scripts_ml/06_main_train.py \
     --model esm2_all_chemical_features \
     --data_dir 05_datasets \
-    --device cpu \
-    --epochs 20 \
-    --save_period 10 
+    --device mps \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 
 
 python 07_model_results/02_make_confusion_matrix.py \
     --predictions_path 07_model_results/07_immuno_stratify_esm2_all_chemical_features/test_preds.pth \
@@ -104,8 +107,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
     --data_dir 05_datasets \
-    --device cpu \
-    --epochs 20 \
+    --device mps \
+    --batch_size 12 \
+    --epochs 15 \
     --save_period 5 
 
 python 07_model_results/02_make_confusion_matrix.py \

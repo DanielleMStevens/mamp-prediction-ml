@@ -3171,3 +3171,11 @@
 2026-09-03 06:32:16,062 alphafold2_ptm_model_1_seed_000 took 509.8s (3 recycles)
 2026-09-03 06:32:17,719 reranking models by 'plddt' metric
 2026-09-03 06:32:17,719 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=85 pTM=0.612
+2026-09-02 12:17:00,434 Query 7/358: Glycine_max_Glyma.18G254000_unknown (length 827)
+2026-09-02 12:17:00,434 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=82.5 pTM=0.55
+2026-09-03 00:00:00,000 Query: Arabidopsis_thaliana_AT5G46330_RD_FLS2 (length 1173)
+2026-09-03 00:00:00,000 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.6 pTM=0.62
+2026-09-03 00:00:00,000 Query: Glycine_max_Glyma.09G230300_unknown (length 1030)
+2026-09-03 00:00:00,000 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=83.1 pTM=0.62
+2026-09-03 00:00:00,000 Query: Glycine_max_Glyma.18G250900_unknown (length 1082)
+2026-09-03 00:00:00,000 rank_001_alphafold2_ptm_model_1_seed_000 pLDDT=86.2 pTM=0.62

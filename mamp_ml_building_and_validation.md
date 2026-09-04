@@ -152,6 +152,7 @@ python 06_scripts_ml/04_data_prep_for_training.py --split_type (immuno_stratify|
 
 Once the data is split, we will then transform and add chemical feature data (amino acid bulkiness, charge, and hydrophobicity) before model training and evaluation.
 ```
+# update names of train and test
 Rscript 06_scripts_ml/05_chemical_conversion.R all train_input.csv test_input.csv
 ```
 
