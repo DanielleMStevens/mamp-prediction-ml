@@ -144,6 +144,7 @@ Once all the structures are generated, we will prepare and run them through LRR-
 # this script will generate some summary stats from AlphaFold models
 python 06_scripts_ml/02_alphafold_to_lrr_annotation.py
 
+# this will parse the lrr annotation outputs
 python 06_scripts_ml/03_parse_lrr_annotations.py
 
 # script will split the data depending on the 
@@ -156,6 +157,14 @@ Once the data is split, we will then transform and add chemical feature data (am
 Rscript 06_scripts_ml/05_chemical_conversion.R all train_input.csv test_input.csv
 ```
 
+Some models require tracking the b-factor, so we will run the command below.
+```
+# first run the script to analyze the bfactor peaks
+python 01_LRR_Annotation/analyze_bfactor_peaks.py \
+  --pdb-dir ./03_out_data/modeled_structures/pdb_for_lrr_annotator/ \
+  -o ./04_Preprocessing_results/bfactor_winding_lrr_segments.csv
+
+```
 ## 03. Model training and assessment
 
 
@@ -245,6 +254,11 @@ python 09_testing_and_dropout/02_alphafold_to_lrr_annotation_test.py ./09_testin
 python python 09_testing_and_dropout/03_parse_lrr_annotation_test.py
 
 # we will also need to generate bandpass b-factor values to update the training model with
+
+python 01_LRR_Annotation/analyze_bfactor_peaks.py \
+  --pdb-dir ./09_testing_and_dropout/Ngou_2025_SCORE_data/pdb_for_lrr_annotator/ \
+  -o ./09_testing_and_dropout/Ngou_2025_SCORE_data/bfactor_winding_lrr_segments.csv
+
 # update lines 246, 263 with path for Ngou data
 python python 01_LRR_Annotation/analyze_bfactor_peaks.py
 ```

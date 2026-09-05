@@ -94,6 +94,7 @@ Arabidopsis_thaliana_AT5G46330_Q682A_FLS2                                       
 Arabidopsis_thaliana_AT5G46330_R234A_FLS2                                                           model_1        84.6      0.604
 Arabidopsis_thaliana_AT5G46330_R294A_H316A_FLS2                                                     model_1        86.9      0.613
 Arabidopsis_thaliana_AT5G46330_R430A_FLS2                                                           model_1        84.6      0.607
+Arabidopsis_thaliana_AT5G46330_RD_FLS2                                                              model_1        86.6      0.620
 Arabidopsis_thaliana_AT5G46330_S345D_FLS2                                                           model_1        86.4      0.616
 Arabidopsis_thaliana_AT5G46330_S345G_FLS2                                                           model_1        86.6      0.614
 Arabidopsis_thaliana_AT5G46330_S437Y_FLS2                                                           model_1        86.6      0.608
@@ -208,6 +209,7 @@ Glycine_max_Glyma.08G333200_unknown                                             
 Glycine_max_Glyma.08G357400_unknown                                                                 model_1        82.7      0.617
 Glycine_max_Glyma.09G048300_unknown                                                                 model_1        85.8      0.615
 Glycine_max_Glyma.09G161100_unknown                                                                 model_1        85.3      0.605
+Glycine_max_Glyma.09G230300_unknown                                                                 model_1        83.1      0.620
 Glycine_max_Glyma.09G243600_unknown                                                                 model_1        85.6      0.615
 Glycine_max_Glyma.10G040500_unknown                                                                 model_1        84.0      0.614
 Glycine_max_Glyma.10G164700_unknown                                                                 model_1        83.3      0.600
@@ -235,6 +237,7 @@ Glycine_max_Glyma.18G116800_unknown                                             
 Glycine_max_Glyma.18G249700_unknown                                                                 model_1        86.1      0.614
 Glycine_max_Glyma.18G249900_unknown                                                                 model_1        87.4      0.622
 Glycine_max_Glyma.18G250500_unknown                                                                 model_1        87.2      0.616
+Glycine_max_Glyma.18G250900_unknown                                                                 model_1        86.2      0.620
 Glycine_max_Glyma.18G254000_unknown                                                                 model_1        82.5      0.550
 Glycine_max_Glyma.19G167300_unknown                                                                 model_1        86.1      0.614
 Glycine_max_Glyma.19G167400_unknown                                                                 model_1        86.8      0.624

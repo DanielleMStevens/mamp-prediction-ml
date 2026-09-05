@@ -91,7 +91,12 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/04_immuno_stratify_esm2_all_chemical_features/misclassification_report.tsv
 
 # ------- Run 5: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_train_random.csv -------
+# model size: facebook/esm2_t30_150M_UR50D
+# Training 1,436,803 of 150,232,284 parameters
+# data: 05_datasets/(train/test)_data_with_all_train_random.csv
 # Saved As: 05_random_esm2_bfactor_weighted
+
+
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
