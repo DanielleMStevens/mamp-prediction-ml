@@ -84,12 +84,19 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 # ------- Run 5: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_train_random.csv -------
 # Saved As: 05_random_esm2_bfactor_weighted
 
+# first run the script to analyze the bfactor peaks
+python 01_LRR_Annotation/analyze_bfactor_peaks.py \
+  --pdb-dir ./03_out_data/modeled_structures/pdb_for_lrr_annotator/ \
+  -o ./04_Preprocessing_results/bfactor_winding_lrr_segments.csv
+
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
+    bfactor_csv_path
     --data_dir 05_datasets \
-    --device cpu \
-    --epochs 20 \
-    --save_period 10 
+    --device mps \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 
 
 python 07_model_results/02_make_confusion_matrix.py \
     --predictions_path 07_model_results/05_random_esm2_bfactor_weighted/test_preds.pth \
