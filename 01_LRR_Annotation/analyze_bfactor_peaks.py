@@ -1,3 +1,4 @@
+import argparse
 import os
 import numpy as np
 import pandas as pd
@@ -242,26 +243,45 @@ def analyze_lrr_bfactor_peaks(pdb_dir, period=25, filter_order=10, cache_dir=Non
     return df
 
 if __name__ == "__main__":
-    # --- Configuration ---
-    PDB_DIRECTORY = "./09_testing_and_dropout/Ngou_2025_SCORE_data/pdb_for_lrr_annotator/"
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-    CACHE_DIRECTORY = os.path.join(SCRIPT_DIR, "cache")
-    # --- End Configuration ---
+    DEFAULT_CACHE = os.path.join(SCRIPT_DIR, "cache")
 
-    if not os.path.isdir(PDB_DIRECTORY):
-        print(f"Error: PDB Directory not found: {PDB_DIRECTORY}")
-        exit()
-    if not os.path.isdir(CACHE_DIRECTORY):
-         print(f"Error: Cache Directory not found: {CACHE_DIRECTORY}")
-         exit()
+    parser = argparse.ArgumentParser(
+        description="Analyze B-factor peaks within LRR regions from PDB structures."
+    )
+    parser.add_argument(
+        "--pdb-dir",
+        required=True,
+        help="Path to the directory containing PDB files.",
+    )
+    parser.add_argument(
+        "--output",
+        "-o",
+        required=True,
+        help="Path and filename for the output CSV (e.g. results/bfactor_winding_lrr_segments.csv).",
+    )
+    parser.add_argument(
+        "--cache-dir",
+        default=DEFAULT_CACHE,
+        help=f"Path to cached regression data. Defaults to {DEFAULT_CACHE}.",
+    )
+    args = parser.parse_args()
 
-    # Fix: Pass cache_dir as a named argument
-    peak_data = analyze_lrr_bfactor_peaks(pdb_dir=PDB_DIRECTORY, cache_dir=CACHE_DIRECTORY)
+    if not os.path.isdir(args.pdb_dir):
+        print(f"Error: PDB Directory not found: {args.pdb_dir}")
+        exit(1)
+    if not os.path.isdir(args.cache_dir):
+        print(f"Error: Cache Directory not found: {args.cache_dir}")
+        exit(1)
+
+    peak_data = analyze_lrr_bfactor_peaks(pdb_dir=args.pdb_dir, cache_dir=args.cache_dir)
 
     if not peak_data.empty:
         print("\n--- B-Factor Peak Analysis Results ---")
-        output_csv = os.path.join("09_testing_and_dropout", "Ngou_2025_SCORE_data", "bfactor_winding_lrr_segments.csv")
-        peak_data.to_csv(output_csv, index=False)
-        print(f"\nResults saved to {output_csv}")
+        output_dir = os.path.dirname(args.output)
+        if output_dir:
+            os.makedirs(output_dir, exist_ok=True)
+        peak_data.to_csv(args.output, index=False)
+        print(f"\nResults saved to {args.output}")
     else:
         print("\nAnalysis finished, but no segment data was generated.")
