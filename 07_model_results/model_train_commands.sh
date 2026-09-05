@@ -1,4 +1,7 @@
 # ------- Run 1: ESM2 with Receptor Model - 05_datasets/*_random.csv -------
+# model size: facebook/esm2_t30_150M_UR50D
+# Training 1,436,803 of 150,232,284 parameters
+# data: 05_datasets/(train/test)_random.csv
 # Saved As: 01_random_esm2_with_receptor
 
 python 06_scripts_ml/06_main_train.py \
@@ -19,6 +22,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/01_random_esm2_with_receptor/misclassification_report.tsv
 
 # ------- Run 2: ESM2 with Receptor Model - 05_datasets/*_immuno_stratify.csv -------
+# model size: facebook/esm2_t30_150M_UR50D
+# Training 1,436,803 of 150,232,284 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
 # Saved As: 02_immuno_stratify_esm2_with_receptor
 
 python 06_scripts_ml/06_main_train.py \
@@ -39,16 +45,19 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/02_immuno_stratify_esm2_with_receptor/misclassification_report.tsv
 
 
-
 # ------- Run 3: ESM2 with All Chemical Features Model - 05_datasets/*_data_with_all_train_random.csv -------
+# model size: facebook/esm2_t30_150M_UR50D
+# Training 1,436,803 of 150,232,284 parameters
+# data: 05_datasets/(train/test)_data_with_all_test_random.csv
 # Saved As: 03_random_esm2_all_chemical_features
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_all_chemical_features \
     --data_dir 05_datasets \
-    --device cpu \
-    --epochs 20 \
-    --save_period 10 
+    --device mps \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 
 
 python 07_model_results/02_make_confusion_matrix.py \
     --predictions_path 07_model_results/06_random_esm2_all_chemical_features/test_preds.pth \
