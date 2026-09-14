@@ -61,7 +61,8 @@ def generate_synthetic_negatives(df, num_synthetic_per_original=1):
     print(f"Available mismatched pairs: {len(mismatched_pairs)}")
     
     # Calculate how many synthetic examples to create
-    target_synthetic_count = len(df) * num_synthetic_per_original
+    target_synthetic_count = int(len(df) * num_synthetic_per_original)
+    print(f"Target synthetic count: {target_synthetic_count}")
     
     if len(mismatched_pairs) < target_synthetic_count:
         print(f"Warning: Only {len(mismatched_pairs)} mismatched pairs available, but {target_synthetic_count} requested.")

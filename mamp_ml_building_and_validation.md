@@ -155,6 +155,10 @@ Once the data is split, we will then transform and add chemical feature data (am
 ```
 # update names of train and test
 Rscript 06_scripts_ml/05_chemical_conversion.R all train_input.csv test_input.csv
+
+# for example, we can run the following for immuno_stratify ouptputs
+Rscript 06_scripts_ml/05_chemical_conversion.R all train_immuno_stratify.csv test_immuno_stratify.csv
+Rscript 06_scripts_ml/05_chemical_conversion.R all train_random.csv test_random.csv
 ```
 
 Some models require tracking the b-factor, so we will run the command below.

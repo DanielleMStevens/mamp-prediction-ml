@@ -9,8 +9,11 @@ from sklearn.metrics import accuracy_score
 class CrossEntropyLoss(nn.Module):
     """Supervised Contrastive Learning: https://arxiv.org/pdf/2004.11362.pdf.
     It also supports the unsupervised contrastive loss in SimCLR"""
-    def __init__(self):
+    def __init__(self, weight=None):
         super(CrossEntropyLoss, self).__init__()
+        # weight order: [Immunogenic, Non-Immunogenic, Weakly Immunogenic]
+        # Default None = equal class weighting (unweighted CE)
+        self.weight = weight
 
     def forward(self, output, batch):
         """Compute loss for model. If both `labels` and `mask` are None,
@@ -33,6 +36,7 @@ class CrossEntropyLoss(nn.Module):
             logits = output['logits']
         else:
             logits = output
-        loss = F.cross_entropy(logits, labels, reduction='mean')
+        weight = self.weight.to(logits.device) if self.weight is not None else None
+        loss = F.cross_entropy(logits, labels, weight=weight, reduction='mean')
 
         return {"ce": loss}

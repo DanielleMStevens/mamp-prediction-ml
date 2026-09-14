@@ -23,6 +23,21 @@ library(Biostrings, warn.conflicts = FALSE, quietly = TRUE)
 library(pwalign, warn.conflicts = FALSE, quietly = TRUE)
 library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
 library(ggridges, warn.conflicts = FALSE, quietly = TRUE)
+library(showtext, warn.conflicts = FALSE, quietly = TRUE)
+library(sysfonts, warn.conflicts = FALSE, quietly = TRUE)
+
+# Register system fonts for correct PDF glyph metrics (fixes spaced-out letters).
+# Use real TTF for Arial; Helvetica Neue from the system collection.
+font_add(
+  "Arial",
+  regular = "/System/Library/Fonts/Supplemental/Arial.ttf",
+  bold = "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+  italic = "/System/Library/Fonts/Supplemental/Arial Italic.ttf",
+  bolditalic = "/System/Library/Fonts/Supplemental/Arial Bold Italic.ttf"
+)
+font_add("Helvetica Neue", regular = "/System/Library/Fonts/HelveticaNeue.ttc")
+showtext_auto()
+showtext_opts(dpi = 300)
 
 # color code for genera of interest
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
@@ -30,6 +45,28 @@ names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","n
 
 receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
 names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT")
+
+# Thin, clean journal aesthetic (L-frame, short ticks, no clutter)
+theme_clean_thin <- function(base_size = 8) {
+  theme_classic(base_size = base_size, base_family = "Arial") %+replace%
+    theme(
+      line = element_line(colour = "black", linewidth = 0.3),
+      rect = element_rect(fill = "white", colour = NA, linewidth = 0.3),
+      text = element_text(colour = "black", family = "Arial"),
+      axis.line = element_line(colour = "black", linewidth = 0.35),
+      axis.ticks = element_line(colour = "black", linewidth = 0.3),
+      axis.ticks.length = unit(1.2, "pt"),
+      axis.title = element_text(size = base_size, colour = "black", family = "Arial"),
+      axis.text = element_text(size = base_size - 1, colour = "black", family = "Arial"),
+      panel.background = element_rect(fill = "white", colour = NA),
+      panel.grid = element_blank(),
+      plot.background = element_rect(fill = "white", colour = NA),
+      legend.background = element_blank(),
+      legend.key = element_blank(),
+      legend.position = "none",
+      strip.background = element_blank()
+    )
+}
 
 load_training_ML_data <- readxl::read_xlsx(path = "./02_in_data/All_LRR_PRR_ligand_data.xlsx")
 load_training_ML_data <- data.frame(load_training_ML_data)[1:12]
@@ -57,11 +94,10 @@ identity_calc <- function(label_ids, sequence_list, comparison){
 # distribution of peptide outcomes
 peptide_distrubution <- load_training_ML_data %>% group_by(Ligand, Immunogenicity) %>% summarize(n=n())
 immunogenicity_distrubution <- ggplot(data = peptide_distrubution, aes(x=Immunogenicity, y=n, fill=Ligand)) +
-  geom_bar(stat="identity") +
-  theme_classic() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8, color = "black"),
-        axis.text.y = element_text(color = "black"),
-        legend.position = "none")+
+  geom_bar(stat="identity", linewidth = 0) +
+  theme_clean_thin() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7, color = "black"),
+        axis.text.y = element_text(color = "black", size = 7))+
   labs(x="", y="Count") +
   scale_fill_manual(values = epitope_colors) +
   geom_text(data = peptide_distrubution %>% 
@@ -70,7 +106,8 @@ immunogenicity_distrubution <- ggplot(data = peptide_distrubution, aes(x=Immunog
             aes(label = n, y = n, x = Immunogenicity), 
             position = position_stack(vjust = 1.05),
             inherit.aes = FALSE,
-            size = 3)
+            size = 2.5,
+            family = "Arial")
 
 ggsave(filename = "./04_Preprocessing_results/peptide_distrubution.pdf", plot = immunogenicity_distrubution, device = "pdf", dpi = 300, width = 1.5, height = 3)
 
@@ -78,6 +115,10 @@ ggsave(filename = "./04_Preprocessing_results/peptide_distrubution.pdf", plot = 
 ######################################################################
 #  parse and compare homologs of receptors
 ######################################################################
+
+# Shared receptor–epitope display order so both plots list pairs together
+receptor_order <- names(receptor_colors)  # CuRe1, CORE, EFR, FLS2, ...
+epitope_order <- names(epitope_colors)    # crip21, csp22, elf18, flg22, ...
 
 # subset training data into fasta files based on receptor/ligand
 receptors_list <- unique(load_training_ML_data$Receptor)
@@ -142,25 +183,62 @@ receptor_NUT <- receptor_NUT[!duplicated(receptor_NUT$Receptor.Sequence),]
 NUT_comparison <- identity_calc(receptor_NUT$Locus.ID.Genbank, receptor_NUT$Receptor.Sequence, "NUT")
 NUT_comparison <- subset(NUT_comparison, query_id != subject_id)
 
-combine_receptor_comparison <- rbind(FLS2_comparison, PERU_comparison, MIK2_comparison, CORE_comparison, EFR_comparison, 
-                                    FLS3_comparison, INR_comparison, RLP42_comparison, RLP23_comparison, NUT_comparison)
-receptor_stats <- combine_receptor_comparison %>% group_by(comparison) %>% distinct(query_id) %>% summarize(number = n())
-receptor_stats$number <- receptor_stats$number + 1
+# CuRe1: single unique sequence — no pairwise identity; mark as a point at 100%
+receptor_CuRe1 <- load_training_ML_data %>% filter(Receptor == "CuRe1")
+receptor_CuRe1 <- receptor_CuRe1[!duplicated(receptor_CuRe1$Receptor.Sequence),]
+CuRe1_singleton <- data.frame(
+  query_id = receptor_CuRe1$Locus.ID.Genbank[1],
+  subject_id = receptor_CuRe1$Locus.ID.Genbank[1],
+  comparison = "CuRe1",
+  identity = 100,
+  stringsAsFactors = FALSE
+)
+
+combine_receptor_comparison <- rbind(
+  FLS2_comparison, PERU_comparison, MIK2_comparison, CORE_comparison, EFR_comparison,
+  FLS3_comparison, INR_comparison, RLP42_comparison, RLP23_comparison, NUT_comparison
+)
+combine_receptor_comparison$comparison <- factor(combine_receptor_comparison$comparison, levels = receptor_order)
+
+# Sequence counts for labels (include singleton receptors)
+receptor_seq_n <- load_training_ML_data %>%
+  dplyr::mutate(
+    comparison = ifelse(
+      as.character(Receptor) %in% c("INR", "INR-like"),
+      "INR",
+      as.character(Receptor)
+    )
+  ) %>%
+  dplyr::filter(comparison %in% receptor_order) %>%
+  dplyr::group_by(comparison) %>%
+  dplyr::summarise(number = dplyr::n_distinct(Receptor.Sequence), .groups = "drop")
+receptor_stats <- receptor_seq_n
+receptor_stats$comparison <- factor(receptor_stats$comparison, levels = receptor_order)
+
+receptor_singles <- CuRe1_singleton
+receptor_singles$comparison <- factor(receptor_singles$comparison, levels = receptor_order)
 
 receptor_sequence_comparison_plot <- ggplot(combine_receptor_comparison, aes(x = comparison, y = identity, fill = comparison)) +
-  stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width") +
-  geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA) +
-  theme_classic() +
+  stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width", linewidth = 0.35) +
+  geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA, linewidth = 0.35) +
+  geom_point(
+    data = receptor_singles,
+    aes(x = comparison, y = identity, color = comparison),
+    size = 1.6,
+    shape = 16,
+    inherit.aes = FALSE
+  ) +
+  theme_clean_thin() +
   xlab("Homolog Comparisons") +
   ylab("Percent Identity")+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), 
-        axis.text.y = element_text(color = "black"),
-        legend.position = "none") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7), 
+        axis.text.y = element_text(color = "black", size = 7)) +
+  scale_x_discrete(limits = receptor_order, drop = FALSE) +
   scale_y_continuous(limits = c(0, 120), breaks = c(20,40,60,80,100)) +
   coord_flip() +
-  scale_fill_manual(values = receptor_colors) +
-  scale_color_manual(values = receptor_colors) +
-  geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 3)
+  scale_fill_manual(values = receptor_colors, breaks = receptor_order) +
+  scale_color_manual(values = receptor_colors, breaks = receptor_order) +
+  geom_text(data = receptor_stats, aes(x = comparison, y = 110, label = number), size = 2.5, family = "Arial")
 
 ggsave(filename = "./04_Preprocessing_results/receptor_sequence_comparison_plot.pdf", 
 plot = receptor_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.35)
@@ -241,23 +319,47 @@ screw_comparison <- subset(screw_comparison, query_id > subject_id)
 
 combine_epitope_comparison <- rbind(In11_comparison, flg22_comparison, Pep25_comparison, SCOOP_comparison, csp22_comparison, 
                                     elf18_comparison, flgII28_comparison, peppg_comparison, crip21_comparison, nlp_comparison, screw_comparison)
-epitope_stats <- combine_epitope_comparison %>% group_by(comparison) %>% distinct(query_id) %>% summarize(number = n())
-epitope_stats$number <- epitope_stats$number + 1
+
+# Sequence counts; epitopes with only 1 unique sequence → plot as a dot at 100%
+epitope_seq_n <- load_training_ML_data %>%
+  filter(Ligand %in% epitope_order) %>%
+  group_by(Ligand) %>%
+  summarise(number = n_distinct(Ligand.Sequence), .groups = "drop") %>%
+  rename(comparison = Ligand)
+epitope_stats <- epitope_seq_n
+epitope_stats$comparison <- factor(epitope_stats$comparison, levels = epitope_order)
+
+epitope_singles <- epitope_stats %>%
+  filter(number == 1) %>%
+  mutate(identity = 100, query_id = NA_character_, subject_id = NA_character_) %>%
+  select(query_id, subject_id, comparison, identity)
+epitope_singles$comparison <- factor(epitope_singles$comparison, levels = epitope_order)
+
+combine_epitope_comparison <- combine_epitope_comparison %>%
+  filter(!comparison %in% as.character(epitope_singles$comparison))
+combine_epitope_comparison$comparison <- factor(combine_epitope_comparison$comparison, levels = epitope_order)
 
 epitope_sequence_comparison_plot <- ggplot(combine_epitope_comparison, aes(x = comparison, y = identity, fill = comparison)) +
-  stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width") +
-  geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA) +
-  theme_classic() +
+  stat_ydensity(aes(color = comparison), alpha = 0.85, scale = "width", linewidth = 0.35) +
+  geom_boxplot(fill = "white", width = 0.25, outlier.shape = NA, linewidth = 0.35) +
+  geom_point(
+    data = epitope_singles,
+    aes(x = comparison, y = identity, color = comparison),
+    size = 1.6,
+    shape = 16,
+    inherit.aes = FALSE
+  ) +
+  theme_clean_thin() +
   xlab("Variant Comparisons") +
   ylab("Percent Identity")+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black"), 
-        axis.text.y = element_text(color = "black"),
-        legend.position = "none") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", size = 7), 
+        axis.text.y = element_text(color = "black", size = 7)) +
+  scale_x_discrete(limits = epitope_order, drop = FALSE) +
   scale_y_continuous(limits = c(0, 120), breaks = c(20,40,60,80,100)) +
   coord_flip() +
-  scale_fill_manual(values = epitope_colors) +
-  scale_color_manual(values = epitope_colors) +
-  geom_text(data = epitope_stats, aes(x = comparison, y = 110, label = number), size = 3)
+  scale_fill_manual(values = epitope_colors, breaks = epitope_order) +
+  scale_color_manual(values = epitope_colors, breaks = epitope_order) +
+  geom_text(data = epitope_stats, aes(x = comparison, y = 110, label = number), size = 2.5, family = "Arial")
 
 ggsave(filename = "./04_Preprocessing_results/epitope_sequence_comparison_plot.pdf", 
 plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5, height = 2.55)
@@ -267,17 +369,28 @@ plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5,
 #  parse and compare epitope variant lengths
 ######################################################################
 
-# ridge plot
+# ridge plot — keep theme_ridges spacing + light grey grid; no black box border
 epitope_length_comparison_plot <- ggplot(load_training_ML_data, aes(x = Ligand.Length, y = Ligand)) +
   ggridges::geom_density_ridges(aes(fill = Ligand), 
-      rel_min_height = 0.01, alpha = 0.85, scale = 1.5) +
+      rel_min_height = 0.01, alpha = 0.85, scale = 1.5, linewidth = 0.3, color = "black") +
   xlab("Length") +
   ylab("") +
   scale_fill_manual(values = epitope_colors) +
-  scale_y_discrete(expand = c(0, 0)) +     # will generally have to set the `expand` option
-  scale_x_continuous(expand = c(0, 0)) +   # for both axes to remove unneeded padding
-  theme_ridges(center = TRUE, font_size = 8) +
-  theme(legend.position = "none")
+  scale_y_discrete(expand = c(0, 0)) +
+  scale_x_continuous(expand = c(0, 0)) +
+  theme_ridges(center = TRUE, font_size = 8, font_family = "Helvetica Neue", grid = TRUE, line_size = 0.3) +
+  theme(
+    legend.position = "none",
+    panel.border = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid.major = element_line(colour = "grey85", linewidth = 0.3),
+    panel.grid.minor = element_blank(),
+    axis.text = element_text(family = "Helvetica Neue", colour = "black", size = 7),
+    axis.title = element_text(family = "Helvetica Neue", colour = "black", size = 8),
+    plot.background = element_rect(fill = "white", colour = NA),
+    panel.background = element_rect(fill = "white", colour = NA)
+  )
 
 ggsave(filename = "./04_Preprocessing_results/epitope_length_comparison_plot.pdf", 
 plot = epitope_length_comparison_plot, device = "pdf", dpi = 300, width = 2, height = 2)

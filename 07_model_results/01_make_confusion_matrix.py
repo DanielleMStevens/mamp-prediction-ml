@@ -143,6 +143,93 @@ def write_correct_classification_report(correct_samples, output_path):
             ]
             f.write('\t'.join(map(str, row)) + '\n') # Ensure strings for join
 
+def style_confusion_heatmap(ax, cbar):
+    """Apply clean figure aesthetic: thin black box border, short ticks, no clutter."""
+    from matplotlib.patches import Rectangle
+
+    # Hide spines so the single Rectangle frame is not doubled
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+
+    x0, x1 = ax.get_xlim()
+    y0, y1 = ax.get_ylim()
+    left, right = min(x0, x1), max(x0, x1)
+    bottom, top = min(y0, y1), max(y0, y1)
+    frame = Rectangle(
+        (left, bottom),
+        right - left,
+        top - bottom,
+        fill=False,
+        edgecolor='black',
+        linewidth=0.4,
+        zorder=10,
+        clip_on=False,
+    )
+    ax.add_patch(frame)
+
+    ax.tick_params(
+        axis='both',
+        which='both',
+        direction='out',
+        length=1.5,
+        width=0.4,
+        colors='black',
+        labelsize=8,
+        pad=1.5,
+        top=False,
+        right=False,
+    )
+    for tick in ax.get_xticklabels() + ax.get_yticklabels():
+        tick.set_fontname('Arial')
+        tick.set_fontsize(8)
+
+    ax.set_facecolor('white')
+    ax.grid(False)
+
+    if cbar is not None:
+        cbar.outline.set_edgecolor('black')
+        cbar.outline.set_linewidth(0.4)
+        cbar.ax.tick_params(
+            labelsize=7,
+            length=1.2,
+            width=0.4,
+            colors='black',
+            direction='out',
+        )
+        for tick in cbar.ax.get_yticklabels():
+            tick.set_fontname('Arial')
+
+
+def plot_confusion_matrix(cm, output_path, title, fmt, vmin, vmax, cbar_ticks):
+    """Save a clean confusion-matrix heatmap PDF."""
+    fig, ax = plt.subplots(figsize=(1.7, 1.5), dpi=300)
+    fig.patch.set_facecolor('white')
+
+    heatmap = sns.heatmap(
+        cm,
+        annot=True,
+        fmt=fmt,
+        cmap='Purples',
+        annot_kws={'size': 9, 'family': 'Arial'},
+        vmin=vmin,
+        vmax=vmax,
+        cbar_kws={'ticks': cbar_ticks, 'shrink': 0.85, 'pad': 0.04},
+        linewidths=0.3,
+        linecolor='white',
+        square=True,
+        ax=ax,
+    )
+
+    ax.set_title(title, fontsize=9, fontname='Arial', pad=4)
+    ax.set_ylabel('True Label', fontsize=8, fontname='Arial', labelpad=2)
+    ax.set_xlabel('Predicted Label', fontsize=8, fontname='Arial', labelpad=2)
+
+    style_confusion_heatmap(ax, heatmap.collections[0].colorbar)
+    fig.tight_layout(pad=0.35)
+    fig.savefig(output_path, bbox_inches='tight', facecolor='white')
+    plt.close(fig)
+
+
 def main(args):
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
@@ -165,54 +252,24 @@ def main(args):
     cm = confusion_matrix(gt, preds)
     cm_percentage = confusion_matrix(gt, preds, normalize='true') * 100
     
-    # Create raw counts confusion matrix plot
-    plt.figure(figsize=(1.8, 1.6), dpi=450)
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Purples', 
-                annot_kws={"size": 8, "family": "Arial"},
-                vmin=0, vmax=np.max(cm), # Set scale based on max count
-                cbar_kws={'ticks': np.linspace(0, np.max(cm), 5)}) # Add 5 ticks to colorbar
-    plt.title('Confusion Matrix (Counts)', fontsize=7, fontname='Arial')
-    plt.ylabel('True Label', fontsize=7, fontname='Arial')
-    plt.xlabel('Predicted Label', fontsize=7, fontname='Arial')
-    plt.tick_params(axis='both', which='major', labelsize=8)
-    for tick in plt.gca().get_xticklabels():
-        tick.set_fontname("Arial")
-    for tick in plt.gca().get_yticklabels():
-        tick.set_fontname("Arial")
-    legend = plt.gca().get_legend()
-    if legend is not None:
-        plt.setp(legend.get_texts(), fontname='Arial', fontsize=5)
-    # Set colorbar label font size
-    plt.gca().collections[0].colorbar.ax.tick_params(labelsize=6)
-    plt.tight_layout(pad=0.5)
-    
-    # Save counts plot
-    plt.savefig(os.path.join(args.output_dir, 'confusion_matrix_counts.pdf'))
-    plt.close()
-    
-    # Create percentage confusion matrix plot 
-    plt.figure(figsize=(1.8, 1.6), dpi=450)
-    sns.heatmap(cm_percentage, annot=True, fmt='.1f', cmap='Purples',
-                annot_kws={"size": 8, "family": "Arial"},
-                vmin=0, vmax=100, # Set scale from 0-100%
-                cbar_kws={'ticks': np.arange(0, 101, 20)}) # Add ticks every 20%
-    plt.title('Confusion Matrix (%)', fontsize=7, fontname='Arial')
-    plt.ylabel('True Label', fontsize=7, fontname='Arial')
-    plt.xlabel('Predicted Label', fontsize=7, fontname='Arial')
-    plt.tick_params(axis='both', which='major', labelsize=8)
-    for tick in plt.gca().get_xticklabels():
-        tick.set_fontname("Arial")
-    for tick in plt.gca().get_yticklabels():
-        tick.set_fontname("Arial")
-    legend = plt.gca().get_legend()
-    if legend is not None:
-        plt.setp(legend.get_texts(), fontname='Arial', fontsize=5)
-    # Set colorbar label font size
-    plt.gca().collections[0].colorbar.ax.tick_params(labelsize=6)
-    plt.tight_layout(pad=0.5)
-    # Save percentage plot
-    plt.savefig(os.path.join(args.output_dir, 'confusion_matrix_percentages.pdf'))
-    plt.close()
+    plot_confusion_matrix(
+        cm,
+        os.path.join(args.output_dir, 'confusion_matrix_counts.pdf'),
+        title='Confusion Matrix (Counts)',
+        fmt='d',
+        vmin=0,
+        vmax=np.max(cm),
+        cbar_ticks=np.linspace(0, np.max(cm), 5),
+    )
+    plot_confusion_matrix(
+        cm_percentage,
+        os.path.join(args.output_dir, 'confusion_matrix_percentages.pdf'),
+        title='Confusion Matrix (%)',
+        fmt='.1f',
+        vmin=0,
+        vmax=100,
+        cbar_ticks=np.arange(0, 101, 20),
+    )
     
     # Analyze classifications
     correct_samples, false_positives, false_negatives = analyze_classifications(gt, preds, data_info)

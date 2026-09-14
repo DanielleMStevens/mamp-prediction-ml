@@ -32,11 +32,15 @@ The script is organized into several main components:
 
 Example Usage:
     # Training mode:
-    python 05_main_train.py --model esm2 --data_dir path/to/data --epochs 50
-    
+    python 06_scripts_ml/06_main_train.py --model esm2_with_receptor \\
+        --train_csv 05_datasets/train_immuno_stratify.csv \\
+        --test_csv 05_datasets/test_immuno_stratify.csv \\
+        --epochs 50
+
     # Evaluation mode:
-    python 06_scripts_ml/06_main_train.py --model esm2_with_receptor --eval_only_data_path 05_datasets/test_stratify.csv /
-    --model_checkpoint_path ../model_results/02_24_2025_esm2_with_receptor_stratify/test_preds.pth --disable_wandb
+    python 06_scripts_ml/06_main_train.py --model esm2_with_receptor \\
+        --eval_only_data_path 05_datasets/test_stratify.csv \\
+        --model_checkpoint_path path/to/checkpoint.pth --disable_wandb
 """
 
 import argparse
@@ -86,13 +90,26 @@ from models.esm_positon_weighted import ESMBfactorWeightedFeatures
 #from models.amp_with_receptor_model import AMPWithReceptorModel
 #from models.amp_model import AMPModel
 
-from engine_train import train_one_epoch, evaluate
+from engine_train import train_one_epoch, evaluate, loss_dict
+from losses.cross_entropy import CrossEntropyLoss
 from datasets.seq_dataset import PeptideSeqDataset
 from datasets.alphafold_dataset import AlphaFoldDataset
 from datasets.seq_with_receptor_dataset import PeptideSeqWithReceptorDataset
 import misc
 from sklearn.model_selection import StratifiedKFold
 
+
+def _data_run_label(args) -> str:
+    """Short label for wandb run names when --data_dir is unset."""
+    if args.data_dir:
+        return Path(args.data_dir).name
+    if args.train_csv:
+        return Path(args.train_csv).stem
+    if args.test_csv:
+        return Path(args.test_csv).stem
+    if args.output_dir:
+        return Path(args.output_dir).name
+    return "run"
 
 
 def get_args_parser():
@@ -173,8 +190,37 @@ def get_args_parser():
     )
     parser.add_argument("--freeze_at", type=int, default=14)
     parser.add_argument("--model", type=str, required=True)
-    parser.add_argument("--data_dir", type=str, required=False)
+    parser.add_argument("--data_dir", type=str, required=False,
+                       help="Optional data directory (legacy; prefer --train_csv/--test_csv)")
+    parser.add_argument("--train_csv", type=str, required=False,
+                       help="Path to training CSV (e.g. 05_datasets/train_immuno_stratify.csv)")
+    parser.add_argument("--test_csv", type=str, required=False,
+                       help="Path to test CSV (e.g. 05_datasets/test_immuno_stratify.csv)")
     parser.add_argument("--eval_only_data_path", type=str, required=False)
+    parser.add_argument(
+        "--output_dir",
+        type=str,
+        required=False,
+        help="Directory for checkpoints, predictions, and logs "
+             "(e.g. 07_model_results/02_immuno_stratify_esm2_with_receptor)",
+    )
+    parser.add_argument(
+        "--bfactor_csv_path",
+        type=str,
+        required=False,
+        default=None,
+        help="Path to bfactor_winding_lrr_segments.csv for esm2_bfactor_weighted "
+             "(e.g. 04_Preprocessing_results/bfactor_winding_lrr_segments.csv)",
+    )
+    parser.add_argument(
+        "--class_weights",
+        type=float,
+        nargs=3,
+        default=None,
+        metavar=("IMM", "NON", "WEAK"),
+        help="CE class weights for [Immunogenic, Non-Immunogenic, Weakly Immunogenic]. "
+             "Default: equal weights (unweighted CE).",
+    )
 
     # af params
     parser.add_argument("--n_msa_seqs", type=int, default=128)
@@ -367,8 +413,9 @@ def main(args):
             run_name = f"{wandb_dict[args.model]}-{Path(args.eval_only_data_path).stem}-{current_datetime}"
             tags = [args.model, str(Path(args.eval_only_data_path).stem), "eval"]
         else:
-            run_name = f"{wandb_dict[args.model]}-{Path(args.data_dir).name}-{current_datetime}"
-            tags = [args.model, str(Path(args.data_dir).name), "train"]
+            data_label = _data_run_label(args)
+            run_name = f"{wandb_dict[args.model]}-{data_label}-{current_datetime}"
+            tags = [args.model, data_label, "train"]
         wandb.init(
             project="mamp_ml",
             entity="dmstev-uc-berkeley",
@@ -440,15 +487,15 @@ def main(args):
     # Prepare test dataset and dataloader
     if args.eval_only_data_path:
         eval_data_path = args.eval_only_data_path
-    else:
-        #eval_data_path = f"{args.data_dir}/test_random.csv"
+    elif args.test_csv:
+        eval_data_path = args.test_csv
+    elif args.data_dir:
         eval_data_path = f"{args.data_dir}/test_immuno_stratify.csv"
-        #eval_data_path = f"{args.data_dir}/test_data_with_all_test_immuno_stratify.csv"
-        #eval_data_path = f"{args.data_dir}/test_data_with_all_test_random.csv"
-        #eval_data_path = f"{args.data_dir}/test_data_with_all_test_immuno_stratify_dropout_test.csv"
-        #eval_data_path = f"{args.data_dir}/final_model_training_data.csv"
-        #eval_data_path = f"{args.data_dir}/test_data_64_shot.csv"
+        print(f"Warning: --test_csv not set; falling back to {eval_data_path}")
+    else:
+        raise ValueError("Provide --test_csv, --eval_only_data_path, or --data_dir")
 
+    print(f"Loading test data from: {eval_data_path}")
     test_df = pd.read_csv(eval_data_path)
     ds_test = dataset(df=test_df)
     print(f"{len(ds_test)=}")
@@ -480,13 +527,16 @@ def main(args):
         exit()
 
     # Prepare training dataset and dataloader
-    #train_df = pd.read_csv(f"{args.data_dir}/train_data_with_all_train_random.csv")
-    #train_df = pd.read_csv(f"{args.data_dir}/train_data_with_all_train_immuno_stratify.csv")
-    #train_df = pd.read_csv(f"{args.data_dir}/final_model_training_data.csv")
-    #train_df = pd.read_csv(f"{args.data_dir}/train_data_with_synthetic_negatives.csv")
-    #train_df = pd.read_csv(f"{args.data_dir}/train_random.csv")
-    train_df = pd.read_csv(f"{args.data_dir}/train_immuno_stratify.csv")
-    #train_df = pd.read_csv(f"{args.data_dir}/train_data_64_shot.csv")
+    if args.train_csv:
+        train_data_path = args.train_csv
+    elif args.data_dir:
+        train_data_path = f"{args.data_dir}/train_immuno_stratify.csv"
+        print(f"Warning: --train_csv not set; falling back to {train_data_path}")
+    else:
+        raise ValueError("Provide --train_csv or --data_dir for training")
+
+    print(f"Loading train data from: {train_data_path}")
+    train_df = pd.read_csv(train_data_path)
     ds_train = dataset(df=train_df)
     print(f"{len(ds_train)=}")
     
@@ -554,7 +604,7 @@ def main(args):
     # Optional k-fold cross-validation
     if args.cross_eval_kfold:
         if not args.disable_wandb and misc.is_main_process():
-            run_name = f"{wandb_dict[args.model]}-{Path(args.data_dir).name}"
+            run_name = f"{wandb_dict[args.model]}-{_data_run_label(args)}"
             wandb.init(
                 project="mamp_ml",
                 entity="dmstev-uc-berkeley",
@@ -589,13 +639,10 @@ def main(args):
 
 
             cv_ds_train = SeqAffDataset(df=ds_train.df.iloc[train_idx])
-            #ds_train.df.iloc[train_idx].to_csv(f"{args.output_dir}/train_data_with_all_train_random.csv", index=False)
-            #ds_train.df.iloc[train_idx].to_csv(f"{args.output_dir}/train_data_with_all_train_immuno_stratify.csv", index=False)
-            #ds_train.df.iloc[train_idx].to_csv(f"{args.output_dir}/final_model_training_data.csv", index=False)
-            #ds_train.df.iloc[train_idx].to_csv(f"{args.output_dir}/train_data_with_synthetic_negatives.csv", index=False)
-            #ds_train.df.iloc[train_idx].to_csv(f"{args.output_dir}/train_random.csv", index=False)
-            ds_train.df.iloc[train_idx].to_csv(f"{args.output_dir}/train_immuno_stratify.csv", index=False)
-            #ds_train.df.iloc[train_idx].to_csv(f"{args.output_dir}/train_data_64_shot.csv", index=False)
+            train_fold_name = Path(train_data_path).name
+            ds_train.df.iloc[train_idx].to_csv(
+                f"{args.output_dir}/{train_fold_name}", index=False
+            )
 
             if args.distributed:
                 cv_sampler_train = torch.utils.data.DistributedSampler(
@@ -613,12 +660,10 @@ def main(args):
                 collate_fn=collate_fn,
             )
             cv_ds_test = SeqAffDataset(df=ds_train.df.iloc[test_idx])
-            #ds_train.df.iloc[test_idx].to_csv(f"{args.output_dir}/test_data_with_all_test_random.csv", index=False)
-            #ds_train.df.iloc[test_idx].to_csv(f"{args.output_dir}/test_data_with_all_test_immuno_stratify.csv", index=False)
-            #ds_train.df.iloc[test_idx].to_csv(f"{args.output_dir}/final_model_training_data.csv", index=False)
-            #ds_train.df.iloc[test_idx].to_csv(f"{args.output_dir}/test_random.csv", index=False)
-            ds_train.df.iloc[test_idx].to_csv(f"{args.output_dir}/test_immuno_stratify.csv", index=False)
-            #ds_train.df.iloc[test_idx].to_csv(f"{args.output_dir}/test_data_64_shot.csv", index=False)
+            test_fold_name = Path(eval_data_path).name
+            ds_train.df.iloc[test_idx].to_csv(
+                f"{args.output_dir}/{test_fold_name}", index=False
+            )
 
             cv_sampler_test = torch.utils.data.SequentialSampler(cv_ds_test)
             
@@ -652,10 +697,21 @@ def main(args):
 if __name__ == "__main__":
     args = get_args_parser()
     args = args.parse_args()
-    if args.eval_only_data_path:
-        out_dir = Path(f"../eval_model_results/{args.model}{Path(args.eval_only_data_path).stem}")
-    else:
+    if args.class_weights is not None:
+        loss_dict["ce"] = CrossEntropyLoss(
+            weight=torch.tensor(args.class_weights, dtype=torch.float)
+        )
+        print(f"Using CE class weights [Imm, Non, Weak]: {args.class_weights}")
+    if args.output_dir:
+        out_dir = Path(args.output_dir)
+    elif args.eval_only_data_path:
+        out_dir = Path(f"../model_results/{args.model}_{Path(args.eval_only_data_path).stem}")
+    elif args.data_dir:
         out_dir = Path(f"../model_results/{args.model}_{Path(args.data_dir).name}")
+    elif args.train_csv:
+        out_dir = Path(f"../model_results/{args.model}_{Path(args.train_csv).stem}")
+    else:
+        out_dir = Path(f"../model_results/{args.model}")
     out_dir.mkdir(exist_ok=True, parents=True)
     args.output_dir = out_dir
     main(args)
