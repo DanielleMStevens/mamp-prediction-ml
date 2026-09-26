@@ -5,6 +5,14 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_r
 import numpy as np
 import torch.nn.functional as F
 
+from models.esm_utils import (
+    DEFAULT_ESM_NAME,
+    DEFAULT_UNFREEZE_LAYERS,
+    apply_esm_unfreeze,
+    resolve_esm_name,
+    resolve_unfreeze_layers,
+)
+
 class FiLMWithConcatenation(nn.Module):
     """
     FiLM layer that conditions sequence representation with chemical features.
@@ -66,38 +74,16 @@ class ESMallChemicalFeatures(nn.Module):
     def __init__(self, args, num_classes=3):
         super().__init__()
         
-        # Load ESM model
-        self.esm = AutoModel.from_pretrained("facebook/esm2_t30_150M_UR50D")
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")
-        
-         # notes: other size models from ESM2:
-        # Checkpoint name	Num layers	Num parameters
-        # esm2_t48_15B_UR50D	48	15B
-        # esm2_t36_3B_UR50D	36	3B
-        # esm2_t33_650M_UR50D	33	650M
-        # esm2_t30_150M_UR50D	30	150M
-        # esm2_t12_35M_UR50D	12	35M
-        # esm2_t6_8M_UR50D	6	8M
-
-        # Freeze early layers, leaving only the last 10 encoder layers trainable
-        # (ESM2-t30 has 30 layers total, so layers 20-29 will be trainable)
-        # Previous version - training last 10 layers
-        # modules_to_freeze = [
-        #     self.esm.embeddings,
-        #     *self.esm.encoder.layer[:20]  # Freeze first 20 layers, leaving 10 trainable
-        # ]
-        # for module in modules_to_freeze:
-        #     for param in module.parameters():
-        #         param.requires_grad = False
-
-        # New version - only train last layer
-        modules_to_freeze = [
-            self.esm.embeddings,
-            *self.esm.encoder.layer[:29]  # Freeze first 29 layers, leaving only last layer trainable
-        ]
-        for module in modules_to_freeze:
-            for param in module.parameters():
-                param.requires_grad = False
+        # Backbone size and unfreeze depth are configurable; must match the
+        # checkpoint used at load time. Default: esm2_t30_150M, last encoder layer.
+        esm_name = resolve_esm_name(args, default=DEFAULT_ESM_NAME)
+        n_unfreeze = resolve_unfreeze_layers(args, default=DEFAULT_UNFREEZE_LAYERS)
+        self.esm_model_name = esm_name
+        self.unfreeze_layers = n_unfreeze
+        self.esm = AutoModel.from_pretrained(esm_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(esm_name)
+        print(f"Loaded ESM backbone: {esm_name}")
+        apply_esm_unfreeze(self.esm, n_unfreeze)
         
         # Get feature dimension from ESM model
         self.hidden_size = self.esm.config.hidden_size

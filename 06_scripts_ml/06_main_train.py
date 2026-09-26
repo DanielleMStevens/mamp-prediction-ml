@@ -32,9 +32,10 @@ The script is organized into several main components:
 
 Example Usage:
     # Training mode:
-    python 06_scripts_ml/06_main_train.py --model esm2_with_receptor \\
-        --train_csv 05_datasets/train_immuno_stratify.csv \\
-        --test_csv 05_datasets/test_immuno_stratify.csv \\
+    python 06_scripts_ml/06_main_train.py --model esm2_bfactor_weighted \\
+        --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \\
+        --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \\
+        --esm_model 150M --unfreeze_layers 1 \\
         --epochs 50
 
     # Evaluation mode:
@@ -127,9 +128,11 @@ def get_args_parser():
             --eval_only_data_path: Path to evaluation data (for eval mode)
             
         Model Parameters:
-            --backbone: Choice of backbone model (default: esm2_t33_650M_UR50D)
+            --esm_model / --model_size: ESM2 backbone size (8M, 35M, 150M, 650M, ...)
+            --unfreeze_layers: Number of last ESM encoder layers to fine-tune
+            --backbone: Legacy backbone name (unused by current ESM models)
             --head_dim: Dimension of the model head (default: 128)
-            --freeze_at: Layer to freeze up to (default: 14)
+            --freeze_at: Legacy freeze cutoff (unused by current ESM models)
             --finetune_backbone: Path to pretrained backbone weights
             
         Training Parameters:
@@ -184,11 +187,35 @@ def get_args_parser():
     parser.add_argument("--backbone", default="esm2_t33_650M_UR50D", help="af|esm2_t33_650M_UR50D|esm_msa1b_t12_100M_UR50S",
     )
     parser.add_argument(
+        "--esm_model",
+        "--model_size",
+        dest="esm_model",
+        type=str,
+        default=None,
+        help="ESM2 backbone size. Accepts a HuggingFace id "
+             "(facebook/esm2_t6_8M_UR50D), short name (esm2_t6_8M_UR50D), "
+             "or size alias (8M, 35M, 150M, 650M, 3B, 15B). "
+             "Default for all current models: 150M (esm2_t30_150M_UR50D).",
+    )
+    parser.add_argument(
+        "--unfreeze_layers",
+        type=int,
+        default=None,
+        help="Number of last ESM encoder layers to fine-tune. "
+             "0 freezes the entire ESM backbone. "
+             "Default for all current models: 1 (last encoder layer).",
+    )
+    parser.add_argument(
         "--finetune_backbone",
         type=str,
         default="/scratch/cluster/jozhang/models/openfold_params/finetuning_ptm_2.pt",
     )
-    parser.add_argument("--freeze_at", type=int, default=14)
+    parser.add_argument(
+        "--freeze_at",
+        type=int,
+        default=14,
+        help="Legacy freeze cutoff; current ESM models use --unfreeze_layers.",
+    )
     parser.add_argument("--model", type=str, required=True)
     parser.add_argument("--data_dir", type=str, required=False,
                        help="Optional data directory (legacy; prefer --train_csv/--test_csv)")

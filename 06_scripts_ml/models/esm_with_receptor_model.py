@@ -7,6 +7,14 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_r
 import numpy as np
 import pandas as pd
 
+from models.esm_utils import (
+    DEFAULT_ESM_NAME,
+    DEFAULT_UNFREEZE_LAYERS,
+    apply_esm_unfreeze,
+    resolve_esm_name,
+    resolve_unfreeze_layers,
+)
+
 class FiLMWithAttention(nn.Module):
     """
     Feature-wise Linear Modulation (FiLM) with attention mechanism.
@@ -69,10 +77,15 @@ class ESMWithReceptorModel(nn.Module):
     """
     def __init__(self, args=None):
         super().__init__()
-        # Load pre-trained ESM model and freeze its parameters
-        self.esm_model = AutoModel.from_pretrained("facebook/esm2_t30_150M_UR50D")
-        for param in self.esm_model.parameters():
-            param.requires_grad = False     
+        # Backbone size and unfreeze depth are configurable; must match the
+        # checkpoint used at load time. Default: esm2_t30_150M, last encoder layer.
+        esm_name = resolve_esm_name(args, default=DEFAULT_ESM_NAME)
+        n_unfreeze = resolve_unfreeze_layers(args, default=DEFAULT_UNFREEZE_LAYERS)
+        self.esm_model_name = esm_name
+        self.unfreeze_layers = n_unfreeze
+        self.esm_model = AutoModel.from_pretrained(esm_name)
+        print(f"Loaded ESM backbone: {esm_name}")
+        apply_esm_unfreeze(self.esm_model, n_unfreeze)
 
         E = self.esm_model.config.hidden_size
 
@@ -86,7 +99,7 @@ class ESMWithReceptorModel(nn.Module):
         )
 
         self.film = FiLM(E)
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")  
+        self.tokenizer = AutoTokenizer.from_pretrained(esm_name)
         self.losses = ["ce"]  # Cross-entropy loss for classification
 
     def forward(self, batch_x):

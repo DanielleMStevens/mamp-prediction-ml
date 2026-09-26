@@ -7,6 +7,14 @@ import pandas as pd
 import torch.nn.functional as F
 import os
 
+from models.esm_utils import (
+    DEFAULT_ESM_NAME,
+    DEFAULT_UNFREEZE_LAYERS,
+    apply_esm_unfreeze,
+    resolve_esm_name,
+    resolve_unfreeze_layers,
+)
+
 class FiLMWithConcatenation(nn.Module):
     """
     FiLM layer that conditions sequence representation with chemical features.
@@ -247,22 +255,21 @@ class ESMBfactorWeightedFeatures(nn.Module):
         """
         super().__init__()
         
-        # Load pretrained ESM2 model and tokenizer
-        self.esm = AutoModel.from_pretrained("facebook/esm2_t6_8M_UR50D")
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t6_8M_UR50D")
-        
-        # notes: other size models from ESM2:
-        # Checkpoint name	Num layers	Num parameters
-        # esm2_t48_15B_UR50D	48	15B
-        # esm2_t36_3B_UR50D	36	3B
-        # esm2_t33_650M_UR50D	33	650M
-        # esm2_t30_150M_UR50D	30	150M
-        # esm2_t12_35M_UR50D	12	35M
-        # esm2_t6_8M_UR50D	6	8M
+        # Backbone size and unfreeze depth are configurable; must match the
+        # checkpoint used at load time. Default: esm2_t30_150M, last encoder layer.
+        # Other ESM2 sizes: 8M, 35M, 150M, 650M, 3B, 15B
+        esm_name = resolve_esm_name(args, default=DEFAULT_ESM_NAME)
+        n_unfreeze = resolve_unfreeze_layers(args, default=DEFAULT_UNFREEZE_LAYERS)
+        self.esm_model_name = esm_name
+        self.unfreeze_layers = n_unfreeze
+        self.esm = AutoModel.from_pretrained(esm_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(esm_name)
+        print(f"Loaded ESM backbone: {esm_name}")
+        apply_esm_unfreeze(self.esm, n_unfreeze)
 
         # --- Debug Tokenizer Info ---
         # This helps diagnose tokenization issues during development
-        print(f"DEBUG Tokenizer Info:")
+        print(f"DEBUG Tokenizer Info ({esm_name}):")
         print(f"  - eos_token: {self.tokenizer.eos_token}, eos_token_id: {self.tokenizer.eos_token_id}")
         print(f"  - cls_token: {self.tokenizer.cls_token}, cls_token_id: {self.tokenizer.cls_token_id}")
         print(f"  - pad_token: {self.tokenizer.pad_token}, pad_token_id: {self.tokenizer.pad_token_id}")
@@ -276,16 +283,6 @@ class ESMBfactorWeightedFeatures(nn.Module):
              # Fallback logic if EOS is None (shouldn't happen for ESM2)
              print("WARNING: EOS token ID is None. Check tokenizer configuration.")
              # Could add: raise ValueError("Could not find a suitable separator token ID")
-
-        # Freeze early layers of the ESM model to preserve learned protein representations
-        # Only fine-tune the later layers for the specific task
-        modules_to_freeze = [
-            self.esm.embeddings,  # Freeze embedding layer
-            *self.esm.encoder.layer[:5]  # Freeze first 5 transformer layers
-        ]
-        for module in modules_to_freeze:
-            for param in module.parameters():
-                param.requires_grad = False
         
         # Get feature dimension from ESM model
         self.hidden_size = self.esm.config.hidden_size
