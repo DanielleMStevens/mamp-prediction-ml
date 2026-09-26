@@ -369,13 +369,23 @@ plot = epitope_sequence_comparison_plot, device = "pdf", dpi = 300, width = 2.5,
 #  parse and compare epitope variant lengths
 ######################################################################
 
+# Collapse psn / fun / phytocytokine into "unknown" for the length ridge plot only
+length_plot_data <- load_training_ML_data %>%
+  dplyr::mutate(
+    Ligand_plot = dplyr::case_when(
+      as.character(Ligand) %in% c("psn", "fun", "phytocytokine", "unknown") ~ "unknown",
+      TRUE ~ as.character(Ligand)
+    )
+  )
+epitope_colors_length <- c(epitope_colors, "unknown" = "#9e9e9e")
+
 # ridge plot — keep theme_ridges spacing + light grey grid; no black box border
-epitope_length_comparison_plot <- ggplot(load_training_ML_data, aes(x = Ligand.Length, y = Ligand)) +
-  ggridges::geom_density_ridges(aes(fill = Ligand), 
+epitope_length_comparison_plot <- ggplot(length_plot_data, aes(x = Ligand.Length, y = Ligand_plot)) +
+  ggridges::geom_density_ridges(aes(fill = Ligand_plot), 
       rel_min_height = 0.01, alpha = 0.85, scale = 1.5, linewidth = 0.3, color = "black") +
   xlab("Length") +
   ylab("") +
-  scale_fill_manual(values = epitope_colors) +
+  scale_fill_manual(values = epitope_colors_length) +
   scale_y_discrete(expand = c(0, 0)) +
   scale_x_continuous(expand = c(0, 0)) +
   theme_ridges(center = TRUE, font_size = 8, font_family = "Helvetica Neue", grid = TRUE, line_size = 0.3) +

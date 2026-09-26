@@ -721,3 +721,28 @@ python 06_scripts_ml/06_main_train.py \
     --model_checkpoint_path mamp_ml/mamp_ml_weights.pth \
     --device cpu \
     --disable_wandb
+
+
+
+# ----------------------------- testing new scrambled peptide dataset as a negative control -----------------------------  #
+python3 scramble_peptide_sequences.py \
+  --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
+  --train_output 05_datasets/train_data_with_all_train_immuno_scrambled.csv \
+  --seed 42
+
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --train_csv 05_datasets/train_data_with_all_train_immuno_scrambled.csv \
+    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
+    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
+    --esm_model 8M \
+    --unfreeze_layers 1 \
+    --device mps \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 \
+    --output_dir ../model_results/41_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted
+
+
+  #  -----------------------------  END OF FILE  -----------------------------  #
