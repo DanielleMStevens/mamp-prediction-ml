@@ -7,7 +7,7 @@ Table of contents:
 
 This repository contains the code for the paper "A deep learning approach to epitope immunogenicity in plants" by Danielle Stevens, et al.
 
-The code is broken down into the following: Prepping the data for training and validation, model hyperparameter optization and independent assessement.
+The code is broken down into the following: Prepping the data for training and validation, model hyperparameter optization and independent assessement. We additionally use the final weights to assess k-shot learning on a new dataset as well as use the model to find other receptors using three diffferent datasets (one for homolog variants, one for homolog variants with expanded recognition, and one for a convergently evolved receptor).
 
 ```
 .
@@ -62,6 +62,7 @@ Rscript 08_model_analysis/00_visualize_input_data.R
 │   ├── receptor_sequence_comparison_plot.pdf
 │   ├── epitope_sequence_comparison_plot.pdf
 │   ├── epitope_length_comparison_plot.pdf
+
 
 # To run the following script below will make similar plots for just training and validation
 Rscript 08_model_analysis/01_visualize_train_data.R
@@ -169,10 +170,79 @@ python 01_LRR_Annotation/analyze_bfactor_peaks.py \
   -o ./04_Preprocessing_results/bfactor_winding_lrr_segments.csv
 
 ```
+Finally let's assess sequence diversity by clustering and how this changes model performance.
+
+```
+# outputs all the epitopes into a fasta file
+python -c "
+import pandas as pd, pathlib
+pathlib.Path('03_out_data').mkdir(exist_ok=True)
+d = pd.read_excel('02_in_data/All_LRR_PRR_ligand_data.xlsx', sheet_name='Model_Building')
+d['seq'] = d['Ligand Sequence'].astype(str).str.strip().str.upper()
+d['fam'] = d['Ligand'].astype(str).str.strip().str.replace(r'[^A-Za-z0-9.-]+','_',regex=True)
+u = d.drop_duplicates('seq').sort_values(['fam','seq'])
+u['hdr'] = u['fam'] + '_' + (u.groupby('fam').cumcount()+1).astype(str).str.zfill(3)
+assert u['hdr'].is_unique
+with open('03_out_data/epitopes.fasta','w') as f:
+    for h, s in zip(u['hdr'], u['seq']):
+        f.write(f'>{h}\n{s}\n')
+print(len(u), 'epitopes')
+"
+
+# then we will make a folder for the outputs of cd-hit and mmseqs
+mkdir -p 03_out_data/cd_hit_outputs 03_out_data/mmseqs_outputs
+
+# cd-hit runs
+cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_1.00 -c 1.00 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.95 -c 0.95 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.90 -c 0.90 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.85 -c 0.85 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.80 -c 0.80 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.70 -c 0.70 -n 4 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.60 -c 0.60 -n 3 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.50 -c 0.50 -n 2 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+
+# mmseqs outputs
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_1.00 03_out_data/tmp --min-seq-id 1.00 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.95 03_out_data/tmp --min-seq-id 0.95 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.90 03_out_data/tmp --min-seq-id 0.90 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.85 03_out_data/tmp --min-seq-id 0.85 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.80 03_out_data/tmp --min-seq-id 0.80 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.70 03_out_data/tmp --min-seq-id 0.70 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.60 03_out_data/tmp --min-seq-id 0.60 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.50 03_out_data/tmp --min-seq-id 0.50 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.40 03_out_data/tmp --min-seq-id 0.40 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+
+# plot the clustering outputs
+Rscript 08_model_analysis/08_clustering_plots.R
+
+```
+We will also want to plot sequence variation versus structural variation:
+```
+# install via conda tm-align
+conda install tmalign
+
+# run the script that will run tm-align as well as plot the results in comparison to their sequence similarlty
+TMALIGN_WORKERS=12 Rscript 08_model_analysis/09_sequence_vs_structure.R
+
+```
+
+
+
 ## 03. Model training and assessment
 
-
 We will then need to edit the main training script for which file to train and test with and run each model as described in model_train_commands.sh
+
 ```
 .
 ├── 06_scripts_ml/
@@ -221,10 +291,24 @@ This will prep the receptor sequences into a fasta file. We will then need to ru
 # Run the following command:
 colabfold_batch --num-models 1 ./09_testing_and_dropout/test_data_set/receptor_full_length_model_validation.fasta ./09_testing_and_dropout/test_data_set/receptor_only/
 ```
-With those structures, we will convert them for parsing via 
+After generating the structural models, we will process them to be compatible with colabfold parsing steps as well as generate the bfactor winding values for the model input. Run this on the main root director.
 
+```
+# This script will process the predicted PDB structures and output the required bfactor winding values as a CSV file, which can then be used in later data processing and model inference steps.
 
+python 01_LRR_Annotation/analyze_bfactor_peaks.py \
+    --pdb-dir ./09_testing_and_dropout/test_data_set/pdb_for_lrr_annotator/ \
+    -o ./09_testing_and_dropout/test_data_set/bfactor_winding_lrr_segments.csv
+```
 
+Then run the commands from main_train_commands.sh and run the model.
+
+```
+Rscript 07_model_results/04_embeddings_analysis.R \
+  --seqonly 09_testing_and_dropout/validation_data_set/model_02_test_predictions.csv \
+  --final 09_testing_and_dropout/validation_data_set/model_00_test_predictions.csv \
+  --output_dir 07_model_results/embeddings_comparison
+```
 
 ## 05. Zero vs. few shot on SCORE-csp22
 
@@ -269,7 +353,7 @@ python python 01_LRR_Annotation/analyze_bfactor_peaks.py
 We will then prepare our data in the formate for training and testing as well as add additional features. 
 
 ```
-##Update line 90 and 108 and 116
+## Update line 90 and 108 and 116
 python 09_testing_and_dropout/04_data_prep_for_test.py
 
 ## then in the 09_testing_and_dropout directory, run the following:
@@ -293,3 +377,134 @@ Created 05_datasets/few_shot_32 with 32 training samples
 ```
 
 We will then update main train for these script and assess how mamp-ml improves. See 
+
+## 06. How does mamp-ml compare to other structural models
+
+Assessing how mamp-ml compares to other structural models is important for determining its potential advantages. There are many structural models that exist but we will test a couple to A) see how they perform and B) determine if the outputs of those models in combination with a simple regession model can outcompete mamp-ml performance. 
+
+```
+# make director of outputs 
+mkdir 16_structural_models
+
+# we then wrote a script that inputs All_LRR_PRR_ligand_data.xlsx and outputs an updated excel sheet that has co-receptor information as well (we will want to compare structural models with and without co-receptor information)
+
+# install packages and run script
+conda install -y -c bioconda -c conda-forge parasail-python
+python 16_structural_models/serk_pipeline.py
+```
+
+Next, we need to build the multiple sequence alignments (MSAs) for each receptor sequence. This is an essential step for structural modeling, as high-quality MSAs will be used as input features for downstream structure prediction tools such as Boltz and will directly impact the accuracy of the resulting structural models.
+
+```
+# output for msas
+mkdir -p 16_structural_models/receptor_only_msas
+
+# install colabfold
+pip install uv
+uv venv ~/envs/colabfold --python 3.11
+source ~/envs/colabfold/bin/activate
+uv pip install colabfold
+
+# MMseqs2 static binary for macOS (Homebrew's version can lag behind what ColabFold needs)
+colabfold_search 03_out_data/lrr_domain_sequences.fasta ../colabfold_db 16_structural_models/receptor_only_msas \
+  --mmseqs /opt/homebrew/bin/mmseqs --use-env 1 --use-templates 0 --threads 14
+```
+
+Next, we need to prepare the necessary input files in the specific formats required by each structural model we plan to use. This involves running scripts that convert our processed sequence and annotation data into model-specific input directories and file types to ensure compatibility for downstream structure prediction analyses.
+
+
+```
+python 16_structural_models/build_inputs.py \
+  16_structural_models/SERK_coreceptor.tsv \
+  03_out_data/lrr_domain_sequences.fasta \
+  16_structural_models/receptor_only_msas \
+  16_structural_models/input_files_fold
+
+# outputs the following:
+├── 16_structural_models/
+│   └── input_files_fold/
+
+```
+First, we will install and run all receptor-epitope and receptor-epitope-co-receptor members from Model_Building section though Boltz-1. We will begin by running Boltz, a diffusion-based structural modeling tool, on our prepared input files. This will allow us to generate structural predictions for all receptor-epitope and receptor-epitope-co-receptor combinations, serving as a benchmark for our model comparison.
+
+```
+# --- Boltz-1 + Boltz-2 (same package, pick model with --model) -------------
+# boltz-community is a maintained fork with native `--accelerator mps`.
+uv venv envs/boltz --python 3.11
+source envs/boltz/bin/activate
+uv pip install boltz-community pandas pyyaml
+export PYTORCH_ENABLE_MPS_FALLBACK=1
+
+# Boltz-1
+boltz predict 16_structural_models/input_files_fold/boltz \
+--model boltz1 \
+--out_dir 16_structural_models/input_files_fold/boltz1 \
+--accelerator mps \
+--devices 1 \
+--recycling_steps 1 \
+--sampling_steps 100 \
+--num_subsampled_msa 256 \
+--diffusion_samples 1 \
+--output_format mmcif
+
+# Boltz-2
+boltz predict 16_structural_models/input_files_fold/boltz \
+--model boltz2 \
+--out_dir 16_structural_models/input_files_fold/boltz2 \
+--accelerator mps \
+--devices 1 \
+--recycling_steps 3 \
+--sampling_steps 200 \
+--diffusion_samples 1 \
+--output_format mmcif
+deactivate
+```
+
+
+
+
+```
+
+# RF3
+source ~/envs/rf3/bin/activate
+export PYTORCH_ENABLE_MPS_FALLBACK=1
+rf3 fold inputs="$PWD/16_structural_models/fold_bench/inputs/rf3" out_dir="$PWD/16_structural_models/fold_bench/outputs/rf3" early_stopping_plddt_threshold=0.0 diffusion_batch_size=5 raise_if_missing_msa_for_protein_of_length_n=50 skip_existing=true
+deactivate
+
+
+
+rf3 fold inputs="$PWD/16_structural_models/fold_bench/rf3.json" out_dir="$PWD/16_structural_models/fold_bench/outputs/rf3" early_stopping_plddt_threshold=0.0 diffusion_batch_size=5 raise_if_missing_msa_for_protein_of_length_n=50 skip_existing=true
+
+```
+
+
+
+
+
+
+```
+
+```
+
+
+```
+
+# --- RoseTTAFold3 (Foundry, Apple Silicon fork) -----------------------------
+uv venv envs/rf3 --python 3.12
+source envs/rf3/bin/activate
+uv pip install torch pandas
+uv pip install "rc-foundry[all] @ git+https://github.com/fnachon/foundry.git"
+foundry install rf3          # downloads latest RF3 checkpoint to ~/.foundry/checkpoints
+deactivate
+
+source ~/envs/rf3/bin/activate
+export PYTORCH_ENABLE_MPS_FALLBACK=1
+
+rf3 fold inputs="$PWD/16_structural_models/fold_bench/inputs/rf3" \
+  out_dir="$PWD/16_structural_models/fold_bench/outputs/rf3" \
+  early_stopping_plddt_threshold=0.0 \
+  diffusion_batch_size=5 \
+  raise_if_missing_msa_for_protein_of_length_n=50 \
+  skip_existing=true
+deactivate
+```
