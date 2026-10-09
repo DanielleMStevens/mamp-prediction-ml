@@ -1,6 +1,11 @@
+# Across all models:
+# len(ds_test)=488
+# len(ds_train)=1952
+
+
 # ------- Run 1: ESM2 with Receptor Model - 05_datasets/*_random.csv -------
-# model size: facebook/esm2_t30_150M_UR50D
-# Training 1,436,803 of 150,232,284 parameters
+# model size: facebook/esm2_t30_150M_UR50D, unfreeze last layer only
+# Training 6,772,444 of 150,232,284 parameters
 # data: 05_datasets/(train/test)_random.csv
 # Saved As: 01_random_esm2_with_receptor 
 
@@ -10,13 +15,15 @@ python 06_scripts_ml/06_main_train.py \
     --test_csv 05_datasets/test_random.csv \
     --device mps \
     --batch_size 12 \
+    --esm_model 150M \
+    --unfreeze_layers 1 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/01_random_esm2_with_receptor
+    --output_dir 07_model_results/01_random_esm2_with_receptor
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/01_random_esm2_with_receptor/test_preds.pth \
-    --output_dir ../model_results/01_random_esm2_with_receptor \
+    --predictions_path 07_model_results/01_random_esm2_with_receptor/test_preds.pth \
+    --output_dir 07_model_results/01_random_esm2_with_receptor \
     --data_info_path 05_datasets/test_random.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
@@ -24,8 +31,8 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/01_random_esm2_with_receptor/misclassification_report.tsv
 
 # ------- Run 2: ESM2 with Receptor Model - 05_datasets/*_immuno_stratify.csv -------
-# model size: facebook/esm2_t30_150M_UR50D
-# Training 1,436,803 of 150,232,284 parameters
+# model size: facebook/esm2_t30_150M_UR50D, unfreeze last layer only
+# Training 6,772,444 of 150,232,284 parameters
 # data: 05_datasets/(train/test)_immuno_stratify.csv
 # Saved As: 02_immuno_stratify_esm2_with_receptor 
 
@@ -34,14 +41,16 @@ python 06_scripts_ml/06_main_train.py \
     --train_csv 05_datasets/train_immuno_stratify.csv \
     --test_csv 05_datasets/test_immuno_stratify.csv \
     --device mps \
+    --esm_model 150M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/02_immuno_stratify_esm2_with_receptor
+    --output_dir 07_model_results/02_immuno_stratify_esm2_with_receptor
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/02_immuno_stratify_esm2_with_receptor/test_preds.pth \
-    --output_dir ../model_results/02_immuno_stratify_esm2_with_receptor \
+    --predictions_path 07_model_results/02_immuno_stratify_esm2_with_receptor/test_preds.pth \
+    --output_dir 07_model_results/02_immuno_stratify_esm2_with_receptor \
     --data_info_path 05_datasets/test_immuno_stratify.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
@@ -50,8 +59,8 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 
 
 # ------- Run 3: ESM2 with All Chemical Features Model - 05_datasets/*_data_with_all_train_random.csv -------
-# model size: facebook/esm2_t30_150M_UR50D
-# Training 1,436,803 of 150,232,284 parameters
+# model size: facebook/esm2_t30_150M_UR50D, unfreeze last layer only
+# Training 7,226,460 of 150,686,300 parameters
 # data: 05_datasets/(train/test)_data_with_all_test_random.csv
 # Saved As: 03_random_esm2_all_chemical_features
     
@@ -60,14 +69,16 @@ python 06_scripts_ml/06_main_train.py \
     --train_csv 05_datasets/train_data_with_all_train_random.csv \
     --test_csv 05_datasets/test_data_with_all_test_random.csv \
     --device mps \
+    --esm_model 150M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/03_random_esm2_all_chemical_features
+    --output_dir 07_model_results/03_random_esm2_all_chemical_features
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/03_random_esm2_all_chemical_features/test_preds.pth \
-    --output_dir ../model_results/03_random_esm2_all_chemical_features \
+    --predictions_path 07_model_results/03_random_esm2_all_chemical_features/test_preds.pth \
+    --output_dir 07_model_results/03_random_esm2_all_chemical_features \
     --data_info_path 05_datasets/test_data_with_all_test_random.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
@@ -76,22 +87,26 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 
 
 # ------- Run 4: ESM2 with All Chemical Features Model - 05_datasets/*_data_with_all_train_immuno_stratify.csv -------
+# model size: facebook/esm2_t30_150M_UR50D, unfreeze last layer only
+# Training Training 7,226,460 of 150,686,300 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
 # Saved As: 04_immuno_stratify_esm2_all_chemical_features
-
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_all_chemical_features \
     --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
     --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
     --device mps \
+    --esm_model 150M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/04_immuno_stratify_esm2_all_chemical_features
+    --output_dir 07_model_results/04_immuno_stratify_esm2_all_chemical_features
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/04_immuno_stratify_esm2_all_chemical_features/test_preds.pth \
-    --output_dir ../model_results/04_immuno_stratify_esm2_all_chemical_features \
+    --predictions_path 07_model_results/04_immuno_stratify_esm2_all_chemical_features/test_preds.pth \
+    --output_dir 07_model_results/04_immuno_stratify_esm2_all_chemical_features \
     --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
@@ -99,8 +114,8 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/04_immuno_stratify_esm2_all_chemical_features/misclassification_report.tsv
 
 # ------- Run 5: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_train_random.csv -------
-# model size: facebook/esm2_t30_150M_UR50D
-# Training 1,436,803 of 150,232,284 parameters
+# model size: facebook/esm2_t30_150M_UR50D, unfreeze last layer only
+# Training 7,226,460 of 150,686,300 parameters
 # data: 05_datasets/(train/test)_data_with_all_train_random.csv
 # Saved As: 05_random_esm2_bfactor_weighted
 
@@ -110,14 +125,16 @@ python 06_scripts_ml/06_main_train.py \
     --test_csv 05_datasets/test_data_with_all_test_random.csv \
     --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --device mps \
+    --esm_model 150M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/05_random_esm2_bfactor_weighted
+    --output_dir 07_model_results/05_random_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/05_random_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir ../model_results/05_random_esm2_bfactor_weighted \
+    --predictions_path 07_model_results/05_random_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/05_random_esm2_bfactor_weighted \
     --data_info_path 05_datasets/test_data_with_all_test_random.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
@@ -125,6 +142,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/05_random_esm2_bfactor_weighted/misclassification_report.tsv
 
 # ------- Run 6: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
+# model size: facebook/esm2_t30_150M_UR50D, unfreeze last layer only
+# Training 7,226,460 of 150,686,300 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
 # Saved As: 06_immuno_stratify_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
@@ -133,14 +153,16 @@ python 06_scripts_ml/06_main_train.py \
     --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
     --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --device mps \
+    --esm_model 150M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/06_immuno_stratify_esm2_bfactor_weighted
+    --output_dir 07_model_results/06_immuno_stratify_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/06_immuno_stratify_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir ../model_results/06_immuno_stratify_esm2_bfactor_weighted \
+    --predictions_path 07_model_results/06_immuno_stratify_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/06_immuno_stratify_esm2_bfactor_weighted \
     --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
@@ -149,8 +171,10 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 
 
 # ------- Run 7: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze last layer only
-# Saved As: 07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted
+# model size: facebook/esm2_t6_8M_UR50D, unfreeze last layer only
+# Training 1,821,180 of 8,324,860 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
+# Saved As: 07_esm2_t6_8M_UR50D_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -158,24 +182,28 @@ python 06_scripts_ml/06_main_train.py \
     --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
     --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --device mps \
+    --esm_model 8M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted
+    --output_dir 07_model_results/07_esm2_t6_8M_UR50D_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir ../model_results/07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted \
+    --predictions_path 07_model_results/07_esm2_t6_8M_UR50D_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/07_esm2_t6_8M_UR50D_esm2_bfactor_weighted \
     --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/07_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted/misclassification_report.tsv
+    07_model_results/07_esm2_t6_8M_UR50D_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/07_esm2_t6_8M_UR50D_esm2_bfactor_weighted/misclassification_report.tsv
 
 
 # ------- Run 8: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
-# ---------- tesing model size: esm2_t12_35M_UR50D, unfreeze last layer only
-# Saved As: 08_esm2_t12_35M_UR50D_last_layer_only_esm2_bfactor_weighted
+# model size: facebook/esm2_t12_35M_UR50D, unfreeze last layer only
+# Training 4,075,700 of 35,065,460 parameters   
+# data: 05_datasets/(train/test)_immuno_stratify.csv
+# Saved As: 08_esm2_t12_35M_UR50D_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -183,24 +211,28 @@ python 06_scripts_ml/06_main_train.py \
     --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
     --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --device mps \
+    --esm_model 35M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/08_esm2_t12_35M_UR50D_last_layer_only_esm2_bfactor_weighted
+    --output_dir 07_model_results/08_esm2_t12_35M_UR50D_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/08_esm2_t12_35M_UR50D_last_layer_only_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir ../model_results/08_esm2_t12_35M_UR50D_last_layer_only_esm2_bfactor_weighted \
+    --predictions_path 07_model_results/08_esm2_t12_35M_UR50D_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/08_esm2_t12_35M_UR50D_esm2_bfactor_weighted \
     --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/08_esm2_t12_35M_UR50D_last_layer_only_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/08_esm2_t12_35M_UR50D_last_layer_only_esm2_bfactor_weighted/misclassification_report.tsv
+    07_model_results/08_esm2_t12_35M_UR50D_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/08_esm2_t12_35M_UR50D_esm2_bfactor_weighted/misclassification_report.tsv
 
 
 # ------- Run 9: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
-# ---------- tesing model size: esm2_t30_150M_UR50D, unfreeze last layer only
-# Saved As: 09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted
+# model size: facebook/esm2_t33_650M_UR50D, unfreeze last layer only
+# Training 28,788,120 of 659,821,720 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
+# Saved As: 09_esm2_t33_650M_UR50D_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -208,48 +240,57 @@ python 06_scripts_ml/06_main_train.py \
     --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
     --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --device mps \
+    --esm_model 650M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted
-
-python 07_model_results/02_make_confusion_matrix.py \
-    --predictions_path 07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir 07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted \
-    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
-
-Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/09_esm2_t30_150M_UR50D_last_layer_only_esm2_bfactor_weighted/misclassification_report.tsv
-
-# ------- Run 10: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
-# ---------- tesing model size: esm2_t33_650M_UR50D, unfreeze last layer only
-# Saved As: 10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted
-
-python 06_scripts_ml/06_main_train.py \
-    --model esm2_bfactor_weighted \
-    --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
-    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
-    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
-    --device mps \
-    --batch_size 12 \
-    --epochs 15 \
-    --save_period 5 \
-    --output_dir ../model_results/10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted
+    --output_dir 07_model_results/09_esm2_t33_650M_UR50D_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir ../model_results/10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted \
+    --predictions_path 07_model_results/09_esm2_t33_650M_UR50D_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/09_esm2_t33_650M_UR50D_esm2_bfactor_weighted \
     --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/10_esm2_t33_650M_UR50D_last_layer_only_esm2_bfactor_weighted/misclassification_report.tsv
+    07_model_results/09_esm2_t33_650M_UR50D_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/09_esm2_t33_650M_UR50D_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+# ------- Run 10: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
+# model size: facebook/esm2_t36_3B_UR50D, unfreeze last layer only
+# Training 28,788,120 of 659,821,720 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
+# Saved As: 10_esm2_t36_3B_UR50D_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
+    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
+    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
+    --device mps \
+    --esm_model 3B \
+    --unfreeze_layers 1 \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 \
+    --output_dir 07_model_results/10_esm2_t36_3B_UR50D_esm2_bfactor_weighted
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/10_esm2_t36_3B_UR50D_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/10_esm2_t36_3B_UR50D_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/10_esm2_t36_3B_UR50D_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/10_esm2_t36_3B_UR50D_esm2_bfactor_weighted/misclassification_report.tsv
 
 
 # ------- Run 11: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 2 layers 
-# Saved As: 11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted
+# model size: facebook/esm2_t48_15B_UR50D, unfreeze last layer only
+# Training 28,788,120 of 659,821,720 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
+# Saved As: 11_esm2_t48_15B_UR50D_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -257,25 +298,28 @@ python 06_scripts_ml/06_main_train.py \
     --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
     --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --device mps \
+    --esm_model 15B \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted
+    --output_dir 07_model_results/11_esm2_t48_15B_UR50D_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir ../model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted \
+    --predictions_path 07_model_results/11_esm2_t48_15B_UR50D_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/11_esm2_t48_15B_UR50D_esm2_bfactor_weighted \
     --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/11_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/misclassification_report.tsv
+    07_model_results/11_esm2_t48_15B_UR50D_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/11_esm2_t48_15B_UR50D_esm2_bfactor_weighted/misclassification_report.tsv
 
 
 # ------- Run 12: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 3 layers 
-# Saved As: 12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted
-
+# model size: facebook/esm2_t6_8M_UR50D, unfreeze 2 layers only
+# Training 3,054,140 of 8,324,860 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
+# Saved As: 12_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -283,116 +327,110 @@ python 06_scripts_ml/06_main_train.py \
     --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
     --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --device mps \
+    --esm_model 8M \
+    --unfreeze_layers 2 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted
+    --output_dir 07_model_results/12_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path ../model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir ../model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted \
+    --predictions_path 07_model_results/12_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/12_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted \
     --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
 Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/12_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/misclassification_report.tsv
+    07_model_results/12_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/12_esm2_t6_8M_UR50D_two_layers_esm2_bfactor_weighted/misclassification_report.tsv
 
 
-# ------- Run 13: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives.csv -------
+# ------- Run 13: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
+# model size: facebook/esm2_t6_8M_UR50D, unfreeze 3 layers only
+# Training 4,287,100 of 8,324,860 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
+# Saved As: 13_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
+    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
+    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
+    --device mps \
+    --esm_model 8M \
+    --unfreeze_layers 3 \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 \
+    --output_dir 07_model_results/13_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/13_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/13_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/13_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/13_esm2_t6_8M_UR50D_three_layers_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+# ------- Run 14: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12, use synthetic negatives (0.1 ratio)
-# Saved As: 13_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted
+# Saved As: 14_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted
 
-python 06_scripts_ml/06_main_train.py \
-    --model esm2_bfactor_weighted \
-    --data_dir 05_datasets \
-    --device cpu \
-    --batch_size 12 \
-    --epochs 20 \
-    --save_period 10 
-
-python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path 07_model_results/13_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir 07_model_results/13_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted \
-    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
-
-Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/13_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/13_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted/misclassification_report.tsv
-
-# ------- Run 14: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives_enhanced.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12, use synthetic negatives enhanced (1.0 ratio)
-# Saved As: 14_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted
-
-
-python 06_scripts_ml/06_main_train.py \
-    --model esm2_bfactor_weighted \
-    --data_dir 05_datasets \
-    --device cpu \
-    --batch_size 12 \
-    --epochs 20 \
-    --save_period 10 
-
-python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path 07_model_results/14_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir 07_model_results/14_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted \
-    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
-
-Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/14_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/14_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted/misclassification_report.tsv
-
-# ------- Run 15: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives_semienhanced.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12, use synthetic negatives enhanced (0.5 ratio)
-# Saved As: 15_esm2_t6_8M_UR50D_syn_data_semienhanced_esm2_bfactor_weighted
-
-python 06_scripts_ml/06_main_train.py \
-    --model esm2_bfactor_weighted \
-    --data_dir 05_datasets \
-    --device cpu \
-    --batch_size 12 \
-    --epochs 20 \
-    --save_period 10 
-
-python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path 07_model_results/15_esm2_t6_8M_UR50D_syn_data_semienhanced_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir 07_model_results/15_esm2_t6_8M_UR50D_syn_data_semienhanced_esm2_bfactor_weighted \
-    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
-
-Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/15_esm2_t6_8M_UR50D_syn_data_semienhanced_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/15_esm2_t6_8M_UR50D_syn_data_semienhanced_esm2_bfactor_weighted/misclassification_report.tsv
-
-
-# ------- Run 16: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives_semienhanced.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 16, use synthetic negatives enhanced (0.5 ratio)
-# Saved As: 16_esm2_t6_8M_UR50D_semi_syn_data_larger_batch_esm2_bfactor_weighted
-
-python 06_scripts_ml/06_main_train.py \
-    --model esm2_bfactor_weighted \
-    --data_dir 05_datasets \
-    --device cpu \
-    --batch_size 16 \
-    --epochs 20 \
-    --save_period 10
-
-
-python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path 07_model_results/16_esm2_t6_8M_UR50D_semi_syn_data_larger_batch_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir 07_model_results/16_esm2_t6_8M_UR50D_semi_syn_data_larger_batch_esm2_bfactor_weighted \
-    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
-
-Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/16_esm2_t6_8M_UR50D_semi_syn_data_larger_batch_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/16_esm2_t6_8M_UR50D_semi_syn_data_larger_batch_esm2_bfactor_weighted/misclassification_report.tsv
-
-# ------- Run 17: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12, use synthetic negatives (0.1 ratio)
-# ---------- adjust weight class in pytorch as (1.0, 1.0, 2.0) - line 318-319 of esm_positon_weighted.py
-# Saved As: 17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
-
+# first we need to generate the synthetic negatives
 python generate_synthetic_negatives.py \
   -r 0.1 \
   -o 05_datasets/train_data_with_synthetic_negatives.csv
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets \
+    --device cpu \
+    --batch_size 12 \
+    --epochs 20 \
+    --save_period 10 
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/14_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/14_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/14_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/14_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted/misclassification_report.tsv
+
+# ------- Run 15: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives_enhanced.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, use synthetic negatives enhanced (1.0 ratio)
+# Saved As: 15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted
+
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --data_dir 05_datasets \
+    --device cpu \
+    --batch_size 12 \
+    --epochs 20 \
+    --save_period 10 
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+
+# ------- Run 17: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives.csv -------
+# model size: facebook/esm2_t6_8M_UR50D, unfreeze 1 layers only
+# Training 3,054,140 of 8,324,860 parameters
+# data: 05_datasets/(train/test)_immuno_stratify.csv
+# adjust weight class in pytorch as (1.0, 1.0, 2.0) - line 318-319 of esm_positon_weighted.py
+# Saved As: 17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
+
+
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -746,3 +784,17 @@ python 06_scripts_ml/06_main_train.py \
 
 
   #  -----------------------------  END OF FILE  -----------------------------  #
+
+# 
+pip install git+https://github.com/aqlaboratory/openfold.git
+export PYTORCH_ENABLE_MPS_FALLBACK=1
+
+python 06_scripts_ml/06_main_train.py \
+  --model alphafold_fine_tune \
+  --train_csv 05_datasets/train_immuno_stratify.csv \
+  --test_csv 05_datasets/test_immuno_stratify.csv \
+  --finetune_backbone 06_scripts_ml/models/af2_params/params_model_3_ptm.npz \
+  --unfreeze_layers 1 \
+  --batch_size 1 \
+  --epochs 50 \
+  --output_dir ../model_results/alphafold_fine_tune_seqonly

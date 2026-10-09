@@ -28,8 +28,8 @@ library(pwalign, warn.conflicts = FALSE, quietly = TRUE)
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
 names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop","screw")
 
-receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
-names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","RLP23", "PERU", "RLP42", "MIK2","NUT")
+receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#c5b3d0","#c5b3d0","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D", "#db7407","#7a1840","#b3adad")
+names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR","LNR","LNR-like","RLP23", "PERU", "RLP42", "MIK2","NUT", "phytokinine","PEPR","unknown")
 
 
 ######################################################################
@@ -47,13 +47,25 @@ load_AF3_data_summary <- load_AF3_data %>%
   summarise(n = n()) %>%
   mutate(n = ifelse(Prediction == "Correct", -n, n))
 
-load_AF3_data_summary$n[load_AF3_data_summary$Receptor == "INR" & load_AF3_data_summary$Prediction == "Correct"] <- 
-  load_AF3_data_summary$n[load_AF3_data_summary$Receptor == "INR" & load_AF3_data_summary$Prediction == "Correct"] + 
-  load_AF3_data_summary$n[load_AF3_data_summary$Receptor == "INR-like" & load_AF3_data_summary$Prediction == "Correct"]
-load_AF3_data_summary <- load_AF3_data_summary[load_AF3_data_summary$Receptor != "INR-like",]
+# Combine -like variants into parent receptor (Correct + Misclassified rows)
+for (pair in list(c("INR", "INR-like"), c("LNR", "LNR-like"))) {
+  parent <- pair[[1]]
+  child <- pair[[2]]
+  for (pred in unique(load_AF3_data_summary$Prediction)) {
+    parent_idx <- load_AF3_data_summary$Receptor == parent & load_AF3_data_summary$Prediction == pred
+    child_idx <- load_AF3_data_summary$Receptor == child & load_AF3_data_summary$Prediction == pred
+    if (any(parent_idx) && any(child_idx)) {
+      load_AF3_data_summary$n[parent_idx] <-
+        load_AF3_data_summary$n[parent_idx] + load_AF3_data_summary$n[child_idx]
+    } else if (any(child_idx) && !any(parent_idx)) {
+      load_AF3_data_summary$Receptor[child_idx] <- parent
+    }
+  }
+  load_AF3_data_summary <- load_AF3_data_summary[load_AF3_data_summary$Receptor != child, ]
+}
 
 #organize receptors for plotting to match model results
-receptor_order <- c("FLS2", "RLP23", "CORE", "EFR", "MIK2", "RLP42", "PERU",  "INR", "CuRe1", "FLS3", "NUT")
+receptor_order <- c("FLS2", "RLP23", "CORE", "EFR", "MIK2", "RLP42", "PERU", "INR", "LNR", "CuRe1", "FLS3", "NUT", "phytokinine", "PEPR", "unknown")
 load_AF3_data_summary <- load_AF3_data_summary %>% mutate(Receptor = factor(Receptor, levels = rev(receptor_order))) # rev() for top-down display
 
 # plot distribution of correct and misclassified predictions

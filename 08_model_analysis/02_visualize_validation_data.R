@@ -23,8 +23,8 @@ library(ggridges)
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
 names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop","screw")
 
-receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce", "#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
-names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR", "INR-like","RLP23", "PERU", "RLP42", "MIK2","NUT")
+receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce", "#86c0ce","#c5b3d0","#c5b3d0","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D", "#db7407","#7a1840","#b3adad")
+names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR", "INR-like","LNR","LNR-like","RLP23", "PERU", "RLP42", "MIK2","NUT", "phytokinine","PEPR","unknown")
 
 
 ######################################################################
@@ -52,9 +52,19 @@ test_data$Ligand.Length <- nchar(test_data$Sequence)
 test_summary <- test_data %>% group_by(Receptor) %>% summarize(n = n())
 test_summary$validation_data <- "validation_data"
 
-# Combine INR and INR-like counts and remove INR-like
-test_summary$n[test_summary$Receptor == "INR"] <- test_summary$n[test_summary$Receptor == "INR"] + test_summary$n[test_summary$Receptor == "INR-like"]
-test_summary <- test_summary[test_summary$Receptor != "INR-like",]
+# Combine -like variants into parent receptor counts
+for (pair in list(c("INR", "INR-like"), c("LNR", "LNR-like"))) {
+  parent <- pair[[1]]
+  child <- pair[[2]]
+  if (parent %in% test_summary$Receptor && child %in% test_summary$Receptor) {
+    test_summary$n[test_summary$Receptor == parent] <-
+      test_summary$n[test_summary$Receptor == parent] +
+      test_summary$n[test_summary$Receptor == child]
+  } else if (child %in% test_summary$Receptor && !(parent %in% test_summary$Receptor)) {
+    test_summary$Receptor[test_summary$Receptor == child] <- parent
+  }
+  test_summary <- test_summary[test_summary$Receptor != child, ]
+}
 
 # plot a stacked bar chart of the number of sequences in each Receptor
 test_summary_plot <- ggplot(test_summary, aes(x = validation_data, y = n, fill = Receptor)) +
@@ -79,7 +89,10 @@ test_summary_plot <- ggplot(test_summary, aes(x = validation_data, y = n, fill =
     "RLP23" = "white",    # Dark color - white text
     "PERU" = "white",     # Dark color - white text
     "RLP42" = "white",    # Dark color - white text
-    "MIK2" = "white"      # Dark color - white text
+    "MIK2" = "white",     # Dark color - white text
+    "phytokinine" = "white",
+    "PEPR" = "white",
+    "unknown" = "black"
   )) +
   xlab("") +
   ylab("Count")

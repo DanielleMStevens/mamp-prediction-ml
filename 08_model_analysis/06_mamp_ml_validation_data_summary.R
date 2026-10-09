@@ -13,8 +13,8 @@ library(ggridges, warn.conflicts = FALSE, quietly = TRUE)
 epitope_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
 names(epitope_colors) <- c("crip21","csp22","elf18","flg22","flgII-28","In11","nlp", "pep-25", "pg", "scoop","screw")
 
-receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce", "#86c0ce","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D")
-names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR", "INR-like","RLP23", "PERU", "RLP42", "MIK2","NUT")
+receptor_colors <- c("#b35c46","#e2b048","#ebd56d","#b9d090","#37a170","#86c0ce", "#86c0ce","#c5b3d0","#c5b3d0","#7d9fc6", "#32527B", "#542a64", "#232232","#D5869D", "#db7407","#7a1840","#b3adad")
+names(receptor_colors) <- c("CuRe1","CORE","EFR","FLS2","FLS3","INR", "INR-like","LNR","LNR-like","RLP23", "PERU", "RLP42", "MIK2","NUT", "phytokinine","PEPR","unknown")
 
 
 # Define file paths
