@@ -260,6 +260,7 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 # ------- Run 10: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
 # model size: facebook/esm2_t36_3B_UR50D, unfreeze last layer only
 # Training 28,788,120 of 659,821,720 parameters
+Training 114,920,100 of 2,871,307,940 parameters
 # data: 05_datasets/(train/test)_immuno_stratify.csv
 # Saved As: 10_esm2_t36_3B_UR50D_esm2_bfactor_weighted
 
@@ -376,6 +377,7 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 # ------- Run 14: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12, use synthetic negatives (0.1 ratio)
 # Saved As: 14_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted
+# Training 1,821,180 of 8,324,860 parameters
 
 # first we need to generate the synthetic negatives
 python generate_synthetic_negatives.py \
@@ -384,11 +386,17 @@ python generate_synthetic_negatives.py \
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
+    --train_csv 05_datasets/train_data_with_synthetic_negatives.csv \
+    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
+    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --data_dir 05_datasets \
-    --device cpu \
+    --device mps \
+    --esm_model 8M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
-    --epochs 20 \
-    --save_period 10 
+    --epochs 15 \
+    --save_period 5 \
+    --output_dir 07_model_results/14_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
     --predictions_path 07_model_results/14_esm2_t6_8M_UR50D_syn_data_esm2_bfactor_weighted/test_preds.pth \
@@ -403,14 +411,24 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, use synthetic negatives enhanced (1.0 ratio)
 # Saved As: 15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted
 
+# first we need to generate the synthetic negatives
+python generate_synthetic_negatives.py \
+  -r 0.1 \
+  -o 05_datasets/train_data_with_synthetic_negatives.csv
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
+    --train_csv 05_datasets/train_data_with_synthetic_negatives.csv \
+    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
+    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --data_dir 05_datasets \
-    --device cpu \
+    --device mps \
+    --esm_model 8M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
-    --epochs 20 \
-    --save_period 10 
+    --epochs 15 \
+    --save_period 5 \
+    --output_dir 07_model_results/15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
     --predictions_path 07_model_results/15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted/test_preds.pth \
@@ -422,35 +440,56 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/15_esm2_t6_8M_UR50D_syn_data_enhanced_esm2_bfactor_weighted/misclassification_report.tsv
 
 
-
-# ------- Run 17: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives.csv -------
+# ------- Run 16: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
 # model size: facebook/esm2_t6_8M_UR50D, unfreeze 1 layers only
-# Training 3,054,140 of 8,324,860 parameters
+# Training 1,821,180 of 8,324,860 parameters
 # data: 05_datasets/(train/test)_immuno_stratify.csv
 # adjust weight class in pytorch as (1.0, 1.0, 2.0) - line 318-319 of esm_positon_weighted.py
-# Saved As: 17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
-
-
+# Saved As: 16_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
-    --train_csv 05_datasets/train_data_with_synthetic_negatives.csv \
+    --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
     --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
     --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
     --class_weights 1.0 1.0 2.0 \
     --device mps \
+    --esm_model 8M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
     --epochs 15 \
     --save_period 5 \
-    --output_dir ../model_results/17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
+    --output_dir 07_model_results/16_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/16_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/16_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/16_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/16_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/misclassification_report.tsv
+
+
+# ------- Run 17: ESM2 with Position Weighted Model - 05_datasets/*_data_with_all_test_immuno_stratify.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12, use synthetic negatives (0.1 ratio)
+# Training 1,821,180 of 8,324,860 parameters
+# ---------- adjust weight class in pytorch as (1.0, 1.0, 3.0) - line 317 of esm_positon_weighted.py
+# Saved As: 17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
-    --data_dir 05_datasets \
-    --device cpu \
+    --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
+    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
+    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
+    --class_weights 1.3 0.5 6.0 \
+    --device mps \
+    --esm_model 8M \
+    --unfreeze_layers 1 \
     --batch_size 12 \
-    --epochs 20 \
-    --save_period 10 
+    --epochs 15 \
+    --save_period 5 \
+    --output_dir 07_model_results/17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
 
 python 07_model_results/01_make_confusion_matrix.py \
     --predictions_path 07_model_results/17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/test_preds.pth \
@@ -461,51 +500,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/17_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/misclassification_report.tsv
 
-
-# ------- Run 18: ESM2 with Position Weighted Model - 05_datasets/train_data_with_synthetic_negatives.csv -------
-# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 12, use synthetic negatives (0.1 ratio)
-# ---------- adjust weight class in pytorch as (1.0, 1.0, 3.0) - line 317 of esm_positon_weighted.py
-# Saved As: 18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
-
-python 06_scripts_ml/06_main_train.py \
-    --model esm2_bfactor_weighted \
-    --train_csv 05_datasets/train_data_with_synthetic_negatives.csv \
-    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
-    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
-    --class_weights 1.0 1.0 3.0 \
-    --device mps \
-    --batch_size 12 \
-    --epochs 15 \
-    --save_period 5 \
-    --output_dir ../model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
-
-python 07_model_results/01_make_confusion_matrix.py \
-    --predictions_path 07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/test_preds.pth \
-    --output_dir 07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted \
-    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
-
-Rscript 07_model_results/00_visualize_model_predictions.R \
-    07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/correct_classification_report.tsv \
-    07_model_results/18_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted/misclassification_report.tsv
-
-
-
-
-python 06_scripts_ml/06_main_train.py \
-    --model esm2_bfactor_weighted \
-    --train_csv 05_datasets/train_data_with_synthetic_negatives.csv \
-    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
-    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
-    --class_weights 1.3 0.5 6.0 \
-    --device mps \
-    --batch_size 12 \
-    --epochs 15 \
-    --save_period 5 \
-    --output_dir ../model_results/28_esm2_t6_8M_UR50D_syn_data_class_weights_esm2_bfactor_weighted
-
-# ------- Run 19: ESM2 with Position Weighted Model - 05_datasets/few_shot_2/train_data_2_shot.csv -------
+# ------- Run 18: ESM2 with Position Weighted Model - 05_datasets/few_shot_2/train_data_2_shot.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 2, use few shot data (2 shot)
-# Saved As: 19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted
+# Saved As: 18_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -527,14 +524,16 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/19_esm2_t6_8M_UR50D_few_shot_2_esm2_bfactor_weighted/misclassification_report.tsv
 
-# ------- Run 20: ESM2 with Position Weighted Model - 05_datasets/few_shot_4/train_data_4_shot.csv -------
+# ------- Run 19: ESM2 with Position Weighted Model - 05_datasets/few_shot_4/train_data_4_shot.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 4, use few shot data (4 shot)
-# Saved As: 20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted
+# Saved As: 19_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
     --data_dir 05_datasets/few_shot_4 \
-    --device cpu \
+    --device mps \
+    --esm_model 8M \
+    --unfreeze_layers 1 \
     --batch_size 4 \
     --epochs 10 \
     --save_period 5 \
@@ -551,9 +550,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/20_esm2_t6_8M_UR50D_few_shot_4_esm2_bfactor_weighted/misclassification_report.tsv
 
-# ------- Run 21: ESM2 with Position Weighted Model - 05_datasets/few_shot_8/train_data_8_shot.csv -------
+# ------- Run 20: ESM2 with Position Weighted Model - 05_datasets/few_shot_8/train_data_8_shot.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 8, use few shot data (8 shot)
-# Saved As: 21_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted
+# Saved As: 20_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -575,9 +574,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/21_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/21_esm2_t6_8M_UR50D_few_shot_8_esm2_bfactor_weighted/misclassification_report.tsv
 
-# ------- Run 22: ESM2 with Position Weighted Model - 05_datasets/few_shot_16/train_data_16_shot.csv -------
+# ------- Run 21: ESM2 with Position Weighted Model - 05_datasets/few_shot_16/train_data_16_shot.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 16, use few shot data (16 shot)
-# Saved As: 22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted
+# Saved As: 21_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -599,9 +598,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/22_esm2_t6_8M_UR50D_few_shot_16_esm2_bfactor_weighted/misclassification_report.tsv
 
-# ------- Run 23: ESM2 with Position Weighted Model - 05_datasets/few_shot_32/train_data_32_shot.csv -------
+# ------- Run 22: ESM2 with Position Weighted Model - 05_datasets/few_shot_32/train_data_32_shot.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 32, use few shot data (32 shot)
-# Saved As: 23_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted
+# Saved As: 22_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -623,9 +622,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/23_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/23_esm2_t6_8M_UR50D_few_shot_32_esm2_bfactor_weighted/misclassification_report.tsv
 
-# ------- Run 24: ESM2 with Position Weighted Model - 05_datasets/few_shot_64/train_data_64_shot.csv -------
+# ------- Run 23: ESM2 with Position Weighted Model - 05_datasets/few_shot_64/train_data_64_shot.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 64, use few shot data (64 shot)
-# Saved As: 24_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted
+# Saved As: 23_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -647,9 +646,9 @@ Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/24_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/24_esm2_t6_8M_UR50D_few_shot_64_esm2_bfactor_weighted/misclassification_report.tsv
 
-# ------- Run 25: ESM2 with Position Weighted Model - 05_datasets/few_shot_128/train_data_128_shot.csv -------
+# ------- Run 24: ESM2 with Position Weighted Model - 05_datasets/few_shot_128/train_data_128_shot.csv -------
 # ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, adjust batch size to 128, use few shot data (128 shot)
-# Saved As: 25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted
+# Saved As: 24_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted
 
 python 06_scripts_ml/06_main_train.py \
     --model esm2_bfactor_weighted \
@@ -670,6 +669,62 @@ python 07_model_results/01_make_confusion_matrix.py \
 Rscript 07_model_results/00_visualize_model_predictions.R \
     07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/correct_classification_report.tsv \
     07_model_results/25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted/misclassification_report.tsv
+
+# ----------------------------- testing new scrambled peptide dataset as a negative control -----------------------------  #
+# ------- Run 25: ESM2 with Position Weighted Model - 05_datasets/train_data_with_all_train_immuno_scrambled.csv -------
+# ---------- tesing model size: esm2_t6_8M_UR50D, unfreeze 1 layers, use scrambled data
+# Saved As: 25_esm2_t6_8M_UR50D_scrambled_data_esm2_bfactor_weighted
+
+python3 scramble_peptide_sequences.py \
+  --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
+  --train_output 05_datasets/train_data_with_all_train_immuno_scrambled.csv \
+  --seed 42
+
+python 06_scripts_ml/06_main_train.py \
+    --model esm2_bfactor_weighted \
+    --train_csv 05_datasets/train_data_with_all_train_immuno_scrambled.csv \
+    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
+    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
+    --esm_model 8M \
+    --unfreeze_layers 1 \
+    --device mps \
+    --batch_size 12 \
+    --epochs 15 \
+    --save_period 5 \
+    --output_dir 07_model_results/25_esm2_t6_8M_UR50D_scrambled_data_esm2_bfactor_weighted
+
+python 07_model_results/01_make_confusion_matrix.py \
+    --predictions_path 07_model_results/25_esm2_t6_8M_UR50D_scrambled_data_esm2_bfactor_weighted/test_preds.pth \
+    --output_dir 07_model_results/25_esm2_t6_8M_UR50D_scrambled_data_esm2_bfactor_weighted \
+    --data_info_path 05_datasets/test_data_with_all_test_immuno_stratify.csv
+
+Rscript 07_model_results/00_visualize_model_predictions.R \
+    07_model_results/25_esm2_t6_8M_UR50D_scrambled_data_esm2_bfactor_weighted/correct_classification_report.tsv \
+    07_model_results/25_esm2_t6_8M_UR50D_scrambled_data_esm2_bfactor_weighted/misclassification_report.tsv
+
+# ------- Run 26: AlphaFold with Position Weighted Model - 05_datasets/train_data_with_all_train_immuno_scrambled.csv -------
+# ---------- tesing model size: alphafold, unfreeze 1 layers, adjust batch size to 1, use scrambled data
+# Saved As: 26_alphafold_fine_tune_scrambled_data_alphafold_bfactor_weighted
+# Training 518,019 of 90,619,037 parameters
+
+# OpenFold wheel omits several runtime deps used by alphafold_fine_tune.py
+pip install git+https://github.com/aqlaboratory/openfold.git
+pip install ml-collections dm-tree modelcif einops
+export PYTORCH_ENABLE_MPS_FALLBACK=1
+
+python 06_scripts_ml/06_main_train.py \
+  --model alphafold_fine_tune \
+  --train_csv 05_datasets/train_immuno_stratify.csv \
+  --test_csv 05_datasets/test_immuno_stratify.csv \
+  --finetune_backbone 06_scripts_ml/models/af2_params/params_model_3_ptm.npz \
+  --unfreeze_layers 1 \
+  --batch_size 1 \
+  --epochs 15 \
+  --device mps \
+  --output_dir 07_model_results/26_alphafold_fine_tune_seqonly_unfreeze_1
+
+
+
 
 # running 25_esm2_t6_8M_UR50D_few_shot_128_esm2_bfactor_weighted with each of brunos data sets
 
@@ -762,39 +817,8 @@ python 06_scripts_ml/06_main_train.py \
 
 
 
-# ----------------------------- testing new scrambled peptide dataset as a negative control -----------------------------  #
-python3 scramble_peptide_sequences.py \
-  --train_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
-  --train_output 05_datasets/train_data_with_all_train_immuno_scrambled.csv \
-  --seed 42
 
-
-python 06_scripts_ml/06_main_train.py \
-    --model esm2_bfactor_weighted \
-    --train_csv 05_datasets/train_data_with_all_train_immuno_scrambled.csv \
-    --test_csv 05_datasets/test_data_with_all_test_immuno_stratify.csv \
-    --bfactor_csv_path 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
-    --esm_model 8M \
-    --unfreeze_layers 1 \
-    --device mps \
-    --batch_size 12 \
-    --epochs 15 \
-    --save_period 5 \
-    --output_dir ../model_results/41_esm2_t6_8M_UR50D_last_layer_only_esm2_bfactor_weighted
 
 
   #  -----------------------------  END OF FILE  -----------------------------  #
 
-# 
-pip install git+https://github.com/aqlaboratory/openfold.git
-export PYTORCH_ENABLE_MPS_FALLBACK=1
-
-python 06_scripts_ml/06_main_train.py \
-  --model alphafold_fine_tune \
-  --train_csv 05_datasets/train_immuno_stratify.csv \
-  --test_csv 05_datasets/test_immuno_stratify.csv \
-  --finetune_backbone 06_scripts_ml/models/af2_params/params_model_3_ptm.npz \
-  --unfreeze_layers 1 \
-  --batch_size 1 \
-  --epochs 50 \
-  --output_dir ../model_results/alphafold_fine_tune_seqonly

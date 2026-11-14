@@ -75,7 +75,7 @@ from sklearn.manifold import TSNE
 plt.rcParams.update({
     "font.family": "sans-serif",
     "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
-    "font.size": 8,
+    "font.size": 10,
     "axes.linewidth": 0.35,
     "xtick.major.width": 0.3,
     "ytick.major.width": 0.3,
@@ -87,7 +87,7 @@ plt.rcParams.update({
     "ps.fonttype": 42,
 })
 
-# Project palette (aligned with other figures)
+# Project palette (receptor colors match 08_model_analysis/00_visualize_input_data.R)
 OUTCOME_COLORS = {
     "Immunogenic": "#e07a3d",
     "Non-Immunogenic": "#4c78a8",
@@ -100,11 +100,18 @@ RECEPTOR_COLORS = {
     "FLS2": "#b9d090",
     "FLS3": "#37a170",
     "INR": "#86c0ce",
+    "INR-like": "#86c0ce",
+    "LNR": "#c5b3d0",
+    "LNR-like": "#c5b3d0",
     "RLP23": "#7d9fc6",
     "PERU": "#32527B",
     "RLP42": "#542a64",
     "MIK2": "#232232",
     "NUT": "#D5869D",
+    "phytocytokine": "#db7407",
+    "PEPR": "#7a1840",
+    "SCORE": "#1A7A6D",
+    "unknown": "#b3adad",
 }
 CATEGORY_TO_INDEX = {
     "Immunogenic": 0,
@@ -161,6 +168,10 @@ class TrainEmbeddingDataset:
         receptor = str(row.get("Receptor", ""))
         if receptor == "INR-like":
             receptor_plot = "INR"
+        elif receptor == "LNR-like":
+            receptor_plot = "LNR"
+        elif receptor == "phytocytokine_receptor":
+            receptor_plot = "phytocytokine"
         else:
             receptor_plot = receptor
         epitope = str(row.get("Epitope", row.get("Ligand", "")))
@@ -543,13 +554,24 @@ def _style_ax(ax):
         length=1.5,
         width=0.3,
         colors="black",
-        labelsize=7,
+        labelsize=9,
         top=False,
         right=False,
     )
 
 
-def _scatter(ax, x, y, labels, color_map, title, method="UMAP", legend_ncol=1, point_size=6):
+def _scatter(
+    ax,
+    x,
+    y,
+    labels,
+    color_map,
+    title,
+    method="UMAP",
+    legend_ncol=1,
+    point_size=3.5,
+    draw_legend=True,
+):
     unique = list(dict.fromkeys(labels))
     for lab in unique:
         mask = np.array([l == lab for l in labels])
@@ -564,23 +586,50 @@ def _scatter(ax, x, y, labels, color_map, title, method="UMAP", legend_ncol=1, p
             edgecolors="none",
             linewidths=0,
         )
-    ax.set_title(title, fontsize=8, color="black", pad=4)
-    ax.set_xlabel(f"{method} 1", fontsize=8, color="black")
-    ax.set_ylabel(f"{method} 2", fontsize=8, color="black")
+    ax.set_title(title, fontsize=10, color="black", pad=3)
+    ax.set_xlabel(f"{method} 1", fontsize=10, color="black")
+    ax.set_ylabel(f"{method} 2", fontsize=10, color="black")
+    ax.set_box_aspect(1)
     _style_ax(ax)
+    if draw_legend:
+        _legend_below(ax, ncol=legend_ncol)
+
+
+def _legend_below(ax, ncol=1):
+    """Place legend centered under the axes (outside the plot area)."""
     leg = ax.legend(
-        fontsize=5.5,
+        fontsize=7,
         frameon=False,
-        loc="best",
-        ncol=legend_ncol,
-        markerscale=1.2,
-        handletextpad=0.3,
-        borderaxespad=0.2,
-        labelspacing=0.25,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.28),
+        ncol=ncol,
+        markerscale=1.1,
+        handletextpad=0.25,
+        columnspacing=0.8,
+        borderaxespad=0.0,
+        labelspacing=0.2,
     )
     if leg is not None:
         for text in leg.get_texts():
             text.set_color("black")
+
+
+def _normalize_receptor_label(receptor: str) -> str:
+    """Match 00_visualize_input_data.R receptor_plot remapping."""
+    if receptor in ("INR", "INR-like"):
+        return "INR"
+    if receptor in ("LNR", "LNR-like"):
+        return "LNR"
+    if receptor in ("phytocytokine_receptor", "phytokinine"):
+        return "phytocytokine"
+    return receptor
+
+
+def _normalize_meta_receptors(meta_df: pd.DataFrame) -> pd.DataFrame:
+    out = meta_df.copy()
+    if "receptor" in out.columns:
+        out["receptor"] = out["receptor"].astype(str).map(_normalize_receptor_label)
+    return out
 
 
 def _receptor_color_map(receptors):
@@ -596,7 +645,8 @@ def _receptor_color_map(receptors):
 def plot_model_umaps(coords, meta_df, model_name, method, output_path, n_examples):
     """Two-panel figure: outcome | receptor group."""
     x, y = coords[:, 0], coords[:, 1]
-    fig, axes = plt.subplots(1, 2, figsize=(5.6, 2.5), dpi=300)
+    # Tall enough for square panels + legends below
+    fig, axes = plt.subplots(1, 2, figsize=(4.4, 3.4), dpi=300)
     fig.patch.set_facecolor("white")
 
     _scatter(
@@ -606,14 +656,14 @@ def plot_model_umaps(coords, meta_df, model_name, method, output_path, n_example
     receptor_map = _receptor_color_map(meta_df["receptor"])
     _scatter(
         axes[1], x, y, meta_df["receptor"].tolist(), receptor_map,
-        "Receptor group", method=method, legend_ncol=2,
+        "Receptor group", method=method, legend_ncol=3,
     )
 
     fig.suptitle(
         f"{model_name} ({method}, n={n_examples})",
-        fontsize=9, color="black", y=1.02,
+        fontsize=11, color="black", y=0.98,
     )
-    fig.tight_layout(pad=0.4)
+    fig.tight_layout(rect=[0, 0.02, 1, 0.94], pad=0.35)
     fig.savefig(output_path, format="pdf", bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"Saved {output_path}")
@@ -627,7 +677,8 @@ def plot_comparison(model_results, method, output_path):
     n = len(model_results)
     if n == 0:
         return
-    fig, axes = plt.subplots(n, 2, figsize=(5.6, 2.6 * n), dpi=300)
+    # Extra height for square panels + legends on the last row
+    fig, axes = plt.subplots(n, 2, figsize=(4.4, 2.6 * n + 0.6), dpi=300)
     if n == 1:
         axes = np.array([axes])
     fig.patch.set_facecolor("white")
@@ -638,20 +689,23 @@ def plot_comparison(model_results, method, output_path):
     receptor_map = _receptor_color_map(all_receptors)
 
     for row, (name, coords, meta) in enumerate(model_results):
+        is_last = row == n - 1
         _scatter(
             axes[row, 0], coords[:, 0], coords[:, 1],
             meta["known_outcome"].tolist(), OUTCOME_COLORS,
             f"{name} - Known Outcome", method=method, legend_ncol=1,
+            draw_legend=is_last,
         )
         _scatter(
             axes[row, 1], coords[:, 0], coords[:, 1],
             meta["receptor"].tolist(), receptor_map,
-            f"{name} - Receptor group", method=method, legend_ncol=2,
+            f"{name} - Receptor group", method=method, legend_ncol=3,
+            draw_legend=is_last,
         )
 
     names = " vs ".join(name for name, _, _ in model_results)
-    fig.suptitle(f"{names} ({method})", fontsize=9, color="black", y=1.01)
-    fig.tight_layout(pad=0.4)
+    fig.suptitle(f"{names} ({method})", fontsize=11, color="black", y=0.99)
+    fig.tight_layout(rect=[0, 0.02, 1, 0.96], pad=0.35)
     fig.savefig(output_path, format="pdf", bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"Saved {output_path}")
@@ -747,6 +801,7 @@ def parse_args():
 
 def project_and_plot(model_name, embeddings, meta_df, output_dir, method="pca"):
     """2D projection + PDF plots from already-extracted embeddings."""
+    meta_df = _normalize_meta_receptors(meta_df)
     coords, method_label = reduce_2d(embeddings, method=method)
     tag = method_label.lower().replace("-", "")
     coord_df = meta_df.copy()

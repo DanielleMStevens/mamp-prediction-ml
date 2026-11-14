@@ -49,6 +49,133 @@ from sklearn.metrics import (
     precision_recall_curve,
 )
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
+from matplotlib.ticker import MultipleLocator
+
+# Match 08_model_analysis theme_clean_thin (Arial, thin lines, compact)
+_CLASS_NAMES = ("Immunogenic", "Non-immunogenic", "Weakly immunogenic")
+_CLASS_COLORS = ("#000000", "#8B0000", "#00008B")  # black / dark red / dark blue
+_PLOT_LINEWIDTH = 0.9
+_AXIS_LINEWIDTH = 0.35
+_TICK_SIZE = 5.5
+_LABEL_SIZE = 6.5
+_LEGEND_SIZE = 4.5
+# ~25% smaller square panel than prior (1.75); keep legend band height similar
+_FIGSIZE = (1.31, 1.72)
+
+
+def _apply_clean_thin_style(ax, *, full_box: bool = False, dense_ticks: bool = False):
+    """Journal-style axes: thin spines, short ticks, no grid.
+
+    Args:
+        full_box: if True, draw all four spines; else L-frame only.
+        dense_ticks: if True, major every 0.2 and minor every 0.1 on both axes.
+    """
+    for side in ("top", "right", "bottom", "left"):
+        ax.spines[side].set_visible(True if full_box else side in ("bottom", "left"))
+        if ax.spines[side].get_visible():
+            ax.spines[side].set_linewidth(_AXIS_LINEWIDTH)
+            ax.spines[side].set_color("black")
+
+    if dense_ticks:
+        ax.xaxis.set_major_locator(MultipleLocator(0.2))
+        ax.yaxis.set_major_locator(MultipleLocator(0.2))
+        ax.xaxis.set_minor_locator(MultipleLocator(0.1))
+        ax.yaxis.set_minor_locator(MultipleLocator(0.1))
+        ax.tick_params(
+            axis="both",
+            which="major",
+            length=2.0,
+            width=0.3,
+            labelsize=_TICK_SIZE,
+            colors="black",
+            pad=1.5,
+            direction="out",
+        )
+        ax.tick_params(
+            axis="both",
+            which="minor",
+            length=1.0,
+            width=0.25,
+            colors="black",
+            direction="out",
+        )
+    else:
+        ax.tick_params(
+            axis="both",
+            which="major",
+            length=1.5,
+            width=0.3,
+            labelsize=_TICK_SIZE,
+            colors="black",
+            pad=1.5,
+        )
+
+    ax.set_facecolor("white")
+    ax.grid(False)
+    for label in ax.get_xticklabels() + ax.get_yticklabels():
+        label.set_fontname("Arial")
+        label.set_color("black")
+
+
+def _style_legend(leg):
+    leg.get_frame().set_linewidth(0)
+    leg.get_frame().set_facecolor("none")
+    for text in leg.get_texts():
+        text.set_fontname("Arial")
+        text.set_fontsize(_LEGEND_SIZE)
+        text.set_color("black")
+
+
+def _finalize_square_curve(fig, ax, xlabel: str, ylabel: str, out_path: Path):
+    """Square axes (full box, dense ticks) with legend below; fonts unchanged."""
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.set_box_aspect(1)
+    ax.set_xlabel(
+        xlabel,
+        fontsize=_LABEL_SIZE,
+        fontname="Arial",
+        color="black",
+        labelpad=3,
+    )
+    ax.set_ylabel(
+        ylabel,
+        fontsize=_LABEL_SIZE,
+        fontname="Arial",
+        color="black",
+        labelpad=2,
+    )
+    _apply_clean_thin_style(ax, full_box=True, dense_ticks=True)
+
+    handles, labels = ax.get_legend_handles_labels()
+    # Figure-level legend below the axis title with a clear gap (fonts unchanged)
+    leg = fig.legend(
+        handles,
+        labels,
+        loc="upper center",
+        bbox_to_anchor=(0.55, 0.06),
+        ncol=2,
+        fontsize=_LEGEND_SIZE,
+        frameon=False,
+        handlelength=0.9,
+        handletextpad=0.3,
+        columnspacing=0.7,
+        labelspacing=0.2,
+        borderaxespad=0.0,
+    )
+    _style_legend(leg)
+
+    fig.subplots_adjust(left=0.22, right=0.98, top=0.98, bottom=0.30)
+    fig.savefig(
+        out_path,
+        dpi=300,
+        bbox_inches="tight",
+        pad_inches=0.03,
+        facecolor="white",
+    )
+    plt.close(fig)
+
 
 def move_to_device(obj, device):
     """
@@ -270,63 +397,81 @@ def evaluate(model, dl, device, args, output_dir):
     plots_dir = Path(output_dir) / 'plots'
     plots_dir.mkdir(exist_ok=True, parents=True)
 
-    # Generate and save ROC curves
-    plt.figure(figsize=(3, 3))
-    gt_onehot = np.eye(3)[gt_all.cpu()]  # Convert to one-hot encoding for 3-class classification
+    # ROC / PR curves — aesthetics aligned with theme_clean_thin
+    # (08_model_analysis/00_visualize_input_data.R)
+    epoch_tag = getattr(args, "current_epoch", "final")
+    gt_onehot = np.eye(3)[gt_all.cpu().numpy()]
     pr_np = prob_all.cpu().numpy()
-    
-    # Plot ROC curve for each class
+
+    rcParams["font.family"] = "Arial"
+    rcParams["pdf.fonttype"] = 42  # editable text in Illustrator
+
+    # --- ROC ---
+    fig, ax = plt.subplots(figsize=_FIGSIZE)
     for i in range(3):
         fpr, tpr, _ = roc_curve(gt_onehot[:, i], pr_np[:, i])
-        class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
-        colors = ['#4A4A4A', '#8B0000', '#00008B']  # Dark grey, dark red, dark blue
-        plt.plot(fpr, tpr, color=colors[i],label=f'{class_names[i]} (AUC = {stats[f"test_auroc"]:.2f})')
-    plt.plot([0, 1], [0, 1], 'k--')  # Add diagonal line for reference
-    plt.xlabel('False Positive Rate', fontsize=10, fontname='Arial')
-    plt.ylabel('True Positive Rate', fontsize=10, fontname='Arial')
-    plt.title(f'ROC Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=8, fontname='Arial')
-    plt.legend(prop={'family': 'Arial', 'size': 7})
-    plt.tick_params(axis='both', which='major', labelsize=9)
-    for tick in plt.gca().get_xticklabels():
-        tick.set_fontname("Arial")
-    for tick in plt.gca().get_yticklabels():
-        tick.set_fontname("Arial")
-    plt.savefig(plots_dir / f'roc_curve_epoch_{getattr(args, "current_epoch", "final")}.pdf')
-    plt.close()
+        try:
+            class_auc = roc_auc_score(gt_onehot[:, i], pr_np[:, i])
+        except ValueError:
+            class_auc = float("nan")
+        ax.plot(
+            fpr,
+            tpr,
+            color=_CLASS_COLORS[i],
+            linewidth=_PLOT_LINEWIDTH,
+            solid_capstyle="butt",
+            label=f"{_CLASS_NAMES[i]} ({class_auc:.2f})",
+        )
+    ax.plot(
+        [0, 1],
+        [0, 1],
+        color="black",
+        linestyle="--",
+        linewidth=0.6,
+        zorder=0,
+    )
+    _finalize_square_curve(
+        fig,
+        ax,
+        xlabel="false positive rate",
+        ylabel="true positive rate",
+        out_path=plots_dir / f"roc_curve_epoch_{epoch_tag}.pdf",
+    )
 
-    # Create and save Precision-Recall curves
-    plt.figure(figsize=(3, 3))
-    
-    # Calculate mean precision and recall across all classes
-    mean_precision = np.zeros_like(pr_np[:, 0])
-    mean_recall = np.linspace(0, 1, len(mean_precision))
-    
+    # --- Precision-Recall ---
+    fig, ax = plt.subplots(figsize=_FIGSIZE)
+    mean_recall = np.linspace(0, 1, 101)
+    mean_precision = np.zeros_like(mean_recall)
+
     for i in range(3):
         precision, recall, _ = precision_recall_curve(gt_onehot[:, i], pr_np[:, i])
-        class_names = ['Immunogenic', 'Non-immunogenic', 'Weakly immunogenic']
-        colors = ['#4A4A4A', '#8B0000', '#00008B']  # Dark grey, dark red, dark blue
-        plt.plot(recall, precision, color=colors[i], label=f'{class_names[i]} (AUC = {stats[f"test_auprc_class{i}"]:.2f})')
-        
-        # Interpolate precision values for mean calculation
+        ax.plot(
+            recall,
+            precision,
+            color=_CLASS_COLORS[i],
+            linewidth=_PLOT_LINEWIDTH,
+            solid_capstyle="butt",
+            label=f"{_CLASS_NAMES[i]} ({stats[f'test_auprc_class{i}']:.2f})",
+        )
         mean_precision += np.interp(mean_recall, recall[::-1], precision[::-1])
-    
-    # Calculate and plot mean precision
+
     mean_precision /= 3
-    mean_auprc = np.mean([stats[f"test_auprc_class{i}"] for i in range(3)])
-    plt.plot(mean_recall, mean_precision, color='black', linestyle='--', 
-             label=f'Mean Average Precision (AUC = {mean_auprc:.2f})')
-    
-    plt.xlabel('Recall', fontsize=10, fontname='Arial')
-    plt.ylabel('Precision', fontsize=10, fontname='Arial')
-    plt.title(f'Precision-Recall Curves (Epoch {getattr(args, "current_epoch", "final")})', fontsize=8, fontname='Arial')
-    plt.legend(prop={'family': 'Arial', 'size': 7})
-    plt.tick_params(axis='both', which='major', labelsize=9)
-    for tick in plt.gca().get_xticklabels():
-        tick.set_fontname("Arial")
-    for tick in plt.gca().get_yticklabels():
-        tick.set_fontname("Arial")
-    plt.savefig(plots_dir / f'pr_curve_epoch_{getattr(args, "current_epoch", "final")}.pdf')
-    plt.close()
+    mean_auprc = float(np.mean([stats[f"test_auprc_class{i}"] for i in range(3)]))
+    ax.plot(
+        mean_recall,
+        mean_precision,
+        color="black",
+        linestyle="--",
+        linewidth=0.6,
+        label=f"mean ({mean_auprc:.2f})",
+    )
+    _finalize_square_curve(
+        fig,
+        ax,
+        xlabel="recall",
+        ylabel="precision",
+        out_path=plots_dir / f"pr_curve_epoch_{epoch_tag}.pdf",
+    )
 
     # Save evaluation metrics to CSV
     metrics = {
@@ -356,77 +501,105 @@ def evaluate(model, dl, device, args, output_dir):
     df_metrics.to_csv(metrics_file, index=False)
 
     # Create and save training progress visualization
-    plt.figure(figsize=(15, 10))
-    
     # Convert epoch column to numeric, replacing 'final' with the last numeric value + 1
-    numeric_epochs = pd.to_numeric(df_metrics['epoch'].replace('final', float('inf')), errors='coerce')
-    if float('inf') in numeric_epochs.values:
-        last_numeric = numeric_epochs[numeric_epochs != float('inf')].max()
-        numeric_epochs = numeric_epochs.replace(float('inf'), last_numeric + 1 if not pd.isna(last_numeric) else 0)
-    
-    # Plot 1: AUROC over epochs
-    plt.subplot(2, 2, 1)
-    plt.plot(numeric_epochs, df_metrics['auroc'], marker='o', color='#9370DB')  # Using a purple color
-    plt.title('AUROC over epochs', fontsize=7, fontname='Arial')
-    plt.xlabel('Epoch', fontsize=8, fontname='Arial')
-    plt.ylabel('AUROC', fontsize=8, fontname='Arial')
-    plt.tick_params(axis='both', which='major', labelsize=7)
-    for tick in plt.gca().get_xticklabels():
-        tick.set_fontname("Arial")
-    for tick in plt.gca().get_yticklabels():
-        tick.set_fontname("Arial")
-    plt.grid(True)
+    numeric_epochs = pd.to_numeric(
+        df_metrics["epoch"].replace("final", float("inf")), errors="coerce"
+    )
+    if float("inf") in numeric_epochs.values:
+        last_numeric = numeric_epochs[numeric_epochs != float("inf")].max()
+        numeric_epochs = numeric_epochs.replace(
+            float("inf"), last_numeric + 1 if not pd.isna(last_numeric) else 0
+        )
 
-    # Plot 2: AUPRC for each class over epochs
-    plt.subplot(2, 2, 2)
-    purples = plt.cm.Purples(np.linspace(0.4, 0.9, 3))  # Get 3 shades of purple
+    # Metric-progress panel — same clean_thin aesthetics as ROC/PR
+    rcParams["font.family"] = "Arial"
+    rcParams["pdf.fonttype"] = 42
+    _metric_colors = ("#4A4A4A", "#8B0000", "#00008B")  # grey / red / blue for non-class series
+    marker_kw = {"marker": "o", "markersize": 2.5, "linewidth": _PLOT_LINEWIDTH}
+
+    fig, axes = plt.subplots(2, 2, figsize=(5.5, 4.2))
+
+    # Plot 1: AUROC
+    ax = axes[0, 0]
+    ax.plot(numeric_epochs, df_metrics["auroc"], color="#000000", **marker_kw)
+    ax.set_xlabel("epoch", fontsize=_LABEL_SIZE, fontname="Arial", color="black")
+    ax.set_ylabel("auroc", fontsize=_LABEL_SIZE, fontname="Arial", color="black")
+    _apply_clean_thin_style(ax)
+
+    # Plot 2: AUPRC per class (same class colors as ROC/PR)
+    ax = axes[0, 1]
     for i in range(3):
-        plt.plot(numeric_epochs, df_metrics[f'auprc_class{i}'], marker='o', 
-                color=purples[i], label=f'Class {i}')
-    plt.title('AUPRC over epochs', fontsize=7, fontname='Arial')
-    plt.xlabel('Epoch', fontsize=8, fontname='Arial')
-    plt.ylabel('AUPRC', fontsize=8, fontname='Arial')
-    plt.legend(prop={'family': 'Arial', 'size': 7})
-    plt.tick_params(axis='both', which='major', labelsize=7)
-    for tick in plt.gca().get_xticklabels():
-        tick.set_fontname("Arial")
-    for tick in plt.gca().get_yticklabels():
-        tick.set_fontname("Arial")
-    plt.grid(True)
+        ax.plot(
+            numeric_epochs,
+            df_metrics[f"auprc_class{i}"],
+            color=_CLASS_COLORS[i],
+            label=_CLASS_NAMES[i],
+            **marker_kw,
+        )
+    ax.set_xlabel("epoch", fontsize=_LABEL_SIZE, fontname="Arial", color="black")
+    ax.set_ylabel("auprc", fontsize=_LABEL_SIZE, fontname="Arial", color="black")
+    _apply_clean_thin_style(ax)
+    leg = ax.legend(
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.28),
+        ncol=2,
+        fontsize=_LEGEND_SIZE,
+        handlelength=1.2,
+        borderpad=0.2,
+    )
+    _style_legend(leg)
 
-    # Plot 3: Accuracy and F1 scores over epochs
-    plt.subplot(2, 2, 3)
-    purples = plt.cm.Purples(np.linspace(0.4, 0.9, 3))  # Get 3 shades of purple
-    plt.plot(numeric_epochs, df_metrics['accuracy'], marker='o', color=purples[0], label='Accuracy')
-    plt.plot(numeric_epochs, df_metrics['f1_macro'], marker='o', color=purples[1], label='F1 Macro')
-    plt.plot(numeric_epochs, df_metrics['f1_weighted'], marker='o', color=purples[2], label='F1 Weighted')
-    plt.title('Accuracy and F1 Scores over epochs', fontsize=7, fontname='Arial')
-    plt.xlabel('Epoch', fontsize=8, fontname='Arial')
-    plt.ylabel('Score', fontsize=8, fontname='Arial')
-    plt.legend(prop={'family': 'Arial', 'size': 7})
-    plt.tick_params(axis='both', which='major', labelsize=7)
-    for tick in plt.gca().get_xticklabels():
-        tick.set_fontname("Arial")
-    for tick in plt.gca().get_yticklabels():
-        tick.set_fontname("Arial")
-    plt.grid(True)
+    # Plot 3: Accuracy and F1
+    ax = axes[1, 0]
+    ax.plot(
+        numeric_epochs,
+        df_metrics["accuracy"],
+        color=_metric_colors[0],
+        label="accuracy",
+        **marker_kw,
+    )
+    ax.plot(
+        numeric_epochs,
+        df_metrics["f1_macro"],
+        color=_metric_colors[1],
+        label="f1 macro",
+        **marker_kw,
+    )
+    ax.plot(
+        numeric_epochs,
+        df_metrics["f1_weighted"],
+        color=_metric_colors[2],
+        label="f1 weighted",
+        **marker_kw,
+    )
+    ax.set_xlabel("epoch", fontsize=_LABEL_SIZE, fontname="Arial", color="black")
+    ax.set_ylabel("score", fontsize=_LABEL_SIZE, fontname="Arial", color="black")
+    _apply_clean_thin_style(ax)
+    leg = ax.legend(
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.28),
+        ncol=3,
+        fontsize=_LEGEND_SIZE,
+        handlelength=1.2,
+        borderpad=0.2,
+    )
+    _style_legend(leg)
 
-    # Plot 4: Loss over epochs
-    plt.subplot(2, 2, 4)
-    plt.plot(numeric_epochs, df_metrics['loss'], marker='o', color='#9370DB')  # Using a purple color
-    plt.title('Loss over epochs', fontsize=7, fontname='Arial')
-    plt.xlabel('Epoch', fontsize=8, fontname='Arial')
-    plt.ylabel('Loss', fontsize=8, fontname='Arial')
-    plt.tick_params(axis='both', which='major', labelsize=7)
-    for tick in plt.gca().get_xticklabels():
-        tick.set_fontname("Arial")
-    for tick in plt.gca().get_yticklabels():
-        tick.set_fontname("Arial")
-    plt.grid(True)
+    # Plot 4: Loss
+    ax = axes[1, 1]
+    ax.plot(numeric_epochs, df_metrics["loss"], color="#000000", **marker_kw)
+    ax.set_xlabel("epoch", fontsize=_LABEL_SIZE, fontname="Arial", color="black")
+    ax.set_ylabel("loss", fontsize=_LABEL_SIZE, fontname="Arial", color="black")
+    _apply_clean_thin_style(ax)
 
-    plt.tight_layout()
-    plt.savefig(plots_dir / 'test_progress.pdf')
-    plt.close()
+    fig.tight_layout(pad=0.6, h_pad=1.6, w_pad=0.8)
+    fig.savefig(
+        plots_dir / "test_progress.pdf",
+        dpi=300,
+        bbox_inches="tight",
+        facecolor="white",
+    )
+    plt.close(fig)
 
     # Save predictions for later analysis
     torch.save(

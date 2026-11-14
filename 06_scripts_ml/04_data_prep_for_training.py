@@ -171,16 +171,19 @@ def stratified_split(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
 def split_randomly(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     # First split the original unshuffled data
     train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
-    
-    # Create shuffled version of training data only
+
+    # Create shuffled version of training data only (test stays real pairs)
     train_df_shuffled = train_df.copy()
-    
-    # Shuffle epitope columns within training set only
-    shuffled_indices = np.random.RandomState(42).permutation(len(train_df))
-    epitope_cols = ['Epitope', 'Sequence', 'Known Outcome'] 
-    for col in epitope_cols:
-        train_df_shuffled[col] = train_df[col].values[shuffled_indices]
-    
+    n = len(train_df)
+
+    # Independent permutations so epitope identity and labels are decoupled
+    epitope_idx = np.random.RandomState(42).permutation(n)
+    label_idx = np.random.RandomState(43).permutation(n)
+
+    for col in ("Epitope", "Sequence"):
+        train_df_shuffled[col] = train_df[col].values[epitope_idx]
+    train_df_shuffled["Known Outcome"] = train_df["Known Outcome"].values[label_idx]
+
     return train_df_shuffled, test_df
 
 

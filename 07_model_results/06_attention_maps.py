@@ -22,7 +22,9 @@ Example:
     --bfactor_csv 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \\
     --output_dir embedding_analysis_results \\
     --attn_layer 2 \\
-    --max_examples 3 \\
+    --receptor FLS2,EFR \\
+    --n_per_receptor 3 \\
+    --seed 0 \\
     --device mps
 """
 
@@ -113,7 +115,12 @@ def row_to_example(row):
     outcome = row.get("Known Outcome", "Non-Immunogenic")
     y = CATEGORY_TO_INDEX.get(outcome, 1)
     receptor = str(row.get("Receptor", ""))
-    receptor_plot = "INR" if receptor == "INR-like" else receptor
+    if receptor == "INR-like":
+        receptor_plot = "INR"
+    elif receptor == "LNR-like":
+        receptor_plot = "LNR"
+    else:
+        receptor_plot = receptor
     epitope = str(row.get("Epitope", row.get("Ligand", "")))
     species = str(row.get("Plant species", row.get("Plant Species", "")))
     locus = str(row.get("Locus ID/Genbank", row.get("Locus ID", "")))
@@ -135,19 +142,62 @@ def row_to_example(row):
     }
 
 
+def parse_receptor_list(text):
+    if not text:
+        return []
+    return [t.strip() for t in str(text).split(",") if t.strip()]
+
+
 def filter_dataframe(df, args):
     out = df.copy()
-    if args.receptor:
-        out = out[out["Receptor"].astype(str).str.contains(args.receptor, case=False, na=False)]
+    receptors = parse_receptor_list(args.receptor)
     if args.epitope:
         epi_col = "Epitope" if "Epitope" in out.columns else "Ligand"
         out = out[out[epi_col].astype(str).str.contains(args.epitope, case=False, na=False)]
     if args.row_indices:
         idxs = [int(x) for x in args.row_indices.split(",") if x.strip()]
         out = df.iloc[idxs]
+        receptors = []
+
+    if args.n_per_receptor is not None:
+        # Random N per receptor term (substring match); with no --receptor, N per Receptor value.
+        rng = np.random.default_rng(args.seed)
+        rec_col = out["Receptor"].astype(str)
+        terms = receptors or sorted(rec_col.unique())
+        picked = []
+        seen = set()
+        for term in terms:
+            if receptors:
+                pool = out[rec_col.str.contains(term, case=False, na=False, regex=False)]
+            else:
+                pool = out[rec_col == term]
+            pool = pool[~pool.index.isin(seen)]
+            if len(pool) == 0:
+                print(f"  warning: no rows match receptor '{term}'")
+                continue
+            n = min(args.n_per_receptor, len(pool))
+            if n < args.n_per_receptor:
+                print(f"  warning: only {len(pool)} rows for receptor '{term}' "
+                      f"(requested {args.n_per_receptor})")
+            take = rng.choice(len(pool), size=n, replace=False)
+            sample = pool.iloc[np.sort(take)]
+            print(f"  receptor '{term}': {n} example(s) from {len(pool)} rows")
+            seen.update(sample.index)
+            picked.append(sample)
+        out = pd.concat(picked) if picked else out.iloc[0:0]
+        if args.max_examples is not None:
+            out = out.iloc[: args.max_examples]
+        return out.reset_index(drop=True)
+
+    if receptors:
+        rec_col = out["Receptor"].astype(str)
+        mask = np.zeros(len(out), dtype=bool)
+        for term in receptors:
+            mask |= rec_col.str.contains(term, case=False, na=False, regex=False).to_numpy()
+        out = out[mask]
     out = out.reset_index(drop=True)
-    if args.max_examples is not None:
-        out = out.iloc[: args.max_examples].copy()
+    max_n = 3 if args.max_examples is None else args.max_examples
+    out = out.iloc[:max_n].copy()
     return out.reset_index(drop=True)
 
 
@@ -427,42 +477,54 @@ def plot_receptor_only_attention_figure(attn, title, path, heatmap_max=None):
     for i in range(n):
         offdiag[i] = (attn[:, i].sum() - attn[i, i]) / max(n - 1, 1)
 
-    fig, axes = plt.subplots(
-        2, 1, figsize=(5.4, 4.6), dpi=300,
-        gridspec_kw={"height_ratios": [2.2, 1.0]},
-    )
+    # Colorbar gets its own column so both panels share the same width and
+    # residue 1 sits at the same x position in the heatmap and the profile.
+    fig = plt.figure(figsize=(5.4, 4.6), dpi=300)
     fig.patch.set_facecolor("white")
+    gs = fig.add_gridspec(
+        2, 2, height_ratios=[2.2, 1.0], width_ratios=[1.0, 0.025], wspace=0.04,
+    )
+    ax_hm = fig.add_subplot(gs[0, 0])
+    ax_cb = fig.add_subplot(gs[0, 1])
+    ax_pr = fig.add_subplot(gs[1, 0], sharex=ax_hm)
 
     plot_mat = np.log10(attn + 1e-8)
-    mat_ds, row_idx, col_idx = downsample_matrix(plot_mat, max_n=heatmap_max)
+    mat_ds, _, _ = downsample_matrix(plot_mat, max_n=heatmap_max)
     finite = mat_ds[np.isfinite(mat_ds)]
     vmax = float(np.percentile(finite, 99))
     vmin = float(np.percentile(finite, 5))
-    im = axes[0].imshow(
+    im = ax_hm.imshow(
         mat_ds, aspect="auto", interpolation="nearest",
         cmap="magma", vmin=vmin, vmax=vmax,
+        extent=(0.5, n + 0.5, n + 0.5, 0.5),
     )
-    axes[0].set_title(title, fontsize=7, color="black", pad=6, loc="left")
+    ax_hm.set_title(title, fontsize=7, color="black", pad=6, loc="left")
     down = heatmap_max and n > heatmap_max
     x_lab = f"Receptor key residue (1…{n}" + ("; downsampled)" if down else ")")
     y_lab = f"Receptor query residue (1…{n}" + ("; downsampled)" if down else ")")
-    axes[0].set_xlabel(x_lab, fontsize=7)
-    axes[0].set_ylabel(y_lab, fontsize=7)
-    _set_residue_ticks(axes[0], row_idx, col_idx)
-    _style_ax(axes[0])
-    cbar = fig.colorbar(im, ax=axes[0], fraction=0.046, pad=0.04)
+    ax_hm.set_xlabel(x_lab, fontsize=7)
+    ax_hm.set_ylabel(y_lab, fontsize=7)
+    ticks = np.unique(np.linspace(1, n, 6).round().astype(int))
+    ax_hm.set_yticks(ticks)
+    ax_hm.set_yticklabels([str(t) for t in ticks], fontsize=6)
+    _style_ax(ax_hm)
+    cbar = fig.colorbar(im, cax=ax_cb)
     cbar.set_label("log10(attn)", fontsize=6)
     cbar.ax.tick_params(labelsize=5)
 
     xs = np.arange(1, n + 1)
-    axes[1].plot(xs, incoming, color="#4c78a8", linewidth=0.8, label="Mean incoming attn")
-    axes[1].plot(xs, offdiag, color="#e07a3d", linewidth=0.8, label="Mean off-diagonal incoming")
-    axes[1].set_xlabel("Receptor residue index", fontsize=8)
-    axes[1].set_ylabel("Attention", fontsize=8)
-    _style_ax(axes[1])
-    axes[1].legend(fontsize=5.5, frameon=False, loc="best")
+    ax_pr.plot(xs, incoming, color="#4c78a8", linewidth=0.8, label="Mean incoming attn")
+    ax_pr.plot(xs, offdiag, color="#e07a3d", linewidth=0.8, label="Mean off-diagonal incoming")
+    ax_pr.set_xlim(0.5, n + 0.5)
+    ax_pr.set_xticks(ticks)
+    ax_pr.set_xticklabels([str(t) for t in ticks], fontsize=6)
+    ax_hm.tick_params(axis="x", labelbottom=True)
+    ax_pr.set_xlabel("Receptor residue index", fontsize=8)
+    ax_pr.set_ylabel("Attention", fontsize=8)
+    _style_ax(ax_pr)
+    ax_pr.legend(fontsize=5.5, frameon=False, loc="best")
 
-    fig.tight_layout(pad=0.5)
+    gs.update(hspace=0.32)
     save_fig(fig, path)
 
 
@@ -728,8 +790,32 @@ def parse_args():
         default="embedding_analysis_results",
         help="Root output directory (PDFs go under attention_maps/)",
     )
-    p.add_argument("--max_examples", type=int, default=3)
-    p.add_argument("--receptor", default=None)
+    p.add_argument(
+        "--max_examples",
+        type=int,
+        default=None,
+        help="Cap on total examples. Default: 3 (first N rows) without "
+             "--n_per_receptor; no cap with --n_per_receptor.",
+    )
+    p.add_argument(
+        "--receptor",
+        default=None,
+        help="Receptor name(s), comma-separated, case-insensitive substring "
+             "match (e.g. 'FLS2,EFR'; 'INR'/'LNR' also match '-like' variants).",
+    )
+    p.add_argument(
+        "--n_per_receptor",
+        type=int,
+        default=None,
+        help="Randomly sample this many examples for each --receptor term "
+             "(or for every Receptor value if --receptor is not given).",
+    )
+    p.add_argument(
+        "--seed",
+        type=int,
+        default=0,
+        help="Random seed for --n_per_receptor sampling.",
+    )
     p.add_argument("--epitope", default=None)
     p.add_argument("--row_indices", default=None)
     p.add_argument("--device", default="cpu")

@@ -67,6 +67,9 @@ from models.esm_all_chemical_features import ESMallChemicalFeatures
 from models.esm_positon_weighted import BFactorWeightGenerator
 from models.esm_positon_weighted import ESMBfactorWeightedFeatures
 
+# AF2 / OpenFold SeqOnly-style fine-tune (does not modify ESM models)
+from models.alphafold_fine_tune import AlphaFoldFineTuneModel
+
 # ---------- old models ----------
 
 # random forest model
@@ -209,6 +212,9 @@ def get_args_parser():
         "--finetune_backbone",
         type=str,
         default="/scratch/cluster/jozhang/models/openfold_params/finetuning_ptm_2.pt",
+        help="Backbone weights path. For alphafold_fine_tune, pass a DeepMind "
+             "AF2 JAX .npz (e.g. params_model_3_ptm.npz); if missing, weights "
+             "are downloaded to 06_scripts_ml/models/af2_params/.",
     )
     parser.add_argument(
         "--freeze_at",
@@ -344,7 +350,8 @@ def get_args_parser():
 model_dict = {
     "esm2_with_receptor": ESMWithReceptorModel,           # ESM2 with receptor interaction
     "esm2_all_chemical_features": ESMallChemicalFeatures,  # ESM2 with all chemical features
-    "esm2_bfactor_weighted": ESMBfactorWeightedFeatures,  # ESM2 with B-factor weighted features}
+    "esm2_bfactor_weighted": ESMBfactorWeightedFeatures,  # ESM2 with B-factor weighted features
+    "alphafold_fine_tune": AlphaFoldFineTuneModel,        # AF2 weights + OpenFold SeqOnly-style
 }
 
 #    "esm2": ESMModel,                                      # ESM2 base model
@@ -380,7 +387,8 @@ dataset_dict = {
     "random_forest": PeptideSeqWithReceptorDataset,
     "esm2_all_chemical_features": PeptideSeqWithReceptorDataset,
     "esm2_bfactor_weighted": PeptideSeqWithReceptorDataset,
-    "esm_chain_rule_allchemical": PeptideSeqWithReceptorDataset
+    "esm_chain_rule_allchemical": PeptideSeqWithReceptorDataset,
+    "alphafold_fine_tune": PeptideSeqWithReceptorDataset,
 }
 
 # Dictionary mapping model names to their WandB experiment names
@@ -401,7 +409,8 @@ wandb_dict = {
     "random_forest": "mamp_random_forest",
     "esm2_all_chemical_features": "mamp_esm2_all_chemical_features",
     "esm2_bfactor_weighted": "mamp_esm2_bfactor_weighted",
-    "esm_chain_rule_allchemical": "mamp_esm_chain_rule_allchemical"
+    "esm_chain_rule_allchemical": "mamp_esm_chain_rule_allchemical",
+    "alphafold_fine_tune": "mamp_alphafold_fine_tune",
 }
 
 

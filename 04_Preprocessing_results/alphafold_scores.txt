@@ -150,8 +150,6 @@ Arabidopsis_thaliana_LR797798_RLP23                                             
 Arabidopsis_thaliana_OX291572_RLP23                                                                 model_1        84.3      0.745
 Biscutella_auriculata_ABW72734_FLS2                                                                 model_1        84.6      0.608
 Brachypodium_distachyon_XP_010227269_FLS2                                                           model_1        83.8      0.596
-Brascia_rapa_BraraC02577_MIK2                                                                       model_1        85.6      0.629
-Brasica_rapa_BraraC02577_MIK2                                                                       model_1        85.6      0.629
 Brassica_rapa_97L9_FLS2                                                                             model_1        85.1      0.661
 Brassica_rapa_ABW72746_FLS2                                                                         model_1        83.9      0.614
 Brassica_rapa_ABW72747_FLS2                                                                         model_1        84.6      0.613
@@ -159,6 +157,7 @@ Brassica_rapa_ABW72748_FLS2                                                     
 Brassica_rapa_Bra002305_EFR                                                                         model_1        84.0      0.608
 Brassica_rapa_Bra006560_EFR                                                                         model_1        84.6      0.613
 Brassica_rapa_Bra017563_FLS2                                                                        model_1        86.7      0.623
+Brassica_rapa_BraraC02577_MIK2                                                                      model_1        85.6      0.629
 Cajanus_cajan_Ccajan_07316_INR                                                                      model_1        85.3      0.750
 Cajanus_cajan_XP_020210262_FLS2                                                                     model_1        92.5      0.861
 Camelina_laxa_ABW72729_FLS2                                                                         model_1        84.6      0.597
@@ -218,14 +217,14 @@ Glycine_max_Glyma.10G228200_INR-like_3_INR-like                                 
 Glycine_max_Glyma.10G228600_INR-like_4_INR-like                                                     model_1        86.7      0.761
 Glycine_max_Glyma.11G114100_unknown                                                                 model_1        86.8      0.619
 Glycine_max_Glyma.12G006300_unknown                                                                 model_1        84.1      0.614
-Glycine_max_Glyma.12G007000_unknown                                                                 model_1        85.1      0.609
-Glycine_max_Glyma.12G007300_unknown                                                                 model_1        86.1      0.607
+Glycine_max_Glyma.12G007000_phytocytokine_receptor                                                  model_1        85.1      0.609
+Glycine_max_Glyma.12G007300_phytocytokine_receptor                                                  model_1        86.1      0.607
 Glycine_max_Glyma.12G040000_unknown                                                                 model_1        87.4      0.612
 Glycine_max_Glyma.13G039700_unknown                                                                 model_1        86.0      0.633
 Glycine_max_Glyma.13G127100_unknown                                                                 model_1        80.4      0.563
 Glycine_max_Glyma.14G011500_unknown                                                                 model_1        85.5      0.625
 Glycine_max_Glyma.14G033500_unknown                                                                 model_1        85.9      0.631
-Glycine_max_Glyma.14G047900_unknown                                                                 model_1        83.1      0.616
+Glycine_max_Glyma.14G047900_phytocytokine_receptor                                                  model_1        83.1      0.616
 Glycine_max_Glyma.14G048100_unknown                                                                 model_1        87.1      0.612
 Glycine_max_Glyma.14G124700_unknown                                                                 model_1        85.7      0.628
 Glycine_max_Glyma.15G155600_unknown                                                                 model_1        86.1      0.618
@@ -234,7 +233,7 @@ Glycine_max_Glyma.16G210500_unknown                                             
 Glycine_max_Glyma.17G156300_unknown                                                                 model_1        85.2      0.619
 Glycine_max_Glyma.18G073600_unknown                                                                 model_1        85.6      0.625
 Glycine_max_Glyma.18G116800_unknown                                                                 model_1        86.5      0.627
-Glycine_max_Glyma.18G249700_unknown                                                                 model_1        86.1      0.614
+Glycine_max_Glyma.18G249700_phytocytokine_receptor                                                  model_1        86.1      0.614
 Glycine_max_Glyma.18G249900_unknown                                                                 model_1        87.4      0.622
 Glycine_max_Glyma.18G250500_unknown                                                                 model_1        87.2      0.616
 Glycine_max_Glyma.18G250900_unknown                                                                 model_1        86.2      0.620
@@ -281,8 +280,7 @@ Nelumbo_nucifera_ON556648_FLS2                                                  
 Nicotiana_benthamiana_Niben101Scf02323g01010_CORE                                                   model_1        84.7      0.599
 Nicotiana_benthamiana_Niben101Scf03455g01008_FLS2                                                   model_1        85.3      0.536
 Oryza_sativa_AK120799_FLS2                                                                          model_1        85.8      0.606
-Papaver_somniferum_XP_026454075.1_FLS2                                                              model_1        87.9      0.625
-Papaver_somniferum_XP_026454075_FLS2                                                                model_1        87.9      0.624
+Papaver_somniferum_XP_026454075_FLS2                                                                model_1        87.9      0.625
 Petunia_axillaris_Peaxi162Scf00320g00619_FLS2                                                       model_1        84.2      0.713
 Petunia_axillaris_Peaxi162Scf00569g03016_FLS3                                                       model_1        90.8      0.765
 Phaseolus_vulgaris_Phvul.007g246600_INR-like                                                        model_1        86.7      0.743

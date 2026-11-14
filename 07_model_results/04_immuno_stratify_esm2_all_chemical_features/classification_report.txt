@@ -10,13 +10,13 @@ Performance Metrics:
 ------------------------------
               precision    recall  f1-score   support
 
-           0       0.79      0.76      0.78       136
-           1       0.65      0.84      0.73        91
-           2       0.63      0.29      0.40        41
+           0       0.68      0.82      0.74       142
+           1       0.93      0.88      0.91       304
+           2       0.29      0.21      0.25        42
 
-    accuracy                           0.72       268
-   macro avg       0.69      0.63      0.64       268
-weighted avg       0.72      0.72      0.70       268
+    accuracy                           0.80       488
+   macro avg       0.63      0.64      0.63       488
+weighted avg       0.80      0.80      0.80       488
 
 Metric Definitions:
 ------------------------------

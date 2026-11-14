@@ -3,7 +3,62 @@ import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, precision_recall_curve, auc
 import numpy as np
+import pandas as pd
+import os
 import torch.nn.functional as F
+
+# Per-residue features written by 05_chemical_conversion.R ("all" option).
+# Order matters: it matches the stacking order in forward().
+CHEM_FEATURES = ('bulkiness', 'charge', 'hydrophobicity')
+_STANDARD_AA = set("ACDEFGHIKLMNPQRSTVWY")  # residues the R lookup tables cover
+
+
+def _clean_seq(seq):
+    return "".join(str(seq).split())
+
+
+def _parse_r_cell(cell, seq):
+    """
+    One comma-separated cell from 05_chemical_conversion.R -> one float per residue of `seq`.
+    Residues outside the R tables are written as "NULL" (or dropped) by R and become 0 here.
+    """
+    if cell is None or (isinstance(cell, float) and np.isnan(cell)):
+        tokens = []
+    else:
+        tokens = [t.strip() for t in str(cell).split(",") if t.strip() != ""]
+
+    def to_float(t):
+        return 0.0 if t in ("NULL", "NA", "NaN", "nan") else float(t)
+
+    if len(tokens) == len(seq):
+        return [to_float(t) for t in tokens]
+    if len(tokens) == sum(aa in _STANDARD_AA for aa in seq):   # non-standard residues were dropped
+        it = iter(tokens)
+        return [to_float(next(it)) if aa in _STANDARD_AA else 0.0 for aa in seq]
+    raise ValueError(f"{len(tokens)} chemistry values for a {len(seq)}-residue sequence; "
+                     "re-run 05_chemical_conversion.R on this CSV.")
+
+
+def load_chemistry_lookup(csv_paths):
+    """
+    Read the chemistry columns from the training/test CSVs written by 05_chemical_conversion.R.
+    Returns {(peptide, receptor): {'sequence_<feat>': [...], 'receptor_<feat>': [...]}}.
+    """
+    lookup = {}
+    for path in csv_paths:
+        df = pd.read_csv(path)
+        cols = [f"{p}_{f.capitalize()}" for p in ("Sequence", "Receptor") for f in CHEM_FEATURES]
+        missing = [c for c in cols if c not in df.columns]
+        if missing:
+            raise ValueError(f"{path} is missing chemistry columns {missing}. Use the "
+                             "train_data_with_all_* / test_data_with_all_* files from 05_chemical_conversion.R.")
+        for _, row in df.iterrows():
+            pep, rec = _clean_seq(row["Sequence"]), _clean_seq(row["Receptor Sequence"])
+            lookup[(pep, rec)] = {
+                **{f"sequence_{f}": _parse_r_cell(row[f"Sequence_{f.capitalize()}"], pep) for f in CHEM_FEATURES},
+                **{f"receptor_{f}": _parse_r_cell(row[f"Receptor_{f.capitalize()}"], rec) for f in CHEM_FEATURES},
+            }
+    return lookup
 
 from models.esm_utils import (
     DEFAULT_ESM_NAME,
@@ -111,6 +166,19 @@ class ESMallChemicalFeatures(nn.Module):
         # Save hyperparameters
         self.save_hyperparameters(args)
 
+        # Per-residue chemistry, read from the same CSVs 06_main_train.py loads
+        csv_paths = [p for p in (getattr(args, "train_csv", None),
+                                 getattr(args, "test_csv", None),
+                                 getattr(args, "eval_only_data_path", None)) if p]
+        data_dir = getattr(args, "data_dir", None)
+        if data_dir:
+            csv_paths += [f"{data_dir}/train_immuno_stratify.csv", f"{data_dir}/test_immuno_stratify.csv"]
+        csv_paths = [p for p in dict.fromkeys(csv_paths) if os.path.exists(p)]
+        if not csv_paths:
+            raise ValueError("No CSV found to read chemistry from (--train_csv / --test_csv / --eval_only_data_path).")
+        self.chem_lookup = load_chemistry_lookup(csv_paths)
+        print(f"Loaded per-residue chemistry for {len(self.chem_lookup)} peptide-receptor pairs from {csv_paths}")
+
     def save_hyperparameters(self, args):
         """Save hyperparameters."""
         self.hparams = args
@@ -183,68 +251,61 @@ class ESMallChemicalFeatures(nn.Module):
         return loss
 
     def collate_fn(self, batch):
-        """Collate function for batching."""
+        """
+        Collate function for batching.
+
+        Token layout per row:  <cls> peptide <eos> receptor <eos> <pad>...
+        Built from per-residue ids so the position of every residue is known, which lets the
+        per-residue chemistry from 05_chemical_conversion.R land on the matching token:
+          - seq_* (peptide channels) hold the peptide residue's value at peptide tokens
+          - rec_* (receptor channels) hold the receptor residue's value at receptor tokens
+          - every other position is 0
+        Pairs longer than 1024 tokens are truncated from the receptor's C-terminal end.
+        """
         tokenizer = self.tokenizer
-        
-        # Get sequences and labels
-        # Extract peptide sequences and convert to strings, handling any non-string inputs
-        sequences = [str(item['peptide_x']).strip() for item in batch]
-        
-        # Extract receptor sequences and convert to strings, handling any non-string inputs  
-        receptors = [str(item['receptor_x']).strip() for item in batch]
-        
-        # Extract labels and convert to tensor, ensuring proper dtype
+        cls_id, eos_id, pad_id = tokenizer.cls_token_id, tokenizer.eos_token_id, tokenizer.pad_token_id
+        max_len = 1024
+
+        rows = []
+        for item in batch:
+            pep = "".join(str(item['peptide_x']).split())
+            rec = "".join(str(item['receptor_x']).split())
+            pep = pep[:max_len - 4]                       # room for 3 special tokens + 1 receptor residue
+            rec = rec[:max_len - 3 - len(pep)]
+            # ESM2 has one token per residue letter; unknown letters map to <unk>
+            ids = ([cls_id] + tokenizer.convert_tokens_to_ids(list(pep)) + [eos_id]
+                   + tokenizer.convert_tokens_to_ids(list(rec)) + [eos_id])
+            rows.append((pep, rec, ids))
+
+        B = len(batch)
+        L = max(len(ids) for _, _, ids in rows)
+        input_ids = torch.full((B, L), pad_id, dtype=torch.long)
+        attention_mask = torch.zeros((B, L), dtype=torch.long)
+        feats = {f"{p}_{f}": torch.zeros((B, L), dtype=torch.float32)
+                 for p in ('seq', 'rec') for f in CHEM_FEATURES}
+
+        for i, (item, (pep, rec, ids)) in enumerate(zip(batch, rows)):
+            n = len(ids)
+            input_ids[i, :n] = torch.tensor(ids)
+            attention_mask[i, :n] = 1
+            pep_start = 1                      # after <cls>
+            rec_start = 1 + len(pep) + 1       # after <cls>, peptide, <eos>
+            key = (_clean_seq(item['peptide_x']), _clean_seq(item['receptor_x']))
+            if key not in self.chem_lookup:
+                raise KeyError(f"No chemistry row for peptide {key[0][:20]}... in the loaded CSVs.")
+            chem = self.chem_lookup[key]
+            for feat in CHEM_FEATURES:
+                pep_vals = chem[f"sequence_{feat}"][:len(pep)]
+                rec_vals = chem[f"receptor_{feat}"][:len(rec)]
+                feats[f"seq_{feat}"][i, pep_start:pep_start + len(pep_vals)] = torch.tensor(pep_vals, dtype=torch.float32)
+                feats[f"rec_{feat}"][i, rec_start:rec_start + len(rec_vals)] = torch.tensor(rec_vals, dtype=torch.float32)
+
         labels = torch.tensor([item['y'] for item in batch], dtype=torch.long)
-        
-        # Combine peptide and receptor sequences with ESM separator token
-        # Format: [peptide sequence] [SEP] [receptor sequence]
-        # The separator token helps the model distinguish between peptide and receptor
-        combined = [
-            f"{peptide_seq} {tokenizer.sep_token} {receptor_seq}" 
-            for peptide_seq, receptor_seq in zip(sequences, receptors)
-        ]
-        
-        # Tokenize with max_length parameter
-        encoded = tokenizer(
-            combined,
-            padding=True,
-            truncation=True,
-            max_length=1024,
-            return_tensors='pt'
-        )
-        
-        # Process chemical features
-        def process_features(batch, prefix):
-            # This function processes chemical features (bulkiness, charge, hydrophobicity) for sequences
-            # For each feature type:
-            # - If the feature exists in the batch data (e.g. 'sequence_bulkiness'), extract it into a tensor
-            # - If the feature doesn't exist, create a zero tensor matching the sequence length
-            features = {}
-            for feat in ['bulkiness', 'charge', 'hydrophobicity']:
-                key = f"{prefix}_{feat}"
-                if key in batch[0]:
-                    # Extract feature values from batch into tensor
-                    features[feat] = torch.tensor([item[key] for item in batch])
-                else:
-                    # Create zero tensor with shape matching the sequence length
-                    features[feat] = torch.zeros(len(batch), encoded['input_ids'].size(1))
-            return features
-        
-        # Process features for both peptide sequences and receptor sequences
-        seq_features = process_features(batch, 'sequence')  # Gets chemical features for peptide sequences
-        rec_features = process_features(batch, 'receptor')  # Gets chemical features for receptor sequences
-        
-        # Return with 'y' instead of 'labels' to match expected structure
         return {
             'x': {
-                'combined_tokens': encoded['input_ids'],
-                'combined_mask': encoded['attention_mask'],
-                'seq_bulkiness': seq_features['bulkiness'],
-                'seq_charge': seq_features['charge'],
-                'seq_hydrophobicity': seq_features['hydrophobicity'],
-                'rec_bulkiness': rec_features['bulkiness'],
-                'rec_charge': rec_features['charge'],
-                'rec_hydrophobicity': rec_features['hydrophobicity'],
+                'combined_tokens': input_ids,
+                'combined_mask': attention_mask,
+                **feats,
             },
             'y': labels
         }
@@ -253,18 +314,17 @@ class ESMallChemicalFeatures(nn.Module):
         return self.tokenizer
 
     def batch_decode(self, batch):
-        """Decode tokenized sequences."""
-        # Handle both nested and flat batch structures
-        if isinstance(batch, dict) and 'x' in batch:
-            tokens = batch['x']['combined_tokens']
-        else:
-            tokens = batch['combined_tokens']
-            
-        decoded = self.tokenizer.batch_decode(
-            tokens,
-            skip_special_tokens=True
-        )
-        return [seq.split(self.tokenizer.sep_token) for seq in decoded]
+        """Decode tokenized pairs to 'peptide:receptor' strings."""
+        tokens = batch['x']['combined_tokens'] if isinstance(batch, dict) and 'x' in batch else batch['combined_tokens']
+        eos_id = self.tokenizer.eos_token_id
+        out = []
+        for ids in tokens.tolist():
+            sep = ids.index(eos_id, 1)                       # <eos> between peptide and receptor
+            end = ids.index(eos_id, sep + 1)                 # final <eos>
+            pep = "".join(self.tokenizer.convert_ids_to_tokens(ids[1:sep]))
+            rec = "".join(self.tokenizer.convert_ids_to_tokens(ids[sep + 1:end]))
+            out.append(f"{pep}:{rec}")
+        return out
 
     def get_pr(self, logits):
         """Get prediction probabilities."""

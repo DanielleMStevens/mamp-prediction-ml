@@ -2,7 +2,6 @@
 
 Table of contents:
 
-
 ## 00. Overview
 
 This repository contains the code for the paper "A deep learning approach to epitope immunogenicity in plants" by Danielle Stevens, et al.
@@ -62,6 +61,10 @@ Rscript 08_model_analysis/00_visualize_input_data.R
 │   ├── receptor_sequence_comparison_plot.pdf
 │   ├── epitope_sequence_comparison_plot.pdf
 │   ├── epitope_length_comparison_plot.pdf
+
+# we can also build a tree of the receptors used
+bash 08_model_analysis/05_run_receptor_phylogeny.sh
+Rscript 08_model_analysis/05_receptor_phylogeny.R
 
 
 # To run the following script below will make similar plots for just training and validation
@@ -150,6 +153,7 @@ python 06_scripts_ml/03_parse_lrr_annotations.py
 
 # script will split the data depending on the 
 python 06_scripts_ml/04_data_prep_for_training.py --split_type (immuno_stratify|random)
+
 ```
 
 Once the data is split, we will then transform and add chemical feature data (amino acid bulkiness, charge, and hydrophobicity) before model training and evaluation.
@@ -170,8 +174,12 @@ python 01_LRR_Annotation/analyze_bfactor_peaks.py \
   -o ./04_Preprocessing_results/bfactor_winding_lrr_segments.csv
 
 ```
-Finally let's assess sequence diversity by clustering and how this changes model performance.
 
+## 02b. Assessing clusters for model training
+
+Finally, let's assess sequence diversity by clustering both the epitope and receptor sequences at various sequence identity thresholds using tools like CD-HIT and MMseqs2. This clustering will allow us to examine how different levels of sequence similarity affect the grouping of our data and, importantly, how this influences the predictive performance of our models. By analyzing the impact of clustering on both ligand and receptor diversity, we gain a more comprehensive understanding of the sequence characteristics shaping model outcomes.
+
+First we will do clustering for the epitope.
 ```
 # outputs all the epitopes into a fasta file
 python -c "
@@ -192,7 +200,7 @@ print(len(u), 'epitopes')
 # then we will make a folder for the outputs of cd-hit and mmseqs
 mkdir -p 03_out_data/cd_hit_outputs 03_out_data/mmseqs_outputs
 
-# cd-hit runs
+# ---------------------  cd-hit runs - epitope ---------------------
 cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_1.00 -c 1.00 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
 cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.95 -c 0.95 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
 cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.90 -c 0.90 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
@@ -202,7 +210,8 @@ cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.70 -c 0
 cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.60 -c 0.60 -n 3 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
 cd-hit -i 03_out_data/epitopes.fasta -o 03_out_data/cd_hit_outputs/epi_0.50 -c 0.50 -n 2 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
 
-# mmseqs outputs
+
+# ---------------------  mmseqs outputs - epitope ---------------------
 rm -rf 03_out_data/tmp
 mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_1.00 03_out_data/tmp --min-seq-id 1.00 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
 rm -rf 03_out_data/tmp
@@ -223,6 +232,37 @@ rm -rf 03_out_data/tmp
 mmseqs easy-cluster 03_out_data/epitopes.fasta 03_out_data/mmseqs_outputs/mm_epi_0.40 03_out_data/tmp --min-seq-id 0.40 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
 rm -rf 03_out_data/tmp
 
+# ---------------------  cd-hit runs - receptor ---------------------
+cd-hit -i 03_out_data/lrr_domain_sequences.fasta -o 03_out_data/cd_hit_outputs/receptor_1.00 -c 1.00 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/lrr_domain_sequences.fasta -o 03_out_data/cd_hit_outputs/receptor_0.95 -c 0.95 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/lrr_domain_sequences.fasta -o 03_out_data/cd_hit_outputs/receptor_0.90 -c 0.90 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/lrr_domain_sequences.fasta -o 03_out_data/cd_hit_outputs/receptor_0.85 -c 0.85 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/lrr_domain_sequences.fasta -o 03_out_data/cd_hit_outputs/receptor_0.80 -c 0.80 -n 5 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/lrr_domain_sequences.fasta -o 03_out_data/cd_hit_outputs/receptor_0.70 -c 0.70 -n 4 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/lrr_domain_sequences.fasta -o 03_out_data/cd_hit_outputs/receptor_0.60 -c 0.60 -n 3 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+cd-hit -i 03_out_data/lrr_domain_sequences.fasta -o 03_out_data/cd_hit_outputs/receptor_0.50 -c 0.50 -n 2 -G 1 -l 5 -g 1 -d 0 -M 0 -T 8
+
+# ---------------------  mmseqs outputs - epitope ---------------------
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_1.00 03_out_data/tmp --min-seq-id 1.00 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_0.95 03_out_data/tmp --min-seq-id 0.95 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_0.90 03_out_data/tmp --min-seq-id 0.90 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_0.85 03_out_data/tmp --min-seq-id 0.85 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_0.80 03_out_data/tmp --min-seq-id 0.80 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_0.70 03_out_data/tmp --min-seq-id 0.70 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_0.60 03_out_data/tmp --min-seq-id 0.60 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_0.50 03_out_data/tmp --min-seq-id 0.50 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+mmseqs easy-cluster 03_out_data/lrr_domain_sequences.fasta 03_out_data/mmseqs_outputs/mm_receptor_0.40 03_out_data/tmp --min-seq-id 0.40 -c 0.8 --cov-mode 0 --seq-id-mode 0 --alignment-mode 3 --cluster-mode 0 -k 5 -s 7.5 --comp-bias-corr 0 --threads 8
+rm -rf 03_out_data/tmp
+
+
 # plot the clustering outputs
 Rscript 08_model_analysis/08_clustering_plots.R
 
@@ -234,9 +274,7 @@ conda install tmalign
 
 # run the script that will run tm-align as well as plot the results in comparison to their sequence similarlty
 TMALIGN_WORKERS=12 Rscript 08_model_analysis/09_sequence_vs_structure.R
-
 ```
-
 
 
 ## 03. Model training and assessment
@@ -308,6 +346,12 @@ Rscript 07_model_results/04_embeddings_analysis.R \
   --seqonly 09_testing_and_dropout/validation_data_set/model_02_test_predictions.csv \
   --final 09_testing_and_dropout/validation_data_set/model_00_test_predictions.csv \
   --output_dir 07_model_results/embeddings_comparison
+```
+To confirm that mamp-ml is specifically learning receptor-epitope interactions, we can test the model on data where receptor-epitope combinations have been randomized or the sequences themselves have been scrambled. If model performance declines significantly under these controls, it suggests that the original predictive accuracy relies on learning biologically meaningful relationships rather than spurious sequence or dataset artifacts.
+
+```
+# this will plot f1 metrics comparing mamp-ml with different data randomization techniques
+Rscript 07_model_results/07_summary_metric_scores.R
 ```
 
 ## 05. Zero vs. few shot on SCORE-csp22
@@ -433,78 +477,150 @@ First, we will install and run all receptor-epitope and receptor-epitope-co-rece
 uv venv envs/boltz --python 3.11
 source envs/boltz/bin/activate
 uv pip install boltz-community pandas pyyaml
-export PYTORCH_ENABLE_MPS_FALLBACK=1
+#export PYTORCH_ENABLE_MPS_FALLBACK=1
+
+# ------ run on A5000 card on Savio ------------
 
 # Boltz-1
-boltz predict 16_structural_models/input_files_fold/boltz \
---model boltz1 \
---out_dir 16_structural_models/input_files_fold/boltz1 \
---accelerator mps \
---devices 1 \
---recycling_steps 1 \
---sampling_steps 100 \
---num_subsampled_msa 256 \
---diffusion_samples 1 \
---output_format mmcif
+ sbatch \
+  --job-name="mamp_prediciton_ml2" \
+  --partition=savio3_gpu \
+  --qos=a40_gpu3_normal \
+  --account=fc_kvkallow \
+  --time=16:00:00 \
+  --gres=gpu:A40:1 \
+  --cpus-per-task=8 \
+  --exclude=n0215.savio3 \
+  --mail-user=dmstev@berkeley.edu \
+  --mail-type=ALL \
+  --wrap 'cd /global/scratch/users/dmstev/mamp_prediction_ml && source envs/boltz/bin/activate && nvidia-smi && python -c "import torch; assert torch.cuda.is_available(), \"no CUDA\"" && boltz predict 16_structural_models/input_files_fold/boltz --model boltz1 --out_dir 16_structural_models/input_files_fold/boltz1 --accelerator gpu --devices 1 --recycling_steps 3 --sampling_steps 150 --max_parallel_samples 1 --diffusion_samples 1 --output_format mmcif'
 
 # Boltz-2
-boltz predict 16_structural_models/input_files_fold/boltz \
---model boltz2 \
---out_dir 16_structural_models/input_files_fold/boltz2 \
---accelerator mps \
---devices 1 \
---recycling_steps 3 \
---sampling_steps 200 \
---diffusion_samples 1 \
---output_format mmcif
-deactivate
-```
+sbatch \
+  --job-name="mamp_prediciton_ml2_boltz2" \
+  --partition=savio3_gpu \
+  --qos=a40_gpu3_normal \
+  --account=fc_kvkallow \
+  --time=16:00:00 \
+  --gres=gpu:A40:1 \
+  --cpus-per-task=8 \
+  --exclude=n0215.savio3 \
+  --mail-user=dmstev@berkeley.edu \
+  --mail-type=ALL \
+  --wrap 'cd /global/scratch/users/dmstev/mamp_prediction_ml && source envs/boltz/bin/activate && nvidia-smi && python -c "import torch; assert torch.cuda.is_available(), \"no CUDA\"" && boltz predict 16_structural_models/input_files_fold/boltz --model boltz2 --out_dir 16_structural_models/input_files_fold/boltz2 --accelerator gpu --devices 1 --recycling_steps 3 --sampling_steps 150 --max_parallel_samples 1 --diffusion_samples 1 --output_format mmcif'
 
-
-
-
-```
-
-# RF3
-source ~/envs/rf3/bin/activate
-export PYTORCH_ENABLE_MPS_FALLBACK=1
-rf3 fold inputs="$PWD/16_structural_models/fold_bench/inputs/rf3" out_dir="$PWD/16_structural_models/fold_bench/outputs/rf3" early_stopping_plddt_threshold=0.0 diffusion_batch_size=5 raise_if_missing_msa_for_protein_of_length_n=50 skip_existing=true
-deactivate
-
-
-
-rf3 fold inputs="$PWD/16_structural_models/fold_bench/rf3.json" out_dir="$PWD/16_structural_models/fold_bench/outputs/rf3" early_stopping_plddt_threshold=0.0 diffusion_batch_size=5 raise_if_missing_msa_for_protein_of_length_n=50 skip_existing=true
+  sbatch \
+  --job-name="mamp_prediciton_ml2_boltz2" \
+  --partition=savio4_gpu \
+  --qos=a5k_gpu4_normal \
+  --account=fc_kvkallow \
+  --time=16:00:00 \
+  --gres=gpu:A5000:1 \
+  --cpus-per-task=4 \
+  --mail-user=dmstev@berkeley.edu \
+  --mail-type=ALL \
+  --wrap 'cd /global/scratch/users/dmstev/mamp_prediction_ml && source envs/boltz/bin/activate && nvidia-smi && python -c "import torch; assert torch.cuda.is_available(), \"no CUDA\"" && boltz predict 16_structural_models/input_files_fold/boltz --model boltz2 --out_dir 16_structural_models/input_files_fold/boltz2 --accelerator gpu --devices 1 --recycling_steps 3 --sampling_steps 150 --max_parallel_samples 1 --diffusion_samples 1 --output_format mmcif'
 
 ```
 
 
 
+```
+  
+# -------- run on A40 card -------------
+uv venv envs/rf3 --python 3.12
+source envs/rf3/bin/activate
 
+# assume torch with CUDA support is already installed
+uv pip install pandas
+uv pip install "rc-foundry[all] @ git+https://github.com/fnachon/foundry.git"
+
+# downloads latest RF3 checkpoint to ~/.foundry/checkpoints
+foundry install rf3          
+
+sbatch \
+  --job-name="rf3_mamp_prediction_ml" \
+  --partition=savio3_gpu \
+  --qos=a40_gpu3_normal \
+  --account=fc_kvkallow \
+  --time=16:00:00 \
+  --gres=gpu:A40:1 \
+  --cpus-per-task=8 \
+  --exclude=n0215.savio3 \
+  --mail-user=dmstev@berkeley.edu \
+  --mail-type=ALL \
+  --wrap 'cd /global/scratch/users/dmstev/mamp_prediction_ml && source envs/rf3/bin/activate && nvidia-smi && python -c "import torch; assert torch.cuda.is_available(), \"no CUDA\"" && sed "s#/Users/daniellestevens/Workspace/mamp-prediction-ml#$PWD#g" 16_structural_models/input_files_fold/rf3.json > 16_structural_models/input_files_fold/rf3_hpc.json && rf3 fold inputs="$PWD/16_structural_models/input_files_fold/rf3_hpc.json" out_dir="$PWD/16_structural_models/input_files_fold/rf3" early_stopping_plddt_threshold=0.0 diffusion_batch_size=3 raise_if_missing_msa_for_protein_of_length_n=50 skip_existing=true'
+
+
+sbatch \
+  --job-name="rf3_mamp_prediction_ml" \
+  --partition=savio4_gpu \
+  --qos=a5k_gpu4_normal \
+  --account=fc_kvkallow \
+  --time=16:00:00 \
+  --gres=gpu:A5000:1 \
+  --cpus-per-task=4 \
+  --mail-user=dmstev@berkeley.edu \
+  --mail-type=ALL \
+  --wrap 'cd /global/scratch/users/dmstev/mamp_prediction_ml && source envs/rf3/bin/activate && nvidia-smi && python -c "import torch; assert torch.cuda.is_available(), \"no CUDA\"" && sed "s#/Users/daniellestevens/Workspace/mamp-prediction-ml#$PWD#g" 16_structural_models/input_files_fold/rf3.json > 16_structural_models/input_files_fold/rf3_hpc.json && rf3 fold inputs="$PWD/16_structural_models/input_files_fold/rf3_hpc.json" out_dir="$PWD/16_structural_models/input_files_fold/rf3" early_stopping_plddt_threshold=0.0 diffusion_batch_size=3 raise_if_missing_msa_for_protein_of_length_n=50 skip_existing=true'
+
+
+
+# once the combinations have been completed
+Rscript 16_structural_models/00_structure_models_comparisons.R
+
+Rscript 16_structural_models/01_structure_model_accuracy.R \
+  --seqonly ../model_results/02_immuno_stratify_esm2_with_receptor/classification_report.txt \
+  --mamp-ml ../model_results/06_immuno_stratify_esm2_bfactor_weighted/classification_report.txt
+```
+## 07. What does mamp-ml learn about receptor-epitope interactions
+
+Visualizing protein sequence embeddings and attention maps allows us to interpret how deep learning models, such as ESM or RoseTTAFold, represent and process biological data. Embedding visualizations can reveal clustering by structural or functional similarity, while attention maps highlight which amino acids or regions the model focuses on during prediction, providing insight into putative functional sites or key structural features. These techniques enhance interpretability, support model validation, and may suggest biologically relevant hypotheses for further study.
+
+```
+# building attention maps:
+python 07_model_results/06_attention_maps.py \
+  --data_csv 05_datasets/train_data_with_all_train_immuno_stratify.csv \
+  --mamp_esm facebook/esm2_t6_8M_UR50D \
+  --bfactor_csv 04_Preprocessing_results/bfactor_winding_lrr_segments.csv \
+  --output_dir embedding_analysis_results \
+  --pretrained_only \
+  --attn_layer 1 \
+  --receptor FLS2,EFR \
+  --n_per_receptor 3 \
+  --seed 0 \
+  --device mps
+
+# we can alter
+```
 
 
 ```
+Rscript 16_structural_models/01_structure_model_accuracy.R \
+  --test_data 05_datasets/test_data_with_all_test_immuno_stratify.csv
 
 ```
 
 
+Not used but want to save code
 ```
-
 # --- RoseTTAFold3 (Foundry, Apple Silicon fork) -----------------------------
 uv venv envs/rf3 --python 3.12
 source envs/rf3/bin/activate
 uv pip install torch pandas
 uv pip install "rc-foundry[all] @ git+https://github.com/fnachon/foundry.git"
-foundry install rf3          # downloads latest RF3 checkpoint to ~/.foundry/checkpoints
-deactivate
 
-source ~/envs/rf3/bin/activate
+# downloads latest RF3 checkpoint to ~/.foundry/checkpoints
+foundry install rf3          
 export PYTORCH_ENABLE_MPS_FALLBACK=1
 
-rf3 fold inputs="$PWD/16_structural_models/fold_bench/inputs/rf3" \
-  out_dir="$PWD/16_structural_models/fold_bench/outputs/rf3" \
+python -W ignore \
+  "$(which rf3)" fold \
+  inputs="$PWD/16_structural_models/input_files_fold/rf3.json" \
+  out_dir="$PWD/16_structural_models/input_files_fold/rf3" \
   early_stopping_plddt_threshold=0.0 \
-  diffusion_batch_size=5 \
+  diffusion_batch_size=3 \
   raise_if_missing_msa_for_protein_of_length_n=50 \
   skip_existing=true
-deactivate
-```
+
+  ```

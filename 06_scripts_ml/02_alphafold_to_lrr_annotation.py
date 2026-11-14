@@ -129,6 +129,14 @@ def copy_best_models(best_models, source_dir, target_dir):
         target_path = target_dir / f"{receptor}.pdb"
         shutil.copy2(source_path, target_path)
 
+    # Drop leftover PDBs from prior naming (typos / renamed receptors) so
+    # LRR annotation and downstream matching only see current Query names.
+    keep = {f"{receptor}.pdb" for receptor in best_models}
+    for stale in sorted(target_dir.glob("*.pdb")):
+        if stale.name not in keep:
+            print(f"Removing stale PDB not in current AlphaFold queries: {stale.name}")
+            stale.unlink()
+
 def run_lrr_annotation(pdb_directory):
     """Run LRR annotation on the PDB files."""
     # Initialize objects
